@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title:  "Development version of WordPress on Windows 10"
 date:   2016-06-13 11:19:35 +0100
 ---
