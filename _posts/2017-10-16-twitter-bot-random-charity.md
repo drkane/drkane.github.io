@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title:  "Twitter bot – random charity"
 date:   2016-10-16 23:45:35 +0100
 ---
