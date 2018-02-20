@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane - Blog</title><link href="drkane.co.uk/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>drkane.co.uk/</id><updated>2018-02-10T21:32:35+01:00</updated><entry><title>Names shared by genders</title><link href="drkane.co.uk/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-10:drkane.co.uk/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
+in ambiguous names - those that are shared by people of both genders.&lt;/p&gt;
+&lt;p&gt;I realised I could use the list of male and female charity trustee names
+I'd gathered to look into this in a bit more detail. Bearing in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
+in ambiguous names - those that are shared by people of both genders.&lt;/p&gt;
+&lt;p&gt;I realised I could use the list of male and female charity trustee names
+I'd gathered to look into this in a bit more detail. Bearing in mind the
+limitations and bias of the source dataset, I think it can generate some
+insight.&lt;/p&gt;
+&lt;p&gt;This blogpost was written as a juypter notebook, so it can be run to 
+recreate the research. &lt;a href="https://github.com/"&gt;You can find the notebook code on github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We start by importing the libraries we need - two built-in python libraries
+(&lt;code&gt;csv&lt;/code&gt; and &lt;code&gt;collections&lt;/code&gt;), &lt;code&gt;pandas&lt;/code&gt; for analysing the data and &lt;code&gt;matplotlib&lt;/code&gt;
+for making charts.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;csv&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To start, we go through all the names in our source data, and use the names with titles to find first names of males and females. To do this I've just taken the first word from the string, excluding the title, providing it's more than one character. This is fairly crude, and will be wrong in some cases (eg someone who uses two first names). But it should be good enough for our purposes.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;extract_trustee.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# ignore rows that aren&amp;#39;t two records long&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;continue&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# split the name by spaces&lt;/span&gt;
+        &lt;span class="c1"&gt;# if there&amp;#39;s only one field then ignore the name&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;continue&lt;/span&gt;
+        &lt;span class="c1"&gt;# if the second name string (usually surname) is less that 2 characters ignore the row&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;continue&lt;/span&gt;
+        &lt;span class="c1"&gt;# if there are non-alpha characters (numbers, symbols) then ignore the row&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isalpha&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;continue&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# get the first name (assuming name[0] is a title)&lt;/span&gt;
+        &lt;span class="c1"&gt;# if the first word is one of these titles it&amp;#39;s a female name&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;miss&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;mrs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ms&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;dame&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="c1"&gt;# if the first word is one of these titles it&amp;#39;s a male name&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sir&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Lets check the female and male names to check we're on the right track.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[&amp;#39;Felicity&amp;#39;, &amp;#39;Tessa&amp;#39;, &amp;#39;Elizabeth&amp;#39;, &amp;#39;Julie&amp;#39;, &amp;#39;Rosemary&amp;#39;, &amp;#39;Catherine&amp;#39;, &amp;#39;Eileen&amp;#39;, &amp;#39;Christa&amp;#39;, &amp;#39;Roberta&amp;#39;, &amp;#39;Beverley&amp;#39;]&lt;/span&gt;
+&lt;span class="k"&gt;[&amp;#39;Oliver&amp;#39;, &amp;#39;Kenneth&amp;#39;, &amp;#39;Neil&amp;#39;, &amp;#39;Keith&amp;#39;, &amp;#39;John&amp;#39;, &amp;#39;Herschel&amp;#39;, &amp;#39;Alex&amp;#39;, &amp;#39;David&amp;#39;, &amp;#39;Christopher&amp;#39;, &amp;#39;Daniel&amp;#39;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;male&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;female_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;male_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;male&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;all_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;female_names&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;male_names&lt;/span&gt;
+&lt;span class="n"&gt;female_people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="n"&gt;male_people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;male&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="n"&gt;all_people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;female_people&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;male_people&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Female: {:,.0f} (from {:,.0f} people)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;female_names&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;female_people&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Male: {:,.0f} (from {:,.0f} people)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;male_names&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;male_people&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;{:,.1f} &lt;/span&gt;&lt;span class="si"&gt;% o&lt;/span&gt;&lt;span class="s2"&gt;f names are female, {:,.1f} of people in sample&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_names&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;all_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_people&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;all_people&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;weighting&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;male_people&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;0.489&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;male_people&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;female_people&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Use a weighting of {:,.3f} to bring female population to 51.1&lt;/span&gt;&lt;span class="si"&gt;% o&lt;/span&gt;&lt;span class="s2"&gt;f sample&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;weighting&lt;/span&gt;
+&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 100 = X + Y&lt;/span&gt;
+&lt;span class="c1"&gt;# X = male&lt;/span&gt;
+&lt;span class="c1"&gt;# Y = female&lt;/span&gt;
+&lt;span class="c1"&gt;# Z = female weighted&lt;/span&gt;
+&lt;span class="c1"&gt;# X / (X + Y) = 0.520&lt;/span&gt;
+&lt;span class="c1"&gt;# X / (X + Z) = 0.489&lt;/span&gt;
+&lt;span class="c1"&gt;# X = 0.489 * (X + Z)&lt;/span&gt;
+&lt;span class="c1"&gt;# X / 0.489 = X + Z&lt;/span&gt;
+&lt;span class="c1"&gt;# Z = (X / 0.489) - X&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Female&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;367&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;335&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;237&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Male&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;085&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;363&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;296&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;48.9&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;48.0&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;
+&lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;weighting&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mf"&gt;1.132&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;bring&lt;/span&gt; &lt;span class="n"&gt;female&lt;/span&gt; &lt;span class="n"&gt;population&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mf"&gt;51.1&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This gives us 15,367 female first names (from 335,000 people) and 
+16,085 male ones (from 363,296 people). The only issue is that
+the ratio is slightly off - 48.0% of our sample are female, compared to &lt;a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland"&gt;51.1% of
+the 18+ population in England and Wales&lt;/a&gt;.
+So we can use a weighting of 1.132 to correct this when we use the counts.&lt;/p&gt;
+&lt;p&gt;Next we work out the count of how many times each name appears for men and
+women. To do this the data is put into panda dataframes.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;orient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;female_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;male_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;male&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;orient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;male_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We then apply our weighting to the female figures to adjust for the
+lower number in our sample.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;weighting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These dataframes are merged together, joining on the name, to give us a list of first names found in the dataset alongside the number of females and males found with that name.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;male_df&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;outer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can see a list of the top 10 most common first names in the dataset (only two female names make the list - even after applying our weighting).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div&gt;
+&lt;style&gt;
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;female&lt;/th&gt;
+      &lt;th&gt;male&lt;/th&gt;
+      &lt;th&gt;total&lt;/th&gt;
+      &lt;th&gt;female_pc&lt;/th&gt;
+      &lt;th&gt;male_pc&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;David&lt;/th&gt;
+      &lt;td&gt;8.0&lt;/td&gt;
+      &lt;td&gt;21480.0&lt;/td&gt;
+      &lt;td&gt;21488.0&lt;/td&gt;
+      &lt;td&gt;0.000372&lt;/td&gt;
+      &lt;td&gt;0.999628&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;John&lt;/th&gt;
+      &lt;td&gt;9.0&lt;/td&gt;
+      &lt;td&gt;21155.0&lt;/td&gt;
+      &lt;td&gt;21164.0&lt;/td&gt;
+      &lt;td&gt;0.000425&lt;/td&gt;
+      &lt;td&gt;0.999575&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Peter&lt;/th&gt;
+      &lt;td&gt;6.0&lt;/td&gt;
+      &lt;td&gt;12421.0&lt;/td&gt;
+      &lt;td&gt;12427.0&lt;/td&gt;
+      &lt;td&gt;0.000483&lt;/td&gt;
+      &lt;td&gt;0.999517&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Michael&lt;/th&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;12021.0&lt;/td&gt;
+      &lt;td&gt;12024.0&lt;/td&gt;
+      &lt;td&gt;0.000250&lt;/td&gt;
+      &lt;td&gt;0.999750&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Richard&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;9702.0&lt;/td&gt;
+      &lt;td&gt;9703.0&lt;/td&gt;
+      &lt;td&gt;0.000103&lt;/td&gt;
+      &lt;td&gt;0.999897&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Susan&lt;/th&gt;
+      &lt;td&gt;8872.0&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;8875.0&lt;/td&gt;
+      &lt;td&gt;0.999662&lt;/td&gt;
+      &lt;td&gt;0.000338&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Andrew&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;8746.0&lt;/td&gt;
+      &lt;td&gt;8747.0&lt;/td&gt;
+      &lt;td&gt;0.000114&lt;/td&gt;
+      &lt;td&gt;0.999886&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Paul&lt;/th&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;8492.0&lt;/td&gt;
+      &lt;td&gt;8495.0&lt;/td&gt;
+      &lt;td&gt;0.000353&lt;/td&gt;
+      &lt;td&gt;0.999647&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Robert&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;7879.0&lt;/td&gt;
+      &lt;td&gt;7880.0&lt;/td&gt;
+      &lt;td&gt;0.000127&lt;/td&gt;
+      &lt;td&gt;0.999873&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Margaret&lt;/th&gt;
+      &lt;td&gt;7866.0&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;7871.0&lt;/td&gt;
+      &lt;td&gt;0.999365&lt;/td&gt;
+      &lt;td&gt;0.000635&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And a list of some of the least common - these names only appear once.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div&gt;
+&lt;style&gt;
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;female&lt;/th&gt;
+      &lt;th&gt;male&lt;/th&gt;
+      &lt;th&gt;total&lt;/th&gt;
+      &lt;th&gt;female_pc&lt;/th&gt;
+      &lt;th&gt;male_pc&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jibola&lt;/th&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jibi&lt;/th&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jiba&lt;/th&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jiaokun&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jiann&lt;/th&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jianmin&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jiale&lt;/th&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jia&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jhumar&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Zyta&lt;/th&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Shared names&lt;/h2&gt;
+&lt;p&gt;We now move on to what we were trying to do - get a list of names that are commonly shared between people of different genders. You can see from the top 10s above that it's not a perfect dataset - some names that you might assume are unambiguously male or female have some counterparts - there are 8 female Davids, and 3 male Susans.&lt;/p&gt;
+&lt;p&gt;This could be a mistake in the way the algorithm was applied, a typo in the data, or people who have an unusual name. But to look only at names we would expect to be more common, I've filtered to only show only names where more than 30 instances of both male and female people have the name. This threshold should also ensure we have a decent sample of people for each name.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;shared&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;23
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div&gt;
+&lt;style&gt;
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;female&lt;/th&gt;
+      &lt;th&gt;male&lt;/th&gt;
+      &lt;th&gt;total&lt;/th&gt;
+      &lt;th&gt;female_pc&lt;/th&gt;
+      &lt;th&gt;male_pc&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jean&lt;/th&gt;
+      &lt;td&gt;3787.0&lt;/td&gt;
+      &lt;td&gt;50.0&lt;/td&gt;
+      &lt;td&gt;3837.0&lt;/td&gt;
+      &lt;td&gt;0.986969&lt;/td&gt;
+      &lt;td&gt;0.013031&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Pat&lt;/th&gt;
+      &lt;td&gt;1154.0&lt;/td&gt;
+      &lt;td&gt;67.0&lt;/td&gt;
+      &lt;td&gt;1221.0&lt;/td&gt;
+      &lt;td&gt;0.945127&lt;/td&gt;
+      &lt;td&gt;0.054873&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Kerry&lt;/th&gt;
+      &lt;td&gt;530.0&lt;/td&gt;
+      &lt;td&gt;45.0&lt;/td&gt;
+      &lt;td&gt;575.0&lt;/td&gt;
+      &lt;td&gt;0.921739&lt;/td&gt;
+      &lt;td&gt;0.078261&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lyn&lt;/th&gt;
+      &lt;td&gt;337.0&lt;/td&gt;
+      &lt;td&gt;36.0&lt;/td&gt;
+      &lt;td&gt;373.0&lt;/td&gt;
+      &lt;td&gt;0.903485&lt;/td&gt;
+      &lt;td&gt;0.096515&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Kim&lt;/th&gt;
+      &lt;td&gt;711.0&lt;/td&gt;
+      &lt;td&gt;80.0&lt;/td&gt;
+      &lt;td&gt;791.0&lt;/td&gt;
+      &lt;td&gt;0.898862&lt;/td&gt;
+      &lt;td&gt;0.101138&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jan&lt;/th&gt;
+      &lt;td&gt;802.0&lt;/td&gt;
+      &lt;td&gt;108.0&lt;/td&gt;
+      &lt;td&gt;910.0&lt;/td&gt;
+      &lt;td&gt;0.881319&lt;/td&gt;
+      &lt;td&gt;0.118681&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lindsay&lt;/th&gt;
+      &lt;td&gt;347.0&lt;/td&gt;
+      &lt;td&gt;62.0&lt;/td&gt;
+      &lt;td&gt;409.0&lt;/td&gt;
+      &lt;td&gt;0.848411&lt;/td&gt;
+      &lt;td&gt;0.151589&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Sandy&lt;/th&gt;
+      &lt;td&gt;126.0&lt;/td&gt;
+      &lt;td&gt;42.0&lt;/td&gt;
+      &lt;td&gt;168.0&lt;/td&gt;
+      &lt;td&gt;0.750000&lt;/td&gt;
+      &lt;td&gt;0.250000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Mel&lt;/th&gt;
+      &lt;td&gt;62.0&lt;/td&gt;
+      &lt;td&gt;54.0&lt;/td&gt;
+      &lt;td&gt;116.0&lt;/td&gt;
+      &lt;td&gt;0.534483&lt;/td&gt;
+      &lt;td&gt;0.465517&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Vivian&lt;/th&gt;
+      &lt;td&gt;87.0&lt;/td&gt;
+      &lt;td&gt;79.0&lt;/td&gt;
+      &lt;td&gt;166.0&lt;/td&gt;
+      &lt;td&gt;0.524096&lt;/td&gt;
+      &lt;td&gt;0.475904&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Leigh&lt;/th&gt;
+      &lt;td&gt;88.0&lt;/td&gt;
+      &lt;td&gt;92.0&lt;/td&gt;
+      &lt;td&gt;180.0&lt;/td&gt;
+      &lt;td&gt;0.488889&lt;/td&gt;
+      &lt;td&gt;0.511111&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jose&lt;/th&gt;
+      &lt;td&gt;43.0&lt;/td&gt;
+      &lt;td&gt;60.0&lt;/td&gt;
+      &lt;td&gt;103.0&lt;/td&gt;
+      &lt;td&gt;0.417476&lt;/td&gt;
+      &lt;td&gt;0.582524&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Sam&lt;/th&gt;
+      &lt;td&gt;215.0&lt;/td&gt;
+      &lt;td&gt;340.0&lt;/td&gt;
+      &lt;td&gt;555.0&lt;/td&gt;
+      &lt;td&gt;0.387387&lt;/td&gt;
+      &lt;td&gt;0.612613&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Laurie&lt;/th&gt;
+      &lt;td&gt;32.0&lt;/td&gt;
+      &lt;td&gt;71.0&lt;/td&gt;
+      &lt;td&gt;103.0&lt;/td&gt;
+      &lt;td&gt;0.310680&lt;/td&gt;
+      &lt;td&gt;0.689320&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Alex&lt;/th&gt;
+      &lt;td&gt;177.0&lt;/td&gt;
+      &lt;td&gt;506.0&lt;/td&gt;
+      &lt;td&gt;683.0&lt;/td&gt;
+      &lt;td&gt;0.259151&lt;/td&gt;
+      &lt;td&gt;0.740849&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Chris&lt;/th&gt;
+      &lt;td&gt;419.0&lt;/td&gt;
+      &lt;td&gt;1856.0&lt;/td&gt;
+      &lt;td&gt;2275.0&lt;/td&gt;
+      &lt;td&gt;0.184176&lt;/td&gt;
+      &lt;td&gt;0.815824&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ali&lt;/th&gt;
+      &lt;td&gt;52.0&lt;/td&gt;
+      &lt;td&gt;268.0&lt;/td&gt;
+      &lt;td&gt;320.0&lt;/td&gt;
+      &lt;td&gt;0.162500&lt;/td&gt;
+      &lt;td&gt;0.837500&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lee&lt;/th&gt;
+      &lt;td&gt;92.0&lt;/td&gt;
+      &lt;td&gt;524.0&lt;/td&gt;
+      &lt;td&gt;616.0&lt;/td&gt;
+      &lt;td&gt;0.149351&lt;/td&gt;
+      &lt;td&gt;0.850649&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ashley&lt;/th&gt;
+      &lt;td&gt;43.0&lt;/td&gt;
+      &lt;td&gt;257.0&lt;/td&gt;
+      &lt;td&gt;300.0&lt;/td&gt;
+      &lt;td&gt;0.143333&lt;/td&gt;
+      &lt;td&gt;0.856667&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Leslie&lt;/th&gt;
+      &lt;td&gt;78.0&lt;/td&gt;
+      &lt;td&gt;729.0&lt;/td&gt;
+      &lt;td&gt;807.0&lt;/td&gt;
+      &lt;td&gt;0.096654&lt;/td&gt;
+      &lt;td&gt;0.903346&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Francis&lt;/th&gt;
+      &lt;td&gt;51.0&lt;/td&gt;
+      &lt;td&gt;533.0&lt;/td&gt;
+      &lt;td&gt;584.0&lt;/td&gt;
+      &lt;td&gt;0.087329&lt;/td&gt;
+      &lt;td&gt;0.912671&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Terry&lt;/th&gt;
+      &lt;td&gt;54.0&lt;/td&gt;
+      &lt;td&gt;973.0&lt;/td&gt;
+      &lt;td&gt;1027.0&lt;/td&gt;
+      &lt;td&gt;0.052580&lt;/td&gt;
+      &lt;td&gt;0.947420&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Robin&lt;/th&gt;
+      &lt;td&gt;36.0&lt;/td&gt;
+      &lt;td&gt;1438.0&lt;/td&gt;
+      &lt;td&gt;1474.0&lt;/td&gt;
+      &lt;td&gt;0.024423&lt;/td&gt;
+      &lt;td&gt;0.975577&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This identifies 23 names meeting our criteria. They range from Jean (97% female), to Robin (98% male). But the most interesting names come in the middle. The closest to a 50-50 split are Leigh (49% female), Vivian (52% female) and Mel (53% female). &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;multiply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iloc&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;barh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stacked&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;matplotlib.axes._subplots.AxesSubplot at 0x23fe0924e80&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="png" src="/images/output_20_1.png"&gt;&lt;/p&gt;
+&lt;p&gt;Charting the data gives us a few clusters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Names that are mostly female, but with some male use: &lt;strong&gt;Jean, Pat, Kerry, Lyn, Kim, Jan, Lindsay&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Names that are pretty close to 50-50: &lt;strong&gt;Mel, Vivian, Leigh, Jose, Sam&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Names that are mostly male, but with some female use: &lt;strong&gt;Alex, Chris, Ali, Lee, Ashley, Leslie, Terry, Robin&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>A name gender classifier</title><link href="drkane.co.uk/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-10:drkane.co.uk/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
+classify them into male and female. For example, I've looked at lists of people
+who attended events to see whether they were reaching more men or women - this
+then helps target future events …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
+classify them into male and female. For example, I've looked at lists of people
+who attended events to see whether they were reaching more men or women - this
+then helps target future events.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: there are lots of reasons why this is a terrible idea. For a start, gender
+is more complicated than male/female, and there are lots of reasons why a name is
+a bad guide to someone's gender (&lt;a href="http://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/"&gt;and other things programmers wrongly believe about
+names&lt;/a&gt;). 
+But I've justified it here on the basis that I'm not interested in getting
+100% of the genders exactly right, but instead to get a general idea of a split in
+a population.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This is a good place to use a naïve Bayesian classifier. The best example of this
+technique is a spam classifier - this will work out whether an email is spam, based
+on comparing it to a model generated from a training data set. The "naïve" part
+comes from the fact that it's simply based on words that appear in the training
+data set, without considering the meaning of or connections between those words.&lt;/p&gt;
+&lt;p&gt;To do this I'm going to use python (3.6 to be exact) and the &lt;a href="http://scikit-learn.org/stable/"&gt;scikit&lt;/a&gt;
+library which has a naïve Bayesian classifier built in. It's based on the tutorial
+found here.&lt;/p&gt;
+&lt;h2&gt;Step 1 - get some training data&lt;/h2&gt;
+&lt;p&gt;The training data needs to be a list of names with their genders. I've found this a
+tricky thing to come by, but luckily my work with the 
+&lt;a href="http://data.charitycommission.gov.uk/"&gt;Charity Commission Register of Charities&lt;/a&gt;
+throws up a good source.&lt;/p&gt;
+&lt;p&gt;The large data extract they publish, under an open license, contains a list of
+trustees for each charity. It's just a list of names - they hold information like
+address, date of birth, etc but don't publish it for data protection reasons - but
+it's possible to work out the gender of a proportion of the names.&lt;/p&gt;
+&lt;p&gt;Out of the X,000 names, X,000 (X%) include a title (Mrs, Miss, Ms, Mr). Using those
+four titles which are gender specific and cover X% of titles used. I wrote a python
+script to parse the name CSV file, look for names that start with Mr, Mrs, etc and
+put them into a male list or female list. This produces lists of X male names and
+X female names.&lt;/p&gt;
+&lt;p&gt;A couple of notes here. Like any training data set, this is not unbiased. Charity
+trustees represent a particular slice of the population - people from all walks of
+life are trustees, but the average trustee is older, whiter and richer than the
+average person. So the names we're using are going to reflect those demographics.&lt;/p&gt;
+&lt;p&gt;Note too that I'm not doing anything to separate out first names and last names -
+I'm just using the whole string. This means that last names will be included in
+the model - with the hope that they'll be equally distributed and so won't make
+a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
+&lt;h2&gt;Step 2: training the model&lt;/h2&gt;
+&lt;h2&gt;Step 3: testing the model&lt;/h2&gt;
+&lt;h2&gt;Step 4: using the model&lt;/h2&gt;</content></entry><entry><title>Twitter bot – random charity</title><link href="drkane.co.uk/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:None,2016-10-16:drkane.co.uk/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From the readme:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Twitter bot that tweets the name and website of a random charity. The data is based on the register held by the Charity Commission for England and Wales, &lt;a href="http://data.charitycommission.gov.uk/"&gt;released as open data&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The bot randomly selects an active charity from the register, and tweets it. If the website of the charity is known it tweets that too, otherwise it gives a link to the official register entry for that charity.&lt;/p&gt;
+&lt;p&gt;This bot isn’t affiliated with the Charity Commission, and gives no endorsement of the charities tweeted.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Credit due to the following places:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fetch charity data script adapted from &lt;a href="https://github.com/OpenDataServices/grantnav/blob/master/dataload/fetch_charity_data.py"&gt;https://github.com/OpenDataServices/grantnav/blob/master/dataload/fetch_charity_data.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Twitter API use from &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Charity data from &lt;a href="http://data.charitycommission.gov.uk/"&gt;http://data.charitycommission.gov.uk/&lt;/a&gt; – used under Open Government Licence v3.0&lt;/li&gt;
+&lt;/ul&gt;</content></entry></feed>
