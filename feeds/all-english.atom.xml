@@ -1,12 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="http://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all-english.atom.xml" rel="self"></link><id>http://drkane.co.uk/</id><updated>2018-03-01T13:25:00+00:00</updated><entry><title>Back in the GDPR</title><link href="http://drkane.co.uk/2018/back-in-the-gdpr/" rel="alternate"></link><published>2018-03-01T13:25:00+00:00</published><updated>2018-03-01T13:25:00+00:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-03-01:/2018/back-in-the-gdpr/</id><summary type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="/" rel="alternate"></link><link href="/feeds/all-english.atom.xml" rel="self"></link><id>/</id><updated>2018-03-26T13:25:00+01:00</updated><entry><title>Adding charity details using findthatcharity.uk - Part I</title><link href="/2018/adding-charity-details-using-findthatcharityuk-part-i/" rel="alternate"></link><published>2018-03-26T13:25:00+01:00</published><updated>2018-03-26T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-03-26:/2018/adding-charity-details-using-findthatcharityuk-part-i/</id><summary type="html">&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; is a site I've created to help access
+data about charities. One of the ways you can use it is to add details about a list of
+charities if you only know their names.&lt;/p&gt;
+&lt;p&gt;This is often called "reconciliation" - turning a list of …&lt;/p&gt;</summary><content type="html">&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; is a site I've created to help access
+data about charities. One of the ways you can use it is to add details about a list of
+charities if you only know their names.&lt;/p&gt;
+&lt;p&gt;This is often called "reconciliation" - turning a list of names into something that 
+unambiguously identifies the charity. Charities are often known by different names, or
+have variations like "Ltd" rather than "Limited", so by adding charity numbers we can
+make sure we're talking about the same charity whether we say "Comic Relief" or "Charity
+Projects".&lt;/p&gt;
+&lt;p&gt;In this post I'm going to show you how to use &lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; 
+and &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; to turn charity names into 
+numbers. In the next part, I'll show how to use charity numbers to fetch extra information
+about a charity - like their web address or latest income.&lt;/p&gt;
+&lt;h3 id="1-get-open-refine"&gt;1. Get Open Refine&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; is a great data cleaning/wrangling tool. It was 
+originally started by Google (and so is sometimes still called Google Refine), but 
+is now run by a team of volunteer developers.&lt;/p&gt;
+&lt;p&gt;You can find the download for your platform on the &lt;a href="http://openrefine.org/download.html"&gt;download page&lt;/a&gt;.
+Note that if you're a Windows user you won't "install" it in the same way you might for
+other programs - instead you extract the zip file into a directory and then run &lt;code&gt;refine.bat&lt;/code&gt;
+from that directory.&lt;/p&gt;
+&lt;p&gt;Again, OpenRefine might be a bit different from other programs you've seen in that it
+doesn't open in it's own window - instead it has a "server" that runs in the background,
+and you interact with it through a web browser. The address you visit (normally &lt;a href="http://localhost:3333"&gt;http://localhost:3333&lt;/a&gt;)
+is only accessible through your computer though - other parts of the internet can't 
+see it.&lt;/p&gt;
+&lt;h3 id="2-load-your-data"&gt;2. Load your data&lt;/h3&gt;
+&lt;p&gt;When you first open OpenRefine you'll see a page that looks a bit like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Web page screenshot showing the OpenRefine screen for importing data" src="/images/reconcile/first-screen.png"&gt; &lt;/p&gt;
+&lt;p&gt;You can follow the instructions for importing your data. OpenRefine has some very
+flexible options for importing data. The important thing about your data is that
+it should be a "flat file" - a simple table with rows and columns. You might need
+to use another program (like Excel) to get your data in this format first.&lt;/p&gt;
+&lt;p&gt;I've chosen to use some data published by the &lt;a href="http://cheshirecommunityfoundation.org.uk/wp-content/uploads/2017/06/Grants-Awarded-Fiscal-Year-2016.xlsx"&gt;Cheshire Community Foundation [xlsx - 57Kb]&lt;/a&gt;
+on the grants they've published. This data is published to the &lt;a href="https://www.threesixtygiving.org/"&gt;360 Giving grant data standard&lt;/a&gt;
+and I found it in the &lt;a href="https://www.threesixtygiving.org/data/data-registry/"&gt;360 Giving data registry&lt;/a&gt;.
+It already includes charity numbers so we wouldn't need to do this reconciliation
+process, but it's useful to have them there to check how good the reconiliation
+process is.&lt;/p&gt;
+&lt;p&gt;I can point OpenRefine at this URL and it will download and load it itself. Here's what the
+data looks like once it's been imported. I've hidden the &lt;code&gt;description&lt;/code&gt; field to get more
+rows on the screen.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Data loaded into OpenRefine" src="/images/reconcile/data-ready.png"&gt;&lt;/p&gt;
+&lt;h3 id="3-reconcile-charity-names"&gt;3. Reconcile charity names&lt;/h3&gt;
+&lt;p&gt;We're going to be using the &lt;code&gt;Recipient Org:Name&lt;/code&gt; field to reconcile - this contains the
+name of the organisation that received the grant. Click on the arrow next to the column
+title to bring up the menu, and click &lt;code&gt;Reconcile &amp;gt; Start reconciling...&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Location of the reconcile menu" src="/images/reconcile/reconcile-menu.png"&gt;&lt;/p&gt;
+&lt;p&gt;Now you need to add the Find that Charity reconciliation service. This is a web service
+that will recieve data from OpenRefine (in this case the name of a charity) and tries
+to match it to an entity. It returns a list of possible matches, and allows us to 
+extract the ID of each match (in this case the charity number).&lt;/p&gt;
+&lt;p&gt;Click &lt;code&gt;Add Standard Service...&lt;/code&gt; and then paste &lt;code&gt;https://findthatcharity.uk/reconcile&lt;/code&gt;
+in the textbox, and click &lt;code&gt;Add Service&lt;/code&gt;. This will then (possibly after a short delay)
+add a service called "charitysearch".&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Dialog box for adding a reconciliation service" src="/images/reconcile/add-service.png"&gt;&lt;/p&gt;
+&lt;p&gt;You'll see a list with just "charity" on the left hand side (you might need to hide 
+the sidebar). You can leave the default options (at the moment findthatcharity doesn't
+take any additional properties to help matching, but this might be something we add 
+later).&lt;/p&gt;
+&lt;p&gt;Click &lt;code&gt;Start Reconciling&lt;/code&gt; to make the magic happen. This might take a while if you
+have lots of records. OpenRefine will batch up charities and send a few at a time
+to findthatcharity, but the server can only cope with so many requests at a time.
+If you need to do lots of requests (&amp;gt;5,000 in one go), speak to me directly.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Completed options for running reconcilation" src="/images/reconcile/start-reconciling.png"&gt;&lt;/p&gt;
+&lt;p&gt;You'll see a counter with the percentage complete at the top, and when finished each field will
+show the matches that have been made. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Reconciliation results, showing a series of checkboxes for each entry with possible matches" src="/images/reconcile/reconcile-results.png"&gt;&lt;/p&gt;
+&lt;h3 id="4-check-the-matches"&gt;4. Check the matches&lt;/h3&gt;
+&lt;p&gt;You now need to check the matches. Depending on your time and the number of records, there's a
+few options for this. &lt;/p&gt;
+&lt;h4 id="manually-check-every-record"&gt;Manually check every record&lt;/h4&gt;
+&lt;p&gt;You can manually check each record - just click on the single tick next to the correct match.
+You can also click the box with two ticks if you'd like every instance of this record to be
+matched to this entity.&lt;/p&gt;
+&lt;h4 id="match-all-records-to-the-best-result"&gt;Match all records to the best result&lt;/h4&gt;
+&lt;p&gt;If you trust the algorithm, or have done some manual checking and think they're all correct, you
+can just take the best match for each record. To do this, click the arrow menu next to the 
+&lt;code&gt;Recipient Org:Name&lt;/code&gt; column heading, and select &lt;code&gt;Reconcile &amp;gt; Actions &amp;gt; Match each cell to its best candidate&lt;/code&gt;.&lt;/p&gt;
+&lt;h4 id="filter-and-match"&gt;Filter and match&lt;/h4&gt;
+&lt;p&gt;You can also combine these two approaches using filters. On the left hand side of the screen,
+OpenRefine has added two "facets" based on the results of the reconciliation. &lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;judgement&lt;/code&gt; facet at the top shows the overall result - either &lt;code&gt;(blank)&lt;/code&gt; where no matches
+have been found, &lt;code&gt;none&lt;/code&gt; where there are some matches or &lt;code&gt;matched&lt;/code&gt; where a single match has
+been selected (some records are marked as &lt;code&gt;matched&lt;/code&gt; already if findthatcharity thinks they
+are an exact match).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;best candidate's score&lt;/code&gt; facet shows the score of the best match candidate, and allows you
+to select different numbers by dragging the range sliders. You can also remove &lt;code&gt;Error&lt;/code&gt; values:
+these are the ones with no match.&lt;/p&gt;
+&lt;p&gt;You can drag the score fact to select only those with high matching scores - this will filter
+to show only those rows with the selected scores. The &lt;code&gt;Match each cell to its best candidate&lt;/code&gt;
+action also respects this filter, so you can use that to match all the records found by the 
+filter, with the remainder remaining unmatched.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Results of combining the score filter with matching each cell to best candidate" src="/images/reconcile/filtered-matches.png"&gt;&lt;/p&gt;
+&lt;h3 id="5-add-charity-number"&gt;5. Add charity number&lt;/h3&gt;
+&lt;p&gt;Once you're happy with the matches you can add a new column with the matched charity number in.
+To do this, use the arrow menu next to the column heading, and click &lt;code&gt;Edit column &amp;gt; Add column based on this column...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The box that pops up allows you to specify lots of different columns. Add a name for your column
+at the top ("Charity Number" would make sense), and then add &lt;code&gt;cell.recon.match.id&lt;/code&gt; in the "Expression"
+box. This will look at the cell reconcilation object, and find the &lt;code&gt;id&lt;/code&gt; of the matched candidate.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Entering an expression for getting the matched cell id" src="/images/reconcile/filtered-matches.png"&gt;&lt;/p&gt;
+&lt;p&gt;Press &lt;code&gt;OK&lt;/code&gt; to add this column.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;That's it for part one - hopefully you've now got a charity number for all the charities in 
+your data. In the next part I'll take a look at using the charity number to add more details
+about the charity, like it's web address or latest income.&lt;/p&gt;</content><category term="Charities"></category><category term="findthatcharity"></category></entry><entry><title>Back in the GDPR</title><link href="/2018/back-in-the-gdpr/" rel="alternate"></link><published>2018-03-01T13:25:00+00:00</published><updated>2018-03-01T13:25:00+00:00</updated><author><name>David Kane</name></author><id>tag:None,2018-03-01:/2018/back-in-the-gdpr/</id><summary type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add …&lt;/p&gt;</summary><content type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add an issue or make a pull request (or &lt;a href="https://twitter.com/kanedr"&gt;tweet me @kanedr&lt;/a&gt;) and I'll add it.&lt;/p&gt;
 &lt;p&gt;My view on GDPR is that, as a consumer, it's a welcome rebalancing of data rights from organisations to individuals, and I think organisations can embrace it positively to think better about how they handle data about their clients, staff, donors and beneficiaries.&lt;/p&gt;
 &lt;p&gt;With that in mind I'd highly recommend these resources by &lt;a href="https://projectsbyif.com/"&gt;IF&lt;/a&gt;. They show ways in which GDPR doesn't just have to be an annoyance that means you have to reword your forms, but instead something that can help you fundamentally rethink the way your users need you to handle their data.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://newdigitalrights.projectsbyif.com/"&gt;Designing for new Digital Rights&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="GDPR"></category><category term="Data Protection"></category></entry><entry><title>Acrostic football league tables</title><link href="http://drkane.co.uk/2018/acrostic-football-league-tables/" rel="alternate"></link><published>2018-02-20T13:45:00+00:00</published><updated>2018-02-20T13:45:00+00:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-02-20:/2018/acrostic-football-league-tables/</id><summary type="html">&lt;p&gt;Following from a &lt;a href="https://www.theguardian.com/football/2018/feb/14/footballers-joining-and-leaving-a-club-in-the-same-transfer-window-the-knowledge"&gt;question to the Guardian's "The Knowledge" column&lt;/a&gt; I've tried to find a longer acrostic than "TABLE".&lt;/p&gt;
+&lt;/ul&gt;</content><category term="GDPR"></category><category term="Data Protection"></category></entry><entry><title>Acrostic football league tables</title><link href="/2018/acrostic-football-league-tables/" rel="alternate"></link><published>2018-02-20T13:45:00+00:00</published><updated>2018-02-20T13:45:00+00:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-20:/2018/acrostic-football-league-tables/</id><summary type="html">&lt;p&gt;Following from a &lt;a href="https://www.theguardian.com/football/2018/feb/14/footballers-joining-and-leaving-a-club-in-the-same-transfer-window-the-knowledge"&gt;question to the Guardian's "The Knowledge" column&lt;/a&gt; I've tried to find a longer acrostic than "TABLE".&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“Has there ever been a longer acrostic spelled out in a table than the oft-recurring ‘TABLE’ from the Premier League this season – or ‘LAWNS’ from League Two?” asks Marco Jackson.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -15,7 +124,7 @@
 &lt;p&gt;“Has there ever been a longer acrostic spelled out in a table than the oft-recurring ‘TABLE’ from the Premier League this season – or ‘LAWNS’ from League Two?” asks Marco Jackson.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;To do this I'm going to fetch data on every match played in English leagues since 1994-95 and use it to generate league tables for the end of every day that a match has been played. I'll then check the first letter of every team in the league table against a dictionary of English words to find the longest.&lt;/p&gt;
-&lt;h2&gt;Import needed modules&lt;/h2&gt;
+&lt;h2 id="import-needed-modules"&gt;Import needed modules&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib.parse&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -32,7 +141,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Fetch league data&lt;/h2&gt;
+&lt;h2 id="fetch-league-data"&gt;Fetch league data&lt;/h2&gt;
 &lt;p&gt;From &lt;a href="http://www.football-data.co.uk/englandm.php"&gt;http://www.football-data.co.uk/englandm.php&lt;/a&gt; - series of CSV tables with data on matches played in English leagues (Premier League, Division One/Championship, Division Two/League One, Division Three/League Two, Conference) since 1994/95.&lt;/p&gt;
 &lt;p&gt;I haven't checked the accuracy of this data against any other source. In particular, it doesn't include any data on points deductions which do happen and affect the league table.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# download the main page and extract the links to CSV files&lt;/span&gt;
@@ -55,7 +164,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Fetch dictionary data&lt;/h2&gt;
+&lt;h2 id="fetch-dictionary-data"&gt;Fetch dictionary data&lt;/h2&gt;
 &lt;p&gt;From &lt;a href="https://github.com/dwyl/english-words/blob/master/words_alpha.txt"&gt;https://github.com/dwyl/english-words/blob/master/words_alpha.txt&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://github.com/dwyl/english-words/blob/master/words_alpha.txt?raw=true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data/dictionary.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;wb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -64,7 +173,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Useful functions&lt;/h2&gt;
+&lt;h2 id="useful-functions"&gt;Useful functions&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;matches_to_table()&lt;/code&gt; takes a list of matches (as a pandas dataframe) and a list of teams and turns it into a league table. The optional list of teams ensures that any teams that haven't yet played are included in the table (if not provided it's worked out based on the matches. Tables are sorted according to the following criteria: points, then goal difference, then goals scored.&lt;/p&gt;
 &lt;p&gt;The matches dataframe requires the following columns for each match:&lt;/p&gt;
 &lt;ul&gt;
@@ -156,7 +265,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Generate tables&lt;/h2&gt;
+&lt;h2 id="generate-tables"&gt;Generate tables&lt;/h2&gt;
 &lt;p&gt;Here I go through each file downloaded in the &lt;code&gt;/data&lt;/code&gt; directory, and carry out the following steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;read file into a pandas dataframe&lt;/li&gt;
@@ -221,7 +330,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Import dictionary data&lt;/h2&gt;
+&lt;h2 id="import-dictionary-data"&gt;Import dictionary data&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data/dictionary.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -229,7 +338,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Find long words in the table strings&lt;/h2&gt;
+&lt;h2 id="find-long-words-in-the-table-strings"&gt;Find long words in the table strings&lt;/h2&gt;
 &lt;p&gt;Split each iteration of the league table into ngrams and check whether it is a word found in the dictionary.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;found_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tstrings&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -316,7 +425,7 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Words in context&lt;/h2&gt;
+&lt;h2 id="words-in-context"&gt;Words in context&lt;/h2&gt;
 &lt;p&gt;Display the league table centered around the teams making the words.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;find_word&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;blokes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;found_words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1027,7 +1136,7 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;h2&gt;Teams in alphabetical order&lt;/h2&gt;
+&lt;h2 id="teams-in-alphabetical-order"&gt;Teams in alphabetical order&lt;/h2&gt;
 &lt;p&gt;I also wanted to look for the table in which a run of teams were in alphabetical order. I've ignored tables in August and September when the league table is less developed and so a default alphabetical team list is likely to take place.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;alpha_tables&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1793,7 +1902,7 @@ Iteration 10267, found 481 [COMPLETE]
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;</content><category term="Football"></category></entry><entry><title>Names shared by genders</title><link href="http://drkane.co.uk/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-02-10:/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
+&lt;/div&gt;</content><category term="Football"></category></entry><entry><title>Names shared by genders</title><link href="/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-10:/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
 in ambiguous names - those that are shared by people of both genders.&lt;/p&gt;
 &lt;p&gt;I realised I could use the list of male and female charity trustee names
 I'd gathered to look into this in a bit more detail. Bearing in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
@@ -2164,7 +2273,7 @@ lower number in our sample.&lt;/p&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;h2&gt;Shared names&lt;/h2&gt;
+&lt;h2 id="shared-names"&gt;Shared names&lt;/h2&gt;
 &lt;p&gt;We now move on to what we were trying to do - get a list of names that are commonly shared between people of different genders. You can see from the top 10s above that it's not a perfect dataset - some names that you might assume are unambiguously male or female have some counterparts - there are 8 female Davids, and 3 male Susans.&lt;/p&gt;
 &lt;p&gt;This could be a mistake in the way the algorithm was applied, a typo in the data, or people who have an unusual name. But to look only at names we would expect to be more common, I've filtered to only show only names where more than 30 instances of both male and female people have the name. This threshold should also ensure we have a decent sample of people for each name.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2406,7 +2515,7 @@ lower number in our sample.&lt;/p&gt;
 &lt;li&gt;Names that are mostly female, but with some male use: &lt;strong&gt;Jean, Pat, Kerry, Lyn, Kim, Jan, Lindsay&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Names that are pretty close to 50-50: &lt;strong&gt;Mel, Vivian, Leigh, Jose, Sam&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Names that are mostly male, but with some female use: &lt;strong&gt;Alex, Chris, Ali, Lee, Ashley, Leslie, Terry, Robin&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>A name gender classifier</title><link href="http://drkane.co.uk/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-02-10:/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
+&lt;/ul&gt;</content></entry><entry><title>A name gender classifier</title><link href="/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-10:/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
 classify them into male and female. For example, I've looked at lists of people
 who attended events to see whether they were reaching more men or women - this
 then helps target future events …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
@@ -2428,7 +2537,7 @@ data set, without considering the meaning of or connections between those words.
 &lt;p&gt;To do this I'm going to use python (3.6 to be exact) and the &lt;a href="http://scikit-learn.org/stable/"&gt;scikit&lt;/a&gt;
 library which has a naïve Bayesian classifier built in. It's based on the tutorial
 found here.&lt;/p&gt;
-&lt;h2&gt;Step 1 - get some training data&lt;/h2&gt;
+&lt;h2 id="step-1-get-some-training-data"&gt;Step 1 - get some training data&lt;/h2&gt;
 &lt;p&gt;The training data needs to be a list of names with their genders. I've found this a
 tricky thing to come by, but luckily my work with the 
 &lt;a href="http://data.charitycommission.gov.uk/"&gt;Charity Commission Register of Charities&lt;/a&gt;
@@ -2450,9 +2559,9 @@ average person. So the names we're using are going to reflect those demographics
 I'm just using the whole string. This means that last names will be included in
 the model - with the hope that they'll be equally distributed and so won't make
 a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
-&lt;h2&gt;Step 2: training the model&lt;/h2&gt;
-&lt;h2&gt;Step 3: testing the model&lt;/h2&gt;
-&lt;h2&gt;Step 4: using the model&lt;/h2&gt;</content></entry><entry><title>Twitter bot – random charity</title><link href="http://drkane.co.uk/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2016-10-16:/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
+&lt;h2 id="step-2-training-the-model"&gt;Step 2: training the model&lt;/h2&gt;
+&lt;h2 id="step-3-testing-the-model"&gt;Step 3: testing the model&lt;/h2&gt;
+&lt;h2 id="step-4-using-the-model"&gt;Step 4: using the model&lt;/h2&gt;</content></entry><entry><title>Twitter bot – random charity</title><link href="/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:None,2016-10-16:/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From the readme:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2465,12 +2574,12 @@ a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 &lt;li&gt;Fetch charity data script adapted from &lt;a href="https://github.com/OpenDataServices/grantnav/blob/master/dataload/fetch_charity_data.py"&gt;https://github.com/OpenDataServices/grantnav/blob/master/dataload/fetch_charity_data.py&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Twitter API use from &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Charity data from &lt;a href="http://data.charitycommission.gov.uk/"&gt;http://data.charitycommission.gov.uk/&lt;/a&gt; – used under Open Government Licence v3.0&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Development version of WordPress on Windows 10</title><link href="http://drkane.co.uk/2016/development-version-of-wordpress-on-windows-10/" rel="alternate"></link><published>2016-06-13T11:19:35+01:00</published><updated>2016-06-13T11:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2016-06-13:/2016/development-version-of-wordpress-on-windows-10/</id><summary type="html">&lt;p&gt;&lt;strong&gt;The problem&lt;/strong&gt;: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.&lt;/p&gt;
+&lt;/ul&gt;</content></entry><entry><title>Development version of WordPress on Windows 10</title><link href="/2016/development-version-of-wordpress-on-windows-10/" rel="alternate"></link><published>2016-06-13T11:19:35+01:00</published><updated>2016-06-13T11:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2016-06-13:/2016/development-version-of-wordpress-on-windows-10/</id><summary type="html">&lt;p&gt;&lt;strong&gt;The problem&lt;/strong&gt;: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The solution&lt;/strong&gt;: use docker to create a container with all the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;The problem&lt;/strong&gt;: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The solution&lt;/strong&gt;: use docker to create a container with all the needed files that can be run when necessary. The steps described here create a copy of WordPress which allows you to access the WordPress installation files and database directly, allowing you to create an exact copy of the live site.&lt;/p&gt;
-&lt;h2&gt;Step 1 – install Docker&lt;/h2&gt;
+&lt;h2 id="step-1-install-docker"&gt;Step 1 – install Docker&lt;/h2&gt;
 &lt;p&gt;Download and install the &lt;a href="https://www.docker.com/products/docker-toolbox"&gt;Docker Toolbox&lt;/a&gt;. We’ll be mostly using &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;Step 2 – configure the container&lt;/h2&gt;
+&lt;h2 id="step-2-configure-the-container"&gt;Step 2 – configure the container&lt;/h2&gt;
 &lt;p&gt;This step was adapted from the &lt;a href="https://docs.docker.com/compose/wordpress/"&gt;instructions shown in the Docker WordPress docs&lt;/a&gt;. The main adaptations are to allow for access to the filesystem and direct database access.&lt;/p&gt;
 &lt;p&gt;Navigate to an empty directory and create a file called &lt;code&gt;docker-compose.yaml&lt;/code&gt;. Open and edit the file to include the following text:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;version&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
@@ -2505,10 +2614,10 @@ a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Step 3 – copy the live files&lt;/h2&gt;
+&lt;h2 id="step-3-copy-the-live-files"&gt;Step 3 – copy the live files&lt;/h2&gt;
 &lt;p&gt;You now need to make a copy of the files from your live site. I did this by downloading them via FTP from the server. Make sure you have a copy of all three main WordPress directorys (&lt;code&gt;wp-admin&lt;/code&gt;, &lt;code&gt;wp-content&lt;/code&gt;, &lt;code&gt;wp-includes&lt;/code&gt;) plus the &lt;code&gt;index.php&lt;/code&gt; file and any files starting &lt;code&gt;wp-*.php&lt;/code&gt; in the main directory.&lt;/p&gt;
 &lt;p&gt;Copy these files into a directory called &lt;code&gt;html&lt;/code&gt; in your project directory.&lt;/p&gt;
-&lt;h2&gt;Step 4 – edit wp-config.php&lt;/h2&gt;
+&lt;h2 id="step-4-edit-wp-configphp"&gt;Step 4 – edit wp-config.php&lt;/h2&gt;
 &lt;p&gt;Because you’ve directly copied the files from the live site, your configuration settings won’t work. Open &lt;code&gt;wp-config.php&lt;/code&gt; from the &lt;code&gt;html&lt;/code&gt; directory in your text editor, and change the following configuration values to match the values specified in the docker-compose.yaml file.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;/** The name of the database for WordPress */&lt;/span&gt;
 &lt;span class="x"&gt;define(&amp;#39;DB_NAME&amp;#39;, &amp;#39;wordpress&amp;#39;);&lt;/span&gt;
@@ -2531,7 +2640,7 @@ a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 
 
 &lt;p&gt;(Note: I think &lt;code&gt;192.168.99.100&lt;/code&gt; is the default IP address given by Docker to the container, but yours may be different. The &lt;code&gt;:8000&lt;/code&gt; port is configured in the &lt;code&gt;docker-compose.yaml&lt;/code&gt; file.)&lt;/p&gt;
-&lt;h2&gt;Step 5 – run the container&lt;/h2&gt;
+&lt;h2 id="step-5-run-the-container"&gt;Step 5 – run the container&lt;/h2&gt;
 &lt;p&gt;To run the container I ran the “Docker Quickstart Terminal” which has been installed to the start menu. This gives access to the Docker virtual machine command line so you can run commands.&lt;/p&gt;
 &lt;p&gt;Navigate to the directory where the &lt;code&gt;docker-compose.yaml&lt;/code&gt; you created above is located (using &lt;code&gt;cd xxxx&lt;/code&gt;) and then run&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker-compose up -d
@@ -2544,7 +2653,7 @@ a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 &lt;li&gt;Edit theme and plugin files through your file system using the &lt;code&gt;html/wp-content/&lt;/code&gt; directory in your project&lt;/li&gt;
 &lt;li&gt;Directly access the database by connecting through host &lt;code&gt;192.168.99.100&lt;/code&gt; on port &lt;code&gt;3306&lt;/code&gt; using the user &lt;code&gt;wordpress&lt;/code&gt; with password &lt;code&gt;wordpress&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Step 6 – copy the database&lt;/h2&gt;
+&lt;h2 id="step-6-copy-the-database"&gt;Step 6 – copy the database&lt;/h2&gt;
 &lt;p&gt;The next stage is to take a copy of your live MySQL database and apply it to the local version. I did this by:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Connect to the database using &lt;a href="http://www.heidisql.com/"&gt;HeidiSQL&lt;/a&gt; with the credentials given above&lt;/li&gt;
@@ -2554,9 +2663,9 @@ a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 &lt;li&gt;Loading the SQL dump file in HeidiSQL and then running it.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Depending on the size of your file this might take a little while.&lt;/p&gt;
-&lt;h2&gt;Step 7 – use the site&lt;/h2&gt;
+&lt;h2 id="step-7-use-the-site"&gt;Step 7 – use the site&lt;/h2&gt;
 &lt;p&gt;Now if you go to &lt;a href="http://192.168.99.100:8000/"&gt;http://192.168.99.100:8000/&lt;/a&gt; you should be able to access your site, and the admin backend should be available at &lt;a href="http://192.168.99.100:8000/wp-admin/"&gt;http://192.168.99.100:8000/wp-admin/&lt;/a&gt;. You should be able to log in using the same credentials you use on the live site.&lt;/p&gt;
-&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;I found that if I made changes to the &lt;code&gt;docker-compose.yaml&lt;/code&gt; file when tweaking the setup I would then need to run the &lt;code&gt;docker-compose down&lt;/code&gt; command before re-running &lt;code&gt;docker-compose up -d&lt;/code&gt;. There may be a better way to do this (&lt;code&gt;docker-compose build&lt;/code&gt;?)&lt;/li&gt;
 &lt;li&gt;You may find that some URLs (particularly in pages and posts) are hardcoded to point to the live site – this can mean you switch to the live version without realising it, so be careful! You can use &lt;a href="https://interconnectit.com/products/search-and-replace-for-wordpress-databases/"&gt;something like this tool from interconnectit&lt;/a&gt; to change these values in the database.&lt;/li&gt;

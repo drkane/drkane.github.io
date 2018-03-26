@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>Gender Pay Gap in charities | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+    <meta name="tags" content="Charities" />
+    <meta name="tags" content="Gender" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+        <header id="banner" class="body header-font ph3 ph5-ns pt3 pt5-ns pb5 moon-gray">
+                <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+                        <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|                        <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|                        <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+|                        <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
+                </div>
+                <h1 class="f-headline-ns f1 lh-solid mv0 logo">
+                    <a href="/" class="link moon-gray underline-yellow underline">
+                        David<br>Kane
+                    </a>
+                </h1>
+                <h1 class="f1-ns f3 lh-solid mv0">Charity Data & more</h1>
+        </header><!-- /#banner -->
+        <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-ns w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="/drafts/gender-pay-gap-in-charities.html" rel="bookmark" class="link near-black"
+            title="Permalink to Gender Pay Gap in charities">Gender Pay Gap in charities</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2018-03-18T13:25:00+00:00">
+        Sun 18 March 2018
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="/category/blog/">Blog</a>
+        <span class="ph2"> | </span>
+        <span class="fn">Tags: 
+            <a class="url fn link mid-gray" href="/tag/charities/">Charities</a> and <a class="url fn link mid-gray" href="/tag/gender/">Gender</a>        </span>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p>The government has said that all companies employing more than 250 people 
+<a href="https://www.civilsociety.co.uk/news/hundreds-of-large-charities-must-now-report-on-gender-pay-gap.html">must publish data about the gender pay gap</a>
+in their organisation. The data has been helpfully published and is <a href="https://gender-pay-gap.service.gov.uk/Viewing/search-results">available to search and download</a>, although at the time of writing
+not all organisations have submitted their data (around 3,000 out of the expected 9,000 have). The
+deadline for submissions is 4th April.</p>
+<p>Charities aren't specifically identified in the data, but the data download does
+include company numbers, so it is possible to map across from companies to charities.</p>
+<p>Doing this identifies 201 charities out of the original 3,100 organisations in the
+file. I've also assumed that any organisations without a company number are in 
+the public sector (556 of those), leaving 2,343 private companies. Looking at the
+file these assumptions seem reasonable, but there will be some organisations incorrectly
+classified.</p>
+<h2 id="women-working-for-large-charities-are-paid-7-less-than-men">Women working for large charities are paid 7% less than men</h2>
+<p>The data shows that the average gender pay gap for all organisations is 13%, and 
+for charities it is 6.9%. Each organisation submits their mean and median pay gaps (the
+average difference in men and women's pay), these figures are the mean average of those 
+across the organisations.</p>
+<p>This figure of 7% compares favourably to the pay gap in private companies (14%) and
+in the public sector (11%), but obviously still represents a sizeable gap in pay
+between male and female employees.</p>
+<h3 id="average-pay-gaps-by-type-of-organisation">Average pay gaps by type of organisation</h3>
+<canvas id='summary'></canvas>
+
+<script>
+            var ctx = document.getElementById('summary').getContext('2d');
+            ctx.canvas.width  = 800 - (.1 * 800);
+            ctx.canvas.height = 420 - (.15 * 420);
+            var myNewChart = new Chart(ctx,{ type: 'horizontalBar', data: {
+    'labels': [
+        'Charity',
+        'Company',
+        'Public Sector',
+        'All Organisations'
+    ],
+    'datasets': [
+        {
+            'backgroundColor': 'rgb(255,255,  0)',
+            'label': 'Mean',
+            'data': [
+                6.9,
+                14.4,
+                10.9,
+                13.3
+            ]
+        },
+        {
+            'backgroundColor': 'rgb(113,  9,170)',
+            'label': 'Median',
+            'data': [
+                4.4,
+                12.5,
+                10.7,
+                11.6
+            ]
+        }
+    ]
+}, options: {
+    'responsive': false,
+    'scales': {
+        'xAxes': [
+            {
+                'ticks': {
+                    'min': 0
+                }
+            }
+        ]
+    }
+} });
+</script>
+
+<h2 id="79-of-large-charities-pay-women-more">79% of large charities pay women more</h2>
+<p>We can also use the data to look at what proportion of organisations pay
+women more than men. For all organisations in the data the figure is 12%,
+whereas for charities it is 21%.</p>
+<h3 id="proportion-of-organisations-which-pay-women-or-men-more-on-average">Proportion of organisations which pay women or men more on average</h3>
+<canvas id='paidmore'></canvas>
+
+<script>
+            var ctx = document.getElementById('paidmore').getContext('2d');
+            ctx.canvas.width  = 800 - (.1 * 800);
+            ctx.canvas.height = 420 - (.15 * 420);
+            var myNewChart = new Chart(ctx,{ type: 'horizontalBar', data: {
+    'labels': [
+        'Charity',
+        'Company',
+        'Public Sector',
+        'All'
+    ],
+    'datasets': [
+        {
+            'backgroundColor': 'rgb(255,255,  0)',
+            'label': 'Men',
+            'data': [
+                79.1,
+                88.3,
+                90.3,
+                88.1
+            ]
+        },
+        {
+            'backgroundColor': 'rgb(113,  9,170)',
+            'label': 'Women',
+            'data': [
+                20.9,
+                11.7,
+                9.7,
+                11.9
+            ]
+        }
+    ]
+}, options: {
+    'responsive': false,
+    'scales': {
+        'xAxes': [
+            {
+                'stacked': true,
+                'ticks': {
+                    'min': 0,
+                    'max': 100
+                }
+            }
+        ]
+    }
+} });
+</script>
+
+<h2 id="across-all-pay-quartiles-large-charities-employ-more-women-than-men">Across all pay quartiles large charities employ more women than men</h2>
+<p>The data also gives figures for what proportion of staff are men and
+women at various pay levels. It divides each organisation's employees
+into quartiles based on how much they are paid - the 25% best paid 
+employees, the 25% worst paid employees and two bands in the middle.</p>
+<p>There is some positive news here for charities. A majority of charities'
+employees are women, and this majority is kept across all salary bands - 
+most of the best-paid quarter of employees are women. There is, however,
+still a difference in the proportion - 71% of the lowest-paid employees
+of large charities are women, compared to 64% of the highest-paid employees.</p>
+<p>The data does not give separate information on the very highest paid 
+employees - so it can't show the gender split at CEO/Director level.</p>
+<h3 id="proportion-of-female-employees-in-pay-quartiles">Proportion of female employees in pay quartiles</h3>
+<canvas id='quartiles'></canvas>
+
+<script>
+            var ctx = document.getElementById('quartiles').getContext('2d');
+            ctx.canvas.width  = 800 - (.1 * 800);
+            ctx.canvas.height = 420 - (.15 * 420);
+            var myNewChart = new Chart(ctx,{ type: 'bar', data: {
+    'labels': [
+        'Charity',
+        'Company',
+        'Public Sector',
+        'All Organisations'
+    ],
+    'datasets': [
+        {
+            'backgroundColor': [
+                'rgb(255,255,100)',
+                'rgb(193,242, 95)',
+                'rgb(217, 85,160)',
+                'rgb(153, 81,192)'
+            ],
+            'label': '4 - lowest paid',
+            'data': [
+                71.1,
+                51.2,
+                64.6,
+                54.9
+            ]
+        },
+        {
+            'backgroundColor': [
+                'rgb(255,255, 57)',
+                'rgb(177,239, 54)',
+                'rgb(208, 47,138)',
+                'rgb(130, 47,176)'
+            ],
+            'label': '3',
+            'data': [
+                70.7,
+                46.7,
+                62.3,
+                51.1
+            ]
+        },
+        {
+            'backgroundColor': [
+                'rgb(255,255,  0)',
+                'rgb(159,238,  0)',
+                'rgb(205,  0,116)',
+                'rgb(113,  9,170)'
+            ],
+            'label': '2',
+            'data': [
+                68.6,
+                42.0,
+                58.5,
+                46.7
+            ]
+        },
+        {
+            'backgroundColor': [
+                'rgb(198,198,  0)',
+                'rgb(123,184,  0)',
+                'rgb(159,  0, 90)',
+                'rgb( 87,  7,132)'
+            ],
+            'label': '1 - highest paid',
+            'data': [
+                64.2,
+                36.4,
+                51.9,
+                41.0
+            ]
+        }
+    ]
+}, options: {
+    'responsive': false,
+    'scales': {
+        'yAxes': [
+            {
+                'ticks': {
+                    'min': 0,
+                    'max': 100
+                }
+            }
+        ]
+    }
+} });
+</script>
+
+<h2 id="caveat-corner">Caveat Corner</h2>
+<ul>
+<li>Data is sourced from the Gender Pay Gap website, and used under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government License v3.0</a></li>
+<li>Charity numbers are based on data from <a href="https://findthatcharity.uk/about#data-sources">findthatcharity</a> - this
+  data comes from three charity regulators and is used under the Open Government License.</li>
+<li>Organisation type is determined by matching based on company numbers. This matching could be
+  wrong in individual cases:</li>
+<li>charities sometimes have incorrect/missing company numbers</li>
+<li>company numbers can have odd formatting</li>
+<li>Public sector organisations are assumed based on those organisations without a company number
+  which might be incorrect.</li>
+<li>The data is incomplete - only 2,500 organisations have submitted data, 
+  <a href="https://www.civilsociety.co.uk/news/hundreds-of-large-charities-must-now-report-on-gender-pay-gap.html">the government estimates there should be 9,000</a></li>
+<li>You can <a href="/data/gender-pay-gap-with-charity-no.csv">download my amended data with charity numbers and organisation type added (CSV)</a></li>
+</ul>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+        </main>
+        <footer id="contentinfo" class="body ph3 ph5-ns db mv5 moon-gray">
+            &copy 2018 David Kane | 
+                <address id="about" class="vcard body dib fs-normal"> 
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+                </address><!-- /#about --> 
+                | <a href="mailto:david@drkane.co.uk" class="link yellow">Email</a>
+                | <a href="https://twitter.com/kanedr" class="link yellow">@kanedr</a>
+                | <a href="https://github.com/drkane" class="link yellow">github.com/drkane</a>
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

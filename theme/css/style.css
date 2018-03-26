@@ -65,6 +65,11 @@
     padding-bottom: 0.4rem;
     text-align: right;
 }
+.entry-content img {
+    border: 8px solid #FFFF00;
+}
+
+
 .bg-wavy {
     /* https://www.svgbackgrounds.com/#wavey-fingerprint */
     background-color: rgb(17, 17, 17);
@@ -88,4 +93,17 @@
 }
 .b--yellow {
     border-color: #FFFF00;
+}
+
+
+#caveat-corner {
+    font-family: Pacifico;
+    font-size: 2.5rem;
+    color: rgb(113,  9,170);
+    background: -webkit-linear-gradient(#eee, rgb(113,  9,170));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: rotate(-10deg);
+    padding-bottom: 20px;
+    display: block;
 }

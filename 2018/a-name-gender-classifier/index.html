@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-      <title>David Kane</title>
+      <title>A name gender classifier | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/style.css" />
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/pygment.css" />
-    <link rel="shortcut icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
-
+  
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
         <header id="banner" class="body header-font ph3 ph5-ns pt3 pt5-ns pb5 moon-gray">
                 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
                         <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|                        <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
 |                        <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
 |                        <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
                 </div>
                 <h1 class="f-headline-ns f1 lh-solid mv0 logo">
-                    <a href="http://drkane.co.uk/" class="link moon-gray underline-yellow underline">
+                    <a href="/" class="link moon-gray underline-yellow underline">
                         David<br>Kane
                     </a>
                 </h1>
@@ -38,20 +39,20 @@
   <div class="w-60-ns w-100 center">
     <header>
         <h2 class="f2 header-font">
-        <a href="http://drkane.co.uk/2018/a-name-gender-classifier/" rel="bookmark" class="link near-black"
+        <a href="/2018/a-name-gender-classifier/" rel="bookmark" class="link near-black"
             title="Permalink to A name gender classifier">A name gender classifier</a></h2>
             
     </header>
     <footer class="post-info pb3 bb">
         <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="http://drkane.co.uk/author/david-kane/">David Kane</a>
+            <a class="url fn link near-black" href="/author/david-kane/">David Kane</a>
         </address>
         <span class="ph2"> | </span>
         <time class="published dib" datetime="2018-02-10T21:19:35+01:00">
         Sat 10 February 2018
         </time>
         <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="http://drkane.co.uk/category/blog/">Blog</a>
+        <a class="url fn link mid-gray" href="/category/blog/">Blog</a>
     </footer><!-- /.post-info -->
     <div class="entry-content f4 lh-copy">
         <p>Something I've needed to do a couple of times is take a long list of names and
@@ -73,7 +74,7 @@ data set, without considering the meaning of or connections between those words.
 <p>To do this I'm going to use python (3.6 to be exact) and the <a href="http://scikit-learn.org/stable/">scikit</a>
 library which has a naïve Bayesian classifier built in. It's based on the tutorial
 found here.</p>
-<h2>Step 1 - get some training data</h2>
+<h2 id="step-1-get-some-training-data">Step 1 - get some training data</h2>
 <p>The training data needs to be a list of names with their genders. I've found this a
 tricky thing to come by, but luckily my work with the 
 <a href="http://data.charitycommission.gov.uk/">Charity Commission Register of Charities</a>
@@ -95,9 +96,9 @@ average person. So the names we're using are going to reflect those demographics
 I'm just using the whole string. This means that last names will be included in
 the model - with the hope that they'll be equally distributed and so won't make
 a difference to the final total. But this isn't a guarantee.</p>
-<h2>Step 2: training the model</h2>
-<h2>Step 3: testing the model</h2>
-<h2>Step 4: using the model</h2>
+<h2 id="step-2-training-the-model">Step 2: training the model</h2>
+<h2 id="step-3-testing-the-model">Step 3: testing the model</h2>
+<h2 id="step-4-using-the-model">Step 4: using the model</h2>
     </div><!-- /.entry-content -->
     </div>
 </section>

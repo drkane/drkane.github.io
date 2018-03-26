@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane - Code</title><link href="http://drkane.co.uk/" rel="alternate"></link><link href="/feeds/code.atom.xml" rel="self"></link><id>http://drkane.co.uk/</id><updated>2018-02-20T13:45:00+00:00</updated><entry><title>Acrostic football league tables</title><link href="http://drkane.co.uk/2018/acrostic-football-league-tables/" rel="alternate"></link><published>2018-02-20T13:45:00+00:00</published><updated>2018-02-20T13:45:00+00:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-02-20:/2018/acrostic-football-league-tables/</id><summary type="html">&lt;p&gt;Following from a &lt;a href="https://www.theguardian.com/football/2018/feb/14/footballers-joining-and-leaving-a-club-in-the-same-transfer-window-the-knowledge"&gt;question to the Guardian's "The Knowledge" column&lt;/a&gt; I've tried to find a longer acrostic than "TABLE".&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane - Code</title><link href="/" rel="alternate"></link><link href="/feeds/code.atom.xml" rel="self"></link><id>/</id><updated>2018-02-20T13:45:00+00:00</updated><entry><title>Acrostic football league tables</title><link href="/2018/acrostic-football-league-tables/" rel="alternate"></link><published>2018-02-20T13:45:00+00:00</published><updated>2018-02-20T13:45:00+00:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-20:/2018/acrostic-football-league-tables/</id><summary type="html">&lt;p&gt;Following from a &lt;a href="https://www.theguardian.com/football/2018/feb/14/footballers-joining-and-leaving-a-club-in-the-same-transfer-window-the-knowledge"&gt;question to the Guardian's "The Knowledge" column&lt;/a&gt; I've tried to find a longer acrostic than "TABLE".&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“Has there ever been a longer acrostic spelled out in a table than the oft-recurring ‘TABLE’ from the Premier League this season – or ‘LAWNS’ from League Two?” asks Marco Jackson.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -8,7 +8,7 @@
 &lt;p&gt;“Has there ever been a longer acrostic spelled out in a table than the oft-recurring ‘TABLE’ from the Premier League this season – or ‘LAWNS’ from League Two?” asks Marco Jackson.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;To do this I'm going to fetch data on every match played in English leagues since 1994-95 and use it to generate league tables for the end of every day that a match has been played. I'll then check the first letter of every team in the league table against a dictionary of English words to find the longest.&lt;/p&gt;
-&lt;h2&gt;Import needed modules&lt;/h2&gt;
+&lt;h2 id="import-needed-modules"&gt;Import needed modules&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib.parse&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -25,7 +25,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Fetch league data&lt;/h2&gt;
+&lt;h2 id="fetch-league-data"&gt;Fetch league data&lt;/h2&gt;
 &lt;p&gt;From &lt;a href="http://www.football-data.co.uk/englandm.php"&gt;http://www.football-data.co.uk/englandm.php&lt;/a&gt; - series of CSV tables with data on matches played in English leagues (Premier League, Division One/Championship, Division Two/League One, Division Three/League Two, Conference) since 1994/95.&lt;/p&gt;
 &lt;p&gt;I haven't checked the accuracy of this data against any other source. In particular, it doesn't include any data on points deductions which do happen and affect the league table.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# download the main page and extract the links to CSV files&lt;/span&gt;
@@ -48,7 +48,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Fetch dictionary data&lt;/h2&gt;
+&lt;h2 id="fetch-dictionary-data"&gt;Fetch dictionary data&lt;/h2&gt;
 &lt;p&gt;From &lt;a href="https://github.com/dwyl/english-words/blob/master/words_alpha.txt"&gt;https://github.com/dwyl/english-words/blob/master/words_alpha.txt&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://github.com/dwyl/english-words/blob/master/words_alpha.txt?raw=true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data/dictionary.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;wb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -57,7 +57,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Useful functions&lt;/h2&gt;
+&lt;h2 id="useful-functions"&gt;Useful functions&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;matches_to_table()&lt;/code&gt; takes a list of matches (as a pandas dataframe) and a list of teams and turns it into a league table. The optional list of teams ensures that any teams that haven't yet played are included in the table (if not provided it's worked out based on the matches. Tables are sorted according to the following criteria: points, then goal difference, then goals scored.&lt;/p&gt;
 &lt;p&gt;The matches dataframe requires the following columns for each match:&lt;/p&gt;
 &lt;ul&gt;
@@ -149,7 +149,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Generate tables&lt;/h2&gt;
+&lt;h2 id="generate-tables"&gt;Generate tables&lt;/h2&gt;
 &lt;p&gt;Here I go through each file downloaded in the &lt;code&gt;/data&lt;/code&gt; directory, and carry out the following steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;read file into a pandas dataframe&lt;/li&gt;
@@ -214,7 +214,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Import dictionary data&lt;/h2&gt;
+&lt;h2 id="import-dictionary-data"&gt;Import dictionary data&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data/dictionary.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -222,7 +222,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Find long words in the table strings&lt;/h2&gt;
+&lt;h2 id="find-long-words-in-the-table-strings"&gt;Find long words in the table strings&lt;/h2&gt;
 &lt;p&gt;Split each iteration of the league table into ngrams and check whether it is a word found in the dictionary.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;found_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tstrings&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -309,7 +309,7 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Words in context&lt;/h2&gt;
+&lt;h2 id="words-in-context"&gt;Words in context&lt;/h2&gt;
 &lt;p&gt;Display the league table centered around the teams making the words.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;find_word&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;blokes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;found_words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1020,7 +1020,7 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;h2&gt;Teams in alphabetical order&lt;/h2&gt;
+&lt;h2 id="teams-in-alphabetical-order"&gt;Teams in alphabetical order&lt;/h2&gt;
 &lt;p&gt;I also wanted to look for the table in which a run of teams were in alphabetical order. I've ignored tables in August and September when the league table is less developed and so a default alphabetical team list is likely to take place.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;alpha_tables&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1786,12 +1786,12 @@ Iteration 10267, found 481 [COMPLETE]
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;</content><category term="Football"></category></entry><entry><title>Development version of WordPress on Windows 10</title><link href="http://drkane.co.uk/2016/development-version-of-wordpress-on-windows-10/" rel="alternate"></link><published>2016-06-13T11:19:35+01:00</published><updated>2016-06-13T11:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2016-06-13:/2016/development-version-of-wordpress-on-windows-10/</id><summary type="html">&lt;p&gt;&lt;strong&gt;The problem&lt;/strong&gt;: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.&lt;/p&gt;
+&lt;/div&gt;</content><category term="Football"></category></entry><entry><title>Development version of WordPress on Windows 10</title><link href="/2016/development-version-of-wordpress-on-windows-10/" rel="alternate"></link><published>2016-06-13T11:19:35+01:00</published><updated>2016-06-13T11:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2016-06-13:/2016/development-version-of-wordpress-on-windows-10/</id><summary type="html">&lt;p&gt;&lt;strong&gt;The problem&lt;/strong&gt;: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The solution&lt;/strong&gt;: use docker to create a container with all the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;The problem&lt;/strong&gt;: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The solution&lt;/strong&gt;: use docker to create a container with all the needed files that can be run when necessary. The steps described here create a copy of WordPress which allows you to access the WordPress installation files and database directly, allowing you to create an exact copy of the live site.&lt;/p&gt;
-&lt;h2&gt;Step 1 – install Docker&lt;/h2&gt;
+&lt;h2 id="step-1-install-docker"&gt;Step 1 – install Docker&lt;/h2&gt;
 &lt;p&gt;Download and install the &lt;a href="https://www.docker.com/products/docker-toolbox"&gt;Docker Toolbox&lt;/a&gt;. We’ll be mostly using &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;Step 2 – configure the container&lt;/h2&gt;
+&lt;h2 id="step-2-configure-the-container"&gt;Step 2 – configure the container&lt;/h2&gt;
 &lt;p&gt;This step was adapted from the &lt;a href="https://docs.docker.com/compose/wordpress/"&gt;instructions shown in the Docker WordPress docs&lt;/a&gt;. The main adaptations are to allow for access to the filesystem and direct database access.&lt;/p&gt;
 &lt;p&gt;Navigate to an empty directory and create a file called &lt;code&gt;docker-compose.yaml&lt;/code&gt;. Open and edit the file to include the following text:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;version&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
@@ -1826,10 +1826,10 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Step 3 – copy the live files&lt;/h2&gt;
+&lt;h2 id="step-3-copy-the-live-files"&gt;Step 3 – copy the live files&lt;/h2&gt;
 &lt;p&gt;You now need to make a copy of the files from your live site. I did this by downloading them via FTP from the server. Make sure you have a copy of all three main WordPress directorys (&lt;code&gt;wp-admin&lt;/code&gt;, &lt;code&gt;wp-content&lt;/code&gt;, &lt;code&gt;wp-includes&lt;/code&gt;) plus the &lt;code&gt;index.php&lt;/code&gt; file and any files starting &lt;code&gt;wp-*.php&lt;/code&gt; in the main directory.&lt;/p&gt;
 &lt;p&gt;Copy these files into a directory called &lt;code&gt;html&lt;/code&gt; in your project directory.&lt;/p&gt;
-&lt;h2&gt;Step 4 – edit wp-config.php&lt;/h2&gt;
+&lt;h2 id="step-4-edit-wp-configphp"&gt;Step 4 – edit wp-config.php&lt;/h2&gt;
 &lt;p&gt;Because you’ve directly copied the files from the live site, your configuration settings won’t work. Open &lt;code&gt;wp-config.php&lt;/code&gt; from the &lt;code&gt;html&lt;/code&gt; directory in your text editor, and change the following configuration values to match the values specified in the docker-compose.yaml file.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;/** The name of the database for WordPress */&lt;/span&gt;
 &lt;span class="x"&gt;define(&amp;#39;DB_NAME&amp;#39;, &amp;#39;wordpress&amp;#39;);&lt;/span&gt;
@@ -1852,7 +1852,7 @@ Iteration 10267, found 481 [COMPLETE]
 
 
 &lt;p&gt;(Note: I think &lt;code&gt;192.168.99.100&lt;/code&gt; is the default IP address given by Docker to the container, but yours may be different. The &lt;code&gt;:8000&lt;/code&gt; port is configured in the &lt;code&gt;docker-compose.yaml&lt;/code&gt; file.)&lt;/p&gt;
-&lt;h2&gt;Step 5 – run the container&lt;/h2&gt;
+&lt;h2 id="step-5-run-the-container"&gt;Step 5 – run the container&lt;/h2&gt;
 &lt;p&gt;To run the container I ran the “Docker Quickstart Terminal” which has been installed to the start menu. This gives access to the Docker virtual machine command line so you can run commands.&lt;/p&gt;
 &lt;p&gt;Navigate to the directory where the &lt;code&gt;docker-compose.yaml&lt;/code&gt; you created above is located (using &lt;code&gt;cd xxxx&lt;/code&gt;) and then run&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker-compose up -d
@@ -1865,7 +1865,7 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;li&gt;Edit theme and plugin files through your file system using the &lt;code&gt;html/wp-content/&lt;/code&gt; directory in your project&lt;/li&gt;
 &lt;li&gt;Directly access the database by connecting through host &lt;code&gt;192.168.99.100&lt;/code&gt; on port &lt;code&gt;3306&lt;/code&gt; using the user &lt;code&gt;wordpress&lt;/code&gt; with password &lt;code&gt;wordpress&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Step 6 – copy the database&lt;/h2&gt;
+&lt;h2 id="step-6-copy-the-database"&gt;Step 6 – copy the database&lt;/h2&gt;
 &lt;p&gt;The next stage is to take a copy of your live MySQL database and apply it to the local version. I did this by:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Connect to the database using &lt;a href="http://www.heidisql.com/"&gt;HeidiSQL&lt;/a&gt; with the credentials given above&lt;/li&gt;
@@ -1875,9 +1875,9 @@ Iteration 10267, found 481 [COMPLETE]
 &lt;li&gt;Loading the SQL dump file in HeidiSQL and then running it.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Depending on the size of your file this might take a little while.&lt;/p&gt;
-&lt;h2&gt;Step 7 – use the site&lt;/h2&gt;
+&lt;h2 id="step-7-use-the-site"&gt;Step 7 – use the site&lt;/h2&gt;
 &lt;p&gt;Now if you go to &lt;a href="http://192.168.99.100:8000/"&gt;http://192.168.99.100:8000/&lt;/a&gt; you should be able to access your site, and the admin backend should be available at &lt;a href="http://192.168.99.100:8000/wp-admin/"&gt;http://192.168.99.100:8000/wp-admin/&lt;/a&gt;. You should be able to log in using the same credentials you use on the live site.&lt;/p&gt;
-&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;I found that if I made changes to the &lt;code&gt;docker-compose.yaml&lt;/code&gt; file when tweaking the setup I would then need to run the &lt;code&gt;docker-compose down&lt;/code&gt; command before re-running &lt;code&gt;docker-compose up -d&lt;/code&gt;. There may be a better way to do this (&lt;code&gt;docker-compose build&lt;/code&gt;?)&lt;/li&gt;
 &lt;li&gt;You may find that some URLs (particularly in pages and posts) are hardcoded to point to the live site – this can mean you switch to the live version without realising it, so be careful! You can use &lt;a href="https://interconnectit.com/products/search-and-replace-for-wordpress-databases/"&gt;something like this tool from interconnectit&lt;/a&gt; to change these values in the database.&lt;/li&gt;

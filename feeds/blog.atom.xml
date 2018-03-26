@@ -1,12 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane - Blog</title><link href="http://drkane.co.uk/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>http://drkane.co.uk/</id><updated>2018-03-01T13:25:00+00:00</updated><entry><title>Back in the GDPR</title><link href="http://drkane.co.uk/2018/back-in-the-gdpr/" rel="alternate"></link><published>2018-03-01T13:25:00+00:00</published><updated>2018-03-01T13:25:00+00:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-03-01:/2018/back-in-the-gdpr/</id><summary type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane - Blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2018-03-26T13:25:00+01:00</updated><entry><title>Adding charity details using findthatcharity.uk - Part I</title><link href="/2018/adding-charity-details-using-findthatcharityuk-part-i/" rel="alternate"></link><published>2018-03-26T13:25:00+01:00</published><updated>2018-03-26T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-03-26:/2018/adding-charity-details-using-findthatcharityuk-part-i/</id><summary type="html">&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; is a site I've created to help access
+data about charities. One of the ways you can use it is to add details about a list of
+charities if you only know their names.&lt;/p&gt;
+&lt;p&gt;This is often called "reconciliation" - turning a list of …&lt;/p&gt;</summary><content type="html">&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; is a site I've created to help access
+data about charities. One of the ways you can use it is to add details about a list of
+charities if you only know their names.&lt;/p&gt;
+&lt;p&gt;This is often called "reconciliation" - turning a list of names into something that 
+unambiguously identifies the charity. Charities are often known by different names, or
+have variations like "Ltd" rather than "Limited", so by adding charity numbers we can
+make sure we're talking about the same charity whether we say "Comic Relief" or "Charity
+Projects".&lt;/p&gt;
+&lt;p&gt;In this post I'm going to show you how to use &lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; 
+and &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; to turn charity names into 
+numbers. In the next part, I'll show how to use charity numbers to fetch extra information
+about a charity - like their web address or latest income.&lt;/p&gt;
+&lt;h3 id="1-get-open-refine"&gt;1. Get Open Refine&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; is a great data cleaning/wrangling tool. It was 
+originally started by Google (and so is sometimes still called Google Refine), but 
+is now run by a team of volunteer developers.&lt;/p&gt;
+&lt;p&gt;You can find the download for your platform on the &lt;a href="http://openrefine.org/download.html"&gt;download page&lt;/a&gt;.
+Note that if you're a Windows user you won't "install" it in the same way you might for
+other programs - instead you extract the zip file into a directory and then run &lt;code&gt;refine.bat&lt;/code&gt;
+from that directory.&lt;/p&gt;
+&lt;p&gt;Again, OpenRefine might be a bit different from other programs you've seen in that it
+doesn't open in it's own window - instead it has a "server" that runs in the background,
+and you interact with it through a web browser. The address you visit (normally &lt;a href="http://localhost:3333"&gt;http://localhost:3333&lt;/a&gt;)
+is only accessible through your computer though - other parts of the internet can't 
+see it.&lt;/p&gt;
+&lt;h3 id="2-load-your-data"&gt;2. Load your data&lt;/h3&gt;
+&lt;p&gt;When you first open OpenRefine you'll see a page that looks a bit like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Web page screenshot showing the OpenRefine screen for importing data" src="/images/reconcile/first-screen.png"&gt; &lt;/p&gt;
+&lt;p&gt;You can follow the instructions for importing your data. OpenRefine has some very
+flexible options for importing data. The important thing about your data is that
+it should be a "flat file" - a simple table with rows and columns. You might need
+to use another program (like Excel) to get your data in this format first.&lt;/p&gt;
+&lt;p&gt;I've chosen to use some data published by the &lt;a href="http://cheshirecommunityfoundation.org.uk/wp-content/uploads/2017/06/Grants-Awarded-Fiscal-Year-2016.xlsx"&gt;Cheshire Community Foundation [xlsx - 57Kb]&lt;/a&gt;
+on the grants they've published. This data is published to the &lt;a href="https://www.threesixtygiving.org/"&gt;360 Giving grant data standard&lt;/a&gt;
+and I found it in the &lt;a href="https://www.threesixtygiving.org/data/data-registry/"&gt;360 Giving data registry&lt;/a&gt;.
+It already includes charity numbers so we wouldn't need to do this reconciliation
+process, but it's useful to have them there to check how good the reconiliation
+process is.&lt;/p&gt;
+&lt;p&gt;I can point OpenRefine at this URL and it will download and load it itself. Here's what the
+data looks like once it's been imported. I've hidden the &lt;code&gt;description&lt;/code&gt; field to get more
+rows on the screen.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Data loaded into OpenRefine" src="/images/reconcile/data-ready.png"&gt;&lt;/p&gt;
+&lt;h3 id="3-reconcile-charity-names"&gt;3. Reconcile charity names&lt;/h3&gt;
+&lt;p&gt;We're going to be using the &lt;code&gt;Recipient Org:Name&lt;/code&gt; field to reconcile - this contains the
+name of the organisation that received the grant. Click on the arrow next to the column
+title to bring up the menu, and click &lt;code&gt;Reconcile &amp;gt; Start reconciling...&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Location of the reconcile menu" src="/images/reconcile/reconcile-menu.png"&gt;&lt;/p&gt;
+&lt;p&gt;Now you need to add the Find that Charity reconciliation service. This is a web service
+that will recieve data from OpenRefine (in this case the name of a charity) and tries
+to match it to an entity. It returns a list of possible matches, and allows us to 
+extract the ID of each match (in this case the charity number).&lt;/p&gt;
+&lt;p&gt;Click &lt;code&gt;Add Standard Service...&lt;/code&gt; and then paste &lt;code&gt;https://findthatcharity.uk/reconcile&lt;/code&gt;
+in the textbox, and click &lt;code&gt;Add Service&lt;/code&gt;. This will then (possibly after a short delay)
+add a service called "charitysearch".&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Dialog box for adding a reconciliation service" src="/images/reconcile/add-service.png"&gt;&lt;/p&gt;
+&lt;p&gt;You'll see a list with just "charity" on the left hand side (you might need to hide 
+the sidebar). You can leave the default options (at the moment findthatcharity doesn't
+take any additional properties to help matching, but this might be something we add 
+later).&lt;/p&gt;
+&lt;p&gt;Click &lt;code&gt;Start Reconciling&lt;/code&gt; to make the magic happen. This might take a while if you
+have lots of records. OpenRefine will batch up charities and send a few at a time
+to findthatcharity, but the server can only cope with so many requests at a time.
+If you need to do lots of requests (&amp;gt;5,000 in one go), speak to me directly.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Completed options for running reconcilation" src="/images/reconcile/start-reconciling.png"&gt;&lt;/p&gt;
+&lt;p&gt;You'll see a counter with the percentage complete at the top, and when finished each field will
+show the matches that have been made. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Reconciliation results, showing a series of checkboxes for each entry with possible matches" src="/images/reconcile/reconcile-results.png"&gt;&lt;/p&gt;
+&lt;h3 id="4-check-the-matches"&gt;4. Check the matches&lt;/h3&gt;
+&lt;p&gt;You now need to check the matches. Depending on your time and the number of records, there's a
+few options for this. &lt;/p&gt;
+&lt;h4 id="manually-check-every-record"&gt;Manually check every record&lt;/h4&gt;
+&lt;p&gt;You can manually check each record - just click on the single tick next to the correct match.
+You can also click the box with two ticks if you'd like every instance of this record to be
+matched to this entity.&lt;/p&gt;
+&lt;h4 id="match-all-records-to-the-best-result"&gt;Match all records to the best result&lt;/h4&gt;
+&lt;p&gt;If you trust the algorithm, or have done some manual checking and think they're all correct, you
+can just take the best match for each record. To do this, click the arrow menu next to the 
+&lt;code&gt;Recipient Org:Name&lt;/code&gt; column heading, and select &lt;code&gt;Reconcile &amp;gt; Actions &amp;gt; Match each cell to its best candidate&lt;/code&gt;.&lt;/p&gt;
+&lt;h4 id="filter-and-match"&gt;Filter and match&lt;/h4&gt;
+&lt;p&gt;You can also combine these two approaches using filters. On the left hand side of the screen,
+OpenRefine has added two "facets" based on the results of the reconciliation. &lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;judgement&lt;/code&gt; facet at the top shows the overall result - either &lt;code&gt;(blank)&lt;/code&gt; where no matches
+have been found, &lt;code&gt;none&lt;/code&gt; where there are some matches or &lt;code&gt;matched&lt;/code&gt; where a single match has
+been selected (some records are marked as &lt;code&gt;matched&lt;/code&gt; already if findthatcharity thinks they
+are an exact match).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;best candidate's score&lt;/code&gt; facet shows the score of the best match candidate, and allows you
+to select different numbers by dragging the range sliders. You can also remove &lt;code&gt;Error&lt;/code&gt; values:
+these are the ones with no match.&lt;/p&gt;
+&lt;p&gt;You can drag the score fact to select only those with high matching scores - this will filter
+to show only those rows with the selected scores. The &lt;code&gt;Match each cell to its best candidate&lt;/code&gt;
+action also respects this filter, so you can use that to match all the records found by the 
+filter, with the remainder remaining unmatched.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Results of combining the score filter with matching each cell to best candidate" src="/images/reconcile/filtered-matches.png"&gt;&lt;/p&gt;
+&lt;h3 id="5-add-charity-number"&gt;5. Add charity number&lt;/h3&gt;
+&lt;p&gt;Once you're happy with the matches you can add a new column with the matched charity number in.
+To do this, use the arrow menu next to the column heading, and click &lt;code&gt;Edit column &amp;gt; Add column based on this column...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The box that pops up allows you to specify lots of different columns. Add a name for your column
+at the top ("Charity Number" would make sense), and then add &lt;code&gt;cell.recon.match.id&lt;/code&gt; in the "Expression"
+box. This will look at the cell reconcilation object, and find the &lt;code&gt;id&lt;/code&gt; of the matched candidate.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Entering an expression for getting the matched cell id" src="/images/reconcile/filtered-matches.png"&gt;&lt;/p&gt;
+&lt;p&gt;Press &lt;code&gt;OK&lt;/code&gt; to add this column.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;That's it for part one - hopefully you've now got a charity number for all the charities in 
+your data. In the next part I'll take a look at using the charity number to add more details
+about the charity, like it's web address or latest income.&lt;/p&gt;</content><category term="Charities"></category><category term="findthatcharity"></category></entry><entry><title>Back in the GDPR</title><link href="/2018/back-in-the-gdpr/" rel="alternate"></link><published>2018-03-01T13:25:00+00:00</published><updated>2018-03-01T13:25:00+00:00</updated><author><name>David Kane</name></author><id>tag:None,2018-03-01:/2018/back-in-the-gdpr/</id><summary type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add …&lt;/p&gt;</summary><content type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add an issue or make a pull request (or &lt;a href="https://twitter.com/kanedr"&gt;tweet me @kanedr&lt;/a&gt;) and I'll add it.&lt;/p&gt;
 &lt;p&gt;My view on GDPR is that, as a consumer, it's a welcome rebalancing of data rights from organisations to individuals, and I think organisations can embrace it positively to think better about how they handle data about their clients, staff, donors and beneficiaries.&lt;/p&gt;
 &lt;p&gt;With that in mind I'd highly recommend these resources by &lt;a href="https://projectsbyif.com/"&gt;IF&lt;/a&gt;. They show ways in which GDPR doesn't just have to be an annoyance that means you have to reword your forms, but instead something that can help you fundamentally rethink the way your users need you to handle their data.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://newdigitalrights.projectsbyif.com/"&gt;Designing for new Digital Rights&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="GDPR"></category><category term="Data Protection"></category></entry><entry><title>Names shared by genders</title><link href="http://drkane.co.uk/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-02-10:/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
+&lt;/ul&gt;</content><category term="GDPR"></category><category term="Data Protection"></category></entry><entry><title>Names shared by genders</title><link href="/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-10:/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
 in ambiguous names - those that are shared by people of both genders.&lt;/p&gt;
 &lt;p&gt;I realised I could use the list of male and female charity trustee names
 I'd gathered to look into this in a bit more detail. Bearing in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
@@ -377,7 +486,7 @@ lower number in our sample.&lt;/p&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;h2&gt;Shared names&lt;/h2&gt;
+&lt;h2 id="shared-names"&gt;Shared names&lt;/h2&gt;
 &lt;p&gt;We now move on to what we were trying to do - get a list of names that are commonly shared between people of different genders. You can see from the top 10s above that it's not a perfect dataset - some names that you might assume are unambiguously male or female have some counterparts - there are 8 female Davids, and 3 male Susans.&lt;/p&gt;
 &lt;p&gt;This could be a mistake in the way the algorithm was applied, a typo in the data, or people who have an unusual name. But to look only at names we would expect to be more common, I've filtered to only show only names where more than 30 instances of both male and female people have the name. This threshold should also ensure we have a decent sample of people for each name.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -619,7 +728,7 @@ lower number in our sample.&lt;/p&gt;
 &lt;li&gt;Names that are mostly female, but with some male use: &lt;strong&gt;Jean, Pat, Kerry, Lyn, Kim, Jan, Lindsay&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Names that are pretty close to 50-50: &lt;strong&gt;Mel, Vivian, Leigh, Jose, Sam&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Names that are mostly male, but with some female use: &lt;strong&gt;Alex, Chris, Ali, Lee, Ashley, Leslie, Terry, Robin&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>A name gender classifier</title><link href="http://drkane.co.uk/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-02-10:/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
+&lt;/ul&gt;</content></entry><entry><title>A name gender classifier</title><link href="/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:None,2018-02-10:/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
 classify them into male and female. For example, I've looked at lists of people
 who attended events to see whether they were reaching more men or women - this
 then helps target future events …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
@@ -641,7 +750,7 @@ data set, without considering the meaning of or connections between those words.
 &lt;p&gt;To do this I'm going to use python (3.6 to be exact) and the &lt;a href="http://scikit-learn.org/stable/"&gt;scikit&lt;/a&gt;
 library which has a naïve Bayesian classifier built in. It's based on the tutorial
 found here.&lt;/p&gt;
-&lt;h2&gt;Step 1 - get some training data&lt;/h2&gt;
+&lt;h2 id="step-1-get-some-training-data"&gt;Step 1 - get some training data&lt;/h2&gt;
 &lt;p&gt;The training data needs to be a list of names with their genders. I've found this a
 tricky thing to come by, but luckily my work with the 
 &lt;a href="http://data.charitycommission.gov.uk/"&gt;Charity Commission Register of Charities&lt;/a&gt;
@@ -663,9 +772,9 @@ average person. So the names we're using are going to reflect those demographics
 I'm just using the whole string. This means that last names will be included in
 the model - with the hope that they'll be equally distributed and so won't make
 a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
-&lt;h2&gt;Step 2: training the model&lt;/h2&gt;
-&lt;h2&gt;Step 3: testing the model&lt;/h2&gt;
-&lt;h2&gt;Step 4: using the model&lt;/h2&gt;</content></entry><entry><title>Twitter bot – random charity</title><link href="http://drkane.co.uk/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2016-10-16:/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
+&lt;h2 id="step-2-training-the-model"&gt;Step 2: training the model&lt;/h2&gt;
+&lt;h2 id="step-3-testing-the-model"&gt;Step 3: testing the model&lt;/h2&gt;
+&lt;h2 id="step-4-using-the-model"&gt;Step 4: using the model&lt;/h2&gt;</content></entry><entry><title>Twitter bot – random charity</title><link href="/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:None,2016-10-16:/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From the readme:&lt;/p&gt;
 &lt;blockquote&gt;

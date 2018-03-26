@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-      <title>David Kane</title>
+      <title>Acrostic football league tables | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/style.css" />
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/pygment.css" />
-    <link rel="shortcut icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
@@ -17,18 +17,19 @@
 
 
     <meta name="tags" content="Football" />
-
+  
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
         <header id="banner" class="body header-font ph3 ph5-ns pt3 pt5-ns pb5 moon-gray">
                 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
                         <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|                        <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
 |                        <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
 |                        <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
                 </div>
                 <h1 class="f-headline-ns f1 lh-solid mv0 logo">
-                    <a href="http://drkane.co.uk/" class="link moon-gray underline-yellow underline">
+                    <a href="/" class="link moon-gray underline-yellow underline">
                         David<br>Kane
                     </a>
                 </h1>
@@ -39,23 +40,23 @@
   <div class="w-60-ns w-100 center">
     <header>
         <h2 class="f2 header-font">
-        <a href="http://drkane.co.uk/2018/acrostic-football-league-tables/" rel="bookmark" class="link near-black"
+        <a href="/2018/acrostic-football-league-tables/" rel="bookmark" class="link near-black"
             title="Permalink to Acrostic football league tables">Acrostic football league tables</a></h2>
             
     </header>
     <footer class="post-info pb3 bb">
         <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="http://drkane.co.uk/author/david-kane/">David Kane</a>
+            <a class="url fn link near-black" href="/author/david-kane/">David Kane</a>
         </address>
         <span class="ph2"> | </span>
         <time class="published dib" datetime="2018-02-20T13:45:00+00:00">
         Tue 20 February 2018
         </time>
         <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="http://drkane.co.uk/category/code/">Code</a>
+        <a class="url fn link mid-gray" href="/category/code/">Code</a>
         <span class="ph2"> | </span>
         <span class="fn">Tags: 
-            <a class="url fn link mid-gray" href="http://drkane.co.uk/tag/football/">Football</a>        </span>
+            <a class="url fn link mid-gray" href="/tag/football/">Football</a>        </span>
     </footer><!-- /.post-info -->
     <div class="entry-content f4 lh-copy">
         <p>Following from a <a href="https://www.theguardian.com/football/2018/feb/14/footballers-joining-and-leaving-a-club-in-the-same-transfer-window-the-knowledge">question to the Guardian's "The Knowledge" column</a> I've tried to find a longer acrostic than "TABLE".</p>
@@ -63,7 +64,7 @@
 <p>“Has there ever been a longer acrostic spelled out in a table than the oft-recurring ‘TABLE’ from the Premier League this season – or ‘LAWNS’ from League Two?” asks Marco Jackson.</p>
 </blockquote>
 <p>To do this I'm going to fetch data on every match played in English leagues since 1994-95 and use it to generate league tables for the end of every day that a match has been played. I'll then check the first letter of every team in the league table against a dictionary of English words to find the longest.</p>
-<h2>Import needed modules</h2>
+<h2 id="import-needed-modules">Import needed modules</h2>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">urllib.parse</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -80,7 +81,7 @@
 </pre></div>
 
 
-<h2>Fetch league data</h2>
+<h2 id="fetch-league-data">Fetch league data</h2>
 <p>From <a href="http://www.football-data.co.uk/englandm.php">http://www.football-data.co.uk/englandm.php</a> - series of CSV tables with data on matches played in English leagues (Premier League, Division One/Championship, Division Two/League One, Division Three/League Two, Conference) since 1994/95.</p>
 <p>I haven't checked the accuracy of this data against any other source. In particular, it doesn't include any data on points deductions which do happen and affect the league table.</p>
 <div class="highlight"><pre><span></span><span class="c1"># download the main page and extract the links to CSV files</span>
@@ -103,7 +104,7 @@
 </pre></div>
 
 
-<h2>Fetch dictionary data</h2>
+<h2 id="fetch-dictionary-data">Fetch dictionary data</h2>
 <p>From <a href="https://github.com/dwyl/english-words/blob/master/words_alpha.txt">https://github.com/dwyl/english-words/blob/master/words_alpha.txt</a></p>
 <div class="highlight"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://github.com/dwyl/english-words/blob/master/words_alpha.txt?raw=true&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/dictionary.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
@@ -112,7 +113,7 @@
 </pre></div>
 
 
-<h2>Useful functions</h2>
+<h2 id="useful-functions">Useful functions</h2>
 <p><code>matches_to_table()</code> takes a list of matches (as a pandas dataframe) and a list of teams and turns it into a league table. The optional list of teams ensures that any teams that haven't yet played are included in the table (if not provided it's worked out based on the matches. Tables are sorted according to the following criteria: points, then goal difference, then goals scored.</p>
 <p>The matches dataframe requires the following columns for each match:</p>
 <ul>
@@ -204,7 +205,7 @@
 </pre></div>
 
 
-<h2>Generate tables</h2>
+<h2 id="generate-tables">Generate tables</h2>
 <p>Here I go through each file downloaded in the <code>/data</code> directory, and carry out the following steps:</p>
 <ol>
 <li>read file into a pandas dataframe</li>
@@ -269,7 +270,7 @@
 </pre></div>
 
 
-<h2>Import dictionary data</h2>
+<h2 id="import-dictionary-data">Import dictionary data</h2>
 <div class="highlight"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/dictionary.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
     <span class="n">dictionary</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -277,7 +278,7 @@
 </pre></div>
 
 
-<h2>Find long words in the table strings</h2>
+<h2 id="find-long-words-in-the-table-strings">Find long words in the table strings</h2>
 <p>Split each iteration of the league table into ngrams and check whether it is a word found in the dictionary.</p>
 <div class="highlight"><pre><span></span><span class="n">found_words</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tstrings</span><span class="p">):</span>
@@ -364,7 +365,7 @@ Iteration 10267, found 481 [COMPLETE]
 </pre></div>
 
 
-<h2>Words in context</h2>
+<h2 id="words-in-context">Words in context</h2>
 <p>Display the league table centered around the teams making the words.</p>
 <div class="highlight"><pre><span></span><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;blokes&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
 </pre></div>
@@ -1075,7 +1076,7 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<h2>Teams in alphabetical order</h2>
+<h2 id="teams-in-alphabetical-order">Teams in alphabetical order</h2>
 <p>I also wanted to look for the table in which a run of teams were in alphabetical order. I've ignored tables in August and September when the league table is less developed and so a default alphabetical team list is likely to take place.</p>
 <div class="highlight"><pre><span></span><span class="n">alpha_tables</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>

@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-      <title>David Kane</title>
+      <title>Development version of WordPress on Windows 10 | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/style.css" />
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/pygment.css" />
-    <link rel="shortcut icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
-
+  
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
         <header id="banner" class="body header-font ph3 ph5-ns pt3 pt5-ns pb5 moon-gray">
                 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
                         <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|                        <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
 |                        <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
 |                        <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
                 </div>
                 <h1 class="f-headline-ns f1 lh-solid mv0 logo">
-                    <a href="http://drkane.co.uk/" class="link moon-gray underline-yellow underline">
+                    <a href="/" class="link moon-gray underline-yellow underline">
                         David<br>Kane
                     </a>
                 </h1>
@@ -38,27 +39,27 @@
   <div class="w-60-ns w-100 center">
     <header>
         <h2 class="f2 header-font">
-        <a href="http://drkane.co.uk/2016/development-version-of-wordpress-on-windows-10/" rel="bookmark" class="link near-black"
+        <a href="/2016/development-version-of-wordpress-on-windows-10/" rel="bookmark" class="link near-black"
             title="Permalink to Development version of WordPress on Windows 10">Development version of WordPress on Windows 10</a></h2>
             
     </header>
     <footer class="post-info pb3 bb">
         <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="http://drkane.co.uk/author/david-kane/">David Kane</a>
+            <a class="url fn link near-black" href="/author/david-kane/">David Kane</a>
         </address>
         <span class="ph2"> | </span>
         <time class="published dib" datetime="2016-06-13T11:19:35+01:00">
         Mon 13 June 2016
         </time>
         <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="http://drkane.co.uk/category/code/">Code</a>
+        <a class="url fn link mid-gray" href="/category/code/">Code</a>
     </footer><!-- /.post-info -->
     <div class="entry-content f4 lh-copy">
         <p><strong>The problem</strong>: I need a local development version of WordPress to help test problems with the live site and also test updates. Previously I’ve used WAMP but that tends to get a bit messy, particularly on Windows 10.</p>
 <p><strong>The solution</strong>: use docker to create a container with all the needed files that can be run when necessary. The steps described here create a copy of WordPress which allows you to access the WordPress installation files and database directly, allowing you to create an exact copy of the live site.</p>
-<h2>Step 1 – install Docker</h2>
+<h2 id="step-1-install-docker">Step 1 – install Docker</h2>
 <p>Download and install the <a href="https://www.docker.com/products/docker-toolbox">Docker Toolbox</a>. We’ll be mostly using <code>docker-compose</code>.</p>
-<h2>Step 2 – configure the container</h2>
+<h2 id="step-2-configure-the-container">Step 2 – configure the container</h2>
 <p>This step was adapted from the <a href="https://docs.docker.com/compose/wordpress/">instructions shown in the Docker WordPress docs</a>. The main adaptations are to allow for access to the filesystem and direct database access.</p>
 <p>Navigate to an empty directory and create a file called <code>docker-compose.yaml</code>. Open and edit the file to include the following text:</p>
 <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2&#39;</span>
@@ -93,10 +94,10 @@
 </pre></div>
 
 
-<h2>Step 3 – copy the live files</h2>
+<h2 id="step-3-copy-the-live-files">Step 3 – copy the live files</h2>
 <p>You now need to make a copy of the files from your live site. I did this by downloading them via FTP from the server. Make sure you have a copy of all three main WordPress directorys (<code>wp-admin</code>, <code>wp-content</code>, <code>wp-includes</code>) plus the <code>index.php</code> file and any files starting <code>wp-*.php</code> in the main directory.</p>
 <p>Copy these files into a directory called <code>html</code> in your project directory.</p>
-<h2>Step 4 – edit wp-config.php</h2>
+<h2 id="step-4-edit-wp-configphp">Step 4 – edit wp-config.php</h2>
 <p>Because you’ve directly copied the files from the live site, your configuration settings won’t work. Open <code>wp-config.php</code> from the <code>html</code> directory in your text editor, and change the following configuration values to match the values specified in the docker-compose.yaml file.</p>
 <div class="highlight"><pre><span></span><span class="x">/** The name of the database for WordPress */</span>
 <span class="x">define(&#39;DB_NAME&#39;, &#39;wordpress&#39;);</span>
@@ -119,7 +120,7 @@
 
 
 <p>(Note: I think <code>192.168.99.100</code> is the default IP address given by Docker to the container, but yours may be different. The <code>:8000</code> port is configured in the <code>docker-compose.yaml</code> file.)</p>
-<h2>Step 5 – run the container</h2>
+<h2 id="step-5-run-the-container">Step 5 – run the container</h2>
 <p>To run the container I ran the “Docker Quickstart Terminal” which has been installed to the start menu. This gives access to the Docker virtual machine command line so you can run commands.</p>
 <p>Navigate to the directory where the <code>docker-compose.yaml</code> you created above is located (using <code>cd xxxx</code>) and then run</p>
 <div class="highlight"><pre><span></span>docker-compose up -d
@@ -132,7 +133,7 @@
 <li>Edit theme and plugin files through your file system using the <code>html/wp-content/</code> directory in your project</li>
 <li>Directly access the database by connecting through host <code>192.168.99.100</code> on port <code>3306</code> using the user <code>wordpress</code> with password <code>wordpress</code></li>
 </ul>
-<h2>Step 6 – copy the database</h2>
+<h2 id="step-6-copy-the-database">Step 6 – copy the database</h2>
 <p>The next stage is to take a copy of your live MySQL database and apply it to the local version. I did this by:</p>
 <ul>
 <li>Connect to the database using <a href="http://www.heidisql.com/">HeidiSQL</a> with the credentials given above</li>
@@ -142,9 +143,9 @@
 <li>Loading the SQL dump file in HeidiSQL and then running it.</li>
 </ul>
 <p>Depending on the size of your file this might take a little while.</p>
-<h2>Step 7 – use the site</h2>
+<h2 id="step-7-use-the-site">Step 7 – use the site</h2>
 <p>Now if you go to <a href="http://192.168.99.100:8000/">http://192.168.99.100:8000/</a> you should be able to access your site, and the admin backend should be available at <a href="http://192.168.99.100:8000/wp-admin/">http://192.168.99.100:8000/wp-admin/</a>. You should be able to log in using the same credentials you use on the live site.</p>
-<h2>Notes</h2>
+<h2 id="notes">Notes</h2>
 <ul>
 <li>I found that if I made changes to the <code>docker-compose.yaml</code> file when tweaking the setup I would then need to run the <code>docker-compose down</code> command before re-running <code>docker-compose up -d</code>. There may be a better way to do this (<code>docker-compose build</code>?)</li>
 <li>You may find that some URLs (particularly in pages and posts) are hardcoded to point to the live site – this can mean you switch to the live version without realising it, so be careful! You can use <a href="https://interconnectit.com/products/search-and-replace-for-wordpress-databases/">something like this tool from interconnectit</a> to change these values in the database.</li>

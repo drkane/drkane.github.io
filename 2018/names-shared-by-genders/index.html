@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-      <title>David Kane</title>
+      <title>Names shared by genders | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/style.css" />
-    <link rel="stylesheet" href="http://drkane.co.uk/theme/css/pygment.css" />
-    <link rel="shortcut icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="http://drkane.co.uk/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
-
+  
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
         <header id="banner" class="body header-font ph3 ph5-ns pt3 pt5-ns pb5 moon-gray">
                 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
                         <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|                        <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
 |                        <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
 |                        <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
                 </div>
                 <h1 class="f-headline-ns f1 lh-solid mv0 logo">
-                    <a href="http://drkane.co.uk/" class="link moon-gray underline-yellow underline">
+                    <a href="/" class="link moon-gray underline-yellow underline">
                         David<br>Kane
                     </a>
                 </h1>
@@ -38,20 +39,20 @@
   <div class="w-60-ns w-100 center">
     <header>
         <h2 class="f2 header-font">
-        <a href="http://drkane.co.uk/2018/names-shared-by-genders/" rel="bookmark" class="link near-black"
+        <a href="/2018/names-shared-by-genders/" rel="bookmark" class="link near-black"
             title="Permalink to Names shared by genders">Names shared by genders</a></h2>
             
     </header>
     <footer class="post-info pb3 bb">
         <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="http://drkane.co.uk/author/david-kane/">David Kane</a>
+            <a class="url fn link near-black" href="/author/david-kane/">David Kane</a>
         </address>
         <span class="ph2"> | </span>
         <time class="published dib" datetime="2018-02-10T21:32:35+01:00">
         Sat 10 February 2018
         </time>
         <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="http://drkane.co.uk/category/blog/">Blog</a>
+        <a class="url fn link mid-gray" href="/category/blog/">Blog</a>
     </footer><!-- /.post-info -->
     <div class="entry-content f4 lh-copy">
         <p>Building the gender classifier I've <a href="/a-name-gender-classifier/">written about here</a> got me interested
@@ -422,7 +423,7 @@ lower number in our sample.</p>
 </table>
 </div>
 
-<h2>Shared names</h2>
+<h2 id="shared-names">Shared names</h2>
 <p>We now move on to what we were trying to do - get a list of names that are commonly shared between people of different genders. You can see from the top 10s above that it's not a perfect dataset - some names that you might assume are unambiguously male or female have some counterparts - there are 8 female Davids, and 3 male Susans.</p>
 <p>This could be a mistake in the way the algorithm was applied, a typo in the data, or people who have an unusual name. But to look only at names we would expect to be more common, I've filtered to only show only names where more than 30 instances of both male and female people have the name. This threshold should also ensure we have a decent sample of people for each name.</p>
 <div class="highlight"><pre><span></span><span class="n">shared</span> <span class="o">=</span> <span class="n">both</span><span class="p">[(</span><span class="n">both</span><span class="p">[</span><span class="s2">&quot;male&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">both</span><span class="p">[</span><span class="s2">&quot;female&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;female_pc&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
