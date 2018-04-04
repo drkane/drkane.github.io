@@ -63,23 +63,23 @@
     <div class="entry-content f4 lh-copy">
         <p>The government has said that all companies employing more than 250 people 
 <a href="https://www.civilsociety.co.uk/news/hundreds-of-large-charities-must-now-report-on-gender-pay-gap.html">must publish data about the gender pay gap</a>
-in their organisation. The data has been helpfully published and is <a href="https://gender-pay-gap.service.gov.uk/Viewing/search-results">available to search and download</a>, although at the time of writing
-not all organisations have submitted their data (around 7,300 out of the expected 9,000 have). The
-deadline for submissions is 4th April.</p>
+in their organisation. The data has been helpfully published and is <a href="https://gender-pay-gap.service.gov.uk/Viewing/search-results">available to search and download</a>
+The deadline for submissions was 4th April, with 10,000 organisations publishing their
+data at the time of writing.</p>
 <p>Charities aren't specifically identified in the data, but the data download does
 include company numbers, so it is possible to map across from companies to charities.</p>
-<p>Doing this identifies 430 charities out of the original 7,300 organisations in the
+<p>Doing this identifies 568 charities out of the original 10,000 organisations in the
 file. I've also assumed that any organisations without a company number are in 
-the public sector (1,200 of those), leaving 5,600 private companies. Looking at the
+the public sector (1,300 of those), leaving 8,100 private companies. Looking at the
 file these assumptions seem reasonable, but there will be some organisations incorrectly
 classified.</p>
 <h2 id="women-working-for-large-charities-are-paid-8-less-than-men">Women working for large charities are paid 8% less than men</h2>
-<p>The data shows that the average gender pay gap for all organisations is 14%, and 
-for charities it is 8.5%. Each organisation submits their mean and median pay gaps (the
+<p>The data shows that the average gender pay gap for all organisations is 14.5%, and 
+for charities it is 8%. Each organisation submits their mean and median pay gaps (the
 difference in average men and women's pay), these figures are the mean average of those 
 means across the organisations.</p>
-<p>This figure of 8.5% compares favourably to the pay gap in private companies (15%) and
-in the public sector (12%), but obviously still represents a sizeable gap in pay
+<p>This figure of 8% compares favourably to the pay gap in private companies (15%) and
+in the public sector (13%), but obviously still represents a sizeable gap in pay
 between male and female employees.</p>
 <h3 id="average-pay-gaps-by-type-of-organisation">Average pay gaps by type of organisation</h3>
 <canvas id='summary'></canvas>
@@ -100,20 +100,20 @@ between male and female employees.</p>
             'backgroundColor': 'rgb(255,255,  0)',
             'label': 'Mean',
             'data': [
-                8.5,
+                8.1,
                 15.3,
-                12.5,
-                14.4
+                12.6,
+                14.5
             ]
         },
         {
             'backgroundColor': 'rgb(113,  9,170)',
             'label': 'Median',
             'data': [
-                6.8,
-                13.0,
-                11.2,
-                12.3
+                7.8,
+                14.6,
+                11.6,
+                13.6
             ]
         }
     ]
@@ -155,9 +155,9 @@ whereas for charities it is 20%.</p>
             'label': 'Men',
             'data': [
                 80.1,
-                89.0,
-                92.5,
-                89.1
+                88.7,
+                92.6,
+                88.7
             ]
         },
         {
@@ -165,9 +165,9 @@ whereas for charities it is 20%.</p>
             'label': 'Women',
             'data': [
                 19.9,
-                11.0,
-                7.5,
-                10.9
+                11.3,
+                7.4,
+                11.3
             ]
         }
     ]
@@ -223,10 +223,10 @@ employees - so it can't show the gender split at CEO/Director level.</p>
             ],
             'label': '4 - lowest paid',
             'data': [
-                71.3,
-                51.0,
-                66.9,
-                54.9
+                71.1,
+                50.2,
+                66.8,
+                53.6
             ]
         },
         {
@@ -238,10 +238,10 @@ employees - so it can't show the gender split at CEO/Director level.</p>
             ],
             'label': '3',
             'data': [
-                70.7,
-                46.3,
-                64.7,
-                50.9
+                70.2,
+                45.5,
+                64.6,
+                49.4
             ]
         },
         {
@@ -253,10 +253,10 @@ employees - so it can't show the gender split at CEO/Director level.</p>
             ],
             'label': '2',
             'data': [
-                68.6,
-                41.5,
-                60.8,
-                46.4
+                68.3,
+                40.9,
+                60.7,
+                45.0
             ]
         },
         {
@@ -268,10 +268,10 @@ employees - so it can't show the gender split at CEO/Director level.</p>
             ],
             'label': '1 - highest paid',
             'data': [
-                63.0,
-                35.8,
-                53.4,
-                40.4
+                62.7,
+                35.1,
+                53.2,
+                39.0
             ]
         }
     ]
@@ -301,8 +301,9 @@ employees - so it can't show the gender split at CEO/Director level.</p>
 <li>company numbers can have odd formatting</li>
 <li>Public sector organisations are assumed based on those organisations without a company number
   which might be incorrect.</li>
-<li>The data is incomplete - only 7,300 organisations have submitted data, 
-  <a href="https://www.civilsociety.co.uk/news/hundreds-of-large-charities-must-now-report-on-gender-pay-gap.html">the government estimates there should be 9,000</a></li>
+<li>The data may be incomplete. 10,000 organisations have submitted data, 
+  <a href="https://www.civilsociety.co.uk/news/hundreds-of-large-charities-must-now-report-on-gender-pay-gap.html">compared to a government estimate of 9,000</a>
+  but there may still be some missing.</li>
 <li>You can <a href="/data/gender-pay-gap-with-charity-no.csv">download my amended data with charity numbers and organisation type added (CSV)</a></li>
 </ul>
     </div><!-- /.entry-content -->
