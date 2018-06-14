@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all-english.atom.xml" rel="self"></link><id>https://drkane.co.uk/</id><updated>2018-03-31T13:25:00+01:00</updated><entry><title>Adding charity details using findthatcharity - Part II</title><link href="https://drkane.co.uk/2018/adding-charity-details-using-findthatcharity-part-ii/" rel="alternate"></link><published>2018-03-31T13:25:00+01:00</published><updated>2018-03-31T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-03-31:/2018/adding-charity-details-using-findthatcharity-part-ii/</id><summary type="html">&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/"&gt;...continued from part 1&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all-english.atom.xml" rel="self"></link><id>https://drkane.co.uk/</id><updated>2018-06-14T12:57:19+01:00</updated><entry><title>Grants in Kingston</title><link href="https://drkane.co.uk/2018/grants-in-kingston/" rel="alternate"></link><published>2018-06-14T12:57:19+01:00</published><updated>2018-06-14T12:57:19+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-06-14:/2018/grants-in-kingston/</id><summary type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
+by the fantastic &lt;a href="https://superhighways.org.uk/"&gt;Superhighways&lt;/a&gt; and 
+&lt;a href="https://kva.org.uk/"&gt;Kingston Voluntary Action&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The aim of the day was to showcase some of the work that charities in Kingston 
+are already doing to use data in their work, and see …&lt;/p&gt;</summary><content type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
+by the fantastic &lt;a href="https://superhighways.org.uk/"&gt;Superhighways&lt;/a&gt; and 
+&lt;a href="https://kva.org.uk/"&gt;Kingston Voluntary Action&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The aim of the day was to showcase some of the work that charities in Kingston 
+are already doing to use data in their work, and see some of the tools and 
+resources out there. We heard from charities like &lt;a href="https://www.leah.org.uk/"&gt;LEAH&lt;/a&gt;,
+&lt;a href="https://www.manandboy.org/"&gt;Man and Boy&lt;/a&gt; and &lt;a href="https://kingstoncarers.org.uk/young-carers/"&gt;Kingston Young Carers&lt;/a&gt;
+about how they were using data to measure outcomes and improve their services. We
+also heard from &lt;a href="https://data.kingston.gov.uk/"&gt;Kingston Borough Council&lt;/a&gt;, 360 Giving and others on resources out
+there that local charities could tap into.&lt;/p&gt;
+&lt;p&gt;I gave a quick presentation on what the 360 Giving data on grants tells us
+about voluntary sector funding in Kingston. Here's a few things I took away
+from the data:&lt;/p&gt;
+&lt;h2 id="1-grants-to-kingston-are-lower-than-other-areas"&gt;1. Grants to Kingston are lower than other areas&lt;/h2&gt;
+&lt;p&gt;I didn't actually produce any comparisons for Kingston and other London
+boroughs, but in Katherine from 360 Giving's presentation she showed that
+looking at the Grantnav 360 Giving data, Kingston comes right at the bottom
+of the table in terms of the number of grants made. &lt;/p&gt;
+&lt;p&gt;You can see this for yourself when looking at a &lt;a href="http://grantnav.threesixtygiving.org/search?page=1&amp;amp;json_query=%7B%22extra_context%22%3A+%7B%22amountAwardedFixed_facet_size%22%3A+3%2C+%22awardYear_facet_size%22%3A+3%7D%2C+%22sort%22%3A+%7B%22_score%22%3A+%7B%22order%22%3A+%22desc%22%7D%7D%2C+%22aggs%22%3A+%7B%22recipientOrganization%22%3A+%7B%22terms%22%3A+%7B%22field%22%3A+%22recipientOrganization.id_and_name%22%2C+%22size%22%3A+3%7D%7D%2C+%22fundingOrganization%22%3A+%7B%22terms%22%3A+%7B%22field%22%3A+%22fundingOrganization.id_and_name%22%2C+%22size%22%3A+3%7D%7D%2C+%22currency%22%3A+%7B%22terms%22%3A+%7B%22field%22%3A+%22currency%22%2C+%22size%22%3A+3%7D%7D%2C+%22recipientRegionName%22%3A+%7B%22terms%22%3A+%7B%22field%22%3A+%22recipientRegionName%22%2C+%22size%22%3A+3%7D%7D%2C+%22recipientDistrictName%22%3A+%7B%22terms%22%3A+%7B%22field%22%3A+%22recipientDistrictName%22%2C+%22size%22%3A+50%7D%7D%7D%2C+%22query%22%3A+%7B%22bool%22%3A+%7B%22filter%22%3A+%5B%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%2C+%22must%22%3A+%7B%7D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%7B%22range%22%3A+%7B%22amountAwarded%22%3A+%7B%7D%7D%7D%2C+%22must%22%3A+%7B%7D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%7D%7D%2C+%7B%22bool%22%3A+%7B%22should%22%3A+%5B%5D%7D%7D%5D%2C+%22must%22%3A+%7B%22query_string%22%3A+%7B%22query%22%3A+%22London%22%2C+%22default_field%22%3A+%22recipientLocation%22%7D%7D%7D%7D%7D&amp;amp;page_y=684"&gt;list of all the grants to London&lt;/a&gt;
+(see the "Recipient District" filter on the left hand side for counts in each Borough).&lt;/p&gt;
+&lt;h2 id="2-the-big-lottery-fund-is-important-to-the-area"&gt;2. The Big Lottery Fund is important to the area&lt;/h2&gt;
+&lt;p&gt;The Big Lottery Fund is by far the largest funder that has published 360 Giving
+data, and this shows in Kingston. Half of the grant amount received by organisations
+in the borough comes from Big Lottery Fund.&lt;/p&gt;
+&lt;h2 id="3-but-other-funders-play-important-roles"&gt;3. But other funders play important roles&lt;/h2&gt;
+&lt;p&gt;Funders like the Co-operative Group, Sports England and Kingston Voluntary Action
+(through the &lt;a href="https://www.lovekingston.org.uk/"&gt;Love Kingston&lt;/a&gt; programme) also provide key funding, particularly
+to smaller groups.&lt;/p&gt;
+&lt;h2 id="4-grants-are-going-to-medium-sized-groups"&gt;4. Grants are going to medium-sized groups&lt;/h2&gt;
+&lt;p&gt;Most grants that we found are going to organisations with between £100,000 and £1m
+annual income. These organisations provide vital services in the local area, but
+there could be scope for increasing the funding available for smaller groups.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I've created a map of all the grants to Kingston that is embedded below:&lt;/p&gt;
+&lt;iframe src="/data/kingston-grants-map.html"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;You can also find my presentation on Google slides:&lt;/p&gt;
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTaYI58fQlEc2pY66Y_3Y9MEUMpYUEw-cCTDHI6vYtIWhpt8hTO3dqXgjx7XY6urIzarSIrozhgVeDJ/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Finally you can also download the full dataset to use yourself:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/data/all_kingston_grants.csv"&gt;Kingston grants data [CSV - 263Kb]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This data is released under the &lt;a href="https://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution Sharealike license (CC-BY-SA)&lt;/a&gt; in accordance with
+the terms under which the data was used from GrantNav.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="acknowledgements-and-data-licensing"&gt;Acknowledgements and data licensing&lt;/h3&gt;
+&lt;p&gt;All data has been used under the license applied by the data publisher. 
+&lt;a href="http://grantnav.threesixtygiving.org/datasets/#copyright"&gt;A list of the licenses used&lt;/a&gt; can be found on GrantNav.&lt;/p&gt;
+&lt;p&gt;Contains data from &lt;a href="http://grantnav.threesixtygiving.org/datasets/"&gt;GrantNav&lt;/a&gt; a &lt;a href="http://www.threesixtygiving.org/"&gt;360Giving&lt;/a&gt; application released under the terms of the &lt;a href="https://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution Sharealike license (CC-BY-SA)&lt;/a&gt;&lt;/p&gt;</content><category term="Grants"></category><category term="Kingston"></category></entry><entry><title>Adding charity details using findthatcharity - Part II</title><link href="https://drkane.co.uk/2018/adding-charity-details-using-findthatcharity-part-ii/" rel="alternate"></link><published>2018-03-31T13:25:00+01:00</published><updated>2018-03-31T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-03-31:/2018/adding-charity-details-using-findthatcharity-part-ii/</id><summary type="html">&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/"&gt;...continued from part 1&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="part-ii-add-charity-details"&gt;Part II - add charity details&lt;/h2&gt;
 &lt;p&gt;Once you've got a list of organisations in OpenRefine with charity numbers you
 can then add more details about the organisations using &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt;.
