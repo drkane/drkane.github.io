@@ -134,7 +134,13 @@ based on countries.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;folium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
     &lt;span class="n"&gt;zoom_start&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;tiles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Stamen Toner&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;tiles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Stamen Toner&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&amp;#39;&amp;lt;a id=&amp;quot;home-link&amp;quot; target=&amp;quot;_top&amp;quot; href=&amp;quot;../&amp;quot;&amp;gt;Map tiles&amp;lt;/a&amp;gt; by &lt;/span&gt;
+&lt;span class="s1"&gt;    &amp;lt;a target=&amp;quot;_top&amp;quot; href=&amp;quot;http://stamen.com&amp;quot;&amp;gt;Stamen Design&amp;lt;/a&amp;gt;, &lt;/span&gt;
+&lt;span class="s1"&gt;    under &amp;lt;a target=&amp;quot;_top&amp;quot; href=&amp;quot;http://creativecommons.org/licenses/by/3.0&amp;quot;&amp;gt;CC BY 3.0&amp;lt;/a&amp;gt;. &lt;/span&gt;
+&lt;span class="s1"&gt;    Data by &amp;lt;a target=&amp;quot;_top&amp;quot; href=&amp;quot;http://openstreetmap.org&amp;quot;&amp;gt;OpenStreetMap&amp;lt;/a&amp;gt;, &lt;/span&gt;
+&lt;span class="s1"&gt;    under &amp;lt;a target=&amp;quot;_top&amp;quot; href=&amp;quot;http://creativecommons.org/licenses/by-sa/3.0&amp;quot;&amp;gt;CC BY SA&amp;lt;/a&amp;gt;.&lt;/span&gt;
+&lt;span class="s1"&gt;    | Locations powered by &amp;lt;a href=&amp;quot;https://query.wikidata.org/&amp;quot;&amp;gt;Wikidata&amp;lt;/a&amp;gt;.&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -169,7 +175,7 @@ based on countries.&lt;/p&gt;
 
 &lt;p&gt;As an extra I wanted to convert the data into GeoJSON format so it's easy to use elsewhere.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=""&gt;world_cup_stadia.geojson&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drkane.co.uk/data/world_cup_stadia.geojson"&gt;world_cup_stadia.geojson&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;geojson&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FeatureCollection&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -199,8 +205,9 @@ based on countries.&lt;/p&gt;
 &lt;li&gt;The data is from Wikidata and is used under the &lt;a href="https://creativecommons.org/about/cc0"&gt;CC0 Public Domain licence&lt;/a&gt;. &lt;/li&gt;
 &lt;li&gt;&lt;a href="https://rdflib.github.io/sparqlwrapper/"&gt;sparqlwrapper&lt;/a&gt; for querying the data.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://python-visualization.github.io/folium/index.html"&gt;Folium&lt;/a&gt; mapping using &lt;a href="https://leafletjs.com/"&gt;Leaflet&lt;/a&gt; and &lt;a href="http://fontawesome.com/icons?d=gallery&amp;amp;c=sports&amp;amp;m=free"&gt;FontAwesome&lt;/a&gt; icons.&lt;/li&gt;
+&lt;li&gt;Map tiles by &lt;a href="http://stamen.com"&gt;Stamen Design&lt;/a&gt;, under &lt;a href="http://creativecommons.org/licenses/by/3.0"&gt;CC BY 3.0&lt;/a&gt;. Data by &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0"&gt;CC BY SA&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://pypi.org/project/Shapely/"&gt;Shapely&lt;/a&gt; and &lt;a href="https://pypi.org/project/geojson/"&gt;geojson&lt;/a&gt; python libraries for manipulating the geodata&lt;/li&gt;
-&lt;li&gt;This blog post was written alongside the code in a &lt;a href="http://jupyter.org/"&gt;Juypter notebook&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nbviewer.jupyter.org/urls/drkane.co.uk/data/world_cup_stadia.ipynb"&gt;This blog post was written alongside the code in a Juypter notebook&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a title="By Charlie Kritschmar (WMDE) [CC0], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Wikidata_stamp.png"&gt;&lt;img width="128" alt="Wikidata stamp" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Wikidata_stamp.png/512px-Wikidata_stamp.png"&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Sun, 17 Jun 2018 17:23:04 +0100</pubDate><guid isPermaLink="false">tag:drkane.co.uk,2018-06-17:/2018/a-map-of-world-cup-stadia-using-wikidata/</guid><category>Football</category><category>Wikidata</category></item><item><title>Grants in Kingston</title><link>https://drkane.co.uk/2018/grants-in-kingston/</link><description>&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
 by the fantastic &lt;a href="https://superhighways.org.uk/"&gt;Superhighways&lt;/a&gt; and 
