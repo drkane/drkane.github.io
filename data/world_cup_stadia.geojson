@@ -1,0 +1,3874 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -56.152778,
+                    -34.894444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -56.152778,
+                    -34.894444
+                ],
+                "worldcups": [
+                    "1930"
+                ],
+                "stadium": "Estadio Centenario",
+                "country": "Uruguay"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -56.1562,
+                    -34.905053
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -56.1562,
+                    -34.905053
+                ],
+                "worldcups": [
+                    "1930"
+                ],
+                "stadium": "Estadio Pocitos",
+                "country": "Uruguay"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -56.1588,
+                    -34.884373
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -56.1588,
+                    -34.884373
+                ],
+                "worldcups": [
+                    "1930"
+                ],
+                "stadium": "Estadio Gran Parque Central",
+                "country": "Uruguay"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.309722222,
+                    44.492222222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.309722222,
+                    44.492222222
+                ],
+                "worldcups": [
+                    "1934",
+                    "1990"
+                ],
+                "stadium": "Stadio Renato Dall'Ara",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    14.293333,
+                    40.859722
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    14.293333,
+                    40.859722
+                ],
+                "worldcups": [
+                    "1934"
+                ],
+                "stadium": "Stadio Giorgio Ascarelli",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.79425764,
+                    45.62381518
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    13.79425764,
+                    45.62381518
+                ],
+                "worldcups": [
+                    "1934"
+                ],
+                "stadium": "Stadio Giuseppe Grezar",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.124,
+                    45.47808
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    9.124,
+                    45.47808
+                ],
+                "worldcups": [
+                    "1934",
+                    "1990"
+                ],
+                "stadium": "San Siro",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.65,
+                    45.041667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.65,
+                    45.041667
+                ],
+                "worldcups": [
+                    "1934"
+                ],
+                "stadium": "Stadio Olimpico Grande Torino",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.282258,
+                    43.780822
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.282258,
+                    43.780822
+                ],
+                "worldcups": [
+                    "1934",
+                    "1990"
+                ],
+                "stadium": "Stadio Artemio Franchi",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.952428,
+                    44.416431
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    8.952428,
+                    44.416431
+                ],
+                "worldcups": [
+                    "1934",
+                    "1990"
+                ],
+                "stadium": "Stadio Luigi Ferraris",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.472222,
+                    41.927222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.472222,
+                    41.927222
+                ],
+                "worldcups": [
+                    "1934"
+                ],
+                "stadium": "Stadio Nazionale PNF",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.253055555,
+                    48.841388888
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    2.253055555,
+                    48.841388888
+                ],
+                "worldcups": [
+                    "1938",
+                    "1998"
+                ],
+                "stadium": "Parc des Princes",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    5.395833333,
+                    43.269722222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    5.395833333,
+                    43.269722222
+                ],
+                "worldcups": [
+                    "1938",
+                    "1998"
+                ],
+                "stadium": "Stade V\u00e9lodrome",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.754969,
+                    48.560064
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.754969,
+                    48.560064
+                ],
+                "worldcups": [
+                    "1938"
+                ],
+                "stadium": "Stade de la Meinau",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.598056,
+                    44.829167
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.598056,
+                    44.829167
+                ],
+                "worldcups": [
+                    "1938",
+                    "1998"
+                ],
+                "stadium": "Stade Chaban-Delmas",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    4.025,
+                    49.246667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    4.025,
+                    49.246667
+                ],
+                "worldcups": [
+                    "1938"
+                ],
+                "stadium": "Stade Auguste Delaune",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1.434055,
+                    43.583296
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    1.434055,
+                    43.583296
+                ],
+                "worldcups": [
+                    "1938",
+                    "1998"
+                ],
+                "stadium": "Stadium Municipal",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.248055555,
+                    48.929444444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    2.248055555,
+                    48.929444444
+                ],
+                "worldcups": [
+                    "1938"
+                ],
+                "stadium": "Stade Olympique Yves-du-Manoir",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.036111,
+                    50.6375
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    3.036111,
+                    50.6375
+                ],
+                "worldcups": [
+                    "1938"
+                ],
+                "stadium": "Stade Victor Boucquey",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.1256,
+                    43.5909
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.1256,
+                    43.5909
+                ],
+                "worldcups": [
+                    "1938"
+                ],
+                "stadium": "Stade du Fort Carr\u00e9",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.171061,
+                    49.501942
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    0.171061,
+                    49.501942
+                ],
+                "worldcups": [
+                    "1938"
+                ],
+                "stadium": "Stade Jules Deschaseaux",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -43.230163888,
+                    -22.912166666
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -43.230163888,
+                    -22.912166666
+                ],
+                "worldcups": [
+                    "1950",
+                    "2014"
+                ],
+                "stadium": "Est\u00e1dio do Maracan\u00e3",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -46.665111,
+                    -23.548639
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -46.665111,
+                    -23.548639
+                ],
+                "worldcups": [
+                    "1950"
+                ],
+                "stadium": "Est\u00e1dio do Pacaembu",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -43.917778,
+                    -19.908333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -43.917778,
+                    -19.908333
+                ],
+                "worldcups": [
+                    "1950"
+                ],
+                "stadium": "Est\u00e1dio Independ\u00eancia",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -49.255833,
+                    -25.439444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -49.255833,
+                    -25.439444
+                ],
+                "worldcups": [
+                    "1950"
+                ],
+                "stadium": "Est\u00e1dio Vila Capanema",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -34.902980555,
+                    -8.062952777
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -34.902980555,
+                    -8.062952777
+                ],
+                "worldcups": [
+                    "1950"
+                ],
+                "stadium": "Est\u00e1dio Ilha do Retiro",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -51.227222,
+                    -30.061667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -51.227222,
+                    -30.061667
+                ],
+                "worldcups": [
+                    "1950"
+                ],
+                "stadium": "Est\u00e1dio dos Eucaliptos",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.62,
+                    47.541389
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.62,
+                    47.541389
+                ],
+                "worldcups": [
+                    "1954"
+                ],
+                "stadium": "St. Jakob-Park",
+                "country": "Switzerland"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    6.1182,
+                    46.2091
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    6.1182,
+                    46.2091
+                ],
+                "worldcups": [
+                    "1954"
+                ],
+                "stadium": "Charmilles Stadium",
+                "country": "Switzerland"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    6.625,
+                    46.534
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    6.625,
+                    46.534
+                ],
+                "worldcups": [
+                    "1954"
+                ],
+                "stadium": "Stade Olympique de la Pontaise",
+                "country": "Switzerland"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.961667,
+                    46.023611
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    8.961667,
+                    46.023611
+                ],
+                "worldcups": [
+                    "1954"
+                ],
+                "stadium": "Cornaredo Stadium",
+                "country": "Switzerland"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.465,
+                    46.962778
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.465,
+                    46.962778
+                ],
+                "worldcups": [
+                    "1954"
+                ],
+                "stadium": "Wankdorf Stadium",
+                "country": "Switzerland"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.504722,
+                    47.393056
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    8.504722,
+                    47.393056
+                ],
+                "worldcups": [
+                    "1954"
+                ],
+                "stadium": "Hardturm",
+                "country": "Switzerland"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.989166666,
+                    55.586111111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.989166666,
+                    55.586111111
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Malm\u00f6 stadion",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.866388888,
+                    56.684166666
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.866388888,
+                    56.684166666
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "\u00d6rjans Vall",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.173055555,
+                    58.584166666
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    16.173055555,
+                    58.584166666
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Idrottsparken",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.706944444,
+                    56.049444444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.706944444,
+                    56.049444444
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Olympia",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.54104444,
+                    59.62044722
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    16.54104444,
+                    59.62044722
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Arosvallen",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.996388888,
+                    59.362777777
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    17.996388888,
+                    59.362777777
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "R\u00e5sunda Stadium",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.22305556,
+                    59.26611111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    15.22305556,
+                    59.26611111
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Behrn Arena",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.987222222,
+                    57.705833333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.987222222,
+                    57.705833333
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Ullevi",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.495,
+                    59.370667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    16.495,
+                    59.370667
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Tunavallen",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.773888888,
+                    60.6075
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    16.773888888,
+                    60.6075
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Jernvallen",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.95,
+                    58.35666667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.95,
+                    58.35666667
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Rimnersvallen",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.934921,
+                    57.735724
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.934921,
+                    57.735724
+                ],
+                "worldcups": [
+                    "1958"
+                ],
+                "stadium": "Ryavallen",
+                "country": "Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.610586,
+                    -33.464522
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -70.610586,
+                    -33.464522
+                ],
+                "worldcups": [
+                    "1962"
+                ],
+                "stadium": "Estadio Nacional Julio Mart\u00ednez Pr\u00e1danos",
+                "country": "Chile"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.535233,
+                    -33.014397
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -71.535233,
+                    -33.014397
+                ],
+                "worldcups": [
+                    "1962"
+                ],
+                "stadium": "Estadio SausaYash",
+                "country": "Chile"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.299272,
+                    -18.487506
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -70.299272,
+                    -18.487506
+                ],
+                "worldcups": [
+                    "1962"
+                ],
+                "stadium": "Estadio Carlos Dittborn",
+                "country": "Chile"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.737719,
+                    -34.177764
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -70.737719,
+                    -34.177764
+                ],
+                "worldcups": [
+                    "1962"
+                ],
+                "stadium": "Estadio El Teniente",
+                "country": "Chile"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.291388888,
+                    53.463055555
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -2.291388888,
+                    53.463055555
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Old Trafford",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.279444,
+                    51.555556
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.279444,
+                    51.555556
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Wembley Stadium",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.884722222,
+                    52.509166666
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -1.884722222,
+                    52.509166666
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Villa Park",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.246944,
+                    54.564167
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -1.246944,
+                    54.564167
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Ayresome Park",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.500555555,
+                    53.411388888
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -1.500555555,
+                    53.411388888
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Hillsborough Stadium",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.2274,
+                    51.513619444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.2274,
+                    51.513619444
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "White City Stadium",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.966388888,
+                    53.438888888
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -2.966388888,
+                    53.438888888
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Goodison Park",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.375480555,
+                    54.9213
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -1.375480555,
+                    54.9213
+                ],
+                "worldcups": [
+                    "1966"
+                ],
+                "stadium": "Roker Park",
+                "country": "United Kingdom"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -98.164444,
+                    19.078056
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -98.164444,
+                    19.078056
+                ],
+                "worldcups": [
+                    "1970",
+                    "1986"
+                ],
+                "stadium": "Cuauht\u00e9moc Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -99.150556,
+                    19.302778
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -99.150556,
+                    19.302778
+                ],
+                "worldcups": [
+                    "1970",
+                    "1986"
+                ],
+                "stadium": "Estadio azteca Jim\u2019s",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -99.666794,
+                    19.287286
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -99.666794,
+                    19.287286
+                ],
+                "worldcups": [
+                    "1970",
+                    "1986"
+                ],
+                "stadium": "Nemesio D\u00edez Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -103.328139,
+                    20.705
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -103.328139,
+                    20.705
+                ],
+                "worldcups": [
+                    "1970",
+                    "1986"
+                ],
+                "stadium": "Jalisco Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -101.657744,
+                    21.115544
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -101.657744,
+                    21.115544
+                ],
+                "worldcups": [
+                    "1970",
+                    "1986"
+                ],
+                "stadium": "Le\u00f3n Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.546666666,
+                    48.173055555
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.546666666,
+                    48.173055555
+                ],
+                "worldcups": [
+                    "1974"
+                ],
+                "stadium": "Olympic Stadium of Munich",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.451667,
+                    51.4925
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.451667,
+                    51.4925
+                ],
+                "worldcups": [
+                    "1974",
+                    "2006"
+                ],
+                "stadium": "Signal Iduna Park",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.898611,
+                    53.586944
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    9.898611,
+                    53.586944
+                ],
+                "worldcups": [
+                    "1974",
+                    "2006"
+                ],
+                "stadium": "Volksparkstadion",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.239444444,
+                    52.514722222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    13.239444444,
+                    52.514722222
+                ],
+                "worldcups": [
+                    "1974",
+                    "2006"
+                ],
+                "stadium": "Olympiastadion Berlin",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.231944,
+                    48.792222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    9.231944,
+                    48.792222
+                ],
+                "worldcups": [
+                    "1974",
+                    "2006"
+                ],
+                "stadium": "Mercedes-Benz Arena",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.731111,
+                    52.36
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    9.731111,
+                    52.36
+                ],
+                "worldcups": [
+                    "1974",
+                    "2006"
+                ],
+                "stadium": "HDI-Arena",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.645278,
+                    50.068611
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    8.645278,
+                    50.068611
+                ],
+                "worldcups": [
+                    "1974",
+                    "2006"
+                ],
+                "stadium": "Commerzbank-Arena",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    6.734167,
+                    51.260278
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    6.734167,
+                    51.260278
+                ],
+                "worldcups": [
+                    "1974"
+                ],
+                "stadium": "Rheinstadion",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.066667,
+                    51.559167
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.066667,
+                    51.559167
+                ],
+                "worldcups": [
+                    "1974"
+                ],
+                "stadium": "Parkstadion",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.449444,
+                    -34.545278
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -58.449444,
+                    -34.545278
+                ],
+                "worldcups": [
+                    "1978"
+                ],
+                "stadium": "Estadio Monumental Antonio Vespucio Liberti",
+                "country": "Argentina"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -60.674567,
+                    -32.913997
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -60.674567,
+                    -32.913997
+                ],
+                "worldcups": [
+                    "1978"
+                ],
+                "stadium": "Estadio Gigante de Arroyito",
+                "country": "Argentina"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.246244,
+                    -31.368956
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -64.246244,
+                    -31.368956
+                ],
+                "worldcups": [
+                    "1978"
+                ],
+                "stadium": "Estadio Mario Alberto Kempez",
+                "country": "Argentina"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.879994,
+                    -32.889564
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -68.879994,
+                    -32.889564
+                ],
+                "worldcups": [
+                    "1978"
+                ],
+                "stadium": "Estadio Malvinas Argentinas",
+                "country": "Argentina"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.520711,
+                    -34.635375
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -58.520711,
+                    -34.635375
+                ],
+                "worldcups": [
+                    "1978"
+                ],
+                "stadium": "Estadio Jos\u00e9 Amalfitani",
+                "country": "Argentina"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -57.582333,
+                    -38.017944
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -57.582333,
+                    -38.017944
+                ],
+                "worldcups": [
+                    "1978"
+                ],
+                "stadium": "Estadio Jos\u00e9 Mar\u00eda Minella",
+                "country": "Argentina"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.901822,
+                    41.636592
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.901822,
+                    41.636592
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "La Romareda",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.417372,
+                    43.368667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -8.417372,
+                    43.368667
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Municipal de abanca Riazor",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.981611,
+                    37.356403
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -5.981611,
+                    37.356403
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Benito Villamar\u00edn",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.761111,
+                    41.644444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -4.761111,
+                    41.644444
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Nuevo Jos\u00e9 Zorrilla",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.1225,
+                    41.380833
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    2.1225,
+                    41.380833
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Camp Nou",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -3.68835,
+                    40.45306
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -3.68835,
+                    40.45306
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Santiago Bernab\u00e9u",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.358333,
+                    39.474722
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.358333,
+                    39.474722
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Mestalla Stadium",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -3.720556,
+                    40.401667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -3.720556,
+                    40.401667
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Vicente Calder\u00f3n Stadium",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.949369,
+                    43.264205
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -2.949369,
+                    43.264205
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "San Mam\u00e9s Stadium",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.970467,
+                    37.383878
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -5.970467,
+                    37.383878
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Ram\u00f3n S\u00e1nchez Pizju\u00e1n",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.426422,
+                    36.734092
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -4.426422,
+                    36.734092
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "La Rosaleda Stadium",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.637222,
+                    43.536111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -5.637222,
+                    43.536111
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "El Molin\u00f3n-Enrique Castro Quini",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.4925,
+                    38.357222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.4925,
+                    38.357222
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Jos\u00e9 Rico P\u00e9rez",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.663333,
+                    38.266944
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -0.663333,
+                    38.266944
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Manuel Mart\u00ednez Valero",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.133169,
+                    41.393111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    2.133169,
+                    41.393111
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadi de Sarri\u00e0",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.740328,
+                    42.211861
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -8.740328,
+                    42.211861
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Bala\u00eddos",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.87022222,
+                    43.36078333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -5.87022222,
+                    43.36078333
+                ],
+                "worldcups": [
+                    "1982"
+                ],
+                "stadium": "Estadio Carlos Tartiere",
+                "country": "Spain"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -103.416136,
+                    20.693753
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -103.416136,
+                    20.693753
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Estadio Tres de Marzo",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.366539,
+                    20.577642
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -100.366539,
+                    20.577642
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Corregidora Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -98.987042,
+                    19.405786
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -98.987042,
+                    19.405786
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Estadio Neza 86",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -99.192106,
+                    19.331928
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -99.192106,
+                    19.331928
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Universitary Olympic Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.312055555,
+                    25.722805555
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -100.312055555,
+                    25.722805555
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Universitary Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -101.3563,
+                    20.6845
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -101.3563,
+                    20.6845
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Estadio Sergio Le\u00f3n Ch\u00e1vez",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.286417,
+                    25.65225
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -100.286417,
+                    25.65225
+                ],
+                "worldcups": [
+                    "1986"
+                ],
+                "stadium": "Tecnol\u00f3gico Stadium",
+                "country": "Mexico"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.342275,
+                    38.152767
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    13.342275,
+                    38.152767
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio Renzo Barbera",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    14.193008,
+                    40.827967
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    14.193008,
+                    40.827967
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio San Paolo",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.454714,
+                    41.933872
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.454714,
+                    41.933872
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio Olimpico",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.641261111,
+                    45.109561111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.641261111,
+                    45.109561111
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio delle Alpi",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.840072,
+                    41.084736
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    16.840072,
+                    41.084736
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio San Nicola",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.200136,
+                    46.081603
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    13.200136,
+                    46.081603
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio Friuli",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    10.968647,
+                    45.435356
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    10.968647,
+                    45.435356
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio Marc'Antonio Bentegodi",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.134944,
+                    39.199389
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    9.134944,
+                    39.199389
+                ],
+                "worldcups": [
+                    "1990"
+                ],
+                "stadium": "Stadio Sant'Elia",
+                "country": "Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.971666666,
+                    38.889722222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -76.971666666,
+                    38.889722222
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Robert F. Kennedy Memorial Stadium",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.402777777,
+                    28.539166666
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -81.402777777,
+                    28.539166666
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Camping World Stadium",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.255,
+                    42.645833333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -83.255,
+                    42.645833333
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Pontiac Silverdome",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.267441666,
+                    42.0927
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -71.267441666,
+                    42.0927
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Foxboro Stadium",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.076944444,
+                    40.812222222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -74.076944444,
+                    40.812222222
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Giants Stadium",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.16813,
+                    34.1614
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -118.16813,
+                    34.1614
+                ],
+                "worldcups": [
+                    "1994",
+                    "1994"
+                ],
+                "stadium": "Rose Bowl",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.161111111,
+                    37.434444444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -122.161111111,
+                    37.434444444
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Stanford Stadium",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -87.616666666,
+                    41.8625
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -87.616666666,
+                    41.8625
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Soldier Field",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -96.759722222,
+                    32.779722222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -96.759722222,
+                    32.779722222
+                ],
+                "worldcups": [
+                    "1994"
+                ],
+                "stadium": "Cotton Bowl",
+                "country": "United States of America"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    4.8325,
+                    45.723889
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    4.8325,
+                    45.723889
+                ],
+                "worldcups": [
+                    "1998"
+                ],
+                "stadium": "Stade de Gerland",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.360104,
+                    48.924438
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    2.360104,
+                    48.924438
+                ],
+                "worldcups": [
+                    "1998"
+                ],
+                "stadium": "Stade de France",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.811944,
+                    43.621944
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    3.811944,
+                    43.621944
+                ],
+                "worldcups": [
+                    "1998"
+                ],
+                "stadium": "Stade de la Mosson",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.814722,
+                    50.432778
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    2.814722,
+                    50.432778
+                ],
+                "worldcups": [
+                    "1998"
+                ],
+                "stadium": "Stade F\u00e9lix-Bollaert",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    4.39,
+                    45.460833
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    4.39,
+                    45.460833
+                ],
+                "worldcups": [
+                    "1998"
+                ],
+                "stadium": "Stade Geoffroy-Guichard",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.525278,
+                    47.255556
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -1.525278,
+                    47.255556
+                ],
+                "worldcups": [
+                    "1998"
+                ],
+                "stadium": "Stade de la Beaujoire",
+                "country": "France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.606247,
+                    35.510044
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    139.606247,
+                    35.510044
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "International Stadium Yokohama",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    126.690806,
+                    37.435139
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    126.690806,
+                    37.435139
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Incheon Munhak Stadium",
+                "country": "South Korea"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    126.897361111,
+                    37.568222222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    126.897361111,
+                    37.568222222
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Seoul World Cup Stadium",
+                "country": "South Korea"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    128.690305555,
+                    35.829777777
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    128.690305555,
+                    35.829777777
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Daegu Stadium",
+                "country": "South Korea"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.717492,
+                    35.903142
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    139.717492,
+                    35.903142
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Saitama Stadium 2002",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    131.6575,
+                    33.200556
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    131.6575,
+                    33.200556
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "\u014cita Bank Dome",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    126.509206,
+                    33.246139
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    126.509206,
+                    33.246139
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Jeju World Cup Stadium",
+                "country": "South Korea"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    129.058222,
+                    35.19
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    129.058222,
+                    35.19
+                ],
+                "worldcups": [
+                    "2002",
+                    "2002"
+                ],
+                "stadium": "Busan Asiad Main Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    137.970503,
+                    34.743222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    137.970503,
+                    34.743222
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Shizuoka Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    127.325167,
+                    36.365139
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    127.325167,
+                    36.365139
+                ],
+                "worldcups": [
+                    "2002",
+                    "2002"
+                ],
+                "stadium": "Daejeon World Cup Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    129.259444444,
+                    35.535277777
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    129.259444444,
+                    35.535277777
+                ],
+                "worldcups": [
+                    "2002",
+                    "2002"
+                ],
+                "stadium": "Ulsan Munsu Football Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.059169,
+                    37.882614
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    139.059169,
+                    37.882614
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Tohoku Electric Power Big Swan Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    126.874861,
+                    35.133667
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    126.874861,
+                    35.133667
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Gwangju World Cup Stadium",
+                "country": "South Korea"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    127.036888888,
+                    37.286277777
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    127.036888888,
+                    37.286277777
+                ],
+                "worldcups": [
+                    "2002",
+                    "2002"
+                ],
+                "stadium": "Suwon World Cup Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    135.168964,
+                    34.656708
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    135.168964,
+                    34.656708
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Home's Stadium Kobe",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.640525,
+                    35.991744
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    140.640525,
+                    35.991744
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Kashima Soccer Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.950419444,
+                    38.335391666
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    140.950419444,
+                    38.335391666
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Miyagi Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    135.518333,
+                    34.613889
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    135.518333,
+                    34.613889
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Nagai Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    141.409767,
+                    43.015172
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    141.409767,
+                    43.015172
+                ],
+                "worldcups": [
+                    "2002"
+                ],
+                "stadium": "Sapporo Dome",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    127.064444,
+                    35.868111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    127.064444,
+                    35.868111
+                ],
+                "worldcups": [
+                    "2002",
+                    "2002"
+                ],
+                "stadium": "Jeonju World Cup Stadium",
+                "country": "Japan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.624752777,
+                    48.218775
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.624752777,
+                    48.218775
+                ],
+                "worldcups": [
+                    "2006"
+                ],
+                "stadium": "Allianz Arena",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.067588888,
+                    51.554502777
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.067588888,
+                    51.554502777
+                ],
+                "worldcups": [
+                    "2006"
+                ],
+                "stadium": "Veltins Arena",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    6.875,
+                    50.933611
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    6.875,
+                    50.933611
+                ],
+                "worldcups": [
+                    "2006"
+                ],
+                "stadium": "RheinEnergie Stadion",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    11.125278,
+                    49.426389
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    11.125278,
+                    49.426389
+                ],
+                "worldcups": [
+                    "2006"
+                ],
+                "stadium": "Stadion N\u00fcrnberg",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.775833,
+                    49.434444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    7.775833,
+                    49.434444
+                ],
+                "worldcups": [
+                    "2006"
+                ],
+                "stadium": "Fritz-Walter-Stadion",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.348056,
+                    51.345833
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    12.348056,
+                    51.345833
+                ],
+                "worldcups": [
+                    "2006"
+                ],
+                "stadium": "Red Bull Arena",
+                "country": "Germany"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.982378,
+                    -26.234806
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    27.982378,
+                    -26.234806
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "FNB Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    18.408611,
+                    -33.905556
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    18.408611,
+                    -33.905556
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Cape Town Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.0303,
+                    -29.829
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    31.0303,
+                    -29.829
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Moses Mabhida Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.223014,
+                    -25.753189
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    28.223014,
+                    -25.753189
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Loftus Versfeld Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    26.208139,
+                    -29.114639
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    26.208139,
+                    -29.114639
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Free State Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    25.598889,
+                    -33.937778
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    25.598889,
+                    -33.937778
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Nelson Mandela Bay Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.060833333,
+                    -26.1975
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    28.060833333,
+                    -26.1975
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Ellis Park Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.468765,
+                    -23.924689
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    29.468765,
+                    -23.924689
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Peter Mokaba Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.929777777,
+                    -25.461888888
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    30.929777777,
+                    -25.461888888
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Mbombela Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.160833333,
+                    -25.578611111
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    27.160833333,
+                    -25.578611111
+                ],
+                "worldcups": [
+                    "2010"
+                ],
+                "stadium": "Royal Bafokeng Stadium",
+                "country": "South Africa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -47.899164,
+                    -15.7835
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -47.899164,
+                    -15.7835
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Est\u00e1dio Nacional de Bras\u00edlia",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -49.276944,
+                    -25.448333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -49.276944,
+                    -25.448333
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena da Baixada",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -56.120556,
+                    -15.603056
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -56.120556,
+                    -15.603056
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena Pantanal",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -60.028056,
+                    -3.083056
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -60.028056,
+                    -3.083056
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena Amaz\u00f4nia",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -43.970833,
+                    -19.865833
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -43.970833,
+                    -19.865833
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Mineir\u00e3o",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -38.522481,
+                    -3.807267
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -38.522481,
+                    -3.807267
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Castel\u00e3o",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -51.236086,
+                    -30.065614
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -51.236086,
+                    -30.065614
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Est\u00e1dio Beira-Rio",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -35.21236,
+                    -5.82681
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -35.21236,
+                    -5.82681
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena das Dunas",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -35.008261,
+                    -8.040722
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -35.008261,
+                    -8.040722
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena Cidade da Copa",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -46.474,
+                    -23.545555555
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -46.474,
+                    -23.545555555
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena Corinthians",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -38.504252777,
+                    -12.978819444
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    -38.504252777,
+                    -12.978819444
+                ],
+                "worldcups": [
+                    "2014"
+                ],
+                "stadium": "Arena Fonte Nova",
+                "country": "Brazil"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    49.158497,
+                    55.818837
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    49.158497,
+                    55.818837
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Kazan Arena",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.573611,
+                    56.832222
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    60.573611,
+                    56.832222
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Central Stadium Yekaterinburg",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.553611111,
+                    55.715833333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    37.553611111,
+                    55.715833333
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Luzhniki Stadium",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.220533,
+                    59.972953
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    30.220533,
+                    59.972953
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Krestovsky Stadium",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    39.956111,
+                    43.402267
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    39.956111,
+                    43.402267
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Fisht Olympic Stadium",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.435556,
+                    55.8175
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    37.435556,
+                    55.8175
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Otkrytie Arena",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    44.5481,
+                    48.7346
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    44.5481,
+                    48.7346
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Volgograd Arena",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    43.963333333,
+                    56.3375
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    43.963333333,
+                    56.3375
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Nizhny Novgorod Stadium",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    20.533888888,
+                    54.698055555
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    20.533888888,
+                    54.698055555
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Kaliningrad Stadium",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    50.23769,
+                    53.277534
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    50.23769,
+                    53.277534
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Samara Stadium",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    39.74166667,
+                    47.20833333
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    39.74166667,
+                    47.20833333
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Rostov Arena",
+                "country": "Russia"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.2014,
+                    54.1828
+                ]
+            },
+            "properties": {
+                "lat_lng": [
+                    45.2014,
+                    54.1828
+                ],
+                "worldcups": [
+                    "2018"
+                ],
+                "stadium": "Mordovia Arena",
+                "country": "Russia"
+            }
+        }
+    ]
+}

@@ -1,5 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://drkane.co.uk/</id><updated>2018-06-14T12:57:19+01:00</updated><entry><title>Grants in Kingston</title><link href="https://drkane.co.uk/2018/grants-in-kingston/" rel="alternate"></link><published>2018-06-14T12:57:19+01:00</published><updated>2018-06-14T12:57:19+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-06-14:/2018/grants-in-kingston/</id><summary type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://drkane.co.uk/</id><updated>2018-06-17T17:23:04+01:00</updated><entry><title>A map of World Cup stadia using wikidata</title><link href="https://drkane.co.uk/2018/a-map-of-world-cup-stadia-using-wikidata/" rel="alternate"></link><published>2018-06-17T17:23:04+01:00</published><updated>2018-06-17T17:23:04+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-06-17:/2018/a-map-of-world-cup-stadia-using-wikidata/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.wikidata.org/wiki/Wikidata:Main_Page"&gt;Wikidata&lt;/a&gt; is an amazing project 
+that aims to turn the unstructured text of  Wikipedia into a database of facts 
+and figures that allows you to go beyond just presenting a page about something 
+to using data about it.&lt;/p&gt;
+&lt;p&gt;I've been wanting to try out using it, and "SPARQL", the language …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.wikidata.org/wiki/Wikidata:Main_Page"&gt;Wikidata&lt;/a&gt; is an amazing project 
+that aims to turn the unstructured text of  Wikipedia into a database of facts 
+and figures that allows you to go beyond just presenting a page about something 
+to using data about it.&lt;/p&gt;
+&lt;p&gt;I've been wanting to try out using it, and "SPARQL", the language used to query
+it, so I decided to try and create a map of every stadium that has hosted a game
+at the Fifa World Cup finals - a topical query as the 2018 World Cup in Russia
+has just started.&lt;/p&gt;
+&lt;h2 id="step-1-querying-the-data"&gt;Step 1. Querying the data&lt;/h2&gt;
+&lt;p&gt;I used &lt;a href="https://query.wikidata.org/"&gt;query.wikidata.org&lt;/a&gt; to come up with a query
+that got me the data I was looking for. Having never used SPARQL before it took 
+a bit of tweaking to get the query I needed - I found the interface helpful for
+finding the right entities and the included examples for how to structure it.&lt;/p&gt;
+&lt;p&gt;Here's the query I came up with. I'll go through what each part does below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wc_sparql&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;SELECT ?FIFA_World_CupLabel ?location ?locationLabel ?coord ?countryLabel WHERE {&lt;/span&gt;
+&lt;span class="s2"&gt;  SERVICE wikibase:label { bd:serviceParam wikibase:language &amp;quot;[AUTO_LANGUAGE],en&amp;quot;. }&lt;/span&gt;
+&lt;span class="s2"&gt;  ?FIFA_World_Cup wdt:P3450 wd:Q19317.&lt;/span&gt;
+&lt;span class="s2"&gt;  ?FIFA_World_Cup wdt:P276 ?location.&lt;/span&gt;
+&lt;span class="s2"&gt;  ?location wdt:P625 ?coord.&lt;/span&gt;
+&lt;span class="s2"&gt;  ?location wdt:P17 ?country&lt;/span&gt;
+&lt;span class="s2"&gt;}&lt;/span&gt;
+&lt;span class="s2"&gt;ORDER BY ?FIFA_World_CupLabel&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first part sets up the fields we want to return - the name of the World Cup, the location ID (a stadium), the name of the stadium, the latitude and longitude and the name of the country&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SELECT ?FIFA_World_CupLabel ?location ?locationLabel ?coord ?countryLabel WHERE {
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This next part allows you to fetch labels for each of the items, which is more helpful than the URI that gets returned.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SERVICE wikibase:label { bd:serviceParam wikibase:language &amp;quot;[AUTO_LANGUAGE],en&amp;quot;. }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we start off by adding a field called "FIFA_World_Cup" based on finding "sports season of league or competition" (&lt;code&gt;wdt:P3450&lt;/code&gt;) with the labels "FIFA World Cup" (&lt;code&gt;wd:Q19317&lt;/code&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;?FIFA_World_Cup wdt:P3450 wd:Q19317.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we look for the locations (&lt;code&gt;wdt:P276&lt;/code&gt;) attached to each of these competitions:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;?FIFA_World_Cup wdt:P276 ?location.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And for each location we want the co-ordinates (&lt;code&gt;wdt:P625&lt;/code&gt;) and country (&lt;code&gt;wdt:P17&lt;/code&gt;).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;?location wdt:P625 ?coord.
+?location wdt:P17 ?country
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I then used a python library called &lt;a href="https://rdflib.github.io/sparqlwrapper/"&gt;SPARQLWrapper&lt;/a&gt; to send the query to the WikiData sparql endpoint, and get JSON data back.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;SPARQLWrapper&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SPARQLWrapper&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;JSON&lt;/span&gt;
+&lt;span class="n"&gt;sparql&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SPARQLWrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://query.wikidata.org/sparql&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sparql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setQuery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wc_sparql&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sparql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setReturnFormat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sparql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;convert&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here's an example of what one of the results looks like - a stadium used in the very first World Cup in Uruguay.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bindings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;FIFA_World_CupLabel&amp;#39;: {&amp;#39;type&amp;#39;: &amp;#39;literal&amp;#39;,
+  &amp;#39;value&amp;#39;: &amp;#39;1930 FIFA World Cup&amp;#39;,
+  &amp;#39;xml:lang&amp;#39;: &amp;#39;en&amp;#39;},
+ &amp;#39;coord&amp;#39;: {&amp;#39;datatype&amp;#39;: &amp;#39;http://www.opengis.net/ont/geosparql#wktLiteral&amp;#39;,
+  &amp;#39;type&amp;#39;: &amp;#39;literal&amp;#39;,
+  &amp;#39;value&amp;#39;: &amp;#39;Point(-56.152778 -34.894444)&amp;#39;},
+ &amp;#39;countryLabel&amp;#39;: {&amp;#39;type&amp;#39;: &amp;#39;literal&amp;#39;, &amp;#39;value&amp;#39;: &amp;#39;Uruguay&amp;#39;, &amp;#39;xml:lang&amp;#39;: &amp;#39;en&amp;#39;},
+ &amp;#39;location&amp;#39;: {&amp;#39;type&amp;#39;: &amp;#39;uri&amp;#39;,
+  &amp;#39;value&amp;#39;: &amp;#39;http://www.wikidata.org/entity/Q498245&amp;#39;},
+ &amp;#39;locationLabel&amp;#39;: {&amp;#39;type&amp;#39;: &amp;#39;literal&amp;#39;,
+  &amp;#39;value&amp;#39;: &amp;#39;Estadio Centenario&amp;#39;,
+  &amp;#39;xml:lang&amp;#39;: &amp;#39;en&amp;#39;}}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="step-2-processing-the-results"&gt;Step 2: processing the results&lt;/h2&gt;
+&lt;p&gt;I then want to turn the results into nicely formatted data for plotting on a map. I'm looking for data that contains
+one record for each stadium, even if it has hosted games at more than one World Cup (e.g Mexico in 1970 and 1986). &lt;/p&gt;
+&lt;p&gt;The co-ordinates for each location come in WKT format, so I use a library called &lt;a href="https://pypi.org/project/Shapely/"&gt;Shapely&lt;/a&gt; to extract the latitude and longitude.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# for converting coordinates&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shapely.wkt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then I go through each of the results and add to a python dictionary. If the stadium is already in the dictionary I just add the extra World Cup year to the dictionary, rather than adding a new record.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;stadia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;results&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bindings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;stadium_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;location&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;worldcup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;FIFA_World_CupLabel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; FIFA World Cup&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stadium_id&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;stadium_id&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;worldcups&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;worldcup&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;stadium_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;lat_lng&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;shapely&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wkt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loads&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coord&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;worldcups&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;worldcup&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;stadium&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;locationLabel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;country&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;countryLabel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here's what an entry in the processed data looks like. I've used the wikidata URI as an identifier for each stadium.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://www.wikidata.org/entity/Q498245&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;country&amp;#39;: &amp;#39;Uruguay&amp;#39;,
+ &amp;#39;lat_lng&amp;#39;: (-56.152778, -34.894444),
+ &amp;#39;stadium&amp;#39;: &amp;#39;Estadio Centenario&amp;#39;,
+ &amp;#39;worldcups&amp;#39;: [&amp;#39;1930&amp;#39;]}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="step-3-mapping-the-results"&gt;Step 3: Mapping the results&lt;/h2&gt;
+&lt;p&gt;I really like &lt;a href="http://python-visualization.github.io/folium/index.html"&gt;folium&lt;/a&gt; for easily
+producing Leaflet-based maps in python. I'm going to also use the MarkerCluster plugin
+to cluster the markers to make it easier to view all the stadia on one map - with clusters
+based on countries.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;folium&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;folium.plugins&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MarkerCluster&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;First I initialise the map and zoom out so you can see the whole world.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;folium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;zoom_start&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;tiles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Stamen Toner&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we go through the stadia and add each one to a cluster based on its country. I've also added a little popup which tells you the stadium's name and which World Cups it hosted games at. I also set a football icon for the pins.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;clusters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;stadium_id&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;stadium_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;country&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;clusters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;clusters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;country&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MarkerCluster&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;folium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Marker&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lat_lng&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lat_lng&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]],&lt;/span&gt; 
+        &lt;span class="n"&gt;popup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{}, {} - &amp;lt;i&amp;gt;{}&amp;lt;/i&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;escape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;stadium&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; 
+            &lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;escape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;country&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
+            &lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;escape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;worldcups&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+        &lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;icon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;folium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Icon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;icon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;soccer-ball-o&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clusters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;country&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally we show the resulting map, which can be zoomed and panned to look at particular countries.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div style="width:100%;"&gt;&lt;div style="position:relative;width:100%;height:0;padding-bottom:60%;"&gt;&lt;iframe src="/data/world-cup-stadia-map.html" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As an extra I wanted to convert the data into GeoJSON format so it's easy to use elsewhere.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=""&gt;world_cup_stadia.geojson&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;geojson&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FeatureCollection&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wc_geojson&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FeatureCollection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geometry&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lat_lng&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; 
+             &lt;span class="n"&gt;properties&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;stadia&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;world_cup_stadia.geojson&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;geojson&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wc_geojson&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;indent&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="step-4-taking-it-further"&gt;Step 4: taking it further&lt;/h2&gt;
+&lt;p&gt;This was just a quick exercise to try and get data out of wikidata and then use it. There's a few things that could be done to take it further:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;add filters to the map to filter by country, World Cup, etc.&lt;/li&gt;
+&lt;li&gt;see if Wikidata has data on the matches that took place at each location and the teams that have played there, allowing you to filter by team or stage of the competition.&lt;/li&gt;
+&lt;li&gt;visualise the data by adding in details like the maximum attendance &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="acknowledgements"&gt;Acknowledgements&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The data is from Wikidata and is used under the &lt;a href="https://creativecommons.org/about/cc0"&gt;CC0 Public Domain licence&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://rdflib.github.io/sparqlwrapper/"&gt;sparqlwrapper&lt;/a&gt; for querying the data.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://python-visualization.github.io/folium/index.html"&gt;Folium&lt;/a&gt; mapping using &lt;a href="https://leafletjs.com/"&gt;Leaflet&lt;/a&gt; and &lt;a href="http://fontawesome.com/icons?d=gallery&amp;amp;c=sports&amp;amp;m=free"&gt;FontAwesome&lt;/a&gt; icons.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pypi.org/project/Shapely/"&gt;Shapely&lt;/a&gt; and &lt;a href="https://pypi.org/project/geojson/"&gt;geojson&lt;/a&gt; python libraries for manipulating the geodata&lt;/li&gt;
+&lt;li&gt;This blog post was written alongside the code in a &lt;a href="http://jupyter.org/"&gt;Juypter notebook&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a title="By Charlie Kritschmar (WMDE) [CC0], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Wikidata_stamp.png"&gt;&lt;img width="128" alt="Wikidata stamp" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Wikidata_stamp.png/512px-Wikidata_stamp.png"&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Football"></category><category term="Wikidata"></category></entry><entry><title>Grants in Kingston</title><link href="https://drkane.co.uk/2018/grants-in-kingston/" rel="alternate"></link><published>2018-06-14T12:57:19+01:00</published><updated>2018-06-14T12:57:19+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-06-14:/2018/grants-in-kingston/</id><summary type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
 by the fantastic &lt;a href="https://superhighways.org.uk/"&gt;Superhighways&lt;/a&gt; and 
 &lt;a href="https://kva.org.uk/"&gt;Kingston Voluntary Action&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The aim of the day was to showcase some of the work that charities in Kingston 
