@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://drkane.co.uk/</id><updated>2018-06-17T17:23:04+01:00</updated><entry><title>A map of World Cup stadia using wikidata</title><link href="https://drkane.co.uk/2018/a-map-of-world-cup-stadia-using-wikidata/" rel="alternate"></link><published>2018-06-17T17:23:04+01:00</published><updated>2018-06-17T17:23:04+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-06-17:/2018/a-map-of-world-cup-stadia-using-wikidata/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.wikidata.org/wiki/Wikidata:Main_Page"&gt;Wikidata&lt;/a&gt; is an amazing project 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://drkane.co.uk/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://drkane.co.uk/</id><updated>2018-11-19T09:58:43+00:00</updated><entry><title>Text analysis in the voluntary sector</title><link href="https://drkane.co.uk/2018/text-analysis-in-the-voluntary-sector/" rel="alternate"></link><published>2018-11-19T09:58:43+00:00</published><updated>2018-11-19T09:58:43+00:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-11-19:/2018/text-analysis-in-the-voluntary-sector/</id><summary type="html">&lt;p&gt;Last week at the &lt;a href="https://www.data4goodconf.org.uk/"&gt;Data 4 Good event&lt;/a&gt; in Birmingham I gave a talk on the opportunities
+and challenges that text analysis offers to the voluntary sector. It was a short lightning
+talk so I was only able to give a quick overview of the possibilities, and it's a big …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Last week at the &lt;a href="https://www.data4goodconf.org.uk/"&gt;Data 4 Good event&lt;/a&gt; in Birmingham I gave a talk on the opportunities
+and challenges that text analysis offers to the voluntary sector. It was a short lightning
+talk so I was only able to give a quick overview of the possibilities, and it's a big
+area so there's lots more to explore.&lt;/p&gt;
+&lt;p&gt;You can find the slides on Google drive.&lt;/p&gt;
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTvN-R9g5Dtcr72YKIe5RWSSBRqQlpUmaVpQfRDxd5EIPVzwPmzMPbVGCnJapJPjOMnIqhBCii7Eq30/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;In the last slide I suggest some tools you can use to take your data further with text analysis.
+They are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://databasic.io/en/samediff/"&gt;&lt;strong&gt;DataBasic – SameDiff&lt;/strong&gt;&lt;/a&gt; - a simple tool for comparing two sets of text&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://databasic.io/en/wordcounter/"&gt;&lt;strong&gt;DataBasic – word counter&lt;/strong&gt;&lt;/a&gt; - create word clouds and look in more detail at the frequency of words in a piece of text.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.opencalais.com/opencalais-demo/"&gt;&lt;strong&gt;Reuters OpenCalais&lt;/strong&gt;&lt;/a&gt; - a proprietary tool for getting started with entity recognition. I'd be interested to know if there are any similar open-source projects - one I've seen is &lt;a href="https://spacy.io/usage/spacy-101#annotations-ner"&gt;spacy&lt;/a&gt; but it requires some programming knowledge to use.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://openrefine.org/"&gt;&lt;strong&gt;OpenRefine&lt;/strong&gt;&lt;/a&gt; - a useful data wrangling tool with lots of useful features for working with text.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Text analysis"></category></entry><entry><title>A map of World Cup stadia using wikidata</title><link href="https://drkane.co.uk/2018/a-map-of-world-cup-stadia-using-wikidata/" rel="alternate"></link><published>2018-06-17T17:23:04+01:00</published><updated>2018-06-17T17:23:04+01:00</updated><author><name>David Kane</name></author><id>tag:drkane.co.uk,2018-06-17:/2018/a-map-of-world-cup-stadia-using-wikidata/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.wikidata.org/wiki/Wikidata:Main_Page"&gt;Wikidata&lt;/a&gt; is an amazing project 
 that aims to turn the unstructured text of  Wikipedia into a database of facts 
 and figures that allows you to go beyond just presenting a page about something 
 to using data about it.&lt;/p&gt;
