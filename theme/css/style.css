@@ -65,10 +65,28 @@
     padding-bottom: 0.4rem;
     text-align: right;
 }
-.entry-content img {
+.entry-content > img {
     border: 8px solid #FFFF00;
 }
 
+.entry-content > figure {
+    margin: 1em 0;
+    padding-left: 12px;
+    border-left: 8px solid #FFFF00;
+}
+
+.entry-content > figure figcaption {
+    font-style: italic;
+}
+
+.entry-content > aside {
+    padding: 1em;
+    background-color: lightgrey;
+}
+
+.entry-content > aside p {
+    margin: 0;
+}
 
 .bg-wavy {
     /* https://www.svgbackgrounds.com/#wavey-fingerprint */
