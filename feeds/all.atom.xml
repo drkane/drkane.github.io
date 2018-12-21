@@ -238,7 +238,7 @@ based on countries.&lt;/p&gt;
 
 &lt;p&gt;As an extra I wanted to convert the data into GeoJSON format so it's easy to use elsewhere.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://drkane.co.uk/data/world_cup_stadia.geojson"&gt;world_cup_stadia.geojson&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dkane.net/data/world_cup_stadia.geojson"&gt;world_cup_stadia.geojson&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;geojson&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FeatureCollection&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -270,7 +270,7 @@ based on countries.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://python-visualization.github.io/folium/index.html"&gt;Folium&lt;/a&gt; mapping using &lt;a href="https://leafletjs.com/"&gt;Leaflet&lt;/a&gt; and &lt;a href="http://fontawesome.com/icons?d=gallery&amp;amp;c=sports&amp;amp;m=free"&gt;FontAwesome&lt;/a&gt; icons.&lt;/li&gt;
 &lt;li&gt;Map tiles by &lt;a href="http://stamen.com"&gt;Stamen Design&lt;/a&gt;, under &lt;a href="http://creativecommons.org/licenses/by/3.0"&gt;CC BY 3.0&lt;/a&gt;. Data by &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0"&gt;CC BY SA&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://pypi.org/project/Shapely/"&gt;Shapely&lt;/a&gt; and &lt;a href="https://pypi.org/project/geojson/"&gt;geojson&lt;/a&gt; python libraries for manipulating the geodata&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://nbviewer.jupyter.org/urls/davidrkane.co.uk/data/world_cup_stadia.ipynb"&gt;This blog post was written alongside the code in a Juypter notebook&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nbviewer.jupyter.org/urls/dkane.net/data/world_cup_stadia.ipynb"&gt;This blog post was written alongside the code in a Juypter notebook&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a title="By Charlie Kritschmar (WMDE) [CC0], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Wikidata_stamp.png"&gt;&lt;img width="128" alt="Wikidata stamp" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Wikidata_stamp.png/512px-Wikidata_stamp.png"&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Football"></category><category term="Wikidata"></category></entry><entry><title>Grants in Kingston</title><link href="https://dkane.net/2018/grants-in-kingston/" rel="alternate"></link><published>2018-06-14T12:57:19+01:00</published><updated>2018-06-14T12:57:19+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-06-14:/2018/grants-in-kingston/</id><summary type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
 by the fantastic &lt;a href="https://superhighways.org.uk/"&gt;Superhighways&lt;/a&gt; and 
