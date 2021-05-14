@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>A name gender classifier | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
+</div>                <h1 class="f1 lh-solid mv0 logo">
+                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                        David Kane
+                    </a>
+                </h1>
+                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+        </header><!-- /#banner -->
+        <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2018/a-name-gender-classifier/" rel="bookmark" class="link near-black"
+            title="Permalink to A name gender classifier">A name gender classifier</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2018-02-10T21:19:35+01:00">
+        Sat 10 February 2018
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p>Something I've needed to do a couple of times is take a long list of names and
+classify them into male and female. For example, I've looked at lists of people
+who attended events to see whether they were reaching more men or women - this
+then helps target future events.</p>
+<p><em>Note: there are lots of reasons why this is a terrible idea. For a start, gender
+is more complicated than male/female, and there are lots of reasons why a name is
+a bad guide to someone's gender (<a href="http://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/">and other things programmers wrongly believe about
+names</a>). 
+But I've justified it here on the basis that I'm not interested in getting
+100% of the genders exactly right, but instead to get a general idea of a split in
+a population.</em></p>
+<p>This is a good place to use a naïve Bayesian classifier. The best example of this
+technique is a spam classifier - this will work out whether an email is spam, based
+on comparing it to a model generated from a training data set. The "naïve" part
+comes from the fact that it's simply based on words that appear in the training
+data set, without considering the meaning of or connections between those words.</p>
+<p>To do this I'm going to use python (3.6 to be exact) and the <a href="http://scikit-learn.org/stable/">scikit</a>
+library which has a naïve Bayesian classifier built in. It's based on the tutorial
+found here.</p>
+<h2 id="step-1-get-some-training-data">Step 1 - get some training data</h2>
+<p>The training data needs to be a list of names with their genders. I've found this a
+tricky thing to come by, but luckily my work with the 
+<a href="http://data.charitycommission.gov.uk/">Charity Commission Register of Charities</a>
+throws up a good source.</p>
+<p>The large data extract they publish, under an open license, contains a list of
+trustees for each charity. It's just a list of names - they hold information like
+address, date of birth, etc but don't publish it for data protection reasons - but
+it's possible to work out the gender of a proportion of the names.</p>
+<p>Out of the X,000 names, X,000 (X%) include a title (Mrs, Miss, Ms, Mr). Using those
+four titles which are gender specific and cover X% of titles used. I wrote a python
+script to parse the name CSV file, look for names that start with Mr, Mrs, etc and
+put them into a male list or female list. This produces lists of X male names and
+X female names.</p>
+<p>A couple of notes here. Like any training data set, this is not unbiased. Charity
+trustees represent a particular slice of the population - people from all walks of
+life are trustees, but the average trustee is older, whiter and richer than the
+average person. So the names we're using are going to reflect those demographics.</p>
+<p>Note too that I'm not doing anything to separate out first names and last names -
+I'm just using the whole string. This means that last names will be included in
+the model - with the hope that they'll be equally distributed and so won't make
+a difference to the final total. But this isn't a guarantee.</p>
+<h2 id="step-2-training-the-model">Step 2: training the model</h2>
+<h2 id="step-3-testing-the-model">Step 3: testing the model</h2>
+<h2 id="step-4-using-the-model">Step 4: using the model</h2>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+        </main>
+        <footer id="contentinfo" class="body ph3 ph5-ns db mv5 moon-gray">
+            &copy 2021 David Kane | 
+                <address id="about" class="vcard body dib fs-normal"> 
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+                </address><!-- /#about --> 
+                | <a href="mailto:david@dkane.net" class="link yellow">Email</a>
+                | <a href="https://twitter.com/kanedr" class="link yellow">@kanedr</a>
+                | <a href="https://github.com/drkane" class="link yellow">github.com/drkane</a>
+                | <a href="/feed.rss" class="link yellow">RSS</a>
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

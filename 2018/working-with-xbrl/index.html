@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>Working with XBRL | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+    <meta name="tags" content="XBRL" />
+    <meta name="tags" content="iXBRL" />
+    <meta name="tags" content="accounts" />
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
+</div>                <h1 class="f1 lh-solid mv0 logo">
+                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                        David Kane
+                    </a>
+                </h1>
+                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+        </header><!-- /#banner -->
+        <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2018/working-with-xbrl/" rel="bookmark" class="link near-black"
+            title="Permalink to Working with XBRL">Working with XBRL</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2018-12-18T11:06:07+00:00">
+        Tue 18 December 2018
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+        <span class="ph2"> | </span>
+        <span class="fn">Tags: 
+            <a class="url fn link mid-gray" href="https://dkane.net/tag/xbrl/">XBRL</a>, <a class="url fn link mid-gray" href="https://dkane.net/tag/ixbrl/">iXBRL</a> and <a class="url fn link mid-gray" href="https://dkane.net/tag/accounts/">accounts</a>        </span>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p>Some notes on the XBRL data format, as I've been working with it this week. I'm working with Power to Change to help them extract data from accounts.</p>
+<h2 id="whats-xbrlixbrl">What's XBRL/iXBRL?</h2>
+<p>XBRL standards for eXtensible Business Reporting Language. iXBRL is the same but "inline". They describe a data standard for financial reporting, based on XML. In the UK it's used by Companies House and HMRC for reporting - instead of submitting a PDF or paper copy of their accounts (which contains no machine readable version of the data within) companies can (and in some cases must) submit in XBRL format.</p>
+<p>The iXBRL format differs slightly from XBRL in that the machine-readable financial data is contained within a human-readable HTML file. That way you get the best of both words - documents that can be read by people interested in that company, with data that can be extracted in a consistent way.</p>
+<p>That's the theory, anyway.</p>
+<h2 id="whats-in-xbrl">What's in XBRL?</h2>
+<p>In my mind, XBRL has two main parts:</p>
+<ol>
+<li>The XBRL <strong>format</strong>, describing how to represent various concepts within an XML or HTML document. The formats for XBRL and iXBRL are slightly different - you should be able to convert an iXBRL document to an XBRL one, but that wouldn't work the other way round.</li>
+<li><strong>Schemas</strong> which are applied on top of the XBRL format to represent financial data in a specific framework - for example the FRS accounting framework or the Charity SORP. </li>
+</ol>
+<p>The format describes what the data should look like, while the schema describes what each individual data item refers to. </p>
+<h2 id="how-do-you-make-xbrl">How do you make XBRL?</h2>
+<p>This isn't a particularly relevant question for me - for this exercise I'm more interested in how to get data out of the documents.</p>
+<p>But I think most XBRL documents are produced by standard accounting packages. There are also specialist firms like <a href="http://ixbrl-assist.co.uk/">Hypercube Consultancy</a> who provide tagging services for accounts. Stewart from Hypercube was kind enough to get in touch with me and share his experience of creating and using XBRL and some of the tools and resources out there.</p>
+<h2 id="what-can-you-do-with-xbrl">What can you do with XBRL?</h2>
+<p>This is what I'm interested in - how do you get data out of XBRL documents. My aim in this is to look for particular values (total assets, for example) and compare them across different organisations. </p>
+<p>This is trickier that I had thought. I had hoped that there would be a nice suite of (open source) tools for parsing and extracting data from XBRL - but as far as I can tell there isn't. I did know from trying beforehand that the flexibility of XBRL and iXBRL means it is very complex to deal with - often the same value can be represented in different ways depending on the choices made.</p>
+<p><strong>Resources</strong></p>
+<p>There are some resources out there though:</p>
+<ul>
+<li><a href="https://uk-taxonomies-tdp.corefiling.com/yeti/resources/yeti-gwt/Yeti.jsp">Yeti</a> - a tool created by CoreFiling, who I think were one of the original authors of XBRL. One issue I've had looking at XBRL is navigating the schemas, and this tool makes it much easier to do so.</li>
+<li><a href="https://github.com/XBRLInternational/ixbrl-samples">Sample iXBRL files</a> - This seems to be the only github presence of XBRL International who look after the standard, but it's really useful for testing tools.</li>
+<li>Companies House - There's a few ways you can get real-life iXBRL files for companies:<ul>
+<li>Via the <a href="https://beta.companieshouse.gov.uk/">Companies House register</a> if a company has filed iXBRL accounts they're available for download on the filing history page for that company. Not all companies file iXBRL accounts so if they're not available then PDF copies are instead.</li>
+<li>You can also download accounts in bulk via the <a href="http://download.companieshouse.gov.uk/en_accountsdata.html">Free Accounts Data Product</a>. This has daily and monthly dumps of any XBRL or iXBRL accounts filed with Companies House. This is useful for getting accounts to test on.</li>
+</ul>
+</li>
+<li>You can also view the official specifications for the format - I found these very difficult to read and get a sense of what the resulting data looks like:<ul>
+<li><a href="http://www.xbrl.org/Specification/XBRL-2.1/REC-2003-12-31/XBRL-2.1-REC-2003-12-31+corrected-errata-2013-02-20.html#_4.7">XBRL 2.1</a> - released 2003, corrected in 2013</li>
+<li><a href="https://www.xbrl.org/specification/inlinexbrl-part1/rec-2013-11-18/inlinexbrl-part1-rec-2013-11-18.html">iXBRL 1.1</a> - released 2013</li>
+<li><a href="http://www.xbrl.org/Specification/xbrl-csv/PWD-2017-05-02/xbrl-csv-PWD-2017-05-02.html">xBRL-CSV</a> - a proposal for converting XBRL to CSV format. I've not seen whether this is implemented anywhere, but this would be very useful for my purposes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-have-i-done">What have I done?</h2>
+<p>As these notes suggest, a lot of what I've done is trying to make sense of the landscape and explore the data. I did most of this through jupyter notebooks, looking through iXBRL files of a selection of community businesses. I've found the python <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> library helpful for parsing the XML.</p>
+<p>Using what I'd learnt from exploring the iXBRL files I've started to put together a python module for parsing iXBRL and extracting the data. I'll be aiming to develop this further, and hopefully use it in anger: <a href="https://github.com/drkane/ixbrl-parse">https://github.com/drkane/ixbrl-parse</a>.</p>
+<h2 id="who-else-is-doing-things-with-xbrl">Who else is doing things with XBRL</h2>
+<p>I did a search of GitHub to find XBRL repositories. There were a few people who'd tried to do similar things over the years. But most interestingly, the <a href="https://github.com/ONSBigData/parsing_company_accounts">ONS Big Data Unit</a> has an active repository with some code, approaching it in a very similar way to me. I've got in touch with them to see if they want to compare notes.</p>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+        </main>
+        <footer id="contentinfo" class="body ph3 ph5-ns db mv5 moon-gray">
+            &copy 2021 David Kane | 
+                <address id="about" class="vcard body dib fs-normal"> 
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+                </address><!-- /#about --> 
+                | <a href="mailto:david@dkane.net" class="link yellow">Email</a>
+                | <a href="https://twitter.com/kanedr" class="link yellow">@kanedr</a>
+                | <a href="https://github.com/drkane" class="link yellow">github.com/drkane</a>
+                | <a href="/feed.rss" class="link yellow">RSS</a>
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

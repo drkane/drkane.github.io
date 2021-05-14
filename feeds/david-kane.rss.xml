@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Tue, 16 Jun 2020 15:46:51 +0100</lastBuildDate><item><title>Better horizontal bar charts with plotly</title><link>https://dkane.net/2020/better-horizontal-bar-charts-with-plotly/</link><description>&lt;p&gt;I often find that horizontal bar charts are a great way of visualising
+<rss version="2.0"><channel><title>David Kane - David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Tue, 16 Jun 2020 15:46:51 +0100</lastBuildDate><item><title>Better horizontal bar charts with plotly</title><link>https://dkane.net/2020/better-horizontal-bar-charts-with-plotly/</link><description>&lt;p&gt;I often find that horizontal bar charts are a great way of visualising
 comparisons between different categories. They're easy to understand and
 make, and provide a really simple way of displaying data.&lt;/p&gt;
 &lt;p&gt;But I've found the default way of labelling them often doesn't make sense.
