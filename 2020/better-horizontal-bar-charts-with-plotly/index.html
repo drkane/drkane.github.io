@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
       <title>Better horizontal bar charts with plotly | David Kane</title>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/category.slug.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
     <meta name="tags" content="Charts" />
@@ -81,12 +81,11 @@ of their sample data. First using their default settings:</p>
 <h2 id="making-subplots">Making subplots</h2>
 <p>The only way I could find to accomplish the same effect in plotly was to use <a href="https://plotly.com/python/subplots/">subplots</a>. These essentially split the figure into a number of different charts. What we're going to do is use a different subplot for each chart, using the <code>make_subplots</code> function.
 Start by importing the <code>make_subplots</code> function.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+</code></pre></div>
 
 <p>Add our data to the <code>categories</code> variable.</p>
-<div class="highlight"><pre><span></span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><code><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Musée du Louvre, Paris&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">10200000</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;National Museum of China, Beijing&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">8610092</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Metropolitan Museum of Art, New York City&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">6953927</span><span class="p">},</span>
@@ -98,51 +97,48 @@ Start by importing the <code>make_subplots</code> function.</p>
     <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;State Hermitage Museum, Saint Petersburg&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">4220000</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Victoria and Albert Museum, London&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">3967566</span><span class="p">},</span>
 <span class="p">]</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Create as many subplots as there are categories. For each subplot we'll set the title to the name of the museum using the <code>subplot_titles</code> parameter. We also set <code>shared_xaxes=True</code> to ensure that all the bars are still in proportion to each other, and <code>print_grid=False</code> to make it seamless between the plots (otherwise each would be in a box.</p>
 <p>The <code>vertical_spacing</code> parameter is important, but can be tricky to get right. I've found that 0.45 divided by the number of categories gives a good spacing between them, but you may need to play around with it.</p>
 <p>I've also removed the background colour from the subplots, and set the width of the plots.</p>
-<div class="highlight"><pre><span></span><span class="n">subplots</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="n">subplots</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span>
     <span class="n">rows</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span>
     <span class="n">cols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">subplot_titles</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">],</span>
-    <span class="n">shared_xaxes</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="n">print_grid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">shared_xaxes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">print_grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">vertical_spacing</span><span class="o">=</span><span class="p">(</span><span class="mf">0.45</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)),</span>
 <span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
     <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">,</span>
     <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;#fff&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Next we go through each category and add it to the relevant subplot, using the <code>add_trace</code> function.</p>
 <p>This functions takes a dictionary with the values and settings for the bar (notice that the <code>y</code> and <code>x</code> values are wrapped in lists because plotly would normally expect a list of values here). </p>
 <p>We'll set the marker so they're all the same colour, and add a text label for the amount to the inside of the bar.</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categories</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categories</span><span class="p">):</span>
     <span class="n">subplots</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
         <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span>
         <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
         <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]],</span>
         <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]],</span>
-        <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;{:,.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])],</span>
+        <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">{:,.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])],</span>
         <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
         <span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
         <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7030a0&quot;</span><span class="p">,</span>
         <span class="p">),</span>
     <span class="p">),</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><img alt="After adding traces" src="/images/plotly-bar-stage-1.png"></p>
 <p>This gives us subplots that are much closer to what we're looking for, but they look a bit of a mess as there's still quite a bit of the layout we need to adjust.</p>
 <p>First we remove the legend on the right hand side and make sure the titles (stored by plotly as annotations) are aligned to the left hand side, and have smaller font sizes).</p>
-<div class="highlight"><pre><span></span><span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-    <span class="n">showlegend</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">subplots</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">][</span><span class="s1">&#39;annotations&#39;</span><span class="p">]:</span>
     <span class="n">x</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -151,19 +147,17 @@ Start by importing the <code>make_subplots</code> function.</p>
     <span class="n">x</span><span class="p">[</span><span class="s1">&#39;font&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
     <span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><img alt="After removing annotations and images" src="/images/plotly-bar-stage-2.png"></p>
 <p>Next we remove all the axes to give a clean look to the chart. If you wanted, you could keep the x-axis to help see the values. </p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]:</span>
     <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;yaxis&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">axis</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;xaxis&#39;</span><span class="p">):</span>
-        <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="n">axis</span><span class="p">][</span><span class="s1">&#39;visible&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
-</pre></div>
-
+        <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="n">axis</span><span class="p">][</span><span class="s1">&#39;visible&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
 
 <p>Finally we remove the margins at the left hand side, and calculate the height so that the categories fit nicely.</p>
-<div class="highlight"><pre><span></span><span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="s1">&#39;margin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="s1">&#39;margin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
@@ -174,16 +168,12 @@ Start by importing the <code>make_subplots</code> function.</p>
 <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">height_calc</span>
 <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">height_calc</span>
 <span class="n">subplots</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2 id="the-finished-product">The finished product</h2>
 <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
 <div id="6165b01c-fa55-4212-99f5-9b48ce3a75d5" class="plotly-graph-div" style="height:450px; width:450px;"></div>
-
 <script type="text/javascript">
 window.PLOTLYENV=window.PLOTLYENV || {};
 if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
@@ -198,15 +188,15 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
 
 <p>I think the final result is a lot clearer than the default chart for the data. I've put together all of this together in a function to help making these types of charts easier.</p>
 <p>You can play around with the settings, either as part of <code>make_subplots</code>, the individual bars (<code>add_trace</code>) or the layout (make changes to <code>subplots['layout']</code>.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
 
 <span class="k">def</span> <span class="nf">horizontal_bar_labels</span><span class="p">(</span><span class="n">categories</span><span class="p">):</span>
     <span class="n">subplots</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span>
         <span class="n">rows</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span>
         <span class="n">cols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">subplot_titles</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">],</span>
-        <span class="n">shared_xaxes</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">print_grid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">shared_xaxes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">print_grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">vertical_spacing</span><span class="o">=</span><span class="p">(</span><span class="mf">0.45</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)),</span>
     <span class="p">)</span>
     <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
@@ -221,7 +211,7 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
             <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
             <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]],</span>
             <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]],</span>
-            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;{:,.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">{:,.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])],</span>
             <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
             <span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
             <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
@@ -231,7 +221,7 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
 
     <span class="c1"># update the layout</span>
     <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-        <span class="n">showlegend</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">subplots</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">][</span><span class="s1">&#39;annotations&#39;</span><span class="p">]:</span>
         <span class="n">x</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -254,7 +244,7 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
     <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">height_calc</span>
 
     <span class="k">return</span> <span class="n">subplots</span>
-</pre></div>
+</code></pre></div>
     </div><!-- /.entry-content -->
     </div>
 </section>

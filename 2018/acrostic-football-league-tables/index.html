@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
       <title>Acrostic football league tables | David Kane</title>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/category.slug.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
     <meta name="tags" content="Football" />
@@ -64,7 +64,7 @@
 </blockquote>
 <p>To do this I'm going to fetch data on every match played in English leagues since 1994-95 and use it to generate league tables for the end of every day that a match has been played. I'll then check the first letter of every team in the league table against a dictionary of English words to find the longest.</p>
 <h2 id="import-needed-modules">Import needed modules</h2>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">urllib.parse</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -72,18 +72,16 @@
 
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-</pre></div>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;{:,.0f}&#39;</span><span class="o">.</span><span class="n">format</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+</code></pre></div>
 
 <h2 id="fetch-league-data">Fetch league data</h2>
 <p>From <a href="http://www.football-data.co.uk/englandm.php">http://www.football-data.co.uk/englandm.php</a> - series of CSV tables with data on matches played in English leagues (Premier League, Division One/Championship, Division Two/League One, Division Three/League Two, Conference) since 1994/95.</p>
 <p>I haven't checked the accuracy of this data against any other source. In particular, it doesn't include any data on points deductions which do happen and affect the league table.</p>
-<div class="highlight"><pre><span></span><span class="c1"># download the main page and extract the links to CSV files</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># download the main page and extract the links to CSV files</span>
 <span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.football-data.co.uk/englandm.php&quot;</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data_url</span><span class="p">)</span>
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
@@ -95,22 +93,20 @@
     <span class="k">if</span> <span class="n">href</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/&quot;</span> <span class="o">+</span> <span class="n">href</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">),</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
             <span class="n">data_file_url</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">href</span><span class="p">)</span>
-            <span class="n">r_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data_file_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">r_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data_file_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="c1"># write the file to disk in the `/data` directory</span>
             <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r_data</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
                 <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Downloaded {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_file_url</span><span class="p">))</span>
-</pre></div>
-
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloaded </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_file_url</span><span class="p">))</span>
+</code></pre></div>
 
 <h2 id="fetch-dictionary-data">Fetch dictionary data</h2>
 <p>From <a href="https://github.com/dwyl/english-words/blob/master/words_alpha.txt">https://github.com/dwyl/english-words/blob/master/words_alpha.txt</a></p>
-<div class="highlight"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://github.com/dwyl/english-words/blob/master/words_alpha.txt?raw=true&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">dictionary</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://github.com/dwyl/english-words/blob/master/words_alpha.txt?raw=true&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/dictionary.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
         <span class="n">c</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2 id="useful-functions">Useful functions</h2>
 <p><code>matches_to_table()</code> takes a list of matches (as a pandas dataframe) and a list of teams and turns it into a league table. The optional list of teams ensures that any teams that haven't yet played are included in the table (if not provided it's worked out based on the matches. Tables are sorted according to the following criteria: points, then goal difference, then goals scored.</p>
@@ -122,7 +118,7 @@
 <li><code>FTHG</code> - goals scored by full time by the home team</li>
 <li><code>FTAG</code> - goals scored by full time by the home team</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">matches_to_table</span><span class="p">(</span><span class="n">matches</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">points_for_win</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">points_for_draw</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">matches_to_table</span><span class="p">(</span><span class="n">matches</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">points_for_win</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">points_for_draw</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">teams</span><span class="p">:</span>
         <span class="n">teams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">HomeTeam</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">AwayTeam</span><span class="o">.</span><span class="n">unique</span><span class="p">())))</span>
 
@@ -142,27 +138,24 @@
                               <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;drawn&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">points_for_draw</span><span class="p">)</span> <span class="o">-</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;points_deduction&quot;</span><span class="p">]</span>
     <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;gd&quot;</span><span class="p">]</span>      <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;for&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;against&quot;</span><span class="p">]</span>
     <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;played&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;won&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;drawn&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;lost&quot;</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;gd&quot;</span><span class="p">,</span> <span class="s2">&quot;for&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</pre></div>
-
+    <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;gd&quot;</span><span class="p">,</span> <span class="s2">&quot;for&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
 
 <p><code>table_to_string()</code> takes the table output from <code>matches_to_table</code> and turns it into a string consisting of the first letter of each of the teams in the table (in order)</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">table_to_string</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">table_to_string</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
     <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><code>get_char_ngrams()</code> takes a string and returns a list of ngrams found within it, with the length of the ngrams found controlled by <code>min_n</code> and <code>max_n</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_char_ngrams</span><span class="p">(</span><span class="n">input_string</span><span class="p">,</span> <span class="n">min_n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_n</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_char_ngrams</span><span class="p">(</span><span class="n">input_string</span><span class="p">,</span> <span class="n">min_n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_n</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">ngrams</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_n</span><span class="p">,</span> <span class="n">max_n</span><span class="p">):</span>
         <span class="n">ngrams</span> <span class="o">+=</span> <span class="p">[</span><span class="n">input_string</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">input_string</span><span class="p">)</span><span class="o">-</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">ngrams</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><code>get_division_from_filename()</code> gets the division and year based on the filename given</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_division_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_division_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_|\.&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
     <span class="n">year</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">:</span>
@@ -186,23 +179,21 @@
             <span class="s2">&quot;EC&quot;</span><span class="p">:</span> <span class="s2">&quot;Conference&quot;</span>
         <span class="p">}[</span><span class="n">filename</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 
-    <span class="n">year</span> <span class="o">=</span> <span class="s2">&quot;{}-{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">division</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">found_words</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">find_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">found_words</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">found_words</span> <span class="k">if</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">==</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],))</span>
     <span class="n">table</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Team&quot;</span><span class="p">})</span>
     <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">full</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">table</span>
     <span class="n">word_location</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">Team</span><span class="p">)])</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">word_location</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">word_location</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">)]</span>
-</pre></div>
-
+    <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">word_location</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">word_location</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+</code></pre></div>
 
 <h2 id="generate-tables">Generate tables</h2>
 <p>Here I go through each file downloaded in the <code>/data</code> directory, and carry out the following steps:</p>
@@ -214,24 +205,23 @@
 <li>extract the string of the first letter of each team played by that date</li>
 </ol>
 <p>The strings and tables are added to arrays to make it easy to find them again.</p>
-<div class="highlight"><pre><span></span><span class="n">tstrings</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight"><pre><span></span><code><span class="n">tstrings</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">files_checked</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">tables</span> <span class="o">=</span> <span class="p">{}</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">dfile</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">dfile</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">dfile</span> <span class="ow">in</span> <span class="n">files_checked</span><span class="p">:</span>
         <span class="k">continue</span>
     <span class="k">if</span> <span class="n">dfile</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfile</span><span class="p">))</span> <span class="c1"># step 1</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfile</span><span class="p">))</span> <span class="c1"># step 1</span>
 <span class="c1">#             print(dfile)</span>
         <span class="k">except</span> <span class="n">pd</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">ParserError</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">dfile</span> <span class="o">+</span> <span class="s2">&quot; [SKIPPED]&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">dfile</span> <span class="o">+</span> <span class="s2">&quot; [SKIPPED]&quot;</span><span class="p">)</span>
             <span class="k">continue</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%y&quot;</span><span class="p">)</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%y&quot;</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
         <span class="n">teams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">HomeTeam</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">AwayTeam</span><span class="o">.</span><span class="n">unique</span><span class="p">())))</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span> <span class="c1"># step 2</span>
             <span class="n">played_matches</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">]</span> <span class="c1"># step 3</span>
@@ -241,45 +231,38 @@
             <span class="n">tstrings</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">dfile</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="n">tstring</span><span class="p">))</span>
         <span class="n">files_checked</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dfile</span><span class="p">)</span>
 <span class="c1">#             print(&quot;{} - {} matches played by {}&quot;.format(tstring, len(played_matches), i))</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="c1"># save the strings to a CSV file for later use</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># save the strings to a CSV file for later use</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;tablestrings.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">:</span>
     <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;tstring&quot;</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tstrings</span><span class="p">:</span>
         <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;</span><span class="si">{:,}</span><span class="s2"> files checked (each file contains matches for one year for one division)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files_checked</span><span class="p">))</span>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span><span class="s2">&quot;{:,} files checked (each file contains matches for one year for one division)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files_checked</span><span class="p">))</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;</span><span class="s">113 files checked (each file contains matches for one year for one division)</span><span class="s1">&#39;</span>
+</code></pre></div>
 
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;</span><span class="si">{:,}</span><span class="s2"> table strings generated. Example string: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tstrings</span><span class="p">),</span> <span class="n">tstrings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span>&#39;113 files checked (each file contains matches for one year for one division)&#39;
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="s2">&quot;{:,} table strings generated. Example string: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tstrings</span><span class="p">),</span> <span class="n">tstrings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>&#39;10,268 table strings generated. Example string: CCMTLLSSDALNMABWICEM&#39;
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>&#39;10,268 table strings generated. Example string: CCMTLLSSDALNMABWICEM&#39;
+</code></pre></div>
 
 <h2 id="import-dictionary-data">Import dictionary data</h2>
-<div class="highlight"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight"><pre><span></span><code><span class="n">dictionary</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/dictionary.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
     <span class="n">dictionary</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">dictionary</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dictionary</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">])</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2 id="find-long-words-in-the-table-strings">Find long words in the table strings</h2>
 <p>Split each iteration of the league table into ngrams and check whether it is a word found in the dictionary.</p>
-<div class="highlight"><pre><span></span><span class="n">found_words</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight"><pre><span></span><code><span class="n">found_words</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tstrings</span><span class="p">):</span>
     <span class="n">ngrams</span> <span class="o">=</span> <span class="n">get_char_ngrams</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">min_n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">ngrams</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ngrams</span><span class="p">)</span>
@@ -287,32 +270,29 @@
     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">found</span><span class="p">:</span>
         <span class="n">found_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">f</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Iteration {}, found {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_words</span><span class="p">)))</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Iteration {}, found {} [COMPLETE]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_words</span><span class="p">)))</span>
-</pre></div>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iteration </span><span class="si">{}</span><span class="s2">, found </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_words</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iteration </span><span class="si">{}</span><span class="s2">, found </span><span class="si">{}</span><span class="s2"> [COMPLETE]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_words</span><span class="p">)))</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>Iteration 0, found 0
-Iteration 1000, found 73
-Iteration 2000, found 109
-Iteration 3000, found 146
-Iteration 4000, found 195
-Iteration 5000, found 242
-Iteration 6000, found 330
-Iteration 7000, found 358
-Iteration 8000, found 411
-Iteration 9000, found 450
-Iteration 10000, found 478
-Iteration 10267, found 481 [COMPLETE]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">Iteration</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">73</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">109</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">146</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">195</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">242</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">330</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">7000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">358</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">411</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">450</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">478</span><span class="w"></span>
+<span class="n">Iteration</span><span class="w"> </span><span class="mi">10267</span><span class="p">,</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="mi">481</span><span class="w"> </span><span class="o">[</span><span class="n">COMPLETE</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
 
 <p>Words with six or more letters</p>
-<div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">found_words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">found_words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">]</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>[[&#39;2000-01&#39;, &#39;Premier League&#39;, &#39;2000-12-17&#39;, &#39;maills&#39;, 6],
+<div class="highlight"><pre><span></span><code>[[&#39;2000-01&#39;, &#39;Premier League&#39;, &#39;2000-12-17&#39;, &#39;maills&#39;, 6],
  [&#39;2000-01&#39;, &#39;Premier League&#39;, &#39;2000-12-18&#39;, &#39;maills&#39;, 6],
  [&#39;2000-01&#39;, &#39;Premier League&#39;, &#39;2000-12-22&#39;, &#39;maills&#39;, 6],
  [&#39;2000-01&#39;, &#39;Premier League&#39;, &#39;2001-01-30&#39;, &#39;maslin&#39;, 6],
@@ -342,37 +322,30 @@ Iteration 10267, found 481 [COMPLETE]
  [&#39;1996-97&#39;, &#39;Premier League&#39;, &#39;1997-02-15&#39;, &#39;wastel&#39;, 6],
  [&#39;1998-99&#39;, &#39;Division Three&#39;, &#39;1998-12-18&#39;, &#39;cherts&#39;, 6],
  [&#39;1999-00&#39;, &#39;Premier League&#39;, &#39;2000-03-05&#39;, &#39;calesa&#39;, 6]]
-</pre></div>
-
+</code></pre></div>
 
 <p>Words with five letters</p>
-<div class="highlight"><pre><span></span><span class="n">five_letters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">found_words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">==</span><span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">five_letters</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="n">five_letters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">found_words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">==</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">five_letters</span><span class="p">))</span>
 <span class="c1"># five_letters</span>
-</pre></div>
+</code></pre></div>
 
+<div class="highlight"><pre><span></span><code><span class="mf">451</span>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span>451
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">five_letters</span><span class="p">])))</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">five_letters</span><span class="p">])))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>&#39;abama, abamp, accel, alans, allan, allis, amahs, ambos, amlet, amsel, ancha, ancle, ankhs, anlas, appal, apter, ascan, astel, atlas, awacs, baccy, baled, banal, barat, barms, basan, bassa, beant, becco, belam, belch, betas, bibbs, blams, blanc, blens, bless, blobs, bloke, blows, bolty, brent, cabda, cable, caleb, camel, camla, canch, canis, canos, cants, capsa, casts, catel, celts, chant, chats, cheap, cheek, chert, chics, claes, clans, clape, clast, cleam, clefs, clomb, clyde, cobby, coman, comby, comdt, compd, copes, copps, copra, cordy, corms, cotes, crabs, crost, dampy, dobra, dwarf, egall, elamp, ental, etwas, fable, facet, fawns, feces, forbs, fpsps, gasts, gecks, ghast, gotra, hants, herls, hewgh, hoers, hyleg, kohls, laban, laics, lamas, lames, lanas, lanch, lansa, lawns, leban, lessn, liwan, llama, macan, maced, maces, macle, madge, maill, mails, malam, masts, mated, mates, meach, melds, merak, metal, mewls, molts, monas, mosso, nabal, nable, nambe, nants, nasab, nasch, neaps, nobby, norit, orang, parma, plebs, plote, ponds, praam, prate, proms, pyche, regal, resaw, rests, rotas, rybat, sabes, samba, sawed, scale, scams, scant, scase, sceat, scobs, scrob, segos, sensa, shawn, sherd, slabs, slaws, smash, smolt, snows, snowy, stale, stops, stoss, swail, swash, swats, swing, swobs, swots, syces, table, taces, taels, tamas, teals, thaws, tramp, twaes, twale, wants, wasco, wasnt, waste, whang, wises, worms&#39;
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="p">&#39;</span><span class="n">abama</span><span class="p">,</span> <span class="n">abamp</span><span class="p">,</span> <span class="n">accel</span><span class="p">,</span> <span class="n">alans</span><span class="p">,</span> <span class="n">allan</span><span class="p">,</span> <span class="n">allis</span><span class="p">,</span> <span class="n">amahs</span><span class="p">,</span> <span class="n">ambos</span><span class="p">,</span> <span class="n">amlet</span><span class="p">,</span> <span class="n">amsel</span><span class="p">,</span> <span class="n">ancha</span><span class="p">,</span> <span class="n">ancle</span><span class="p">,</span> <span class="n">ankhs</span><span class="p">,</span> <span class="n">anlas</span><span class="p">,</span> <span class="n">appal</span><span class="p">,</span> <span class="n">apter</span><span class="p">,</span> <span class="n">ascan</span><span class="p">,</span> <span class="n">astel</span><span class="p">,</span> <span class="n">atlas</span><span class="p">,</span> <span class="n">awacs</span><span class="p">,</span> <span class="n">baccy</span><span class="p">,</span> <span class="n">baled</span><span class="p">,</span> <span class="n">banal</span><span class="p">,</span> <span class="n">barat</span><span class="p">,</span> <span class="n">barms</span><span class="p">,</span> <span class="n">basan</span><span class="p">,</span> <span class="n">bassa</span><span class="p">,</span> <span class="n">beant</span><span class="p">,</span> <span class="n">becco</span><span class="p">,</span> <span class="n">belam</span><span class="p">,</span> <span class="n">belch</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">bibbs</span><span class="p">,</span> <span class="n">blams</span><span class="p">,</span> <span class="n">blanc</span><span class="p">,</span> <span class="n">blens</span><span class="p">,</span> <span class="n">bless</span><span class="p">,</span> <span class="n">blobs</span><span class="p">,</span> <span class="n">bloke</span><span class="p">,</span> <span class="n">blows</span><span class="p">,</span> <span class="n">bolty</span><span class="p">,</span> <span class="n">brent</span><span class="p">,</span> <span class="n">cabda</span><span class="p">,</span> <span class="n">cable</span><span class="p">,</span> <span class="n">caleb</span><span class="p">,</span> <span class="n">camel</span><span class="p">,</span> <span class="n">camla</span><span class="p">,</span> <span class="n">canch</span><span class="p">,</span> <span class="n">canis</span><span class="p">,</span> <span class="n">canos</span><span class="p">,</span> <span class="n">cants</span><span class="p">,</span> <span class="n">capsa</span><span class="p">,</span> <span class="n">casts</span><span class="p">,</span> <span class="n">catel</span><span class="p">,</span> <span class="n">celts</span><span class="p">,</span> <span class="n">chant</span><span class="p">,</span> <span class="n">chats</span><span class="p">,</span> <span class="n">cheap</span><span class="p">,</span> <span class="n">cheek</span><span class="p">,</span> <span class="n">chert</span><span class="p">,</span> <span class="n">chics</span><span class="p">,</span> <span class="n">claes</span><span class="p">,</span> <span class="n">clans</span><span class="p">,</span> <span class="n">clape</span><span class="p">,</span> <span class="n">clast</span><span class="p">,</span> <span class="n">cleam</span><span class="p">,</span> <span class="n">clefs</span><span class="p">,</span> <span class="n">clomb</span><span class="p">,</span> <span class="n">clyde</span><span class="p">,</span> <span class="n">cobby</span><span class="p">,</span> <span class="n">coman</span><span class="p">,</span> <span class="n">comby</span><span class="p">,</span> <span class="n">comdt</span><span class="p">,</span> <span class="n">compd</span><span class="p">,</span> <span class="n">copes</span><span class="p">,</span> <span class="n">copps</span><span class="p">,</span> <span class="n">copra</span><span class="p">,</span> <span class="n">cordy</span><span class="p">,</span> <span class="n">corms</span><span class="p">,</span> <span class="n">cotes</span><span class="p">,</span> <span class="n">crabs</span><span class="p">,</span> <span class="n">crost</span><span class="p">,</span> <span class="n">dampy</span><span class="p">,</span> <span class="n">dobra</span><span class="p">,</span> <span class="n">dwarf</span><span class="p">,</span> <span class="n">egall</span><span class="p">,</span> <span class="n">elamp</span><span class="p">,</span> <span class="n">ental</span><span class="p">,</span> <span class="n">etwas</span><span class="p">,</span> <span class="n">fable</span><span class="p">,</span> <span class="n">facet</span><span class="p">,</span> <span class="n">fawns</span><span class="p">,</span> <span class="n">feces</span><span class="p">,</span> <span class="n">forbs</span><span class="p">,</span> <span class="n">fpsps</span><span class="p">,</span> <span class="n">gasts</span><span class="p">,</span> <span class="n">gecks</span><span class="p">,</span> <span class="n">ghast</span><span class="p">,</span> <span class="n">gotra</span><span class="p">,</span> <span class="n">hants</span><span class="p">,</span> <span class="n">herls</span><span class="p">,</span> <span class="n">hewgh</span><span class="p">,</span> <span class="n">hoers</span><span class="p">,</span> <span class="n">hyleg</span><span class="p">,</span> <span class="n">kohls</span><span class="p">,</span> <span class="n">laban</span><span class="p">,</span> <span class="n">laics</span><span class="p">,</span> <span class="n">lamas</span><span class="p">,</span> <span class="n">lames</span><span class="p">,</span> <span class="n">lanas</span><span class="p">,</span> <span class="n">lanch</span><span class="p">,</span> <span class="n">lansa</span><span class="p">,</span> <span class="n">lawns</span><span class="p">,</span> <span class="n">leban</span><span class="p">,</span> <span class="n">lessn</span><span class="p">,</span> <span class="n">liwan</span><span class="p">,</span> <span class="n">llama</span><span class="p">,</span> <span class="n">macan</span><span class="p">,</span> <span class="n">maced</span><span class="p">,</span> <span class="n">maces</span><span class="p">,</span> <span class="n">macle</span><span class="p">,</span> <span class="n">madge</span><span class="p">,</span> <span class="n">maill</span><span class="p">,</span> <span class="n">mails</span><span class="p">,</span> <span class="n">malam</span><span class="p">,</span> <span class="n">masts</span><span class="p">,</span> <span class="n">mated</span><span class="p">,</span> <span class="n">mates</span><span class="p">,</span> <span class="n">meach</span><span class="p">,</span> <span class="n">melds</span><span class="p">,</span> <span class="n">merak</span><span class="p">,</span> <span class="n">metal</span><span class="p">,</span> <span class="n">mewls</span><span class="p">,</span> <span class="n">molts</span><span class="p">,</span> <span class="n">monas</span><span class="p">,</span> <span class="n">mosso</span><span class="p">,</span> <span class="n">nabal</span><span class="p">,</span> <span class="n">nable</span><span class="p">,</span> <span class="n">nambe</span><span class="p">,</span> <span class="n">nants</span><span class="p">,</span> <span class="n">nasab</span><span class="p">,</span> <span class="n">nasch</span><span class="p">,</span> <span class="n">neaps</span><span class="p">,</span> <span class="n">nobby</span><span class="p">,</span> <span class="n">norit</span><span class="p">,</span> <span class="n">orang</span><span class="p">,</span> <span class="n">parma</span><span class="p">,</span> <span class="n">plebs</span><span class="p">,</span> <span class="n">plote</span><span class="p">,</span> <span class="n">ponds</span><span class="p">,</span> <span class="n">praam</span><span class="p">,</span> <span class="n">prate</span><span class="p">,</span> <span class="n">proms</span><span class="p">,</span> <span class="n">pyche</span><span class="p">,</span> <span class="n">regal</span><span class="p">,</span> <span class="n">resaw</span><span class="p">,</span> <span class="n">rests</span><span class="p">,</span> <span class="n">rotas</span><span class="p">,</span> <span class="n">rybat</span><span class="p">,</span> <span class="n">sabes</span><span class="p">,</span> <span class="n">samba</span><span class="p">,</span> <span class="n">sawed</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">scams</span><span class="p">,</span> <span class="n">scant</span><span class="p">,</span> <span class="n">scase</span><span class="p">,</span> <span class="n">sceat</span><span class="p">,</span> <span class="n">scobs</span><span class="p">,</span> <span class="n">scrob</span><span class="p">,</span> <span class="n">segos</span><span class="p">,</span> <span class="n">sensa</span><span class="p">,</span> <span class="n">shawn</span><span class="p">,</span> <span class="n">sherd</span><span class="p">,</span> <span class="n">slabs</span><span class="p">,</span> <span class="n">slaws</span><span class="p">,</span> <span class="n">smash</span><span class="p">,</span> <span class="n">smolt</span><span class="p">,</span> <span class="n">snows</span><span class="p">,</span> <span class="n">snowy</span><span class="p">,</span> <span class="n">stale</span><span class="p">,</span> <span class="n">stops</span><span class="p">,</span> <span class="n">stoss</span><span class="p">,</span> <span class="n">swail</span><span class="p">,</span> <span class="n">swash</span><span class="p">,</span> <span class="n">swats</span><span class="p">,</span> <span class="n">swing</span><span class="p">,</span> <span class="n">swobs</span><span class="p">,</span> <span class="n">swots</span><span class="p">,</span> <span class="n">syces</span><span class="p">,</span> <span class="k">table</span><span class="p">,</span> <span class="n">taces</span><span class="p">,</span> <span class="n">taels</span><span class="p">,</span> <span class="n">tamas</span><span class="p">,</span> <span class="n">teals</span><span class="p">,</span> <span class="n">thaws</span><span class="p">,</span> <span class="n">tramp</span><span class="p">,</span> <span class="n">twaes</span><span class="p">,</span> <span class="n">twale</span><span class="p">,</span> <span class="n">wants</span><span class="p">,</span> <span class="n">wasco</span><span class="p">,</span> <span class="n">wasnt</span><span class="p">,</span> <span class="n">waste</span><span class="p">,</span> <span class="n">whang</span><span class="p">,</span> <span class="n">wises</span><span class="p">,</span> <span class="n">worms</span><span class="p">&#39;</span>
+</code></pre></div>
 
 <h2 id="words-in-context">Words in context</h2>
 <p>Display the league table centered around the teams making the words.</p>
-<div class="highlight"><pre><span></span><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;blokes&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;blokes&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>(&#39;2001-02&#39;, &#39;Division Three&#39;, &#39;2001-10-27&#39;)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(&#39;2001-02&#39;, &#39;Division Three&#39;, &#39;2001-10-27&#39;)
+</code></pre></div>
 
 <div>
 <style>
@@ -513,13 +486,11 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<div class="highlight"><pre><span></span><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;chants&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;chants&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>(&#39;2012-13&#39;, &#39;Conference&#39;, &#39;2013-04-09&#39;)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(&#39;2012-13&#39;, &#39;Conference&#39;, &#39;2013-04-09&#39;)
+</code></pre></div>
 
 <div>
 <style>
@@ -660,13 +631,11 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<div class="highlight"><pre><span></span><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;snobby&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;snobby&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>(&#39;2006-07&#39;, &#39;League One&#39;, &#39;2006-12-30&#39;)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(&#39;2006-07&#39;, &#39;League One&#39;, &#39;2006-12-30&#39;)
+</code></pre></div>
 
 <div>
 <style>
@@ -794,13 +763,11 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<div class="highlight"><pre><span></span><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;albert&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;albert&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>(&#39;2006-07&#39;, &#39;Premier League&#39;, &#39;2007-03-14&#39;)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(&#39;2006-07&#39;, &#39;Premier League&#39;, &#39;2007-03-14&#39;)
+</code></pre></div>
 
 <div>
 <style>
@@ -941,13 +908,11 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<div class="highlight"><pre><span></span><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;table&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">find_word</span><span class="p">(</span><span class="s2">&quot;table&quot;</span><span class="p">,</span> <span class="n">found_words</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>(&#39;2017-18&#39;, &#39;Premier League&#39;, &#39;2017-12-23&#39;)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(&#39;2017-18&#39;, &#39;Premier League&#39;, &#39;2017-12-23&#39;)
+</code></pre></div>
 
 <div>
 <style>
@@ -1077,40 +1042,34 @@ Iteration 10267, found 481 [COMPLETE]
 
 <h2 id="teams-in-alphabetical-order">Teams in alphabetical order</h2>
 <p>I also wanted to look for the table in which a run of teams were in alphabetical order. I've ignored tables in August and September when the league table is less developed and so a default alphabetical team list is likely to take place.</p>
-<div class="highlight"><pre><span></span><span class="n">alpha_tables</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">alpha_tables</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
     <span class="n">division</span> <span class="o">=</span> <span class="n">get_division_from_filename</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">team_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
     <span class="n">ngrams</span> <span class="o">=</span> <span class="n">get_char_ngrams</span><span class="p">(</span><span class="n">team_order</span><span class="p">,</span> <span class="n">min_n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ngrams</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
             <span class="n">alpha_tables</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span>
-</pre></div>
+</code></pre></div>
 
+<div class="highlight"><pre><span></span><code><span class="n">gt_seven_teams</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha_tables</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">7</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])]</span>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span><span class="n">gt_seven_teams</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha_tables</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">7</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">gt_nine_teams</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha_tables</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">]</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="n">gt_nine_teams</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alpha_tables</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">]</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Team&quot;</span><span class="p">})</span>
 <span class="n">t</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">t</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>2004-05 League One 2004-11-09
-[&#39;Bournemouth&#39;, &#39;Bradford&#39;, &#39;Brentford&#39;, &#39;Bristol City&#39;, &#39;Chesterfield&#39;, &#39;Hartlepool&#39;, &#39;Huddersfield&#39;, &#39;Swindon&#39;]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">2004</span><span class="o">-</span><span class="mf">05</span> <span class="n">League</span> <span class="kr">On</span><span class="n">e</span> <span class="mf">2004</span><span class="o">-</span><span class="mf">11</span><span class="o">-</span><span class="mf">09</span>
+<span class="err">[&#39;</span><span class="n">Bournemouth</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Bradford</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Brentford</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Bristol</span> <span class="n">City</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Chesterfield</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Hartlepool</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Huddersfield</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Swindon</span><span class="err">&#39;]</span>
+</code></pre></div>
 
 <div>
 <style>
@@ -1459,19 +1418,17 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Team&quot;</span><span class="p">})</span>
 <span class="n">t</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">oteams</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">Team</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">gt_seven_teams</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])]</span><span class="o">.</span><span class="n">index</span>
-<span class="n">t</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">oteams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">oteams</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="p">:]</span>
-</pre></div>
+<span class="n">t</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">oteams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">oteams</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">:]</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>2011-12 Premier League 2011-11-27
-[&#39;Arsenal&#39;, &#39;Aston Villa&#39;, &#39;Everton&#39;, &#39;Norwich&#39;, &#39;QPR&#39;, &#39;Stoke&#39;, &#39;Swansea&#39;, &#39;West Brom&#39;]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">2011</span><span class="o">-</span><span class="mf">12</span> <span class="n">Premier</span> <span class="n">League</span> <span class="mf">2011</span><span class="o">-</span><span class="mf">11</span><span class="o">-</span><span class="mf">27</span>
+<span class="err">[&#39;</span><span class="n">Arsenal</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Aston</span> <span class="n">Villa</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Everton</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Norwich</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">QPR</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Stoke</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Swansea</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">West</span> <span class="n">Brom</span><span class="err">&#39;]</span>
+</code></pre></div>
 
 <div>
 <style>
@@ -1638,19 +1595,17 @@ Iteration 10267, found 481 [COMPLETE]
 </table>
 </div>
 
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Team&quot;</span><span class="p">})</span>
 <span class="n">t</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">oteams</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">Team</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">gt_nine_teams</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])]</span><span class="o">.</span><span class="n">index</span>
-<span class="n">t</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">oteams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">oteams</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="p">:]</span>
-</pre></div>
+<span class="n">t</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">oteams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">oteams</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">:]</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>2011-12 Conference 2012-03-31
-[&#39;York&#39;, &#39;Southport&#39;, &#39;Luton&#39;, &#39;Kidderminster&#39;, &#39;Grimsby&#39;, &#39;Gateshead&#39;, &#39;Forest Green&#39;, &#39;Cambridge&#39;, &#39;Braintree Town&#39;, &#39;Barrow&#39;]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">2011</span><span class="o">-</span><span class="mf">12</span> <span class="n">Conference</span> <span class="mf">2012</span><span class="o">-</span><span class="mf">03</span><span class="o">-</span><span class="mf">31</span>
+<span class="err">[&#39;</span><span class="n">York</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Southport</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Luton</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Kidderminster</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Grimsby</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Gateshead</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="kr">For</span><span class="n">est</span> <span class="n">Green</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Cambridge</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Braintree</span> <span class="kr">To</span><span class="n">wn</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Barrow</span><span class="err">&#39;]</span>
+</code></pre></div>
 
 <div>
 <style>

@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>UK charity tax statistics overview  | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+
+
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
+</div>                <h1 class="f1 lh-solid mv0 logo">
+                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                        David Kane
+                    </a>
+                </h1>
+                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+        </header><!-- /#banner -->
+        <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+        <header>
+            <h2 class="f2 header-font">
+            <a href="https://dkane.net/drafts/pages/uk-charity-tax-statistics-overview.html" rel="bookmark" class="link near-black"
+                title="Permalink to UK charity tax statistics overview">UK charity tax statistics overview</a></h2>
+        </header>
+        
+
+        <div class="entry-content f4 lh-copy">
+            <aside class="cf">
+<p><img src='/images/ctc-figures/ctc-logo.png' class="mw4 mw5-ns fr ml2" /></p>
+<p><strong><a href="https://dkane.net/">David Kane</a> for the <a href="https://www.ncvo.org.uk/policy-and-research/funding/tax-and-reliefs/charity-tax-commission">Charity Tax Commission</a></strong></p>
+<p><em>November 2018</em></p>
+<div class="f6 i mt4 lh-copy">This work contains statistical data from HMRC which is Crown Copyright. The research datasets used may not exactly reproduce HMRC aggregates. The use of HMRC statistical data in this work does not imply the endorsement of HMRC in relation to the interpretation or analysis of the information.</div>
+</aside>
+<h2 id="summary">Summary</h2>
+<p>This report gives an overview of the statistics available on tax reliefs for UK charities. As well as summarising the data available from HMRC on the overall scale of tax reliefs, it looks in detail at how two tax reliefs are distributed within charities: Gift Aid and business rates relief. Some key findings are:</p>
+<h3 id="gift-aid">Gift Aid</h3>
+<ul>
+<li>A small minority of large charities are claiming the majority of Gift Aid amounts and make the majority of claims: 52% of Gift Aid repayment amounts are to charities with over £10 million income.</li>
+<li>63% of charities making claims are small, but only represent 8% of Gift Aid spend.</li>
+<li>The largest organisations claim for smaller amounts of Gift Aid, with an average claim of £33 for organisations with over £10m income compared to £239 for charities with income of between £100k and £500k. </li>
+<li>Donations with Gift Aid claims are around 10% of the income of charities with under £500k income, compared to 3% for charities with more than £10 million.</li>
+<li>Gift Aid is particularly important to organisations working in religion, international aid and health.</li>
+</ul>
+<h3 id="business-rates">Business Rates</h3>
+<ul>
+<li>13 local authorities in England offer no discretionary business rates relief, while a further 270 authorities (83% of the total) offer less than 5% of the available discretionary relief.</li>
+<li>On average 70% of charities claiming business rate relief in an area are local to that area.</li>
+<li>65% of business rate relief goes to charities with more than £1 million income</li>
+<li>Business rate relief is more important to smaller organisations – for those that claim it business rate relief is equivalent to around 35% of the income of organisations with income between £10k and £100k, compared to 1.9% of the income of organisations with more than £1 million income.</li>
+</ul>
+<h2 id="overview-of-tax-reliefs">Overview of tax reliefs</h2>
+<p>HMRC provide a summary of statistics on the tax reliefs relating to charities . The reliefs are split into two groups – reliefs which apply to the charity themselves, and reliefs which apply to individual taxpayers on money they donate to charity. In 2017/18 total reliefs were worth £5.1 billion, of which £3.6 billion (71%) went to the charities themselves (this excludes VAT relief, estimated to be worth £400 million in 2016/17). </p>
+<figure>
+<figcaption>Figure 1 - Charitable tax reliefs, £ millions, 2017/18</figcaption>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;canvas</span> <span class="na">id=</span><span class="s">&#39;figure-1&#39;</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+</code></pre></div>
+
+</figure>
+<h3 id="reliefs-for-charities">Reliefs for charities</h3>
+<p>Charities themselves receive three main forms of relief. The largest is relief from paying non-domestic rates (business rates). Charity organisations receive a mandatory relief of 80% of the rates due on any property used for charitable purposes, with local authorities having the option to grant up to a further 20% relief. In 2017/18 this relief was worth £2 billion to UK charities (equivalent to around 4% of UK charity expenditure), but this amount comes in the form of foregone expenditure rather than additional income.</p>
+<p>Gift Aid is a system for reclaiming the tax already paid by individuals on income they donate to a charity. Charities must keep records of donations made to them, and then apply to HMRC for repayments representing the tax paid by the individual. In 2017/18 Gift Aid repayments were worth £1.3 billion (including the Gift Aid Small Donations Scheme), equivalent to around 3% of total UK charity income. Gift Aid repayments are received in the form of additional income to the charity.</p>
+<p>Another relief for charities described by HMRC is Stamp Duty Land Tax. Charities do not have to pay stamp duty land tax when a building is purchased for charitable purposes. In 2017/18 HMRC estimated this was worth £250 million to UK charities.</p>
+<p>In addition to these reliefs detailed by HMRC, charities are exempt from several other taxes, including corporation tax. It is difficult to place a value on these tax reliefs as they form just one part of the operating environment for charities and so it is not immediately obvious how they would apply. For example, charities cannot distribute profit to shareholders, so the notion of a tax on profits does not neatly apply. In the 2017 UK Civil Society Almanac, NCVO suggests that the voluntary sector is a similar size to the Mining and Quarrying sector in terms of its importance to the economy  - in 2014/15 the mining and quarrying sector paid £2.6 billion in corporation tax  (although the tax regime for the mining and quarrying sector may not be directly comparable).</p>
+<p>Charities also gain relief from paying VAT on some goods and services . This relief manifests in the form of cheaper goods and services, as the charity does not have to pay VAT (or pays a reduced rate) when the eligible goods and services are purchased. HMRC no longer estimates the total value of VAT relief to the sector due to ONS discontinuing a data series used to produce the estimate. The final estimate produced for 2016/17 suggested that VAT relief was worth around £400 million to charities, making VAT relief the third most valuable relief for charities, after business rate relief and Gift Aid.</p>
+<h3 id="reliefs-for-individuals">Reliefs for individuals</h3>
+<p>Individuals can receive reliefs on donations to charity. In 2017/18 these reliefs were worth £1.5 billion. The largest relief is inheritance tax relief which was worth £860 million in 2017/18. Inheritance tax can be reduced in two ways:</p>
+<ul>
+<li>Money left to charity in a will does not count towards the taxable value of an estate.</li>
+<li>If more than 10% of the “net estate” is left to charity, then inheritance tax is reduced from 40% to 36%.</li>
+</ul>
+<p>The second largest charitable relief for individuals is Gift Aid relief for higher rate taxpayers. This allows individuals to additionally reclaim any higher rate tax paid on money donated to charity. It is assumed that charities have already claimed the basic rate tax paid (20%), so individuals can reclaim the difference between the basic rate and their higher rate. In 2017/18 this relief was worth £490 million and is reclaimed by individuals through their Self Assessment tax return.</p>
+<p>Finally, individuals can reclaim tax paid on gifts of shares or property to charities (worth £70 million in 2017/18) and use payroll giving. Donations made through payroll giving are made from pre-tax income, and so reduce an individual’s tax liability. Payroll giving relief was estimated to be £40 million in 2017/18.</p>
+<h3 id="change-over-time">Change over time</h3>
+<p>Figure 2 shows the change in reliefs granted from 1990 to 2018. Since the mid-2000s there has been a large expansion in the take up of both non-domestic rate relief and Gift Aid. </p>
+<figure>
+<figcaption>Figure 2 - charitable tax reliefs, 1990-2018, £ million, cash terms </figcaption>
+<p><img alt="Figure 2" src="/images/ctc-figures/figure-02.png"></p>
+</figure>
+<p>Growth in these reliefs coincides with broader growth in the charity sector over the same period. By comparing change over time since 2000 using data on total voluntary sector spending (from the NCVO UK Civil Society Almanac), we can see that the total amount of tax relief claimed by charities rose by 160% in cash terms (i.e. excluding the effects of inflation) between 2000 and 2016, while total voluntary sector income in cash terms rose by 130% and tax reliefs claimed by individuals rose by 135% (see Figure 3).</p>
+<figure>
+<figcaption>Figure 3 - Change in charitable tax reliefs and total voluntary sector income 2000-2016 (indexed, 2000-01=100, cash terms) </figcaption>
+<p><img alt="Figure 3" src="/images/ctc-figures/figure-03.png"></p>
+</figure>
+<h2 id="gift-aid_1">Gift Aid</h2>
+<p>Gift Aid is a tax relief operated by the UK government which allows charities, Community Amateur Sports Clubs or individuals to reclaim the value of the tax already paid on income if that income is donated to charity. Gift Aid comes in three main forms:</p>
+<ul>
+<li>Charities reclaiming the equivalent basic rate Income Tax paid on amounts donated (currently 20%). After a UK taxpayer donates to a charity the charity can then claim a further 25% of the donated amount from HMRC, equivalent to the 20% basic rate tax already paid on the income. The charity needs to collect details of the taxpayer making the claim, which are sent to HMRC.</li>
+<li>Charities can also claim a “top-up” payment on up to £8,000 worth of small donations (those of £20 or less) through the Gift Aid Small Donations Scheme. The main advantage of this method is that the charity does not need to collect details about the individual making the donation. This is only available to charities who are also making full Gift Aid claims, and charities cannot claim more than 10 times the amount of full Gift Aid claims. Claims can only be made on donations paid in cash or through a contactless payment card.</li>
+<li>Individuals paying higher rate tax can reclaim the difference between the basic rate tax (already claimed by the charity) and their higher rate. This money is typically reclaimed by the individuals as part of their Self Assessment tax return and does not affect the amount received by the charity.</li>
+</ul>
+<p>In 2017/18 charities received £1.3 billion in Gift Aid repayments , plus a further £30 million through the Gift Aid Small Donations Scheme . This represents tax repayments on around £5 billion of donations . A further £0.5 billion was claimed by individuals who are higher rate taxpayers .</p>
+<h3 id="definitions">Definitions</h3>
+<p>In this section, the following terms are used to describe Gift Aid transactions:</p>
+<ul>
+<li><strong>Donation</strong>: the original amount donated to a charity by a taxpayer. This amount given is before any repayment of Gift Aid.</li>
+<li><strong>Claim</strong>: Information about the donation is passed on to HMRC in order to make a Gift Aid claim. In practice claims include multiple donations bundled together for ease of administration, but here a claim is equivalent to one donation.</li>
+<li><strong>(Gift Aid) Repayment</strong>: A repayment of the tax already paid on a Gift Aid donation that goes to the charity making the claim. It is equivalent to 25% of the original donation amount.</li>
+<li><strong>Net Donation</strong>: The total amount received by the charity including the original donation and the Gift Aid repayment.</li>
+</ul>
+<h3 id="gift-aid-over-time">Gift Aid over time</h3>
+<p>The chart below shows the evolution of Gift Aid after it was expanded and replaced other reliefs from 2000 onwards . It also shows the impact of transitional relief, which was in place between 2008 and 2012 to provide top-up payments to charities to smooth the impact of a change from 22% to 20% in the basic rate of tax. </p>
+<p>Charities did see their Gift Aid repayments fall after transitional relief ended, although subsequent increases in the amount of Gift Aid donations claimed have since recovered that fall (and increased beyond the previous peak).</p>
+<figure>
+<figcaption>Figure 4 - Gift Aid repayments and related tax reliefs, 1990-2018, £ million, cash terms</figcaption>
+<p><img alt="Figure 4" src="/images/ctc-figures/figure-04.png"></p>
+</figure>
+<p>The following chart shows the total amount of donations and Gift Aid repayments since 2000. Gift Aid donations reached their highest amount in 2016/17 and declined slightly in 2017/18. Claims made under the Gift Aid Small Donations Scheme are not shown on this chart but make up around 2% of Gift Aid repayment amounts in total).</p>
+<figure>
+<figcaption>Figure 5 - Gift Aid amount donated and tax repayments, 2000-2018 (£ billion, cash terms)</figcaption>
+<p><img alt="Figure 5" src="/images/ctc-figures/figure-05.png"></p>
+</figure>
+<h3 id="how-important-is-gift-aid-to-the-voluntary-sector">How important is Gift Aid to the voluntary sector?</h3>
+<p>CAF estimates that in 2017 the UK pubic gave £10 billion to charity . Assuming this figure of £10 billion is comparable with HMRC estimates for the amount of Gift Aid (i.e. that they relate to the same set of organisations, and the same type of giving) this would suggest that around half of the amount of donations to charities is claimed for Gift Aid. This is consistent with the finding from the CAF survey that 52% of respondents said they used Gift Aid on their donation. Research by HMRC  estimated that Gift Aid is underclaimed by around £600 million. The research asked donors about their donations and estimated unclaimed Gift Aid based on donations that would have qualified for it but where it was not claimed.</p>
+<p>Comparing with data from NCVO’s UK Civil Society Almanac (2018)  suggests that Gift Aid repayments represent 2.5% of the voluntary sector’s total income (in 2015/16), and 6% of its voluntary income (i.e. excluding income that is earned through providing services). Gift Aid repayments are equivalent to the entire spending of all charities based in the North East and are around the same value as the total spending of charities working in employment and training.</p>
+<h3 id="how-is-gift-aid-distributed-amongst-charities">How is Gift Aid distributed amongst charities?</h3>
+<p><small><em>This work contains statistical data from HMRC which is Crown Copyright. The research datasets used may not exactly reproduce HMRC aggregates. The use of HMRC statistical data in this work does not imply the endorsement of HMRC in relation to the interpretation or analysis of the information.</em></small></p>
+<p>In 2017/18, 72,000 charities received a Gift Aid repayment. This number is not directly comparable to the number of charities registered with the Charity Commission for England and Wales, the Scottish Charity Regulator and the Charity Commission for Northern Ireland, as there are charities who are exempt from registration with the charity regulators but are eligible for Gift Aid from HMRC – for example some churches. Gift Aid repayments are unevenly distributed by size: 70% of claimants made total claims of less than £5,000 in 2017/18, while 46% of Gift Aid repayment amounts went to the roughly 150 charities who claimed more than £1 million.</p>
+<figure>
+<figcaption>Figure 6 - Proportion of charities claiming and repayment amount, by size of organisation's total annual claim, 2017/18</figcaption>
+<p><img alt="Figure 6" src="/images/ctc-figures/figure-06.png"></p>
+</figure>
+<p>Data accessed through HMRC’s secure Datalab service was used to provide a more detailed view on the distribution of Gift Aid throughout the voluntary sector. The data covers the 2013/14 financial year and was matched to the Charity Commission register of charities (which covers charities registered in England and Wales) and the register of Scottish charities maintained by OSCR. Matching was not available for charities registered in Northern Ireland, and only limited data was available for Scottish registered charities.</p>
+<p>The total value of donations claimed in 2013/14 through this data was £4.5 billion, which compares with the £4.2 billion shown in HMRC statistics for this period (the difference between the figures is likely to be the result of how each set of figures were allocated to financial years). Of this £4.5 billion, around £3.9 billion (86%) was successfully matched to a registered charity record. The unmatched data is likely a result of either missing or incorrect charity numbers, inconsistent organisation names or missing data (for example charities registered in Northern Ireland).</p>
+<p>The figures suggest that 21% of registered charities made a Gift Aid claim in 2013/14, although this is likely to be an underestimate due to unmatched organisations described above. The mean Gift Aid donation size was £48 with the mean amount of donations claimed per organisation being £98,000, although both of these figures vary considerably by charity.</p>
+<p>The figures in this section relate to the amount donated to a charity that has subsequently been claimed for Gift Aid (referred to as donations or “Gift Aid claims”). This means the amounts do not include the Gift Aid repayment itself. A Gift Aid claim in this section relates to one donation by an individual.</p>
+<h3 id="distribution-by-size">Distribution by size</h3>
+<p>Just over half (51%) of Gift Aid by amount donated was claimed by organisations with more than £10 million annual income, with those organisations making three quarters of individual Gift Aid claims. Organisations with more than £10 million income accounted for just 2% of the number of organisations with claims. Organisations with less than £100,000 income accounted for just 8% of the total amount donated and just 2% of the number of donations.</p>
+<figure>
+<figcaption>Figure 7 - proportion of Gift Aid claims and claim amount, by charity income (2013/14) </figcaption>
+<p><img alt="Figure 7" src="/images/ctc-figures/figure-07.png"></p>
+</figure>
+<p>The concentration of claims and claim amounts in the larger organisations is a result of two factors: 
+- Larger organisations are more likely to make a claim – 45% of organisations with over £10 million income made a Gift Aid claim, compared to just 10% of those with under £10,000 income.
+- Larger organisations make more claims – Organisations with over £10 million income made an average of 83,000 claims per organisation, compared to just 36 for the smallest organisations.</p>
+<p>NCVO’s Almanac suggests that half of the income of smaller organisations comes from individuals, so the low proportion claiming Gift Aid does suggest there are a large number of small organisations who have decided not to claim Gift Aid on their donations.</p>
+<figure>
+<figcaption>Figure 8 - Proportion of registered charities with a Gift Aid claim, by size of organisation 2013/14 </figcaption>
+<p><img alt="Figure 8" src="/images/ctc-figures/figure-08.png"></p>
+</figure>
+<figure>
+<figcaption>Figure 9 - Mean number of claims per organisation, by size of charity (2013/14)</figcaption>
+<p><img alt="Figure 9" src="/images/ctc-figures/figure-09.png"></p>
+</figure>
+<p>The concentration in larger organisations is not the result of the average size of donations claimed by the organisations. The mean amount of donation claimed by the largest organisations is £33, compared to £240 for those with income between £100,000 and £500,000 and £148 for those with under £10,000. This is likely to be a result of larger organisations being able to put systems in place to process large numbers of smaller donations through Gift Aid, whereas for smaller organisations it is only efficient to do this on larger donations.</p>
+<figure>
+<figcaption>Figure 10 - Mean donation amount, by size of organisation (2013/14)</figcaption>
+<p><img alt="Figure 10" src="/images/ctc-figures/figure-10.png"></p>
+</figure>
+<p>Despite the concentration of Gift Aid claims in the largest organisations, Gift Aid is a more important source of income for smaller organisations. Taken as a proportion of the income of all organisations in each income band (not just those that claim Gift Aid), Gift Aid donations are around 10% of income for organisations with less than £500,000 income, while they are just 4% of the income of organisations with more than £1 million.</p>
+<p>The NCVO Almanac suggests that voluntary income from individuals represents around 15% of total income for general charities (a definition that excludes some of the largest organisations such as universities).</p>
+<figure>
+<figcaption>Figure 11 - Gift Aid donations as a proportion of total income of all charities, by size of charity (2013/14) </figcaption>
+<p><img alt="Figure 11" src="/images/ctc-figures/figure-11.png"></p>
+</figure>
+<h3 id="distribution-by-region">Distribution by region</h3>
+<p>Data on distribution by region is based on the registered office of the charity. While for most charities this office will correspond to the region in which the charity operates, for the largest organisations (and therefore the bulk of Gift Aid claims) and those that operate over many regions this region will not give an accurate picture of where the donated money is spent (or where the person giving the donation lives). This means that the figures for London and the South East in particular are skewed by the number of large organisations with headquarters there.</p>
+<p>Given the caveat above, it is not surprising that nearly half (48%) of all the amount of Gift Aid claims are made by organisations with a registered office in London. This reflects the pattern that the largest organisations are generally based in London. The mean amount claimed per organisation is £254,000 in London compared to £62,000 outside of London.</p>
+<figure>
+<figcaption>Figure 12 - Proportion of Gift Aid amount claimed, by registered office region/country (2013/14) </figcaption>
+<p><img alt="Figure 21" src="/images/ctc-figures/figure-12.png"></p>
+</figure>
+<figure>
+<figcaption>Figure 13 - Mean amount claimed per organisation, by region/country (2013/14)</figcaption>
+<p><img alt="Figure 13" src="/images/ctc-figures/figure-13.png"></p>
+</figure>
+<p>The proportion of organisations making a claim does vary by region and country. 22% of organisations based in the South East made a Gift Aid claim in 2013/14, while 13% of organisations in Wales did. While some of these differences will be accounted for by the difference in composition of organisations in each region (for example some regions have fewer large organisations), this does suggest that there is scope to increase take up of Gift Aid in some areas of the country.</p>
+<figure>
+<figcaption>Figure 14 - Proportion of organisations with a Gift Aid claim, by region/country (2013/14)</figcaption>
+<p><img alt="Figure 14" src="/images/ctc-figures/figure-14.png"></p>
+</figure>
+<p>There is also variation in the proportion of total income to organisations in each region/country that Gift Aid represents. Again, Wales sees the smallest amount with just 1.4% of total income from Gift Aid, with the South West seeing 6.6% of income. These figures likely give an indication of the relative importance of individual giving to organisations in these areas.</p>
+<figure>
+<figcaption>Figure 15 - Gift Aid as a proportion of total income to organisations, by region/country (2013/14)</figcaption>
+<p><img alt="Figure 15" src="/images/ctc-figures/figure-15.png"></p>
+</figure>
+<h3 id="distribution-by-sector">Distribution by sector</h3>
+<p>The sector in which each charity operates is based on an application of the International Classification of Non-Profit Organisations , applied to charities in England and Wales by NCVO. During analysis some ICNPO categories had to be combined to avoid the possibility of disclosing details of individual organisations, in line with the guidelines for using data in the HMRC Datalab. Where possible categories were combined with those that are similar in nature, and where possible the categories with the greatest weight in the analysis have been kept. The categories used are:</p>
+<ul>
+<li>Animal and environment</li>
+<li>Arts and recreation</li>
+<li>Health (including medical research charities such as Cancer Research UK)</li>
+<li>International</li>
+<li>Other (includes charities operating in Education, Community &amp; Economic Development, Law and Legal Services, Business and Professional Services)</li>
+<li>Religion</li>
+<li>Research, Foundations &amp; Infrastructure </li>
+<li>Social services</li>
+</ul>
+<p>Religious groups and charities operating overseas are the organisations most likely to claim Gift Aid, with 30% of each sector claiming Gift Aid. 29% of health charities (including those fundraising for medical research) claim Gift Aid.</p>
+<figure>
+<figcaption>Figure 16 - Proportion of organisations claiming Gift Aid, by sector (2013/14)</figcaption>
+<p><img alt="Figure 16" src="/images/ctc-figures/figure-16.png"></p>
+</figure>
+<p>Gift Aid income is particularly important for organisations working with animals or the environment and religious groups, as measured by the proportion of the total sector income which comes from Gift Aid donations – 12%. It is less important for arts and recreations organisations, and for those working in social services.</p>
+<figure>
+<figcaption>Figure 17 - Proportion of sector income from Gift Aid donations, by sector (2013/14)</figcaption>
+<p><img alt="Figure 17" src="/images/ctc-figures/figure-17.png"></p>
+</figure>
+<p>Arts, recreation and social services organisations have the largest average Gift Aid donation size, with an average of over £180. </p>
+<figure>
+<figcaption>Figure 18 - Average Gift Aid donation size by sector, 2013/14</figcaption>
+<p><img alt="Figure 18" src="/images/ctc-figures/figure-18.png"></p>
+</figure>
+<p>Take up of Gift Aid on donations is much higher amongst independent museums than amongst charities as a whole. A 2014 survey by the Association of Independent Museums found that 80% of museums use Gift Aid, compared to around 50% of charities . </p>
+<p>In 2017 Gift Aid reclaims accounted for five per cent of the charity retail sector’s income.</p>
+<h3 id="distribution-by-scale">Distribution by scale</h3>
+<p>It is possible to divide charities based on the scale at which they operate – local, national or overseas. While scale is largely correlated with size – smaller charities are more likely to be local – this is not always the case. Analysis of Gift Aid claims by scale shows that 17% of local organisations made a Gift Aid claim, compared to 20% of national organisations and 36% of those organisations operating overseas.</p>
+<figure>
+<figcaption>Figure 19 - Proportion of organisations with Gift Aid claim, by scale of operation (2013/14)</figcaption>
+<p><img alt="Figure 19" src="/images/ctc-figures/figure-19.png"></p>
+</figure>
+<p>Similarly, income from Gift Aid is more important to organisations operating overseas or nationally than it is to local organisations. 8% of the income of overseas organisations is from Gift Aid donations, while 5% of national organisations’ income and 3% of local organisations’ income is.</p>
+<figure>
+<figcaption>Figure 20 - Proportion of sector's income from Gift Aid donations, by scale (2013/14)</figcaption>
+<p><img alt="Figure 20" src="/images/ctc-figures/figure-20.png"></p>
+</figure>
+<p>Local organisations have a higher average donation size than those operating at other scales.</p>
+<figure>
+<figcaption>Figure 21 - Average Gift Aid donation size, by scale (2013/14)</figcaption>
+<p><img alt="Figure 21" src="/images/ctc-figures/figure-21.png"></p>
+</figure>
+<h3 id="gift-aid-in-charity-retail">Gift Aid in charity retail</h3>
+<p>The Charity Retail Association’s Quarterly Market Analysis for April-June 2018 reports the results of a survey of charity retailers, including information on Gift Aid. 73 of the 80 charities that responded (91%) said that they made at least one claim for Gift Aid from their shops. These 73 charities accounted for 99% of all the individual charity shops covered by the survey, so represented the largest retailers by number of shops. In the period studied, Gift Aid repayments on donated goods sold in shops in the sample totalled £11.2 million. Gift Aid repayments represented an average of 5.3% of the sales income of the charity retail sector (the average is weighted by the size of charity retailer; in this instance sales include income from donated goods, bought-in goods, rag and Gift Aid tax reclaims)..</p>
+<p>Gift Aid is not applied to every donated good sold by a charity retailer, as the retailer needs to collect details about the person making the donation to make a Gift Aid claim. The Charity Retail Association data suggests that 29% of donated goods sales had an associated Gift Aid claim in April-June 2018. This “conversion rate” differed by the number of shops operated by each charity –very large charities (those with over 300 shops) have a conversion rate of 37%, while very small charities (those with less than 10 shops) have a conversion rate of 21%. </p>
+<h2 id="business-rates-relief">Business rates relief</h2>
+<p>Non-domestic rates, commonly called business rates, are collected by local authorities and apply to non-domestic properties. In 2018/19 total business rates collected in England are forecast to be £26.4 billion . Charities can receive relief from paying these rates – they can get relief for 80% of the business rates on property used for charitable purposes (“mandatory relief”), plus up to 20% additional relief depending on the local authority’s own criteria (“discretionary relief”). Other reliefs are available and may apply to non-profits/charities even if they don’t qualify for mandatory or discretionary charitable reliefs.</p>
+<p>In 2018/19 mandatory reliefs are forecast to be worth £1.9 billion to charities in England, plus £47 million in discretionary relief (97% of relief for charities is from mandatory relief) . The total for mandatory and discretionary relief for the UK was £2.1 billion in 2017/18 . Relief of business rates is the largest tax relief used by charities, greater than the £1.3 billion Gift Aid repayments that charities received.</p>
+<p>In 2017 92,000 charitable properties received mandatory relief, with a further 27,500 receiving discretionary relief . This suggests an average mandatory relief per property of £19,300 and average discretionary relief of £1,860. The average charity is likely to receive a smaller amount of business rates relief as the average will be skewed by a small number of valuable properties. It’s also important to remember that some charities will receive a larger amount of relief as they may have multiple properties.</p>
+<h3 id="distribution-of-discretionary-relief">Distribution of discretionary relief</h3>
+<h4 id="discretionary-relief-by-local-authority">Discretionary relief by local authority</h4>
+<p>Local authorities can choose to offer discretionary relief to charities for some or all of the remaining 20% of business rates after mandatory relief has been applied. This relief is granted based on the local authorities’ own criteria. </p>
+<p>Using data published by the Ministry of Housing, Communities and Local Government (MHCLG) it’s possible to calculate an effective discretionary relief rate, based on the proportion of the possible discretionary relief that is allocated. This effective discretionary rate is based on the proportion of potential relief that has been allocated, but in reality the rates are likely to be applied to different categories of charity depending on how each local authority has chosen to allocate discretionary relief, so in a local authority half the organisations may receive the full relief of 20% while half receive 0%, resulting in an effective discretionary relief of 10%. These statistics suggest that 13 local authorities offer no discretionary relief, while a further 270 authorities (83% of the total) offer less than 5% of the available discretionary relief.</p>
+<figure>
+<figcaption>Figure 22- local authorities by effective discretionary relief, 2018/19</figcaption>
+<p><img alt="A bar chart showing the distribution of local authorities by their discretionary relief allowance. Most of the authorities fall between 1%-5% relief." src="/images/ctc-figures/figure-22.png"></p>
+</figure>
+<figure>
+<figcaption>Figure 23 - effective discretionary relief by local authority, 2018/19</figcaption>
+<p><img alt="A map of England and Wales showing distribution of discretionary business rate relief. There is no clear pattern to the distribution." src="/images/ctc-figures/figure-23.png"></p>
+</figure>
+<h3 id="charities-receiving-mandatory-business-rates-relief">Charities receiving mandatory business rates relief</h3>
+<p>Using data made available by 18 local authorities in England, it has been possible to examine the characteristics of a sample of charities that have received mandatory business rates relief. The data was gathered from the websites of a sample of local authorities, who often publish a list of the properties in their area that are eligible for business rates, and turned into a single file containing all the properties. Local authorities were selected randomly across different types of authorities to get a good spread of local authority characteristics, with the aim of producing a sample of charities that is representative of the characteristics of charities in the UK that receive business rates relief.</p>
+<p>This process produced data on 155,000 properties due to pay business rates, with 7,400 of these properties eligible for mandatory rates relief. Around half of the properties eligible for mandatory rate relief were matched to a registered charity (the data did not include charity numbers meaning that charities had to be matched based on their name and postcode, which are often inconsistently recorded). These 3,600 properties with mandatory rate relief were matched to around 2,250 unique charities, as some charities own more than one property. </p>
+<h4 id="local-or-national-charities">Local or national charities</h4>
+<p>By comparing the registered address of the charity to the area in which they’re paying business rates, it’s possible to determine whether the charity is a “local” charity or a national/international one. National charities may be providing services in a location, or they may be operating a charity shop.</p>
+<p>30% of the matched charities in the sample are registered outside of the local authority sampled (herein referred to as ‘out-of-area’ charities), suggesting that they are a branch of a national or regional charity operating in that local authority. They make up 28% of the estimated value of reliefs (based on the rateable value of the property). 16% of out-of-area charities receive discretionary relief, compared to 27% of local charities.</p>
+<p>It wasn’t possible to identify charity shops directly, but it is likely that charity retailing by large national charities accounts for some of the differences shown above. Charities based out-of-area are more likely to have multiple properties in an area, as they are larger charities with more activities (and thus more locations for those activities). A national charity operating in a local authority may have one or more charity shops plus a location providing services. Of the properties that could be identified as a retail location, 67% were owned by an out-of-area charity.</p>
+<h4 id="size-of-charity">Size of charity</h4>
+<p>For charities in the sample, those with income between £100,000 and £1 million make up the largest proportion of recipients of business rate relief (29%). Charities registered outside the area are likely to be larger – 34% of those organisations have more than £10 million income.</p>
+<figure>
+<figcaption>Figure 24 - size of charities receiving business rate relief, by registered office location</figcaption>
+<p><img alt="size of charities receiving business rate relief, by registered office location" src="/images/ctc-figures/figure-24.png"></p>
+</figure>
+<p>The income distribution of charities receiving business rate relief is very different to the distribution of charities in England, due to the characteristics needed to receive business rates relief – organisations with property are likely to be larger.</p>
+<figure>
+<figcaption>Figure 25 - Business rate relief by size of charity</figcaption>
+<p><img alt="Business rate relief by size of charity" src="/images/ctc-figures/figure-25.png"></p>
+</figure>
+<p>66% of the mandatory relief granted goes to charities with more than £1 million income. However, as a proportion of income the relief is more important to smaller organisations – the figures suggest business rate relief is equivalent to 34% of income of organisations with between £10k and £100k, compared to 1.9% of the income of organisations with income between £1 million and £10 million (see Table 1). Business rate relief as a proportion of income will not be representative for those charities who operate nationally as they will have business rate relief in other local authorities that are not part of the sample.</p>
+<figure>
+<figcaption>Table 1 - Rate relief in 18 local authorities as a proportion of the charities' income</figcaption>
+<p><em>*Note that the results for larger organisations will be underestimates of the total value of rate relief to these organisations, as it only represents business rate relief in the 18 sample Local Authorities in England, whereas the income figure shows income received across the UK. Charities under £10,000 income are not included due to the small number of charities receiving relief.</em></p>
+<table>
+<thead>
+<tr>
+<th>Income band</th>
+<th>Estimated value of relief in 18 local authorities (£ million)</th>
+<th>Income of charities receiving rate relief in 18 local authorities (£ million)</th>
+<th>Rate relief as proportion of income</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10k-100k</td>
+<td>6.5</td>
+<td>18.9</td>
+<td>34%</td>
+</tr>
+<tr>
+<td>100k-1m</td>
+<td>12.0</td>
+<td>195.2</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>1m-10m*</td>
+<td>22.9</td>
+<td>1,176.8</td>
+<td>2%</td>
+</tr>
+<tr>
+<td>Over 10m*</td>
+<td>17.9</td>
+<td>28,250.7</td>
+<td>0.1%</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>68.9</td>
+<td>29,642.7</td>
+<td>0.2%</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<h4 id="charity-sector">Charity sector</h4>
+<p>Using the ICNPO category of charities we can examine which sub-sectors of charities account for more of the relief. A quarter of the charities receiving relief are in the “social services” category (roughly in line with the distribution of charities in this category, as 19% of organisations are in this category), although they account for just 14% of the relief received. </p>
+<figure>
+<figcaption>Figure 26 - Charities receiving business rates relief, by sector</figcaption>
+<p><img alt="Bar chart showing the distribution of charities in subsectors by all charities and just including those with business rates relief" src="/images/ctc-figures/figure-26.png"></p>
+</figure>
+<p>Education charities benefit most disproportionately from business rate relief, with an average relief per charity of £86,000, compared to £17,000 for social services organisations. Cultural and sports groups also received an average relief of £37,000 per charity. These figures are likely due to the importance of premises to organisations working in the education or culture fields. The Education sector in particular includes a large number of private schools which operate from large premises. </p>
+<figure>
+<figcaption>Figure 27 - Average value of business rate relief per charity, by sector</figcaption>
+<p><img alt="Bar chart showing the average value of business rate relief to charities in different sectors. For education charities the value is £86,000, for those in Law, advocacy and politics it's £11,000" src="/images/ctc-figures/figure-27.png"></p>
+</figure>
+<h3 id="charities-receiving-discretionary-relief">Charities receiving discretionary relief</h3>
+<p>One in five charities (22%) in the sample received discretionary relief. This is higher for local charities (27%) compared to those based outside the area (16%). Discretionary relief is also targeted more at smaller organisations – 38% of organisations with between £10k and £100k income received discretionary relief, compared to 10% of those organisations with more than £10 million. </p>
+<figure>
+<figcaption>Figure 28 - proportion of charities receiving discretionary rate relief (as a proportion of charities receiving mandatory relief)</figcaption>
+<p><img alt="Bar chart with bars for each income band. 38% of £10k-£100k charities receive discretionary rate relief compared to 10% of £10m+ charities" src="/images/ctc-figures/figure-28.png"></p>
+</figure>
+<h3 id="business-rate-relief-in-charity-retail">Business rate relief in charity retail</h3>
+<p>In 2017 the Charity Retail Association undertook a research project to look at business rate relief and charity shops, involving sending Freedom of Information Requests to 405 Local Authorities in England, Scotland and Wales  (of which 401 provided responses).</p>
+<p>The results suggest significant variation in how charity shops are treated for business rates purposes throughout the country – a situation the Charity Retail Association describe as a “postcode lottery”. Around 25% of councils do not know how many charity shops are in their area – they are not separately identified in their business rates data.</p>
+<p>The data suggests that half of councils give no charity shops the full discretionary relief (and 42% of councils give no discretionary relief at all to charity shops), while just 7% of councils give the full 20% relief to all charity shops in their area. Councils in Scotland and Wales were more likely to grant discretionary relief to charity shops.</p>
+<p>The research also looked at how councils decide to allocate their discretionary rate relief. Figure 29 shows the proportion of councils with different policies, with 26% of councils having no discretionary relief, 5% granting relief to all charities and the remainder using policies or judgement to decide.</p>
+<figure>
+<figcaption>Figure 29 - Discretionary Business Rate Relief policies of local authorities, 2017. (Shows proportion of authorities enacting the policy)</figcaption>
+<p><img alt="Bar chart showing the distribution of discretionary business rate policies by local authority. The highest bar is &quot;Do not grant any discretionary relief&quot; with 26%, while the lowest is &quot;Grant relief to all&quot; at 5%" src="/images/ctc-figures/figure-29.png"></p>
+</figure>
+<h2 id="method-and-sources">Method and sources</h2>
+<p>Aggregate data on tax reliefs is based on UK charity tax relief statistics published by HM Revenue &amp; Customs. This data provides an overview of charity tax between 1990 and 2018. Figures for the latest year (2017/18) have generally been used. No adjustment has been made to previous years’ figures to account for inflation.</p>
+<ul>
+<li><a href="https://www.gov.uk/government/collections/charitable-donations-and-tax-reliefs-statistics">HMRC - UK charity tax relief statistics</a></li>
+</ul>
+<p>Additional data is used from:</p>
+<ul>
+<li><a href="https://data.ncvo.org.uk/">NCVO UK Civil Society Almanac 2018</a></li>
+<li><a href="https://www.cafonline.org/about-us/publications/2018-publications/uk-giving-report-2018">CAF UK Giving 2018</a></li>
+<li><a href="https://www.charityretail.org.uk/members/wp-content/uploads/sites/3/2018/08/QMA-Q2-2018-report-FINAL.pdf">Charity Retail Association – Quarterly Market Analysis (April–June (Q2) 2018)</a></li>
+<li><a href="https://www.charityretail.org.uk/members/wp-content/uploads/sites/3/2018/04/business-rate-relief-and-charity-shops.pdf">Charity Retail Association – Councils, Business Rate Relief and Charity Shops (April 2018)</a></li>
+</ul>
+<h3 id="data-on-gift-aid">Data on Gift Aid</h3>
+<p>Data on Gift Aid repayments to charities was obtained through the HM Revenue &amp; Customs “Datalab” service. This service allows researchers to securely access confidential data for research purposes. </p>
+<p>This work contains statistical data from HMRC which is Crown Copyright. The research datasets used may not exactly reproduce HMRC aggregates. The use of HMRC statistical data in this work does not imply the endorsement of HMRC in relation to the interpretation or analysis of the information.</p>
+<p>To complete this research a list of charities registered in England, Wales and Scotland was sent to HMRC. Staff at HMRC then matched this register of charities to the Gift Aid database and produced a de-identified dataset that could be analysed through the Datalab service. Matching was mainly done using charity numbers, with some matching based on the name of charity. While the matching was successful it is important to note that there was not a 100% success rate, so there will be some “false positives” in the data (charities that have been matched to the wrong organisation) and “false negative” (charities that should have been matched but haven’t been). Data in this dataset related to the 2013/14 financial year.</p>
+<p>The outputs produced from the Datalab have been carefully produced to minimise the risk of disclosing the details of individual organisations. Amongst other strategies, in some cases this has meant combining categories into larger categories, for example when looking at the data by sector.</p>
+<h4 id="data-sources">Data sources</h4>
+<p>Contains information from the Register of Charities supplied by the Charity Commission for England and Wales and licensed under the Open Government License.</p>
+<p>© Crown Copyright and database right 2018. Contains information from the Scottish Charity Register supplied by the Office of the Scottish Charity Regulator and licensed under the Open Government Licence v.2.0.</p>
+<h3 id="business-rates_1">Business rates</h3>
+<p>Data on the size and distribution of business rates and reliefs from business rates is from the Ministry of Housing, Communities &amp; Local Government publication National non-domestic rates collected by councils in England: forecast for 2018 to 2019.</p>
+<ul>
+<li><a href="https://www.gov.uk/government/statistics/national-non-domestic-rates-collected-by-councils-in-england-forecast-for-2018-to-2019">MHCLG -  National non-domestic rates collected by councils in England: forecast for 2018 to 2019</a></li>
+</ul>
+<p>Many local authorities make data available on properties that are subject to non-domestic rates, and often include details of which properties receive mandatory or discretionary relief. Although this data is often patchy or inconsistent across local authorities, it has been possible to download the data from a sample of local authorities. Data was gathered from 21 local authorities in England, representing a range of different types of authorities – six district councils, five metropolitan boroughs, five unitary authorities and five London boroughs. The data gathered includes details of 155,000 properties, ranging from 16,000 in the city of Bristol to 2,200 in Hart District Council. All but three councils indicated whether a property was in receipt of mandatory relief (although the others did not always separately identify those receiving charitable mandatory relief rather than other types of relief), and four of the councils did not identify whether a property received discretionary relief.</p>
+<p>Of the 134,000 properties with an indicator of their mandatory relief status, 7,400 (5%) had mandatory relief. The highest proportion was Newcastle with 13%, and the lowest was Trafford with 3%, although these could reflect the different scope of a mandatory relief flag. The 7,400 properties with mandatory relief were then matched to the register of charities held by the Charity Commission for England and Wales, based on the company name given by the local authority. 3,600 properties were matched to a registered charity (just under 50%); with 2,250 unique charities matched. There are many reasons why a charity might not match:</p>
+<ul>
+<li>The property receives a relief but is not operated by a charity</li>
+<li>The property is operated by an organisation eligible for mandatory charitable relief that is not a registered charity – for example an academy school</li>
+<li>It was not possible to match the company name to a charity, for example if a different spelling or trading name was used</li>
+</ul>
+<p>As such, it is not possible to tell how many of the remaining unmatched properties with mandatory relief should have been matched to a charity. However, it is possible to use the 3,600 matched properties as a sample of the type of charity that receives mandatory business rate relief. The findings of this sample are likely to be indicative of the composition of charities receiving business rate relief but may not be completely representative.</p>
+<h4 id="data-sources_1">Data sources</h4>
+<p>Data was downloaded from the following Local Authorities. Local authorities were randomly selected for inclusion with the aim of achieving similar numbers across different types of local authority.</p>
+<table>
+<thead>
+<tr>
+<th>Local authority name</th>
+<th>Local authority type</th>
+<th>ONS Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.chesterfield.gov.uk/council-tax-and-business-rates/business-rates-national-non-domestic-rates/freedom-of-information.aspx">Chesterfield Borough Council</a></td>
+<td>District Council</td>
+<td>E07000034</td>
+</tr>
+<tr>
+<td><a href="http://www.easthants.gov.uk/business-rates-data-sets">East Hampshire District Council</a></td>
+<td>District Council</td>
+<td>E07000085</td>
+</tr>
+<tr>
+<td><a href="https://www.kettering.gov.uk/info/20040/data_protection_and_freedom_of_information/35/datasets">Kettering Borough Council</a></td>
+<td>District Council</td>
+<td>E07000153</td>
+</tr>
+<tr>
+<td><a href="https://www.hart.gov.uk/business-rates">Hart District Council</a></td>
+<td>District Council</td>
+<td>E07000089</td>
+</tr>
+<tr>
+<td><a href="https://www.harrogate.gov.uk/info/20004/benefits_and_assistance/947/business_rates_freedom_of_information_requests">Harrogate Borough Council</a></td>
+<td>District Council</td>
+<td>E07000165</td>
+</tr>
+<tr>
+<td><a href="https://www.cherwell.gov.uk/downloads/download/350/business-rates-data">Cherwell District Council</a></td>
+<td>District Council</td>
+<td>E07000177</td>
+</tr>
+<tr>
+<td><a href="http://www.trafford.gov.uk/business/business-rates/business-rates-data.aspx">Trafford Metropolitan Borough Council</a></td>
+<td>Metropolitan Borough</td>
+<td>E08000009</td>
+</tr>
+<tr>
+<td><a href="https://www.barnsley.gov.uk/services/business-rates/requests-for-information-about-business-rates/foi-extracts-from-april-2018/">Barnsley Metropolitan Borough Council</a></td>
+<td>Metropolitan Borough</td>
+<td>E08000016</td>
+</tr>
+<tr>
+<td><a href="http://www.rotherham.gov.uk/info/200012/business_rates/1007/see_business_rates_data_sets">Rotherham Metropolitan Borough Council</a></td>
+<td>Metropolitan Borough</td>
+<td>E08000018</td>
+</tr>
+<tr>
+<td><a href="https://www.newcastle.gov.uk/benefits-and-council-tax/revenues-and-benefits-facts-and-figures/revenues-and-benefits-statistics">Newcastle City Council</a></td>
+<td>Metropolitan Borough</td>
+<td>E08000021</td>
+</tr>
+<tr>
+<td>City of Wolverhampton Council</td>
+<td>Metropolitan Borough</td>
+<td>E08000031</td>
+</tr>
+<tr>
+<td><a href="https://www3.rbwm.gov.uk/directory_record/11867/71862_foi_business_rates">Royal Borough of Windsor and Maidenhead</a></td>
+<td>Unitary Authority</td>
+<td>E06000040</td>
+</tr>
+<tr>
+<td><a href="http://www.bathnes.gov.uk/services/business/business-rates/frequently-requested-information">Bath and North East Somerset Council</a></td>
+<td>Unitary Authority</td>
+<td>E06000022</td>
+</tr>
+<tr>
+<td><a href="http://www.northlincs.gov.uk/jobs-business-regen/business-rates/business-rates-statistics/">North Lincolnshire Council</a></td>
+<td>Unitary Authority</td>
+<td>E06000013</td>
+</tr>
+<tr>
+<td><a href="https://www.bristol.gov.uk/business-rates/business-rates-data">City of Bristol</a></td>
+<td>Unitary Authority</td>
+<td>E06000023</td>
+</tr>
+<tr>
+<td><a href="http://www.opendatanottingham.org.uk/dataset.aspx?id=109">Nottingham City Council</a></td>
+<td>Unitary Authority</td>
+<td>E06000018</td>
+</tr>
+<tr>
+<td><a href="https://www.whatdotheyknow.com/request/complete_non_residential_busines_670">Royal Borough of Kensington and Chelsea</a></td>
+<td>London Borough</td>
+<td>E09000020</td>
+</tr>
+<tr>
+<td><a href="https://www.lewisham.gov.uk/myservices/business/businessrates/Pages/Most-common-FOI-requests-about-business-rates.aspx">London Borough of Lewisham</a></td>
+<td>London Borough</td>
+<td>E09000023</td>
+</tr>
+<tr>
+<td><a href="https://new.enfield.gov.uk/contact-us/ask-for-council-information/">London Borough of Enfield</a></td>
+<td>London Borough</td>
+<td>E09000010</td>
+</tr>
+<tr>
+<td><a href="https://www.islington.gov.uk/about-the-council/information-governance/freedom-of-information/popular-data/business-rates-data">London Borough of Islington</a></td>
+<td>London Borough</td>
+<td>E09000019</td>
+</tr>
+<tr>
+<td><a href="https://www.southwark.gov.uk/business/business-rates/business-rates-freedom-of-information">London Borough of Southwark</a></td>
+<td>London Borough</td>
+<td>E09000028</td>
+</tr>
+</tbody>
+</table>
+<p>Data for six local authorities was sought but could not be found on their website. These were:
+- Doncaster Metropolitan Borough Council
+- London Borough of Haringey
+- London Borough of Barnet
+- Sheffield City Council
+- Liverpool City Council</p>
+<p>The data used for Enfield, Kensington &amp; Chelsea and Kettering did not contain an indication of whether the property received mandatory rate relief, and therefore it was not possible to use data in these areas to identify charities.</p>
+<figure>
+<figcaption>Figure 30 - map of local authorities used with business rates data</figcaption>
+<p><img alt="A map of England and Wales highlighting the local authorities that were sampled" src="/images/ctc-figures/figure-30.png"></p>
+</figure>
+        </div><!-- /.entry-content -->
+    
+
+    </div>
+</section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0"></script>
+        <script src="/data/ctc-charts.js"></script>
+        </main>
+        <footer id="contentinfo" class="body ph3 ph5-ns db mv5 moon-gray">
+            &copy 2021 David Kane | 
+                <address id="about" class="vcard body dib fs-normal"> 
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+                </address><!-- /#about --> 
+                | <a href="mailto:david@dkane.net" class="link yellow">Email</a>
+                | <a href="https://twitter.com/kanedr" class="link yellow">@kanedr</a>
+                | <a href="https://github.com/drkane" class="link yellow">github.com/drkane</a>
+                | <a href="/feed.rss" class="link yellow">RSS</a>
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

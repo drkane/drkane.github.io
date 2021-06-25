@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
       <title>Development version of WordPress on Windows 10 | David Kane</title>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/category.slug.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
   
@@ -61,44 +61,43 @@
 <h2 id="step-2-configure-the-container">Step 2 – configure the container</h2>
 <p>This step was adapted from the <a href="https://docs.docker.com/compose/wordpress/">instructions shown in the Docker WordPress docs</a>. The main adaptations are to allow for access to the filesystem and direct database access.</p>
 <p>Navigate to an empty directory and create a file called <code>docker-compose.yaml</code>. Open and edit the file to include the following text:</p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2&#39;</span>
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;./.data/db:/var/lib/mysql&quot;</span>
-    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;3306:3306&quot;</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
-      <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+      <span class="nt">MYSQL_DATABASE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+      <span class="nt">MYSQL_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+      <span class="nt">MYSQL_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
 
-  <span class="l l-Scalar l-Scalar-Plain">wordpress</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+  <span class="nt">wordpress</span><span class="p">:</span>
+    <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;./html:/var/www/html&quot;</span>
-    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">links</span><span class="p p-Indicator">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress:latest</span>
+    <span class="nt">links</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+    <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;8000:80&quot;</span>
-    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">WORDPRESS_DB_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db:3306</span>
-      <span class="l l-Scalar l-Scalar-Plain">WORDPRESS_DB_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
-</pre></div>
-
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">WORDPRESS_DB_HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db:3306</span>
+      <span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+</code></pre></div>
 
 <h2 id="step-3-copy-the-live-files">Step 3 – copy the live files</h2>
 <p>You now need to make a copy of the files from your live site. I did this by downloading them via FTP from the server. Make sure you have a copy of all three main WordPress directorys (<code>wp-admin</code>, <code>wp-content</code>, <code>wp-includes</code>) plus the <code>index.php</code> file and any files starting <code>wp-*.php</code> in the main directory.</p>
 <p>Copy these files into a directory called <code>html</code> in your project directory.</p>
 <h2 id="step-4-edit-wp-configphp">Step 4 – edit wp-config.php</h2>
 <p>Because you’ve directly copied the files from the live site, your configuration settings won’t work. Open <code>wp-config.php</code> from the <code>html</code> directory in your text editor, and change the following configuration values to match the values specified in the docker-compose.yaml file.</p>
-<div class="highlight"><pre><span></span><span class="x">/** The name of the database for WordPress */</span>
+<div class="highlight"><pre><span></span><code><span class="x">/** The name of the database for WordPress */</span>
 <span class="x">define(&#39;DB_NAME&#39;, &#39;wordpress&#39;);</span>
 
 <span class="x">/** MySQL database username */</span>
@@ -109,22 +108,19 @@
 
 <span class="x">/** MySQL hostname */</span>
 <span class="x">define(&#39;DB_HOST&#39;, &#39;db:3306&#39;);</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>You’ll also need to add or edit variables that give the URL of your site so that it doesn’t redirect to the live one. Add the following lines (removing any existing definitions of <code>WP_SITEURL</code> and <code>WP_HOME</code>):</p>
-<div class="highlight"><pre><span></span><span class="x">define(&#39;WP_HOME&#39;,&#39;http://192.168.99.100:8000/&#39;);</span>
+<div class="highlight"><pre><span></span><code><span class="x">define(&#39;WP_HOME&#39;,&#39;http://192.168.99.100:8000/&#39;);</span>
 <span class="x">define(&#39;WP_SITEURL&#39;,&#39;http://192.168.99.100:8000/&#39;);</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>(Note: I think <code>192.168.99.100</code> is the default IP address given by Docker to the container, but yours may be different. The <code>:8000</code> port is configured in the <code>docker-compose.yaml</code> file.)</p>
 <h2 id="step-5-run-the-container">Step 5 – run the container</h2>
 <p>To run the container I ran the “Docker Quickstart Terminal” which has been installed to the start menu. This gives access to the Docker virtual machine command line so you can run commands.</p>
 <p>Navigate to the directory where the <code>docker-compose.yaml</code> you created above is located (using <code>cd xxxx</code>) and then run</p>
-<div class="highlight"><pre><span></span>docker-compose up -d
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
 
 <p>This will create the database and WordPress containers and start them. You can now access the installation in three ways:</p>
 <ul>

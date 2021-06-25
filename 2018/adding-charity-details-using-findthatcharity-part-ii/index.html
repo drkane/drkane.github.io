@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
       <title>Adding charity details using findthatcharity - Part II | David Kane</title>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/category.slug.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
     <meta name="tags" content="Charities" />
@@ -81,9 +81,8 @@ select <code>Edit Column &gt; Add column by fetching URLs...</code>. </p>
 <p>In the resulting dialog you need to add a formula which will create the URL that needs
 to be fetched. This means adding the charity number value into a template. The formula
 you need is:</p>
-<div class="highlight"><pre><span></span>&quot;https://findthatcharity.uk/charity/&quot; + value + &quot;.json&quot;
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>&quot;https://findthatcharity.uk/charity/&quot; + value + &quot;.json&quot;
+</code></pre></div>
 
 <p>Make sure you include the quotation marks in the correct place. Add a new column name
 (something like "Charity Details"). The "Throttle delay" setting helps to lessen the
@@ -104,9 +103,8 @@ can be used to extract anything from the data.</p>
 <p>Use the arrow menu next to the new column, and then select <code>Edit Column &gt; Add column based on this column...</code>
 Again, we'll enter a formula to parse the JSON and find the right value within. We're using
 the <code>parseJson</code> OpenRefine function. Enter the following formula:</p>
-<div class="highlight"><pre><span></span>parseJson(value)[&quot;latest_income&quot;]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>parseJson(value)[&quot;latest_income&quot;]
+</code></pre></div>
 
 <p>Enter a name for the column and press OK to add it.</p>
 <p><img alt="Dialog for adding a new column by parsing JSON" src="/images/reconcile/parse-json-1.png"></p>
@@ -114,9 +112,8 @@ the <code>parseJson</code> OpenRefine function. Enter the following formula:</p>
 <p>Adding a company number is slightly more complicated. This is because the <code>company_number</code>
 field can contain multiple values (if a charity is linked with more than one company).
 So the formula we'll use in this instance is:</p>
-<div class="highlight"><pre><span></span>parseJson(value)[&quot;company_number&quot;][0][&quot;number&quot;]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>parseJson(value)[&quot;company_number&quot;][0][&quot;number&quot;]
+</code></pre></div>
 
 <p>The <code>[0]</code> part selects the first value within the list of values of <code>company_number</code>, and
 then <code>["number"]</code> selects the company number within that.</p>
@@ -135,15 +132,14 @@ to look for other data sources.</p>
 <p>A good place to look is <a href="https://charitybase.uk/">CharityBase</a> which has more detailed data
 extracted from the Charity Commission.</p>
 <p>A sample formula for getting a CharityBase URL for extracting data might look like:</p>
-<div class="highlight"><pre><span></span>&quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;charityNumber=&quot; + value + &quot;&amp;fields=mainCharity.income,registration,beta.people.employees&quot;
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="s">&quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;charityNumber=&quot;</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">&quot;&amp;fields=mainCharity.income,registration,beta.people.employees&quot;</span>
+</code></pre></div>
 
 <p>(Note that you need to specify the fields you want to return - here we're looking for the 
 number of employees).</p>
 <p>And the sample formula for parsing the resulting JSON data might look like:</p>
-<div class="highlight"><pre><span></span>parseJson(value)[&quot;charities&quot;][0][&quot;beta&quot;][&quot;people&quot;][&quot;employees&quot;]
-</pre></div>
+<div class="highlight"><pre><span></span><code>parseJson(value)[&quot;charities&quot;][0][&quot;beta&quot;][&quot;people&quot;][&quot;employees&quot;]
+</code></pre></div>
     </div><!-- /.entry-content -->
     </div>
 </section>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
       <title>Gender Pay Gap in charities | David Kane</title>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/category.slug.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
     <meta name="tags" content="Charities" />
@@ -82,7 +82,6 @@ in the public sector (13%), but obviously still represents a sizeable gap in pay
 between male and female employees.</p>
 <h3 id="average-pay-gaps-by-type-of-organisation">Average pay gaps by type of organisation</h3>
 <canvas id='summary'></canvas>
-
 <script>
             var ctx = document.getElementById('summary').getContext('2d');
             ctx.canvas.width  = 800 - (.1 * 800);
@@ -136,7 +135,6 @@ women more than men. For all organisations in the data the figure is 11%,
 whereas for charities it is 20%.</p>
 <h3 id="proportion-of-organisations-which-pay-women-or-men-more-on-average">Proportion of organisations which pay women or men more on average</h3>
 <canvas id='paidmore'></canvas>
-
 <script>
             var ctx = document.getElementById('paidmore').getContext('2d');
             ctx.canvas.width  = 800 - (.1 * 800);
@@ -200,7 +198,6 @@ of large charities are women, compared to 63% of the highest-paid employees.</p>
 employees - so it can't show the gender split at CEO/Director level.</p>
 <h3 id="proportion-of-female-employees-in-pay-quartiles">Proportion of female employees in pay quartiles</h3>
 <canvas id='quartiles'></canvas>
-
 <script>
             var ctx = document.getElementById('quartiles').getContext('2d');
             ctx.canvas.width  = 800 - (.1 * 800);

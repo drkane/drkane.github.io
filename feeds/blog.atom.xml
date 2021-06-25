@@ -73,18 +73,18 @@ to answer the same questions using surveys.&lt;/p&gt;
 &lt;p&gt;Nick Temple of the Social Investment Business estimates that 13% of their customer
 base's employees are on furlough.&lt;/p&gt;
 &lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Thanks for doing this David; even a rough guess is helpful. Recent analysis of our customer base came up with around 13% of all employees on furlough. Though SIB customer base tends to be medium, rather than small/micro.&lt;/p&gt;&amp;mdash; Nick Temple (@nicktemple1) &lt;a href="https://twitter.com/nicktemple1/status/1271438133473705986?ref_src=twsrc%5Etfw"&gt;June 12, 2020&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 
-&lt;p&gt;&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt; &lt;/p&gt;
 &lt;p&gt;Charity Tax Group &amp;amp; Charity Retail suggest that many of the 26,000 charity shop employees
 have been furloughed - the unique nature of these employees (similar private businesses
 do not have retail employees) means that they are potentially missed from my estimate.&lt;/p&gt;
 &lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Based on recent discussions with &lt;a href="https://twitter.com/CharityRetail?ref_src=twsrc%5Etfw"&gt;@CharityRetail&lt;/a&gt; there are 26,000 FTE charity shop employees &amp;amp; many of them have been furloughed. &lt;a href="https://twitter.com/CivilSocietyUK?ref_src=twsrc%5Etfw"&gt;@CivilSocietyUK&lt;/a&gt; estimated 20,000 from the 20 largest charities some time back. Very difficult to be certain though &lt;a href="https://t.co/FZhj3jdC0e"&gt;https://t.co/FZhj3jdC0e&lt;/a&gt;&lt;/p&gt;&amp;mdash; Charity Tax Group (@CharityTaxGroup) &lt;a href="https://twitter.com/CharityTaxGroup/status/1271440561581498370?ref_src=twsrc%5Etfw"&gt;June 12, 2020&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 
-&lt;p&gt;&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt; &lt;/p&gt;
 &lt;p&gt;A Charity Tax Group survey showed 70% of respondents had made a claim.&lt;/p&gt;
 &lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;This does not provide specific figures but a recent CTG snapshot poll showed high level of take-up organisationally (without specific responses on furloughed staff per charity) &lt;a href="https://t.co/6Z7gxsMeab"&gt;pic.twitter.com/6Z7gxsMeab&lt;/a&gt;&lt;/p&gt;&amp;mdash; Charity Tax Group (@CharityTaxGroup) &lt;a href="https://twitter.com/CharityTaxGroup/status/1271441766068166656?ref_src=twsrc%5Etfw"&gt;June 12, 2020&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 
-&lt;p&gt;&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt; &lt;/p&gt;
 &lt;p&gt;66% of respondents to &lt;a href="https://www.probonoeconomics.com/news/pbe-launches-new-survey-understand-impact-covid-19-charity-sector"&gt;Pro Bono Economics&lt;/a&gt; 
 survey (9-10 June) said they had furloughed or used job retention scheme.&lt;/p&gt;
 &lt;h2 id="what-next"&gt;What next?&lt;/h2&gt;
@@ -96,7 +96,7 @@ understand the environment and measure responses. But charities can often fall t
 cracks in official statistics - due to lack of data, or because they're not thought about
 when the measures are designed.&lt;/p&gt;
 &lt;p&gt;I'd like to see better official data on charities in this crisis, to help the charity 
-sector measure the impact and respond. &lt;/p&gt;</content><category term="Covid19"></category></entry><entry><title>Working with XBRL</title><link href="https://dkane.net/2018/working-with-xbrl/" rel="alternate"></link><published>2018-12-18T11:06:07+00:00</published><updated>2018-12-18T11:06:07+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-12-18:/2018/working-with-xbrl/</id><summary type="html">&lt;p&gt;Some notes on the XBRL data format, as I've been working with it this week. I'm working with Power to Change to help them extract data from accounts.&lt;/p&gt;
+sector measure the impact and respond. &lt;/p&gt;</content><category term="Blog"></category><category term="Covid19"></category></entry><entry><title>Working with XBRL</title><link href="https://dkane.net/2018/working-with-xbrl/" rel="alternate"></link><published>2018-12-18T11:06:07+00:00</published><updated>2018-12-18T11:06:07+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-12-18:/2018/working-with-xbrl/</id><summary type="html">&lt;p&gt;Some notes on the XBRL data format, as I've been working with it this week. I'm working with Power to Change to help them extract data from accounts.&lt;/p&gt;
 &lt;h2 id="whats-xbrlixbrl"&gt;What's XBRL/iXBRL?&lt;/h2&gt;
 &lt;p&gt;XBRL standards for eXtensible Business Reporting Language. iXBRL is the same but "inline". They describe a data standard for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Some notes on the XBRL data format, as I've been working with it this week. I'm working with Power to Change to help them extract data from accounts.&lt;/p&gt;
 &lt;h2 id="whats-xbrlixbrl"&gt;What's XBRL/iXBRL?&lt;/h2&gt;
@@ -137,7 +137,7 @@ sector measure the impact and respond. &lt;/p&gt;</content><category term="Covid
 &lt;p&gt;As these notes suggest, a lot of what I've done is trying to make sense of the landscape and explore the data. I did most of this through jupyter notebooks, looking through iXBRL files of a selection of community businesses. I've found the python &lt;a href="https://www.crummy.com/software/BeautifulSoup/"&gt;BeautifulSoup&lt;/a&gt; library helpful for parsing the XML.&lt;/p&gt;
 &lt;p&gt;Using what I'd learnt from exploring the iXBRL files I've started to put together a python module for parsing iXBRL and extracting the data. I'll be aiming to develop this further, and hopefully use it in anger: &lt;a href="https://github.com/drkane/ixbrl-parse"&gt;https://github.com/drkane/ixbrl-parse&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="who-else-is-doing-things-with-xbrl"&gt;Who else is doing things with XBRL&lt;/h2&gt;
-&lt;p&gt;I did a search of GitHub to find XBRL repositories. There were a few people who'd tried to do similar things over the years. But most interestingly, the &lt;a href="https://github.com/ONSBigData/parsing_company_accounts"&gt;ONS Big Data Unit&lt;/a&gt; has an active repository with some code, approaching it in a very similar way to me. I've got in touch with them to see if they want to compare notes.&lt;/p&gt;</content><category term="XBRL"></category><category term="iXBRL"></category><category term="accounts"></category></entry><entry><title>Text analysis in the voluntary sector</title><link href="https://dkane.net/2018/text-analysis-in-the-voluntary-sector/" rel="alternate"></link><published>2018-11-19T09:58:43+00:00</published><updated>2018-11-19T09:58:43+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-11-19:/2018/text-analysis-in-the-voluntary-sector/</id><summary type="html">&lt;p&gt;&lt;img alt="Chart from Google n-grams showing results for data and cheese since 1800. Data overtakes cheese in 1970ish" src="/images/data-cheese-chart.png"&gt; &lt;/p&gt;
+&lt;p&gt;I did a search of GitHub to find XBRL repositories. There were a few people who'd tried to do similar things over the years. But most interestingly, the &lt;a href="https://github.com/ONSBigData/parsing_company_accounts"&gt;ONS Big Data Unit&lt;/a&gt; has an active repository with some code, approaching it in a very similar way to me. I've got in touch with them to see if they want to compare notes.&lt;/p&gt;</content><category term="Blog"></category><category term="XBRL"></category><category term="iXBRL"></category><category term="accounts"></category></entry><entry><title>Text analysis in the voluntary sector</title><link href="https://dkane.net/2018/text-analysis-in-the-voluntary-sector/" rel="alternate"></link><published>2018-11-19T09:58:43+00:00</published><updated>2018-11-19T09:58:43+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-11-19:/2018/text-analysis-in-the-voluntary-sector/</id><summary type="html">&lt;p&gt;&lt;img alt="Chart from Google n-grams showing results for data and cheese since 1800. Data overtakes cheese in 1970ish" src="/images/data-cheese-chart.png"&gt; &lt;/p&gt;
 &lt;p&gt;Last week at the &lt;a href="https://www.data4goodconf.org.uk/"&gt;Data 4 Good event&lt;/a&gt; in Birmingham I gave a talk on the opportunities
 and challenges that text analysis offers to the voluntary sector. It was a short lightning
 talk so I was only able to give a quick overview of the possibilities, and it's a big …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Chart from Google n-grams showing results for data and cheese since 1800. Data overtakes cheese in 1970ish" src="/images/data-cheese-chart.png"&gt; &lt;/p&gt;
@@ -155,7 +155,7 @@ They are:&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://databasic.io/en/wordcounter/"&gt;&lt;strong&gt;DataBasic – word counter&lt;/strong&gt;&lt;/a&gt; - create word clouds and look in more detail at the frequency of words in a piece of text.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.opencalais.com/opencalais-demo/"&gt;&lt;strong&gt;Reuters OpenCalais&lt;/strong&gt;&lt;/a&gt; - a proprietary tool for getting started with entity recognition. I'd be interested to know if there are any similar open-source projects - one I've seen is &lt;a href="https://spacy.io/usage/spacy-101#annotations-ner"&gt;spacy&lt;/a&gt; but it requires some programming knowledge to use.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://openrefine.org/"&gt;&lt;strong&gt;OpenRefine&lt;/strong&gt;&lt;/a&gt; - a useful data wrangling tool with lots of useful features for working with text.&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Text analysis"></category></entry><entry><title>Grants in Kingston</title><link href="https://dkane.net/2018/grants-in-kingston/" rel="alternate"></link><published>2018-06-14T12:57:19+01:00</published><updated>2018-06-14T12:57:19+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-06-14:/2018/grants-in-kingston/</id><summary type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
+&lt;/ul&gt;</content><category term="Blog"></category><category term="Text analysis"></category></entry><entry><title>Grants in Kingston</title><link href="https://dkane.net/2018/grants-in-kingston/" rel="alternate"></link><published>2018-06-14T12:57:19+01:00</published><updated>2018-06-14T12:57:19+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-06-14:/2018/grants-in-kingston/</id><summary type="html">&lt;p&gt;On Tuesday I was lucky enough to take part in a Kingston "Data Day", organised
 by the fantastic &lt;a href="https://superhighways.org.uk/"&gt;Superhighways&lt;/a&gt; and 
 &lt;a href="https://kva.org.uk/"&gt;Kingston Voluntary Action&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The aim of the day was to showcase some of the work that charities in Kingston 
@@ -208,7 +208,7 @@ the terms under which the data was used from GrantNav.&lt;/p&gt;
 &lt;h3 id="acknowledgements-and-data-licensing"&gt;Acknowledgements and data licensing&lt;/h3&gt;
 &lt;p&gt;All data has been used under the license applied by the data publisher. 
 &lt;a href="http://grantnav.threesixtygiving.org/datasets/#copyright"&gt;A list of the licenses used&lt;/a&gt; can be found on GrantNav.&lt;/p&gt;
-&lt;p&gt;Contains data from &lt;a href="http://grantnav.threesixtygiving.org/datasets/"&gt;GrantNav&lt;/a&gt; a &lt;a href="http://www.threesixtygiving.org/"&gt;360Giving&lt;/a&gt; application released under the terms of the &lt;a href="https://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution Sharealike license (CC-BY-SA)&lt;/a&gt;&lt;/p&gt;</content><category term="Grants"></category><category term="Kingston"></category></entry><entry><title>Adding charity details using findthatcharity - Part II</title><link href="https://dkane.net/2018/adding-charity-details-using-findthatcharity-part-ii/" rel="alternate"></link><published>2018-03-31T13:25:00+01:00</published><updated>2018-03-31T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-03-31:/2018/adding-charity-details-using-findthatcharity-part-ii/</id><summary type="html">&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/"&gt;...continued from part 1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Contains data from &lt;a href="http://grantnav.threesixtygiving.org/datasets/"&gt;GrantNav&lt;/a&gt; a &lt;a href="http://www.threesixtygiving.org/"&gt;360Giving&lt;/a&gt; application released under the terms of the &lt;a href="https://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution Sharealike license (CC-BY-SA)&lt;/a&gt;&lt;/p&gt;</content><category term="Blog"></category><category term="Grants"></category><category term="Kingston"></category></entry><entry><title>Adding charity details using findthatcharity - Part II</title><link href="https://dkane.net/2018/adding-charity-details-using-findthatcharity-part-ii/" rel="alternate"></link><published>2018-03-31T13:25:00+01:00</published><updated>2018-03-31T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-03-31:/2018/adding-charity-details-using-findthatcharity-part-ii/</id><summary type="html">&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/"&gt;...continued from part 1&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="part-ii-add-charity-details"&gt;Part II - add charity details&lt;/h2&gt;
 &lt;p&gt;Once you've got a list of organisations in OpenRefine with charity numbers you
 can then add more details about the organisations using &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt;.
@@ -241,9 +241,8 @@ select &lt;code&gt;Edit Column &amp;gt; Add column by fetching URLs...&lt;/code&
 &lt;p&gt;In the resulting dialog you need to add a formula which will create the URL that needs
 to be fetched. This means adding the charity number value into a template. The formula
 you need is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot;https://findthatcharity.uk/charity/&amp;quot; + value + &amp;quot;.json&amp;quot;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;quot;https://findthatcharity.uk/charity/&amp;quot; + value + &amp;quot;.json&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Make sure you include the quotation marks in the correct place. Add a new column name
 (something like "Charity Details"). The "Throttle delay" setting helps to lessen the
@@ -264,9 +263,8 @@ can be used to extract anything from the data.&lt;/p&gt;
 &lt;p&gt;Use the arrow menu next to the new column, and then select &lt;code&gt;Edit Column &amp;gt; Add column based on this column...&lt;/code&gt;
 Again, we'll enter a formula to parse the JSON and find the right value within. We're using
 the &lt;code&gt;parseJson&lt;/code&gt; OpenRefine function. Enter the following formula:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;parseJson(value)[&amp;quot;latest_income&amp;quot;]
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;parseJson(value)[&amp;quot;latest_income&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enter a name for the column and press OK to add it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Dialog for adding a new column by parsing JSON" src="/images/reconcile/parse-json-1.png"&gt;&lt;/p&gt;
@@ -274,9 +272,8 @@ the &lt;code&gt;parseJson&lt;/code&gt; OpenRefine function. Enter the following 
 &lt;p&gt;Adding a company number is slightly more complicated. This is because the &lt;code&gt;company_number&lt;/code&gt;
 field can contain multiple values (if a charity is linked with more than one company).
 So the formula we'll use in this instance is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;parseJson(value)[&amp;quot;company_number&amp;quot;][0][&amp;quot;number&amp;quot;]
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;parseJson(value)[&amp;quot;company_number&amp;quot;][0][&amp;quot;number&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The &lt;code&gt;[0]&lt;/code&gt; part selects the first value within the list of values of &lt;code&gt;company_number&lt;/code&gt;, and
 then &lt;code&gt;["number"]&lt;/code&gt; selects the company number within that.&lt;/p&gt;
@@ -295,15 +292,14 @@ to look for other data sources.&lt;/p&gt;
 &lt;p&gt;A good place to look is &lt;a href="https://charitybase.uk/"&gt;CharityBase&lt;/a&gt; which has more detailed data
 extracted from the Charity Commission.&lt;/p&gt;
 &lt;p&gt;A sample formula for getting a CharityBase URL for extracting data might look like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;amp;charityNumber=&amp;quot; + value + &amp;quot;&amp;amp;fields=mainCharity.income,registration,beta.people.employees&amp;quot;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="s"&gt;&amp;quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;amp;charityNumber=&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;amp;fields=mainCharity.income,registration,beta.people.employees&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;(Note that you need to specify the fields you want to return - here we're looking for the 
 number of employees).&lt;/p&gt;
 &lt;p&gt;And the sample formula for parsing the resulting JSON data might look like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;parseJson(value)[&amp;quot;charities&amp;quot;][0][&amp;quot;beta&amp;quot;][&amp;quot;people&amp;quot;][&amp;quot;employees&amp;quot;]
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Charities"></category><category term="findthatcharity"></category></entry><entry><title>Adding charity details using findthatcharity.uk - Part I</title><link href="https://dkane.net/2018/adding-charity-details-using-findthatcharityuk-part-i/" rel="alternate"></link><published>2018-03-26T13:25:00+01:00</published><updated>2018-03-26T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-03-26:/2018/adding-charity-details-using-findthatcharityuk-part-i/</id><summary type="html">&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;parseJson(value)[&amp;quot;charities&amp;quot;][0][&amp;quot;beta&amp;quot;][&amp;quot;people&amp;quot;][&amp;quot;employees&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Blog"></category><category term="Charities"></category><category term="findthatcharity"></category></entry><entry><title>Adding charity details using findthatcharity.uk - Part I</title><link href="https://dkane.net/2018/adding-charity-details-using-findthatcharityuk-part-i/" rel="alternate"></link><published>2018-03-26T13:25:00+01:00</published><updated>2018-03-26T13:25:00+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-03-26:/2018/adding-charity-details-using-findthatcharityuk-part-i/</id><summary type="html">&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;See part II&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; is a site I've created to help access
 data about charities. One of the ways you can use it is to add details about a list of
@@ -415,14 +411,14 @@ box. This will look at the cell reconcilation object, and find the &lt;code&gt;i
 &lt;p&gt;That's it for part one - hopefully you've now got a charity number for all the charities in 
 your data. In &lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;the next part&lt;/a&gt; I'll take a look at using the charity number to add more details
 about the charity, like it's web address or latest income.&lt;/p&gt;
-&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;Part II continues here...&lt;/a&gt;&lt;/p&gt;</content><category term="Charities"></category><category term="findthatcharity"></category></entry><entry><title>Back in the GDPR</title><link href="https://dkane.net/2018/back-in-the-gdpr/" rel="alternate"></link><published>2018-03-01T13:25:00+00:00</published><updated>2018-03-01T13:25:00+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-03-01:/2018/back-in-the-gdpr/</id><summary type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;Part II continues here...&lt;/a&gt;&lt;/p&gt;</content><category term="Blog"></category><category term="Charities"></category><category term="findthatcharity"></category></entry><entry><title>Back in the GDPR</title><link href="https://dkane.net/2018/back-in-the-gdpr/" rel="alternate"></link><published>2018-03-01T13:25:00+00:00</published><updated>2018-03-01T13:25:00+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-03-01:/2018/back-in-the-gdpr/</id><summary type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add …&lt;/p&gt;</summary><content type="html">&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add an issue or make a pull request (or &lt;a href="https://twitter.com/kanedr"&gt;tweet me @kanedr&lt;/a&gt;) and I'll add it.&lt;/p&gt;
 &lt;p&gt;My view on GDPR is that, as a consumer, it's a welcome rebalancing of data rights from organisations to individuals, and I think organisations can embrace it positively to think better about how they handle data about their clients, staff, donors and beneficiaries.&lt;/p&gt;
 &lt;p&gt;With that in mind I'd highly recommend these resources by &lt;a href="https://projectsbyif.com/"&gt;IF&lt;/a&gt;. They show ways in which GDPR doesn't just have to be an annoyance that means you have to reword your forms, but instead something that can help you fundamentally rethink the way your users need you to handle their data.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://newdigitalrights.projectsbyif.com/"&gt;Designing for new Digital Rights&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="GDPR"></category><category term="Data Protection"></category></entry><entry><title>Names shared by genders</title><link href="https://dkane.net/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-02-10:/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
+&lt;/ul&gt;</content><category term="Blog"></category><category term="GDPR"></category><category term="Data Protection"></category></entry><entry><title>Names shared by genders</title><link href="https://dkane.net/2018/names-shared-by-genders/" rel="alternate"></link><published>2018-02-10T21:32:35+01:00</published><updated>2018-02-10T21:32:35+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-02-10:/2018/names-shared-by-genders/</id><summary type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
 in ambiguous names - those that are shared by people of both genders.&lt;/p&gt;
 &lt;p&gt;I realised I could use the list of male and female charity trustee names
 I'd gathered to look into this in a bit more detail. Bearing in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Building the gender classifier I've &lt;a href="/a-name-gender-classifier/"&gt;written about here&lt;/a&gt; got me interested
@@ -436,16 +432,15 @@ recreate the research. &lt;a href="https://github.com/"&gt;You can find the note
 &lt;p&gt;We start by importing the libraries we need - two built-in python libraries
 (&lt;code&gt;csv&lt;/code&gt; and &lt;code&gt;collections&lt;/code&gt;), &lt;code&gt;pandas&lt;/code&gt; for analysing the data and &lt;code&gt;matplotlib&lt;/code&gt;
 for making charts.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
 
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;csv&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;To start, we go through all the names in our source data, and use the names with titles to find first names of males and females. To do this I've just taken the first word from the string, excluding the title, providing it's more than one character. This is fairly crude, and will be wrong in some cases (eg someone who uses two first names). But it should be good enough for our purposes.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
     &lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -472,21 +467,18 @@ for making charts.&lt;/p&gt;
         &lt;span class="c1"&gt;# if the first word is one of these titles it&amp;#39;s a male name&lt;/span&gt;
         &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sir&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
             &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Lets check the female and male names to check we're on the right track.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[&amp;#39;Felicity&amp;#39;, &amp;#39;Tessa&amp;#39;, &amp;#39;Elizabeth&amp;#39;, &amp;#39;Julie&amp;#39;, &amp;#39;Rosemary&amp;#39;, &amp;#39;Catherine&amp;#39;, &amp;#39;Eileen&amp;#39;, &amp;#39;Christa&amp;#39;, &amp;#39;Roberta&amp;#39;, &amp;#39;Beverley&amp;#39;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[&amp;#39;Felicity&amp;#39;, &amp;#39;Tessa&amp;#39;, &amp;#39;Elizabeth&amp;#39;, &amp;#39;Julie&amp;#39;, &amp;#39;Rosemary&amp;#39;, &amp;#39;Catherine&amp;#39;, &amp;#39;Eileen&amp;#39;, &amp;#39;Christa&amp;#39;, &amp;#39;Roberta&amp;#39;, &amp;#39;Beverley&amp;#39;]&lt;/span&gt;
 &lt;span class="k"&gt;[&amp;#39;Oliver&amp;#39;, &amp;#39;Kenneth&amp;#39;, &amp;#39;Neil&amp;#39;, &amp;#39;Keith&amp;#39;, &amp;#39;John&amp;#39;, &amp;#39;Herschel&amp;#39;, &amp;#39;Alex&amp;#39;, &amp;#39;David&amp;#39;, &amp;#39;Christopher&amp;#39;, &amp;#39;Daniel&amp;#39;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;female&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="n"&gt;male&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 
 &lt;span class="n"&gt;female_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -496,21 +488,21 @@ for making charts.&lt;/p&gt;
 &lt;span class="n"&gt;male_people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;male&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 &lt;span class="n"&gt;all_people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;female_people&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;male_people&lt;/span&gt;
 
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Female: {:,.0f} (from {:,.0f} people)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Female: &lt;/span&gt;&lt;span class="si"&gt;{:,.0f}&lt;/span&gt;&lt;span class="s2"&gt; (from &lt;/span&gt;&lt;span class="si"&gt;{:,.0f}&lt;/span&gt;&lt;span class="s2"&gt; people)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;female_names&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;female_people&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Male: {:,.0f} (from {:,.0f} people)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Male: &lt;/span&gt;&lt;span class="si"&gt;{:,.0f}&lt;/span&gt;&lt;span class="s2"&gt; (from &lt;/span&gt;&lt;span class="si"&gt;{:,.0f}&lt;/span&gt;&lt;span class="s2"&gt; people)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;male_names&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;male_people&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;{:,.1f} &lt;/span&gt;&lt;span class="si"&gt;% o&lt;/span&gt;&lt;span class="s2"&gt;f names are female, {:,.1f} of people in sample&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{:,.1f}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;% o&lt;/span&gt;&lt;span class="s2"&gt;f names are female, &lt;/span&gt;&lt;span class="si"&gt;{:,.1f}&lt;/span&gt;&lt;span class="s2"&gt; of people in sample&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_names&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;all_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_people&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;all_people&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
 &lt;span class="p"&gt;))&lt;/span&gt;
 
 &lt;span class="n"&gt;weighting&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;male_people&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;0.489&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;male_people&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;female_people&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Use a weighting of {:,.3f} to bring female population to 51.1&lt;/span&gt;&lt;span class="si"&gt;% o&lt;/span&gt;&lt;span class="s2"&gt;f sample&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Use a weighting of &lt;/span&gt;&lt;span class="si"&gt;{:,.3f}&lt;/span&gt;&lt;span class="s2"&gt; to bring female population to 51.1&lt;/span&gt;&lt;span class="si"&gt;% o&lt;/span&gt;&lt;span class="s2"&gt;f sample&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;weighting&lt;/span&gt;
 &lt;span class="p"&gt;))&lt;/span&gt;
 
@@ -523,15 +515,13 @@ for making charts.&lt;/p&gt;
 &lt;span class="c1"&gt;# X = 0.489 * (X + Z)&lt;/span&gt;
 &lt;span class="c1"&gt;# X / 0.489 = X + Z&lt;/span&gt;
 &lt;span class="c1"&gt;# Z = (X / 0.489) - X&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Female&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;367&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;335&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;237&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Female&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;367&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;335&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;237&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;Male&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;085&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;363&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;296&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="mf"&gt;48.9&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;48.0&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;
 &lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;weighting&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mf"&gt;1.132&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;bring&lt;/span&gt; &lt;span class="n"&gt;female&lt;/span&gt; &lt;span class="n"&gt;population&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mf"&gt;51.1&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This gives us 15,367 female first names (from 335,000 people) and 
 16,085 male ones (from 363,296 people). The only issue is that
@@ -540,33 +530,29 @@ the 18+ population in England and Wales&lt;/a&gt;.
 So we can use a weighting of 1.132 to correct this when we use the counts.&lt;/p&gt;
 &lt;p&gt;Next we work out the count of how many times each name appears for men and
 women. To do this the data is put into panda dataframes.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;orient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;orient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;female_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
 &lt;span class="n"&gt;male_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;male&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;orient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;male_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;We then apply our weighting to the female figures to adjust for the
 lower number in our sample.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;weighting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;weighting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;These dataframes are merged together, joining on the name, to give us a list of first names found in the dataset alongside the number of females and males found with that name.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;male_df&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;outer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;both&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;female_df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;male_df&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;outer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;We can see a list of the top 10 most common first names in the dataset (only two female names make the list - even after applying our weighting).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div&gt;
 &lt;style&gt;
@@ -679,9 +665,8 @@ lower number in our sample.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;And a list of some of the least common - these names only appear once.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div&gt;
 &lt;style&gt;
@@ -796,15 +781,13 @@ lower number in our sample.&lt;/p&gt;
 &lt;h2 id="shared-names"&gt;Shared names&lt;/h2&gt;
 &lt;p&gt;We now move on to what we were trying to do - get a list of names that are commonly shared between people of different genders. You can see from the top 10s above that it's not a perfect dataset - some names that you might assume are unambiguously male or female have some counterparts - there are 8 female Davids, and 3 male Susans.&lt;/p&gt;
 &lt;p&gt;This could be a mistake in the way the algorithm was applied, a typo in the data, or people who have an unusual name. But to look only at names we would expect to be more common, I've filtered to only show only names where more than 30 instances of both male and female people have the name. This threshold should also ensure we have a decent sample of people for each name.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;male&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;both&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="n"&gt;shared&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;23
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;23&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div&gt;
 &lt;style&gt;
@@ -1021,13 +1004,11 @@ lower number in our sample.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;This identifies 23 names meeting our criteria. They range from Jean (97% female), to Robin (98% male). But the most interesting names come in the middle. The closest to a 50-50 split are Leigh (49% female), Vivian (52% female) and Mel (53% female). &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;multiply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iloc&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;barh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stacked&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;female_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;male_pc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;multiply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iloc&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;barh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stacked&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;matplotlib.axes._subplots.AxesSubplot at 0x23fe0924e80&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;matplotlib.axes._subplots.AxesSubplot at 0x23fe0924e80&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img alt="png" src="/images/output_20_1.png"&gt;&lt;/p&gt;
 &lt;p&gt;Charting the data gives us a few clusters:&lt;/p&gt;
@@ -1035,7 +1016,7 @@ lower number in our sample.&lt;/p&gt;
 &lt;li&gt;Names that are mostly female, but with some male use: &lt;strong&gt;Jean, Pat, Kerry, Lyn, Kim, Jan, Lindsay&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Names that are pretty close to 50-50: &lt;strong&gt;Mel, Vivian, Leigh, Jose, Sam&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Names that are mostly male, but with some female use: &lt;strong&gt;Alex, Chris, Ali, Lee, Ashley, Leslie, Terry, Robin&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>A name gender classifier</title><link href="https://dkane.net/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-02-10:/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
+&lt;/ul&gt;</content><category term="Blog"></category></entry><entry><title>A name gender classifier</title><link href="https://dkane.net/2018/a-name-gender-classifier/" rel="alternate"></link><published>2018-02-10T21:19:35+01:00</published><updated>2018-02-10T21:19:35+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2018-02-10:/2018/a-name-gender-classifier/</id><summary type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
 classify them into male and female. For example, I've looked at lists of people
 who attended events to see whether they were reaching more men or women - this
 then helps target future events …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Something I've needed to do a couple of times is take a long list of names and
@@ -1081,7 +1062,7 @@ the model - with the hope that they'll be equally distributed and so won't make
 a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 &lt;h2 id="step-2-training-the-model"&gt;Step 2: training the model&lt;/h2&gt;
 &lt;h2 id="step-3-testing-the-model"&gt;Step 3: testing the model&lt;/h2&gt;
-&lt;h2 id="step-4-using-the-model"&gt;Step 4: using the model&lt;/h2&gt;</content></entry><entry><title>Twitter bot – random charity</title><link href="https://dkane.net/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2016-10-16:/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
+&lt;h2 id="step-4-using-the-model"&gt;Step 4: using the model&lt;/h2&gt;</content><category term="Blog"></category></entry><entry><title>Twitter bot – random charity</title><link href="https://dkane.net/2016/twitter-bot-random-charity/" rel="alternate"></link><published>2016-10-16T10:20:00+01:00</published><updated>2016-10-16T10:20:00+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2016-10-16:/2016/twitter-bot-random-charity/</id><summary type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I’ve been playing about with twitter bots, and following &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;some instructions on using the twitter API in python&lt;/a&gt;, I’ve created a bot that tweets a link to a random charity every half an hour.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/drkane/random-charity-bot"&gt;code and more details on the bot can be found on github&lt;/a&gt;. From the readme:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1094,4 +1075,4 @@ a difference to the final total. But this isn't a guarantee.&lt;/p&gt;
 &lt;li&gt;Fetch charity data script adapted from &lt;a href="https://github.com/OpenDataServices/grantnav/blob/master/dataload/fetch_charity_data.py"&gt;https://github.com/OpenDataServices/grantnav/blob/master/dataload/fetch_charity_data.py&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Twitter API use from &lt;a href="https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/"&gt;https://videlais.com/2015/03/02/how-to-create-a-basic-twitterbot-in-python/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Charity data from &lt;a href="http://data.charitycommission.gov.uk/"&gt;http://data.charitycommission.gov.uk/&lt;/a&gt; – used under Open Government Licence v3.0&lt;/li&gt;
-&lt;/ul&gt;</content></entry></feed>
+&lt;/ul&gt;</content><category term="Blog"></category></entry></feed>
