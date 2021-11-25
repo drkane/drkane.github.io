@@ -231,6 +231,11 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
             <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="p">)</span>
 
+    <span class="c1"># hide the axes</span>
+    <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;yaxis&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">axis</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;xaxis&#39;</span><span class="p">):</span>
+            <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="n">axis</span><span class="p">][</span><span class="s1">&#39;visible&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
     <span class="c1"># update the margins and size</span>
     <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">][</span><span class="s1">&#39;margin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -245,6 +250,21 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
 
     <span class="k">return</span> <span class="n">subplots</span>
 </code></pre></div>
+
+<h2 id="a-note-on-log-axes">A note on log axes</h2>
+<p>If you're using a log axis, as some of the charts on <ngoexplorer.org> do, then the implementation above may not work due to the different way that log ranges are calculated.</p>
+<p>Adding something similar to this on the function above should help (where <code>log_axis</code> is a boolean variable):</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">hb_plot</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;xaxis&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">log_axis</span><span class="p">:</span>
+            <span class="n">hb_plot</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span>
+            <span class="n">hb_plot</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="s2">&quot;range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">max_value</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hb_plot</span><span class="p">[</span><span class="s2">&quot;layout&quot;</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="s2">&quot;range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">]</span>
+</code></pre></div>
+
+<h2 id="updated-2021-11-25">Updated 2021-11-25</h2>
+<p>Thanks to Chris Caudill for pointing out a missing part of the function - this is now included. I've also added the section at the end on log axes.</p>
     </div><!-- /.entry-content -->
     </div>
 </section>
