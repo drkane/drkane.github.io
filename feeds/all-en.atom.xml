@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2020-06-16T15:46:51+01:00</updated><entry><title>Better horizontal bar charts with plotly</title><link href="https://dkane.net/2020/better-horizontal-bar-charts-with-plotly/" rel="alternate"></link><published>2020-06-16T15:46:51+01:00</published><updated>2020-06-16T15:46:51+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2020-06-16:/2020/better-horizontal-bar-charts-with-plotly/</id><summary type="html">&lt;p&gt;I often find that horizontal bar charts are a great way of visualising
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2022-02-09T16:06:00+00:00</updated><entry><title>What powers charity websites?</title><link href="https://dkane.net/2022/what-powers-charity-websites/" rel="alternate"></link><published>2022-02-09T16:06:00+00:00</published><updated>2022-02-09T16:06:00+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2022-02-09:/2022/what-powers-charity-websites/</id><summary type="html">&lt;p&gt;I wanted to understand what technologies charities are using with their websites. What &lt;abbr title="Content Management Systems"&gt;CMSs&lt;/abbr&gt; do they use to create content and layout the sites? What web technologies are they using - to what extent have the embraced the latest tech on their sites? And how well are they complying with some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I wanted to understand what technologies charities are using with their websites. What &lt;abbr title="Content Management Systems"&gt;CMSs&lt;/abbr&gt; do they use to create content and layout the sites? What web technologies are they using - to what extent have the embraced the latest tech on their sites? And how well are they complying with some of the regulatory requirements for their sites?&lt;/p&gt;
+&lt;p&gt;There's lots more detail below, but here's the headlines:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nearly half&lt;/strong&gt; of UK charities don't have a website, although for larger charities this figure is much higher&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;At least 10%&lt;/strong&gt; of charity websites don't work at a given moment&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;At least one third&lt;/strong&gt; of charities don't have their charity number on their website&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WordPress&lt;/strong&gt; powers one third of charities' websites&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;jQuery&lt;/strong&gt; is present on 71% of charity websites&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nearly two thirds&lt;/strong&gt; of charities use Google Analytics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="which-charities-have-websites"&gt;Which charities have websites?&lt;/h2&gt;
+&lt;p&gt;I took a random sample of 1,137 charities from the UK, using data from the three UK charity regulators. The sample was based on those charities with a valid website address. I collected 200 random websites for each group of charities in 5 income bands, plus websites for all 137 charities with over £100m.&lt;/p&gt;
+&lt;p&gt;Only just over half (57%) of UK charities supply a website address to their regulator, although larger organsiations are much more likely to - 84% of charities with more than £100,000 annual income have a valid website address.&lt;/p&gt;
+&lt;div class="flourish-embed flourish-chart" data-src="visualisation/8655291"&gt;&lt;/div&gt;
+
+&lt;p&gt;I excluded those charities that use a facebook page as their website. 750 charities give a facebook.com address - less than 1% of charities with websites, mainly concentrated in the smaller charities.&lt;/p&gt;
+&lt;h2 id="do-the-websites-actually-work"&gt;Do the websites actually work?&lt;/h2&gt;
+&lt;p&gt;With my sample of charities, I could check which of these actually return a response. Valid responses were received for 82% of charity sites. Of the remainder, 6% returned a "403 Forbidden" response. This suggests that they are aiming to only respond to valid web browser requests, rather than attempts at web scraping (although some of these responses could be because they have given a site address that requires a login).&lt;/p&gt;
+&lt;p&gt;The remaining 11% response returned either no response at all, or gave an error of some kind. This was much higher for smaller charities - over 15% of websites for charities under £100,000 did not work at all.&lt;/p&gt;
+&lt;p&gt;Even for larger charities with income over £10m, a worrying proportion of websites just don't work, although some of this may be due to anti-scraping measures.&lt;/p&gt;
+&lt;div class="flourish-embed flourish-chart" data-src="visualisation/8655406"&gt;&lt;/div&gt;
+
+&lt;h2 id="do-charities-include-their-charity-number-on-their-website"&gt;Do charities include their charity number on their website?&lt;/h2&gt;
+&lt;p&gt;Charities should &lt;a href="https://www.wrighthassall.co.uk/knowledge-base/guide-to-advertising-charitable-status-on-all-written-materials"&gt;display their charity number&lt;/a&gt; on their website, so that members of the public can see that they are regulated as a charity.&lt;/p&gt;
+&lt;p&gt;Most charities complied with this, but a significant minority (40% of the working websites checked), don't have their registered charity number on their website. There are some caveats to this - I only checked the HTML of the website homepage, so if a site is entirely powered by javascript then I won't pick up the content of the page as a real user might see it. But I think it's a reasonable estimate.&lt;/p&gt;
+&lt;p&gt;And although larger charities do slightly better at having their charity number visible on the website, it's still nearly a quarter of the largest charities with incomes over £10m that don't.&lt;/p&gt;
+&lt;div class="flourish-embed flourish-chart" data-src="visualisation/8655836"&gt;&lt;/div&gt;
+
+&lt;h2 id="what-content-management-systems-do-charities-use"&gt;What Content Management Systems do charities use?&lt;/h2&gt;
+&lt;p&gt;I did some keyword searching of the website homepage to try and detect which content management system (CMS) the website uses. For example, if I found the text &lt;code&gt;wp-content&lt;/code&gt; in the HTML of the homepage, that's a good indication that they are using WordPress.&lt;/p&gt;
+&lt;p&gt;These keywords aren't perfect - I detected the CMS for about 58% of websites. Larger charities were harder to detect the CMS - they are more likely to use a custom CMS, or one that isn't easily revealed through the HTML.&lt;/p&gt;
+&lt;p&gt;WordPress was the most popular CMS, powering 36% of sites. This is followed by Drupal, which powered 9% of sites. WordPress is more commonly used by smaller charities, where Drupal is more popular with larger ones.&lt;/p&gt;
+&lt;div class="flourish-embed flourish-chart" data-src="visualisation/8606184"&gt;&lt;/div&gt;
+
+&lt;h2 id="which-web-technologies-do-charities-use"&gt;Which web technologies do charities use?&lt;/h2&gt;
+&lt;p&gt;I also searched the HTML text for a set of web technologies that could be present on pages. This was a fairly arbritrary list based on existing knowledge a little bit of checking of some of the responses - so any suggestions for what else to search for would be very useful.&lt;/p&gt;
+&lt;p&gt;The tools I looked for, and the proportion of sites that appeared to use the tool, were:&lt;/p&gt;
+&lt;h3 id="web-technologies-and-javascriptcss-frameworks"&gt;Web technologies and JavaScript/CSS frameworks&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;site claims to be in HTML5 (&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/code&gt; - &lt;strong&gt;91%&lt;/strong&gt; of sites)&lt;/li&gt;
+&lt;li&gt;uses jQuery (&lt;strong&gt;71%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;uses Google fonts (&lt;strong&gt;44%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;uses Bootstrap CSS framework (&lt;strong&gt;13%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;uses React JS framework (&lt;strong&gt;6%&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="analytics-and-social-media"&gt;Analytics and social media&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Mentions cookies - potentially a proxy for whether a cookie popup is shown (&lt;strong&gt;72%&lt;/strong&gt; of sites)&lt;/li&gt;
+&lt;li&gt;Google Analytics is enabled (&lt;strong&gt;62%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Twitter cards or Open Graph metadata available (&lt;strong&gt;62%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Facebook tracking enabled (&lt;strong&gt;14%&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="assistive-technology"&gt;Assistive technology&lt;/h2&gt;
+&lt;p&gt;Note that these are pretty poor proxies for how accessible a website is for a range of users&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;alt=&lt;/code&gt; somewhere on the page (could indicate that alt-text is included for some images - &lt;strong&gt;93%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Includes a &lt;code&gt;aria&lt;/code&gt; property somewhere on the page (&lt;strong&gt;72%&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Uses the browsealoud extension (&lt;strong&gt;1.2%&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As shown below, use of these tools changes based on the size of the charity. Larger charities are more likely to use Google analytics &amp;amp; Facebook tracking, more likely to mention cookies and use Open Graph or Twitter Cards.&lt;/p&gt;
+&lt;div class="flourish-embed flourish-chart" data-src="visualisation/8606173"&gt;&lt;/div&gt;
+
+&lt;script src="https://public.flourish.studio/resources/embed.js"&gt;&lt;/script&gt;</content><category term="Blog"></category><category term="Website"></category></entry><entry><title>Better horizontal bar charts with plotly</title><link href="https://dkane.net/2020/better-horizontal-bar-charts-with-plotly/" rel="alternate"></link><published>2020-06-16T15:46:51+01:00</published><updated>2020-06-16T15:46:51+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2020-06-16:/2020/better-horizontal-bar-charts-with-plotly/</id><summary type="html">&lt;p&gt;I often find that horizontal bar charts are a great way of visualising
 comparisons between different categories. They're easy to understand and
 make, and provide a really simple way of displaying data.&lt;/p&gt;
 &lt;p&gt;But I've found the default way of labelling them often doesn't make sense.

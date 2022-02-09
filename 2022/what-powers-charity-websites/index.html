@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>What powers charity websites? | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+    <meta name="tags" content="Website" />
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
+</div>                <h1 class="f1 lh-solid mv0 logo">
+                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                        David Kane
+                    </a>
+                </h1>
+                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+        </header><!-- /#banner -->
+        <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2022/what-powers-charity-websites/" rel="bookmark" class="link near-black"
+            title="Permalink to What powers charity websites?">What powers charity websites?</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2022-02-09T16:06:00+00:00">
+        Wed 09 February 2022
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+        <span class="ph2"> | </span>
+        <span class="fn">Tags: 
+            <a class="url fn link mid-gray" href="https://dkane.net/tag/website/">Website</a>        </span>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p>I wanted to understand what technologies charities are using with their websites. What <abbr title="Content Management Systems">CMSs</abbr> do they use to create content and layout the sites? What web technologies are they using - to what extent have the embraced the latest tech on their sites? And how well are they complying with some of the regulatory requirements for their sites?</p>
+<p>There's lots more detail below, but here's the headlines:</p>
+<ul>
+<li><strong>Nearly half</strong> of UK charities don't have a website, although for larger charities this figure is much higher</li>
+<li><strong>At least 10%</strong> of charity websites don't work at a given moment</li>
+<li><strong>At least one third</strong> of charities don't have their charity number on their website</li>
+<li><strong>WordPress</strong> powers one third of charities' websites</li>
+<li><strong>jQuery</strong> is present on 71% of charity websites</li>
+<li><strong>Nearly two thirds</strong> of charities use Google Analytics</li>
+</ul>
+<h2 id="which-charities-have-websites">Which charities have websites?</h2>
+<p>I took a random sample of 1,137 charities from the UK, using data from the three UK charity regulators. The sample was based on those charities with a valid website address. I collected 200 random websites for each group of charities in 5 income bands, plus websites for all 137 charities with over £100m.</p>
+<p>Only just over half (57%) of UK charities supply a website address to their regulator, although larger organsiations are much more likely to - 84% of charities with more than £100,000 annual income have a valid website address.</p>
+<div class="flourish-embed flourish-chart" data-src="visualisation/8655291"></div>
+
+<p>I excluded those charities that use a facebook page as their website. 750 charities give a facebook.com address - less than 1% of charities with websites, mainly concentrated in the smaller charities.</p>
+<h2 id="do-the-websites-actually-work">Do the websites actually work?</h2>
+<p>With my sample of charities, I could check which of these actually return a response. Valid responses were received for 82% of charity sites. Of the remainder, 6% returned a "403 Forbidden" response. This suggests that they are aiming to only respond to valid web browser requests, rather than attempts at web scraping (although some of these responses could be because they have given a site address that requires a login).</p>
+<p>The remaining 11% response returned either no response at all, or gave an error of some kind. This was much higher for smaller charities - over 15% of websites for charities under £100,000 did not work at all.</p>
+<p>Even for larger charities with income over £10m, a worrying proportion of websites just don't work, although some of this may be due to anti-scraping measures.</p>
+<div class="flourish-embed flourish-chart" data-src="visualisation/8655406"></div>
+
+<h2 id="do-charities-include-their-charity-number-on-their-website">Do charities include their charity number on their website?</h2>
+<p>Charities should <a href="https://www.wrighthassall.co.uk/knowledge-base/guide-to-advertising-charitable-status-on-all-written-materials">display their charity number</a> on their website, so that members of the public can see that they are regulated as a charity.</p>
+<p>Most charities complied with this, but a significant minority (40% of the working websites checked), don't have their registered charity number on their website. There are some caveats to this - I only checked the HTML of the website homepage, so if a site is entirely powered by javascript then I won't pick up the content of the page as a real user might see it. But I think it's a reasonable estimate.</p>
+<p>And although larger charities do slightly better at having their charity number visible on the website, it's still nearly a quarter of the largest charities with incomes over £10m that don't.</p>
+<div class="flourish-embed flourish-chart" data-src="visualisation/8655836"></div>
+
+<h2 id="what-content-management-systems-do-charities-use">What Content Management Systems do charities use?</h2>
+<p>I did some keyword searching of the website homepage to try and detect which content management system (CMS) the website uses. For example, if I found the text <code>wp-content</code> in the HTML of the homepage, that's a good indication that they are using WordPress.</p>
+<p>These keywords aren't perfect - I detected the CMS for about 58% of websites. Larger charities were harder to detect the CMS - they are more likely to use a custom CMS, or one that isn't easily revealed through the HTML.</p>
+<p>WordPress was the most popular CMS, powering 36% of sites. This is followed by Drupal, which powered 9% of sites. WordPress is more commonly used by smaller charities, where Drupal is more popular with larger ones.</p>
+<div class="flourish-embed flourish-chart" data-src="visualisation/8606184"></div>
+
+<h2 id="which-web-technologies-do-charities-use">Which web technologies do charities use?</h2>
+<p>I also searched the HTML text for a set of web technologies that could be present on pages. This was a fairly arbritrary list based on existing knowledge a little bit of checking of some of the responses - so any suggestions for what else to search for would be very useful.</p>
+<p>The tools I looked for, and the proportion of sites that appeared to use the tool, were:</p>
+<h3 id="web-technologies-and-javascriptcss-frameworks">Web technologies and JavaScript/CSS frameworks</h3>
+<ul>
+<li>site claims to be in HTML5 (<code>&lt;!DOCTYPE html&gt;</code> - <strong>91%</strong> of sites)</li>
+<li>uses jQuery (<strong>71%</strong>)</li>
+<li>uses Google fonts (<strong>44%</strong>)</li>
+<li>uses Bootstrap CSS framework (<strong>13%</strong>)</li>
+<li>uses React JS framework (<strong>6%</strong>)</li>
+</ul>
+<h3 id="analytics-and-social-media">Analytics and social media</h3>
+<ul>
+<li>Mentions cookies - potentially a proxy for whether a cookie popup is shown (<strong>72%</strong> of sites)</li>
+<li>Google Analytics is enabled (<strong>62%</strong>)</li>
+<li>Twitter cards or Open Graph metadata available (<strong>62%</strong>)</li>
+<li>Facebook tracking enabled (<strong>14%</strong>)</li>
+</ul>
+<h2 id="assistive-technology">Assistive technology</h2>
+<p>Note that these are pretty poor proxies for how accessible a website is for a range of users</p>
+<ul>
+<li>Includes <code>alt=</code> somewhere on the page (could indicate that alt-text is included for some images - <strong>93%</strong>)</li>
+<li>Includes a <code>aria</code> property somewhere on the page (<strong>72%</strong>)</li>
+<li>Uses the browsealoud extension (<strong>1.2%</strong>)</li>
+</ul>
+<p>As shown below, use of these tools changes based on the size of the charity. Larger charities are more likely to use Google analytics &amp; Facebook tracking, more likely to mention cookies and use Open Graph or Twitter Cards.</p>
+<div class="flourish-embed flourish-chart" data-src="visualisation/8606173"></div>
+
+<script src="https://public.flourish.studio/resources/embed.js"></script>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+        </main>
+        <footer id="contentinfo" class="body ph3 ph5-ns db mv5 moon-gray">
+            &copy 2022 David Kane | 
+                <address id="about" class="vcard body dib fs-normal"> 
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+                </address><!-- /#about --> 
+                | <a href="mailto:david@dkane.net" class="link yellow">Email</a>
+                | <a href="https://twitter.com/kanedr" class="link yellow">@kanedr</a>
+                | <a href="https://github.com/drkane" class="link yellow">github.com/drkane</a>
+                | <a href="/feed.rss" class="link yellow">RSS</a>
+        </footer><!-- /#contentinfo --> 
+<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+</html>
