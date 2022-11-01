@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <style>
+    #map { height: 80vh; }
+    .population_info {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .population_info p,
+    .population_info h4 {
+        margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="map" class="w-third-l w-75 center mt4">
+    </div>
+    <div class="w-third-l w-75 center mt2 sans-serif">
+        <p>England and Wales Only</p>
+        <p>Data sources:</p>
+        <ul>
+            <li><a href="https://geoportal.statistics.gov.uk/datasets/ons::middle-layer-super-output-areas-december-2011-boundaries-super-generalised-clipped-bsc-ew-v3/explore">MSOA Borders - ONS Geography</a></li>
+            <li><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/middlesuperoutputareamidyearpopulationestimates">Population estimates (2020)</a></li>
+        </ul>    
+    </div>
+    <script>
+    const DEFAULT_BOUNDS = [
+            { lat: 55.81107, lng: 1.76294 },
+            { lat: 49.88235, lng: -6.37801 }
+        ];
+    var map = L.map('map', {
+        zoomControl: false,
+        maxBounds: DEFAULT_BOUNDS,
+        keyboard: false,
+        scrollWheelZoom: false,
+        touchZoom: false,
+        dragging: false,
+    }).fitBounds(DEFAULT_BOUNDS);
+    var msoa = L.geoJSON(null, {style: {fill: true, fillOpacity: 0.5} }).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    fetch('/data/msoapopn.geojson')
+        .then(response => response.json())
+        .then(data => {
+            msoa.addData(data);
+            map.fitBounds(msoa.getBounds());
+            drawLineBetweenMarkers();
+        });
+
+    var marker1 = L.marker({ lat: 51.370102921446495, lng: -4.362638624576821 }, {opacity: 0.5}).addTo(map);
+    var marker2 = L.marker({ lat: 53.2902423228589, lng: 1.3537434387513916 }, {opacity: 0.5}).addTo(map);
+    var last_clicked = 1;
+    var polyline = L.polyline([], {color: 'red'}).addTo(map);
+
+    var population_above_ctl = L.control();
+    var population_below_ctl = L.control();
+    var number_format = new Intl.NumberFormat('en-GB')
+
+    
+    population_above_ctl.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'population_info f3'); // create a div with a class "info"
+        this.update();
+        return this._div;
+    };
+    population_below_ctl.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'population_info f3'); // create a div with a class "info"
+        this.update();
+        return this._div;
+    };
+
+    // method that we will use to update the control based on feature properties passed
+    population_above_ctl.update = function (population) {
+        this._div.innerHTML = '<h4 style="color: green;">Population above the line</h4><p>' + (population ?
+            '<b>' + number_format.format(population) + '</b>'
+            : 'Select two points to show population') + '</p>';
+    };
+    population_below_ctl.update = function (population) {
+        this._div.innerHTML = '<h4 style="color: blue;">Population below the line</h4><p>' + (population ?
+            '<b>' + number_format.format(population) + '</b>'
+            : 'Select two points to show population') + '</p>';
+    };
+
+    population_above_ctl.setPosition('topright').addTo(map);
+    population_below_ctl.setPosition('bottomright').addTo(map);
+
+    function drawLineBetweenMarkers() {
+        // get southwest and northeast coordinates of the map bounds
+        var bounds = map.getBounds();
+
+        var latlngs = [
+            marker1.getLatLng(),
+            marker2.getLatLng(),
+        ];
+
+        // calculate the equation of the line between the two markers
+        var m = (latlngs[1].lat - latlngs[0].lat) / (latlngs[1].lng - latlngs[0].lng);
+        var b = latlngs[0].lat - (m * latlngs[0].lng);
+
+        // calculate the intersection of the line with the map bounds
+        var intersection = [];
+        if (latlngs[0].lng < latlngs[1].lng) {
+            latlngs.push(L.latLng(bounds.getNorth(), (bounds.getNorth() - b) / m));
+            latlngs.push(L.latLng(bounds.getSouth(), (bounds.getSouth() - b) / m));
+        } else {
+            latlngs.push(L.latLng(bounds.getNorth(), (bounds.getNorth() - b) / m));
+            latlngs.push(L.latLng(bounds.getSouth(), (bounds.getSouth() - b) / m));
+        }
+
+        // sort the points by longitude
+        latlngs.sort(function(a, b) {
+            return a.lng - b.lng;
+        });
+
+        polyline.setLatLngs(latlngs);
+        polyline.bringToFront();
+
+        var population_above = 0;
+        var population_below = 0;
+
+        // check whether each msoa feature is below or above the line
+        var msoa_objects = msoa.getLayers();
+        msoa.eachLayer(function(layer) {
+            var above = true;
+            var below = true;
+            // get the center of the msoa
+            var center = layer.getBounds().getCenter();
+
+            // check whether the center is above or below the line
+            if (center.lat < (m * center.lng + b)) {
+                above = false;
+            } else {
+                below = false;
+            }
+
+            if (above) {
+                population_above += layer.feature.properties.population;
+                layer.setStyle({
+                    color: 'green',
+                    fillColor: 'green'
+                });
+            } else if(below) {
+                population_below += layer.feature.properties.population;
+                layer.setStyle({
+                    color: 'blue',
+                    fillColor: 'blue'
+                });
+            } else  {
+                layer.setStyle({
+                    color: 'yellow',
+                    fillColor: 'yellow'
+                });
+            }
+        });
+
+        population_below_ctl.update(population_below);
+        population_above_ctl.update(population_above);
+    }
+
+    function onMapClick(e) {
+        if (last_clicked == 1) {
+            marker1.setLatLng(e.latlng);
+            last_clicked = 2;
+        } else {
+            marker2.setLatLng(e.latlng);
+            last_clicked = 1;
+        }
+        drawLineBetweenMarkers();
+    }
+
+    map.on('click', onMapClick);
+    </script>
+</body>
+
+</html>
