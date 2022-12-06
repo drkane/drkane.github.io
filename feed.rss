@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Wed, 09 Feb 2022 16:06:00 +0000</lastBuildDate><item><title>What powers charity websites?</title><link>https://dkane.net/2022/what-powers-charity-websites/</link><description>&lt;p&gt;I wanted to understand what technologies charities are using with their websites. What &lt;abbr title="Content Management Systems"&gt;CMSs&lt;/abbr&gt; do they use to create content and layout the sites? What web technologies are they using - to what extent have the embraced the latest tech on their sites? And how well are they complying with some of the regulatory requirements for their sites?&lt;/p&gt;
+<rss version="2.0"><channel><title>David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Tue, 06 Dec 2022 15:08:59 +0000</lastBuildDate><item><title>Where to find geographic boundaries for the UK</title><link>https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/</link><description>&lt;p&gt;Geographic boundary data is a requirement for any geographic analysis or map-making.
+But finding boundary data is &lt;a href="https://twitter.com/mapstack_io/status/1600142044986372097"&gt;often a nightmare&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;This is a problem I've faced too, so I thought it might be useful to outline some of the places to look for boundary data:&lt;/p&gt;
+&lt;h2 id="ons-open-geography-portal"&gt;&lt;a href="https://geoportal.statistics.gov.uk/"&gt;ONS Open Geography Portal&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This site - which leaves a lot to be desired in terms of usability &amp;amp; reliability&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; - is the main place the ONS 
+shares their boundary data. What it lacks in user experience it makes up for in breadth and depth - there are 
+a range of boundaries across lots of different types of area, and with a variety of different variations to download.&lt;/p&gt;
+&lt;p&gt;For a given boundary, there are usually four or five different versions with different resolution. The lower resolution files 
+are generally smaller, but will produce simplified versions of the boundaries rather than the exact boundaries.
+The more generalised versions are better for things like chloropleth maps where you're comparing lots of different areas,
+and don't need the boundaries to be exactly right. The exact versions are better for when you show just one area in 
+a lot of detail.&lt;/p&gt;
+&lt;p&gt;The different versions included are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Full resolution - extent of the realm&lt;/li&gt;
+&lt;li&gt;Full resolution - clipped to the coastline&lt;/li&gt;
+&lt;li&gt;Generalised (20m)&lt;/li&gt;
+&lt;li&gt;Super generalised (200m)&lt;/li&gt;
+&lt;li&gt;Ultra generalised (500m)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The "extent of the realm" files include some offshore islands and use the mean low water mark, all the other files use the mean high water mark as a boundary.&lt;/p&gt;
+&lt;p&gt;Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats. &lt;/p&gt;
+&lt;p&gt;One helpful thing the geoportal provides is historic versions - so if you've used local authority data from 2015 you can get a file that includes local authorities that were active at that time.&lt;/p&gt;
+&lt;h2 id="ordance-survey-boundary-line"&gt;&lt;a href="https://www.ordnancesurvey.co.uk/business-government/products/boundaryline"&gt;Ordance Survey Boundary-Line&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg"&gt;
+&lt;small&gt;Image &amp;copy; Ordnance Survey&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;Part of the OS's Open Data products, the Boundary-Line product contains a range of administrative boundaries across Great Britain. The boundaries it includes are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Civil parishes&lt;/li&gt;
+&lt;li&gt;Wards&lt;/li&gt;
+&lt;li&gt;Communities&lt;/li&gt;
+&lt;li&gt;Districts&lt;/li&gt;
+&lt;li&gt;Counties&lt;/li&gt;
+&lt;li&gt;Metropolitan districts&lt;/li&gt;
+&lt;li&gt;Unitary authorities&lt;/li&gt;
+&lt;li&gt;Parliamentary constituencies&lt;/li&gt;
+&lt;li&gt;Electoral divisions&lt;/li&gt;
+&lt;li&gt;London boroughs&lt;/li&gt;
+&lt;li&gt;Greater London authorities&lt;/li&gt;
+&lt;li&gt;Greater London authority assembly constituencies&lt;/li&gt;
+&lt;li&gt;European electoral regions&lt;/li&gt;
+&lt;li&gt;Welsh assembly constituencies&lt;/li&gt;
+&lt;li&gt;Welsh assembly electoral regions&lt;/li&gt;
+&lt;li&gt;Scottish parliamentary constituencies&lt;/li&gt;
+&lt;li&gt;Scottish parliamentary electoral regions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that it doesn't include ONS-specific statistic geography like Lower Super Output Areas and Middle Super Output Areas. There's lots of other boundary types that aren't included either - like health geography.&lt;/p&gt;
+&lt;p&gt;A direct link to &lt;a href="https://osdatahub.os.uk/downloads/open/BoundaryLine"&gt;download Boundary-Line can be found on the OS Data Hub&lt;/a&gt;. You can get it in a few different formats - GeoPackage is probably the most versatile. It's quite a big file - over 600Mb - and you'll probably need some specialist GIS software (like &lt;a href="https://qgis.org/"&gt;QGIS&lt;/a&gt;) to use it.&lt;/p&gt;
+&lt;p&gt;The data is available under the Open Government Licence, so you can use it for any purpose.&lt;/p&gt;
+&lt;h2 id="geolookups-by-david-kane"&gt;&lt;a href="https://github.com/drkane/geo-lookups/tree/master/boundaries"&gt;Geolookups by David Kane&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"&gt;&lt;/p&gt;
+&lt;p&gt;This is a repository of boundaries that I've put together, using data from the ONS geoportal. &lt;/p&gt;
+&lt;p&gt;The aim of this is to produce 3 GeoJSON files for each Local Authority, Combined Authority or Region. Each file shows the boundaries of
+either Lower Super Output Areas (LSOA), Middle Super Output Areas (MSOA) or Wards within that area. They're meant to help people
+who want to map data in a small area. They use a fairly high resolution so you can pick out detail in the areas.&lt;/p&gt;
+&lt;p&gt;If you want to combile GeoJSON files together into one file, you can use my &lt;a href="https://findthatpostcode.uk/tools/merge-geojson"&gt;GeoJSON Merge Tool&lt;/a&gt;. &lt;/p&gt;
+&lt;h2 id="other-resources"&gt;Other Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://bothness.github.io/geo-draw/"&gt;&lt;strong&gt;Draw your own geography&lt;/strong&gt;&lt;/a&gt; - A nice site that allows you to download a set of output areas based on either drawing on the map or choosing an existing area.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://automaticknowledge.co.uk/resources/#UKLocal"&gt;&lt;strong&gt;UK local Authorities with insets&lt;/strong&gt;&lt;/a&gt; - a readymade UK map with insets of urban areas. It's worth looking at the rest of the resources on that page - Alasdair Rae's resources are very useful.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://flourish.studio/examples/"&gt;&lt;strong&gt;Flourish&lt;/strong&gt;&lt;/a&gt; - this is a great tool for making lots of different types of visualisations, and their mapping visualisation has lots of UK boundaries already available. You can also upload GeoJSON files from other sources.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mapit.mysociety.org/"&gt;&lt;strong&gt;MapIt&lt;/strong&gt;&lt;/a&gt; by MySociety and &lt;a href="https://findthatpostcode.uk/"&gt;&lt;strong&gt;Find that Postcode&lt;/strong&gt;&lt;/a&gt; by me both allow you to lookup and individual area's GeoJSON boundary and access it through an API.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="whats-missing"&gt;What's missing?&lt;/h2&gt;
+&lt;p&gt;I'd love to hear from you if there are other resources you find useful - I'm sure to have missed some! I'm particularly conscious that lots of the resources cover only either England and Wales or Great Britain, and are harder to find for Northern Ireland.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;The site wasn't working at all when I wrote this blog post!&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Tue, 06 Dec 2022 15:08:59 +0000</pubDate><guid isPermaLink="false">tag:dkane.net,2022-12-06:/2022/where-to-find-geographic-boundaries-for-the-uk/</guid><category>Blog</category></item><item><title>What powers charity websites?</title><link>https://dkane.net/2022/what-powers-charity-websites/</link><description>&lt;p&gt;I wanted to understand what technologies charities are using with their websites. What &lt;abbr title="Content Management Systems"&gt;CMSs&lt;/abbr&gt; do they use to create content and layout the sites? What web technologies are they using - to what extent have the embraced the latest tech on their sites? And how well are they complying with some of the regulatory requirements for their sites?&lt;/p&gt;
 &lt;p&gt;There's lots more detail below, but here's the headlines:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Nearly half&lt;/strong&gt; of UK charities don't have a website, although larger charities are much more likely to have one&lt;/li&gt;

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Where to find geographic boundaries for the UK | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
+</div>                <h1 class="f1 lh-solid mv0 logo">
+                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                        David Kane
+                    </a>
+                </h1>
+                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+        </header><!-- /#banner -->
+        <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/" rel="bookmark" class="link near-black"
+            title="Permalink to Where to find geographic boundaries for the UK">Where to find geographic boundaries for the UK</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2022-12-06T15:08:59+00:00">
+        Tue 06 December 2022
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p>Geographic boundary data is a requirement for any geographic analysis or map-making.
+But finding boundary data is <a href="https://twitter.com/mapstack_io/status/1600142044986372097">often a nightmare</a>. </p>
+<p>This is a problem I've faced too, so I thought it might be useful to outline some of the places to look for boundary data:</p>
+<h2 id="ons-open-geography-portal"><a href="https://geoportal.statistics.gov.uk/">ONS Open Geography Portal</a></h2>
+<p>This site - which leaves a lot to be desired in terms of usability &amp; reliability<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> - is the main place the ONS 
+shares their boundary data. What it lacks in user experience it makes up for in breadth and depth - there are 
+a range of boundaries across lots of different types of area, and with a variety of different variations to download.</p>
+<p>For a given boundary, there are usually four or five different versions with different resolution. The lower resolution files 
+are generally smaller, but will produce simplified versions of the boundaries rather than the exact boundaries.
+The more generalised versions are better for things like chloropleth maps where you're comparing lots of different areas,
+and don't need the boundaries to be exactly right. The exact versions are better for when you show just one area in 
+a lot of detail.</p>
+<p>The different versions included are:</p>
+<ul>
+<li>Full resolution - extent of the realm</li>
+<li>Full resolution - clipped to the coastline</li>
+<li>Generalised (20m)</li>
+<li>Super generalised (200m)</li>
+<li>Ultra generalised (500m)</li>
+</ul>
+<p>The "extent of the realm" files include some offshore islands and use the mean low water mark, all the other files use the mean high water mark as a boundary.</p>
+<p>Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats. </p>
+<p>One helpful thing the geoportal provides is historic versions - so if you've used local authority data from 2015 you can get a file that includes local authorities that were active at that time.</p>
+<h2 id="ordance-survey-boundary-line"><a href="https://www.ordnancesurvey.co.uk/business-government/products/boundaryline">Ordance Survey Boundary-Line</a></h2>
+<p><img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg">
+<small>Image &copy; Ordnance Survey</small></p>
+<p>Part of the OS's Open Data products, the Boundary-Line product contains a range of administrative boundaries across Great Britain. The boundaries it includes are:</p>
+<ul>
+<li>Civil parishes</li>
+<li>Wards</li>
+<li>Communities</li>
+<li>Districts</li>
+<li>Counties</li>
+<li>Metropolitan districts</li>
+<li>Unitary authorities</li>
+<li>Parliamentary constituencies</li>
+<li>Electoral divisions</li>
+<li>London boroughs</li>
+<li>Greater London authorities</li>
+<li>Greater London authority assembly constituencies</li>
+<li>European electoral regions</li>
+<li>Welsh assembly constituencies</li>
+<li>Welsh assembly electoral regions</li>
+<li>Scottish parliamentary constituencies</li>
+<li>Scottish parliamentary electoral regions</li>
+</ul>
+<p>Note that it doesn't include ONS-specific statistic geography like Lower Super Output Areas and Middle Super Output Areas. There's lots of other boundary types that aren't included either - like health geography.</p>
+<p>A direct link to <a href="https://osdatahub.os.uk/downloads/open/BoundaryLine">download Boundary-Line can be found on the OS Data Hub</a>. You can get it in a few different formats - GeoPackage is probably the most versatile. It's quite a big file - over 600Mb - and you'll probably need some specialist GIS software (like <a href="https://qgis.org/">QGIS</a>) to use it.</p>
+<p>The data is available under the Open Government Licence, so you can use it for any purpose.</p>
+<h2 id="geolookups-by-david-kane"><a href="https://github.com/drkane/geo-lookups/tree/master/boundaries">Geolookups by David Kane</a></h2>
+<p><img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"></p>
+<p>This is a repository of boundaries that I've put together, using data from the ONS geoportal. </p>
+<p>The aim of this is to produce 3 GeoJSON files for each Local Authority, Combined Authority or Region. Each file shows the boundaries of
+either Lower Super Output Areas (LSOA), Middle Super Output Areas (MSOA) or Wards within that area. They're meant to help people
+who want to map data in a small area. They use a fairly high resolution so you can pick out detail in the areas.</p>
+<p>If you want to combile GeoJSON files together into one file, you can use my <a href="https://findthatpostcode.uk/tools/merge-geojson">GeoJSON Merge Tool</a>. </p>
+<h2 id="other-resources">Other Resources</h2>
+<ul>
+<li><a href="https://bothness.github.io/geo-draw/"><strong>Draw your own geography</strong></a> - A nice site that allows you to download a set of output areas based on either drawing on the map or choosing an existing area.</li>
+<li><a href="https://automaticknowledge.co.uk/resources/#UKLocal"><strong>UK local Authorities with insets</strong></a> - a readymade UK map with insets of urban areas. It's worth looking at the rest of the resources on that page - Alasdair Rae's resources are very useful.</li>
+<li><a href="https://flourish.studio/examples/"><strong>Flourish</strong></a> - this is a great tool for making lots of different types of visualisations, and their mapping visualisation has lots of UK boundaries already available. You can also upload GeoJSON files from other sources.</li>
+<li><a href="https://mapit.mysociety.org/"><strong>MapIt</strong></a> by MySociety and <a href="https://findthatpostcode.uk/"><strong>Find that Postcode</strong></a> by me both allow you to lookup and individual area's GeoJSON boundary and access it through an API.</li>
+</ul>
+<h2 id="whats-missing">What's missing?</h2>
+<p>I'd love to hear from you if there are other resources you find useful - I'm sure to have missed some! I'm particularly conscious that lots of the resources cover only either England and Wales or Great Britain, and are harder to find for Northern Ireland.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The site wasn't working at all when I wrote this blog post!&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+        </main>
+        <footer id="contentinfo" class="body ph3 ph5-ns db mv5 moon-gray">
+            <div>&copy 2022 Kane Data Limited | 
+                <address id="about" class="vcard body dib fs-normal"> 
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+                </address><!-- /#about --> 
+                | <a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+                | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+                | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastondon.social</a>
+                | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+                | <a href="/feed.rss" class="link yellow">RSS</a>
+</div>
+            <p class="f6">
+            Kane Data Limited is registered as a company in England (company number <a href="https://find-and-update.company-information.service.gov.uk/company/14015213" class="link yellow">14015213</a>)</p>
+        </footer><!-- /#contentinfo --> 
+<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+</html>
