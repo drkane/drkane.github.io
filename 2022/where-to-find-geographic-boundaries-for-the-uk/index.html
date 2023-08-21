@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-      <title>Where to find geographic boundaries for the UK | David Kane</title>
+      <title>Where to find geographic boundaries for the UK | Kane Data</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
     <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
     <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
 
-<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
-<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="Kane Data Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Categories Atom Feed" />
 
 
   
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
-        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+    <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
     <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
-|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/about" class="white logo underline double underline-yellow">About</a>
 |    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
-|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
-</div>                <h1 class="f1 lh-solid mv0 logo">
-                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
-                        David Kane
-                    </a>
-                </h1>
-                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
-        </header><!-- /#banner -->
-        <main class="ph0 bg-white cf">
+</div>        <h1 class="f1 lh-solid mv0 logo">
+            <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                Kane Data
+            </a>
+        </h1>
+        <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+    </header><!-- /#banner -->
+    <main class="ph0 bg-white cf">
 <section id="content" class="fl w-100 ph3 ph5-ns pb6">
   <div class="w-60-l w-100 center">
     <header>
@@ -78,8 +78,10 @@ a lot of detail.</p>
 <p>Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats. </p>
 <p>One helpful thing the geoportal provides is historic versions - so if you've used local authority data from 2015 you can get a file that includes local authorities that were active at that time.</p>
 <h2 id="ordance-survey-boundary-line"><a href="https://www.ordnancesurvey.co.uk/business-government/products/boundaryline">Ordance Survey Boundary-Line</a></h2>
-<p><img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg">
-<small>Image &copy; Ordnance Survey</small></p>
+<figure>
+<p><img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg"></p>
+<figcaption>Image &copy; Ordnance Survey</figcaption>
+</figure>
 <p>Part of the OS's Open Data products, the Boundary-Line product contains a range of administrative boundaries across Great Britain. The boundaries it includes are:</p>
 <ul>
 <li>Civil parishes</li>
@@ -104,7 +106,9 @@ a lot of detail.</p>
 <p>A direct link to <a href="https://osdatahub.os.uk/downloads/open/BoundaryLine">download Boundary-Line can be found on the OS Data Hub</a>. You can get it in a few different formats - GeoPackage is probably the most versatile. It's quite a big file - over 600Mb - and you'll probably need some specialist GIS software (like <a href="https://qgis.org/">QGIS</a>) to use it.</p>
 <p>The data is available under the Open Government Licence, so you can use it for any purpose.</p>
 <h2 id="geolookups-by-david-kane"><a href="https://github.com/drkane/geo-lookups/tree/master/boundaries">Geolookups by David Kane</a></h2>
+<figure>
 <p><img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"></p>
+</figure>
 <p>This is a repository of boundaries that I've put together, using data from the ONS geoportal. </p>
 <p>The aim of this is to produce 3 GeoJSON files for each Local Authority, Combined Authority or Region. Each file shows the boundaries of
 either Lower Super Output Areas (LSOA), Middle Super Output Areas (MSOA) or Wards within that area. They're meant to help people
@@ -117,7 +121,7 @@ who want to map data in a small area. They use a fairly high resolution so you c
 <li><a href="https://automaticknowledge.org/gb/"><strong>Local authority GIS data</strong></a> - a set of useful GIS data for Local Authorities in Great Britain. Includes boundaries but also includes roads, surface water, buildings, greenspace, etc - everything you need for making a map. More useful resources from Alasdair.</li>
 <li><a href="https://flourish.studio/examples/"><strong>Flourish</strong></a> - this is a great tool for making lots of different types of visualisations, and their mapping visualisation has lots of UK boundaries already available. You can also upload GeoJSON files from other sources.</li>
 <li><a href="https://mapit.mysociety.org/"><strong>MapIt</strong></a> by MySociety and <a href="https://findthatpostcode.uk/"><strong>Find that Postcode</strong></a> by me both allow you to lookup and individual area's GeoJSON boundary and access it through an API.</li>
-<li><a href="https://github.com/open-innovations/geography-bits/tree/master/data"><strong>Open Innovations</strong></a> maintain a collection of GeoJSON files for different areas. (Thanks to <a href="https://mastodon.social/@slowe@mastodon.me.uk">Stuart from OI on mastondon.social</a> for the suggestion).</li>
+<li><a href="https://github.com/open-innovations/geography-bits/tree/master/data"><strong>Open Innovations</strong></a> maintain a collection of GeoJSON files for different areas. (Thanks to <a href="https://mastodon.social/@slowe@mastodon.me.uk">Stuart from OI on mastodon.social</a> for the suggestion).</li>
 </ul>
 <h2 id="whats-missing">What's missing?</h2>
 <p>I'd love to hear from you if there are other resources you find useful - I'm sure to have missed some! I'm particularly conscious that lots of the resources cover only either England and Wales or Great Britain, and are harder to find for Northern Ireland.</p>
@@ -132,23 +136,37 @@ who want to map data in a small area. They use a fairly high resolution so you c
     </div><!-- /.entry-content -->
     </div>
 </section>
-        </main>
-        <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
-            <img src="https://dkane.net/theme/images/logo.svg" class="fl pr5 h3" title="Kane Data Limited">
-            <div>&copy 2023 Kane Data Limited |
-                <address id="about" class="vcard body di fs-normal"> 
+    </main>
+    <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
+        <div class="h4 fl pr5">
+            <img src="https://dkane.net/theme/images/logo.svg" class="h3" title="Kane Data Limited">
+        </div>
+        <div>
+<a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+ | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+ | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastodon.social</a>
+ | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+ | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
+            | <a href="/feed.rss" class="link yellow">RSS</a>
+        </div>
+        <div class="mt3">
+<a href="https://findthatcharity.uk/" class="link yellow" rel="me">Find That Charity</a>
+ | <a href="https://findthatpostcode.uk/" class="link yellow" rel="me">Find That Postcode</a>
+ | <a href="https://ngoexplorer.org/" class="link yellow" rel="me">NGO Explorer</a>
+ | <a href="https://charizone.co.uk/" class="link yellow" rel="me">Charizone</a>
+ | <a href="https://charityclassification.org.uk/" class="link yellow" rel="me">Charity Classification</a>
+        </div>
+        <div class="mt3 f6">
+            &copy 2018 - 2023 Kane Data Limited |
+            <address id="about" class="vcard body di fs-normal">
                 Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
-                </address><!-- /#about --> 
-                | <a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
-                | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
-                | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastondon.social</a>
-                | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
-                | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
-                | <a href="/feed.rss" class="link yellow">RSS</a>
-</div>
-            <p class="f6">
-            Kane Data Limited is registered as a company in England (company number <a href="https://find-and-update.company-information.service.gov.uk/company/14015213" class="link yellow">14015213</a>)</p>
-        </footer><!-- /#contentinfo --> 
+            </address><!-- /#about --> |
+            Kane Data Limited is registered as a company in England (<a
+                href="https://find-and-update.company-information.service.gov.uk/company/14015213"
+                class="link yellow">company number 14015213</a>)
+        </div>
+    </footer><!-- /#contentinfo -->
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+
 </html>

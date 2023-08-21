@@ -1,26 +1,33 @@
 .header-font {
     font-family: 'Archivo', sans-serif;
 }
+
 .base-font {
     font-family: 'Raleway', sans-serif;
 }
+
 .logo {
     text-decoration: underline;
     line-height: 0.9;
 }
+
 .underline-yellow {
     text-decoration-color: #FFFF00;
 }
+
 .underline.double {
     text-decoration-style: double;
 }
+
 .wb-word {
     word-break: break-word;
 }
+
 .mh-3 {
     margin-left: -1rem;
     margin-right: -1rem;
 }
+
 .entry-content h1,
 .entry-content h2,
 .entry-content h3,
@@ -29,12 +36,14 @@
 .entry-content h6 {
     font-family: 'Archivo', sans-serif;
 }
+
 .entry-content code,
 .entry-content pre {
     background-color: #eeeeee;
     padding-left: 4px;
     padding-right: 4px;
 }
+
 .entry-content pre {
     padding: 8px;
     font-size: 80%;
@@ -44,6 +53,7 @@
     white-space: -o-pre-wrap;
     word-wrap: break-word;
 }
+
 .entry-content table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -51,9 +61,9 @@
     line-height: 1.5;
     width: 100%;
 }
+
 .entry-content table th,
-.entry-content table td
-{   
+.entry-content table td {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-color: rgba(0, 0, 0, .2);
@@ -65,27 +75,43 @@
     padding-bottom: 0.4rem;
     text-align: right;
 }
-.entry-content > img {
+
+.entry-content table th.tl,
+.entry-content table td.tl {
+    text-align: left;
+}
+
+.entry-content>img {
     border: 8px solid #FFFF00;
 }
 
-.entry-content > figure {
+.entry-content>figure {
     margin: 1em 0;
     padding-left: 12px;
     border-left: 8px solid #FFFF00;
 }
 
-.entry-content > figure figcaption {
+.entry-content>figure figcaption {
     font-style: italic;
 }
 
-.entry-content > aside {
+.entry-content>aside {
     padding: 1em;
     background-color: lightgrey;
 }
 
-.entry-content > aside p {
+.entry-content>aside p {
     margin: 0;
+}
+
+.entry-content>p,
+.entry-content>ol,
+.entry-content>ul {
+    max-width: 34em;
+}
+
+.entry-content a {
+    color: #357edd;
 }
 
 .bg-wavy {
@@ -95,20 +121,25 @@
     background-size: auto auto;
     background-position: center;
 }
+
 .bg-yellow {
     background-color: #FFFF00;
 }
+
 .yellow {
     color: #FFFF00;
 }
+
 .hover-bg-yellow:focus,
 .hover-bg-yellow:hover {
     background-color: #FFFF00;
 }
+
 .hover-yellow:focus,
 .hover-yellow:hover {
     color: #FFFF00;
 }
+
 .b--yellow {
     border-color: #FFFF00;
 }
@@ -117,9 +148,10 @@
 #caveat-corner {
     font-family: Pacifico;
     font-size: 2.5rem;
-    color: rgb(113,  9,170);
-    background: -webkit-linear-gradient(#eee, rgb(113,  9,170));
+    color: rgb(113, 9, 170);
+    background: -webkit-linear-gradient(#eee, rgb(113, 9, 170));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     transform: rotate(-10deg);
     padding-bottom: 20px;

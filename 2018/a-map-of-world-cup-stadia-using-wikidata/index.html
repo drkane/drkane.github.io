@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-      <title>A map of World Cup stadia using wikidata | David Kane</title>
+      <title>A map of World Cup stadia using wikidata | Kane Data</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
     <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
     <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
 
-<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
-<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="Kane Data Full RSS Feed" />
+<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Categories Atom Feed" />
 
 
     <meta name="tags" content="Football" />
@@ -22,20 +23,19 @@
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
-        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+    <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
     <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
-|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/about" class="white logo underline double underline-yellow">About</a>
 |    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
-|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
-</div>                <h1 class="f1 lh-solid mv0 logo">
-                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
-                        David Kane
-                    </a>
-                </h1>
-                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
-        </header><!-- /#banner -->
-        <main class="ph0 bg-white cf">
+</div>        <h1 class="f1 lh-solid mv0 logo">
+            <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                Kane Data
+            </a>
+        </h1>
+        <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+    </header><!-- /#banner -->
+    <main class="ph0 bg-white cf">
 <section id="content" class="fl w-100 ph3 ph5-ns pb6">
   <div class="w-60-l w-100 center">
     <header>
@@ -90,7 +90,7 @@ finding the right entities and the included examples for how to structure it.</p
 </code></pre></div>
 
 <p>This next part allows you to fetch labels for each of the items, which is more helpful than the URI that gets returned.</p>
-<div class="highlight"><pre><span></span><code><span class="n">SERVICE</span><span class="w"> </span><span class="nl">wikibase</span><span class="p">:</span><span class="n">label</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="nl">bd</span><span class="p">:</span><span class="n">serviceParam</span><span class="w"> </span><span class="nl">wikibase</span><span class="p">:</span><span class="k">language</span><span class="w"> </span><span class="ss">&quot;[AUTO_LANGUAGE],en&quot;</span><span class="p">.</span><span class="w"> </span><span class="err">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">SERVICE</span><span class="w"> </span><span class="nl">wikibase</span><span class="p">:</span><span class="n">label</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="nl">bd</span><span class="p">:</span><span class="n">serviceParam</span><span class="w"> </span><span class="nl">wikibase</span><span class="p">:</span><span class="k">language</span><span class="w"> </span><span class="ss">&quot;[AUTO_LANGUAGE],en&quot;</span><span class="p">.</span><span class="w"> </span><span class="err">}</span>
 </code></pre></div>
 
 <p>Then we start off by adding a field called "FIFA_World_Cup" based on finding "sports season of league or competition" (<code>wdt:P3450</code>) with the labels "FIFA World Cup" (<code>wd:Q19317</code>)</p>
@@ -118,18 +118,18 @@ finding the right entities and the included examples for how to structure it.</p
 <div class="highlight"><pre><span></span><code><span class="n">results</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;bindings&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code>{&#39;FIFA_World_CupLabel&#39;: {&#39;type&#39;: &#39;literal&#39;,
-  &#39;value&#39;: &#39;1930 FIFA World Cup&#39;,
-  &#39;xml:lang&#39;: &#39;en&#39;},
- &#39;coord&#39;: {&#39;datatype&#39;: &#39;http://www.opengis.net/ont/geosparql#wktLiteral&#39;,
-  &#39;type&#39;: &#39;literal&#39;,
-  &#39;value&#39;: &#39;Point(-56.152778 -34.894444)&#39;},
- &#39;countryLabel&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;Uruguay&#39;, &#39;xml:lang&#39;: &#39;en&#39;},
- &#39;location&#39;: {&#39;type&#39;: &#39;uri&#39;,
-  &#39;value&#39;: &#39;http://www.wikidata.org/entity/Q498245&#39;},
- &#39;locationLabel&#39;: {&#39;type&#39;: &#39;literal&#39;,
-  &#39;value&#39;: &#39;Estadio Centenario&#39;,
-  &#39;xml:lang&#39;: &#39;en&#39;}}
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="err">&#39;</span><span class="nx">FIFA_World_CupLabel</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="k">type</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">literal</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="nx">value</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">1930</span><span class="w"> </span><span class="nx">FIFA</span><span class="w"> </span><span class="nx">World</span><span class="w"> </span><span class="nx">Cup</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="nx">xml</span><span class="p">:</span><span class="nx">lang</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">en</span><span class="err">&#39;</span><span class="p">},</span>
+<span class="w"> </span><span class="err">&#39;</span><span class="nx">coord</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="nx">datatype</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//www.opengis.net/ont/geosparql#wktLiteral&#39;,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="k">type</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">literal</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="nx">value</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Point</span><span class="p">(</span><span class="o">-</span><span class="m m-Double">56.152778</span><span class="w"> </span><span class="o">-</span><span class="m m-Double">34.894444</span><span class="p">)</span><span class="err">&#39;</span><span class="p">},</span>
+<span class="w"> </span><span class="err">&#39;</span><span class="nx">countryLabel</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="k">type</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">literal</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">value</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Uruguay</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">xml</span><span class="p">:</span><span class="nx">lang</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">en</span><span class="err">&#39;</span><span class="p">},</span>
+<span class="w"> </span><span class="err">&#39;</span><span class="nx">location</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="k">type</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">uri</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="nx">value</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//www.wikidata.org/entity/Q498245&#39;},</span>
+<span class="w"> </span><span class="err">&#39;</span><span class="nx">locationLabel</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="k">type</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">literal</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="nx">value</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Estadio</span><span class="w"> </span><span class="nx">Centenario</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="nx">xml</span><span class="p">:</span><span class="nx">lang</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">en</span><span class="err">&#39;</span><span class="p">}}</span>
 </code></pre></div>
 
 <h2 id="step-2-processing-the-results">Step 2: processing the results</h2>
@@ -253,23 +253,37 @@ based on countries.</p>
     </div><!-- /.entry-content -->
     </div>
 </section>
-        </main>
-        <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
-            <img src="https://dkane.net/theme/images/logo.svg" class="fl pr5 h3" title="Kane Data Limited">
-            <div>&copy 2023 Kane Data Limited |
-                <address id="about" class="vcard body di fs-normal"> 
+    </main>
+    <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
+        <div class="h4 fl pr5">
+            <img src="https://dkane.net/theme/images/logo.svg" class="h3" title="Kane Data Limited">
+        </div>
+        <div>
+<a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+ | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+ | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastodon.social</a>
+ | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+ | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
+            | <a href="/feed.rss" class="link yellow">RSS</a>
+        </div>
+        <div class="mt3">
+<a href="https://findthatcharity.uk/" class="link yellow" rel="me">Find That Charity</a>
+ | <a href="https://findthatpostcode.uk/" class="link yellow" rel="me">Find That Postcode</a>
+ | <a href="https://ngoexplorer.org/" class="link yellow" rel="me">NGO Explorer</a>
+ | <a href="https://charizone.co.uk/" class="link yellow" rel="me">Charizone</a>
+ | <a href="https://charityclassification.org.uk/" class="link yellow" rel="me">Charity Classification</a>
+        </div>
+        <div class="mt3 f6">
+            &copy 2018 - 2023 Kane Data Limited |
+            <address id="about" class="vcard body di fs-normal">
                 Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
-                </address><!-- /#about --> 
-                | <a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
-                | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
-                | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastondon.social</a>
-                | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
-                | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
-                | <a href="/feed.rss" class="link yellow">RSS</a>
-</div>
-            <p class="f6">
-            Kane Data Limited is registered as a company in England (company number <a href="https://find-and-update.company-information.service.gov.uk/company/14015213" class="link yellow">14015213</a>)</p>
-        </footer><!-- /#contentinfo --> 
+            </address><!-- /#about --> |
+            Kane Data Limited is registered as a company in England (<a
+                href="https://find-and-update.company-information.service.gov.uk/company/14015213"
+                class="link yellow">company number 14015213</a>)
+        </div>
+    </footer><!-- /#contentinfo -->
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+
 </html>

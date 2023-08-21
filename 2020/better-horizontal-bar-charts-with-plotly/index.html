@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-      <title>Better horizontal bar charts with plotly | David Kane</title>
+      <title>Better horizontal bar charts with plotly | Kane Data</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
     <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
     <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
 
-<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
-<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="Kane Data Full RSS Feed" />
+<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Categories Atom Feed" />
 
 
     <meta name="tags" content="Charts" />
@@ -22,20 +23,19 @@
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
-        <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+    <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
 <div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
     <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
-|    <a href="/pages/about-me" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/about" class="white logo underline double underline-yellow">About</a>
 |    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
-|    <a href="https://twitter.com/kanedr" class="white logo underline double underline-yellow">@kanedr</a>
-</div>                <h1 class="f1 lh-solid mv0 logo">
-                    <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
-                        David Kane
-                    </a>
-                </h1>
-                <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
-        </header><!-- /#banner -->
-        <main class="ph0 bg-white cf">
+</div>        <h1 class="f1 lh-solid mv0 logo">
+            <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                Kane Data
+            </a>
+        </h1>
+        <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+    </header><!-- /#banner -->
+    <main class="ph0 bg-white cf">
 <section id="content" class="fl w-100 ph3 ph5-ns pb6">
   <div class="w-60-l w-100 center">
     <header>
@@ -71,13 +71,19 @@ labels for the bars appear on a separate line to the bars themselves. This
 gives the data itself more room to breathe and makes the labels less cramped.</p>
 <p>Here's an example from <a href="https://www.datawrapper.de/">DataWrapper</a> using some
 of their sample data. First using their default settings:</p>
+<figure>
 <p><img alt="Bar chart showing labels to the left of the vertical axis" src="/images/horizontal-bar-1.png"></p>
+</figure>
 <p>And then with the "labels on separate line" options selected:</p>
+<figure>
 <p><img alt="Bar chart showing labels above each of the bars" src="/images/horizontal-bar-2.png"></p>
+</figure>
 <h2 id="implementing-in-plotly">Implementing in plotly</h2>
 <p>I've been using <a href="https://plotly.com/python/">Plotly</a> for charting a lot recently, particularly in conjunction with <a href="https://dash.plotly.com/">Dash</a> for making rich interactive dashboards. It's a very powerful combination.</p>
 <p>I built <a href="">360Insights</a> using Dash, and plotly's charts powers the charts on <a href="https://ngoexplorer.org/">NGO Explorer</a>. I wanted to record how I created the charts with labels above the bars in NGO Explorer. You can see some examples of these on a <a href="https://ngoexplorer.org/country/fra">country page</a>.</p>
+<figure>
 <p><img alt="Bar chart from NGO Explorer showing labels above each of the bars" src="/images/horizontal-bar-3.png"></p>
+</figure>
 <h2 id="making-subplots">Making subplots</h2>
 <p>The only way I could find to accomplish the same effect in plotly was to use <a href="https://plotly.com/python/subplots/">subplots</a>. These essentially split the figure into a number of different charts. What we're going to do is use a different subplot for each chart, using the <code>make_subplots</code> function.
 Start by importing the <code>make_subplots</code> function.</p>
@@ -134,7 +140,9 @@ Start by importing the <code>make_subplots</code> function.</p>
     <span class="p">),</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
+<figure>
 <p><img alt="After adding traces" src="/images/plotly-bar-stage-1.png"></p>
+</figure>
 <p>This gives us subplots that are much closer to what we're looking for, but they look a bit of a mess as there's still quite a bit of the layout we need to adjust.</p>
 <p>First we remove the legend on the right hand side and make sure the titles (stored by plotly as annotations) are aligned to the left hand side, and have smaller font sizes).</p>
 <div class="highlight"><pre><span></span><code><span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
@@ -149,7 +157,9 @@ Start by importing the <code>make_subplots</code> function.</p>
     <span class="p">)</span>
 </code></pre></div>
 
+<figure>
 <p><img alt="After removing annotations and images" src="/images/plotly-bar-stage-2.png"></p>
+</figure>
 <p>Next we remove all the axes to give a clean look to the chart. If you wanted, you could keep the x-axis to help see the values. </p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">subplots</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]:</span>
     <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;yaxis&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">axis</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;xaxis&#39;</span><span class="p">):</span>
@@ -268,23 +278,37 @@ if (document.getElementById("6165b01c-fa55-4212-99f5-9b48ce3a75d5")) {
     </div><!-- /.entry-content -->
     </div>
 </section>
-        </main>
-        <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
-            <img src="https://dkane.net/theme/images/logo.svg" class="fl pr5 h3" title="Kane Data Limited">
-            <div>&copy 2023 Kane Data Limited |
-                <address id="about" class="vcard body di fs-normal"> 
+    </main>
+    <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
+        <div class="h4 fl pr5">
+            <img src="https://dkane.net/theme/images/logo.svg" class="h3" title="Kane Data Limited">
+        </div>
+        <div>
+<a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+ | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+ | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastodon.social</a>
+ | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+ | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
+            | <a href="/feed.rss" class="link yellow">RSS</a>
+        </div>
+        <div class="mt3">
+<a href="https://findthatcharity.uk/" class="link yellow" rel="me">Find That Charity</a>
+ | <a href="https://findthatpostcode.uk/" class="link yellow" rel="me">Find That Postcode</a>
+ | <a href="https://ngoexplorer.org/" class="link yellow" rel="me">NGO Explorer</a>
+ | <a href="https://charizone.co.uk/" class="link yellow" rel="me">Charizone</a>
+ | <a href="https://charityclassification.org.uk/" class="link yellow" rel="me">Charity Classification</a>
+        </div>
+        <div class="mt3 f6">
+            &copy 2018 - 2023 Kane Data Limited |
+            <address id="about" class="vcard body di fs-normal">
                 Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
-                </address><!-- /#about --> 
-                | <a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
-                | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
-                | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastondon.social</a>
-                | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
-                | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
-                | <a href="/feed.rss" class="link yellow">RSS</a>
-</div>
-            <p class="f6">
-            Kane Data Limited is registered as a company in England (company number <a href="https://find-and-update.company-information.service.gov.uk/company/14015213" class="link yellow">14015213</a>)</p>
-        </footer><!-- /#contentinfo --> 
+            </address><!-- /#about --> |
+            Kane Data Limited is registered as a company in England (<a
+                href="https://find-and-update.company-information.service.gov.uk/company/14015213"
+                class="link yellow">company number 14015213</a>)
+        </div>
+    </footer><!-- /#contentinfo -->
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+
 </html>

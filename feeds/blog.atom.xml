@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane - Blog</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2022-12-06T15:08:59+00:00</updated><entry><title>Where to find geographic boundaries for the UK</title><link href="https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/" rel="alternate"></link><published>2022-12-06T15:08:59+00:00</published><updated>2022-12-06T15:08:59+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2022-12-06:/2022/where-to-find-geographic-boundaries-for-the-uk/</id><summary type="html">&lt;p&gt;Geographic boundary data is a requirement for any geographic analysis or map-making.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kane Data - Blog</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2022-12-06T15:08:59+00:00</updated><entry><title>Where to find geographic boundaries for the UK</title><link href="https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/" rel="alternate"></link><published>2022-12-06T15:08:59+00:00</published><updated>2022-12-06T15:08:59+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2022-12-06:/2022/where-to-find-geographic-boundaries-for-the-uk/</id><summary type="html">&lt;p&gt;Geographic boundary data is a requirement for any geographic analysis or map-making.
 But finding boundary data is &lt;a href="https://twitter.com/mapstack_io/status/1600142044986372097"&gt;often a nightmare&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;This is a problem I've faced too, so I thought it might be useful to outline some of the places to look for boundary data:&lt;/p&gt;
 &lt;h2 id="ons-open-geography-portal"&gt;&lt;a href="https://geoportal.statistics.gov.uk/"&gt;ONS Open Geography Portal&lt;/a&gt;&lt;/h2&gt;
@@ -27,8 +27,10 @@ a lot of detail.&lt;/p&gt;
 &lt;p&gt;Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats. &lt;/p&gt;
 &lt;p&gt;One helpful thing the geoportal provides is historic versions - so if you've used local authority data from 2015 you can get a file that includes local authorities that were active at that time.&lt;/p&gt;
 &lt;h2 id="ordance-survey-boundary-line"&gt;&lt;a href="https://www.ordnancesurvey.co.uk/business-government/products/boundaryline"&gt;Ordance Survey Boundary-Line&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg"&gt;
-&lt;small&gt;Image &amp;copy; Ordnance Survey&lt;/small&gt;&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg"&gt;&lt;/p&gt;
+&lt;figcaption&gt;Image &amp;copy; Ordnance Survey&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Part of the OS's Open Data products, the Boundary-Line product contains a range of administrative boundaries across Great Britain. The boundaries it includes are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Civil parishes&lt;/li&gt;
@@ -53,7 +55,9 @@ a lot of detail.&lt;/p&gt;
 &lt;p&gt;A direct link to &lt;a href="https://osdatahub.os.uk/downloads/open/BoundaryLine"&gt;download Boundary-Line can be found on the OS Data Hub&lt;/a&gt;. You can get it in a few different formats - GeoPackage is probably the most versatile. It's quite a big file - over 600Mb - and you'll probably need some specialist GIS software (like &lt;a href="https://qgis.org/"&gt;QGIS&lt;/a&gt;) to use it.&lt;/p&gt;
 &lt;p&gt;The data is available under the Open Government Licence, so you can use it for any purpose.&lt;/p&gt;
 &lt;h2 id="geolookups-by-david-kane"&gt;&lt;a href="https://github.com/drkane/geo-lookups/tree/master/boundaries"&gt;Geolookups by David Kane&lt;/a&gt;&lt;/h2&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;p&gt;This is a repository of boundaries that I've put together, using data from the ONS geoportal. &lt;/p&gt;
 &lt;p&gt;The aim of this is to produce 3 GeoJSON files for each Local Authority, Combined Authority or Region. Each file shows the boundaries of
 either Lower Super Output Areas (LSOA), Middle Super Output Areas (MSOA) or Wards within that area. They're meant to help people
@@ -66,7 +70,7 @@ who want to map data in a small area. They use a fairly high resolution so you c
 &lt;li&gt;&lt;a href="https://automaticknowledge.org/gb/"&gt;&lt;strong&gt;Local authority GIS data&lt;/strong&gt;&lt;/a&gt; - a set of useful GIS data for Local Authorities in Great Britain. Includes boundaries but also includes roads, surface water, buildings, greenspace, etc - everything you need for making a map. More useful resources from Alasdair.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://flourish.studio/examples/"&gt;&lt;strong&gt;Flourish&lt;/strong&gt;&lt;/a&gt; - this is a great tool for making lots of different types of visualisations, and their mapping visualisation has lots of UK boundaries already available. You can also upload GeoJSON files from other sources.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://mapit.mysociety.org/"&gt;&lt;strong&gt;MapIt&lt;/strong&gt;&lt;/a&gt; by MySociety and &lt;a href="https://findthatpostcode.uk/"&gt;&lt;strong&gt;Find that Postcode&lt;/strong&gt;&lt;/a&gt; by me both allow you to lookup and individual area's GeoJSON boundary and access it through an API.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/open-innovations/geography-bits/tree/master/data"&gt;&lt;strong&gt;Open Innovations&lt;/strong&gt;&lt;/a&gt; maintain a collection of GeoJSON files for different areas. (Thanks to &lt;a href="https://mastodon.social/@slowe@mastodon.me.uk"&gt;Stuart from OI on mastondon.social&lt;/a&gt; for the suggestion).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/open-innovations/geography-bits/tree/master/data"&gt;&lt;strong&gt;Open Innovations&lt;/strong&gt;&lt;/a&gt; maintain a collection of GeoJSON files for different areas. (Thanks to &lt;a href="https://mastodon.social/@slowe@mastodon.me.uk"&gt;Stuart from OI on mastodon.social&lt;/a&gt; for the suggestion).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="whats-missing"&gt;What's missing?&lt;/h2&gt;
 &lt;p&gt;I'd love to hear from you if there are other resources you find useful - I'm sure to have missed some! I'm particularly conscious that lots of the resources cover only either England and Wales or Great Britain, and are harder to find for Northern Ireland.&lt;/p&gt;
@@ -333,10 +337,14 @@ annual income. These organisations provide vital services in the local area, but
 there could be scope for increasing the funding available for smaller groups.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;I've created a map of all the grants to Kingston that is embedded below:&lt;/p&gt;
-&lt;iframe src="/data/kingston-grants-map.html" width="640" height="500" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;figure&gt;
+&lt;iframe src="/data/kingston-grants-map.html" width="100%" height="500" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;You can also find my presentation on Google slides:&lt;/p&gt;
-&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTaYI58fQlEc2pY66Y_3Y9MEUMpYUEw-cCTDHI6vYtIWhpt8hTO3dqXgjx7XY6urIzarSIrozhgVeDJ/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
+&lt;figure&gt;
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTaYI58fQlEc2pY66Y_3Y9MEUMpYUEw-cCTDHI6vYtIWhpt8hTO3dqXgjx7XY6urIzarSIrozhgVeDJ/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;Finally you can also download the full dataset to use yourself:&lt;/p&gt;
 &lt;ul&gt;
@@ -377,7 +385,9 @@ You can add:&lt;/p&gt;
 the data in "JSON" format - this means we can get the fields we need out of the data.&lt;/p&gt;
 &lt;p&gt;To fetch the data, click the arrow menu next to the column with the charity numbers and
 select &lt;code&gt;Edit Column &amp;gt; Add column by fetching URLs...&lt;/code&gt;. &lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Screenshot of OpenRefine option for adding column based on an url" src="/images/reconcile/add-column-by-url.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;p&gt;In the resulting dialog you need to add a formula which will create the URL that needs
 to be fetched. This means adding the charity number value into a template. The formula
 you need is:&lt;/p&gt;
@@ -393,7 +403,9 @@ set it to 50-100 milliseconds, which works out as between 10 and 20 requests per
 url which should look sensible. You can test that the URL is correct by visiting one of the
 preview URLs. You'll also see that columns with a &lt;code&gt;null&lt;/code&gt; value also produce a &lt;code&gt;null&lt;/code&gt; URL
 so won't be fetched.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/add-column-dialog.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;h3 id="2-extract-details-from-the-json-data"&gt;2. Extract details from the JSON data&lt;/h3&gt;
 &lt;p&gt;You should see a new column filled with JSON data - it looks very hard to read, but all the 
 data we'll looking for. You'll need to get OpenRefine to look through this data and extract
@@ -407,7 +419,9 @@ the &lt;code&gt;parseJson&lt;/code&gt; OpenRefine function. Enter the following 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enter a name for the column and press OK to add it.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Dialog for adding a new column by parsing JSON" src="/images/reconcile/parse-json-1.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;h4 id="company-number"&gt;Company number&lt;/h4&gt;
 &lt;p&gt;Adding a company number is slightly more complicated. This is because the &lt;code&gt;company_number&lt;/code&gt;
 field can contain multiple values (if a charity is linked with more than one company).
@@ -432,7 +446,7 @@ to look for other data sources.&lt;/p&gt;
 &lt;p&gt;A good place to look is &lt;a href="https://charitybase.uk/"&gt;CharityBase&lt;/a&gt; which has more detailed data
 extracted from the Charity Commission.&lt;/p&gt;
 &lt;p&gt;A sample formula for getting a CharityBase URL for extracting data might look like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="s"&gt;&amp;quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;amp;charityNumber=&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;amp;fields=mainCharity.income,registration,beta.people.employees&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="s"&gt;&amp;quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;amp;charityNumber=&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;amp;fields=mainCharity.income,registration,beta.people.employees&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;(Note that you need to specify the fields you want to return - here we're looking for the 
@@ -657,10 +671,10 @@ for making charts.&lt;/p&gt;
 &lt;span class="c1"&gt;# Z = (X / 0.489) - X&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Female&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;367&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;335&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;237&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Male&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;085&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;363&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;296&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;48.9&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;48.0&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;people&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;
-&lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;weighting&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mf"&gt;1.132&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;bring&lt;/span&gt; &lt;span class="n"&gt;female&lt;/span&gt; &lt;span class="n"&gt;population&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mf"&gt;51.1&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Female&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;367&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;335&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;237&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Male&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;085&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;363&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;296&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;48.9&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;48.0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sample&lt;/span&gt;
+&lt;span class="n"&gt;Use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;weighting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.132&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;female&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;population&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;51.1&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sample&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This gives us 15,367 female first names (from 335,000 people) and 
