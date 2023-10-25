@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kane Data</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2022-12-06T15:08:59+00:00</updated><entry><title>Where to find geographic boundaries for the UK</title><link href="https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/" rel="alternate"></link><published>2022-12-06T15:08:59+00:00</published><updated>2022-12-06T15:08:59+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2022-12-06:/2022/where-to-find-geographic-boundaries-for-the-uk/</id><summary type="html">&lt;p&gt;Geographic boundary data is a requirement for any geographic analysis or map-making.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kane Data</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2023-10-25T15:16:06+01:00</updated><entry><title>Blocking bots by UserAgent in dokku using nginx</title><link href="https://dkane.net/2023/blocking-bots-by-useragent-in-dokku-using-nginx/" rel="alternate"></link><published>2023-10-25T15:16:06+01:00</published><updated>2023-10-25T15:16:06+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2023-10-25:/2023/blocking-bots-by-useragent-in-dokku-using-nginx/</id><summary type="html">&lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
+&lt;p&gt;A website I ran was being aggresively scraped by someone using a particular UserAgent string. It wasn't a normal search engine or similar bot (e.g. GoogleBot) so adding something to robots.txt wasn't going to work.&lt;/p&gt;
+&lt;p&gt;This site is using &lt;a href="https://dokku.com/"&gt;dokku&lt;/a&gt; to serve the web app, dokku …&lt;/p&gt;</summary><content type="html">&lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
+&lt;p&gt;A website I ran was being aggresively scraped by someone using a particular UserAgent string. It wasn't a normal search engine or similar bot (e.g. GoogleBot) so adding something to robots.txt wasn't going to work.&lt;/p&gt;
+&lt;p&gt;This site is using &lt;a href="https://dokku.com/"&gt;dokku&lt;/a&gt; to serve the web app, dokku uses &lt;a href="https://www.nginx.com/"&gt;nginx&lt;/a&gt; to route requests to the app.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The solution&lt;/h2&gt;
+&lt;p&gt;You can use dokku's server configuration to add a rule to nginx telling it to return HTTP status 444 when given a particular User Agent string.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dokku.com/docs/networking/proxies/nginx/#customizing-via-configuration-files-included-by-the-default-templates"&gt;Dokku loads any nginx conf files&lt;/a&gt; which are stored in the &lt;code&gt;/home/dokku/$APPNAME/nginx.conf.d/&lt;/code&gt; directory (replace &lt;code&gt;$APPNAME&lt;/code&gt; with the name of your app). These files are loaded into the server block of the main configuration for the app.&lt;/p&gt;
+&lt;p&gt;On your server, first make sure the directory exists by running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;/home/dokku/&lt;span class="nv"&gt;$APPNAME&lt;/span&gt;/nginx.conf.d/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(again, replace &lt;code&gt;$APPNAME&lt;/code&gt; with the app you're using it on).&lt;/p&gt;
+&lt;p&gt;Then create the file. I called mine &lt;code&gt;bots.conf&lt;/code&gt;, and used nano to edit it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nano&lt;span class="w"&gt; &lt;/span&gt;/home/dokku/&lt;span class="nv"&gt;$APPNAME&lt;/span&gt;/nginx.conf.d/bots.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the following rule to the file, and then save it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;if ($http_user_agent = &amp;quot;bot-name&amp;quot;){
+    return 444;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://http.dev/444"&gt;444 is an unofficial status code&lt;/a&gt; that nginx uses. Instead of returning anything, nginx will simply close the connection without a response.&lt;/p&gt;
+&lt;p&gt;My example will close the connection if the user agent string exactly equals "bot-name". You could also use regular expressions here for more flexible matching (see the &lt;a href="https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if"&gt;documentation on &lt;code&gt;if&lt;/code&gt; for more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;To exclude more than one bot, simply add multiple rules to the file.&lt;/p&gt;
+&lt;p&gt;Next make sure that dokku owns the file you've created&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;chown&lt;span class="w"&gt; &lt;/span&gt;dokku:dokku&lt;span class="w"&gt; &lt;/span&gt;/home/dokku/&lt;span class="nv"&gt;$APPNAME&lt;/span&gt;/nginx.conf.d/bots.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally reload nginx - the rule should then be applied.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;service&lt;span class="w"&gt; &lt;/span&gt;nginx&lt;span class="w"&gt; &lt;/span&gt;reload
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Code"></category></entry><entry><title>Where to find geographic boundaries for the UK</title><link href="https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/" rel="alternate"></link><published>2022-12-06T15:08:59+00:00</published><updated>2022-12-06T15:08:59+00:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2022-12-06:/2022/where-to-find-geographic-boundaries-for-the-uk/</id><summary type="html">&lt;p&gt;Geographic boundary data is a requirement for any geographic analysis or map-making.
 But finding boundary data is &lt;a href="https://twitter.com/mapstack_io/status/1600142044986372097"&gt;often a nightmare&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;This is a problem I've faced too, so I thought it might be useful to outline some of the places to look for boundary data:&lt;/p&gt;
 &lt;h2 id="ons-open-geography-portal"&gt;&lt;a href="https://geoportal.statistics.gov.uk/"&gt;ONS Open Geography Portal&lt;/a&gt;&lt;/h2&gt;

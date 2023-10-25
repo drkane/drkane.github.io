@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <title>Blocking bots by UserAgent in dokku using nginx | Kane Data</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="Kane Data Full RSS Feed" />
+<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="Kane Data Categories Atom Feed" />
+
+
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+    <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="/pages/about" class="white logo underline double underline-yellow">About</a>
+|    <a href="/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+</div>        <h1 class="f1 lh-solid mv0 logo">
+            <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                Kane Data
+            </a>
+        </h1>
+        <h1 class="f2-ns f3 lh-solid mv0">Charity Data & more</h1>
+    </header><!-- /#banner -->
+    <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2023/blocking-bots-by-useragent-in-dokku-using-nginx/" rel="bookmark" class="link near-black"
+            title="Permalink to Blocking bots by UserAgent in dokku using nginx">Blocking bots by UserAgent in dokku using nginx</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2023-10-25T15:16:06+01:00">
+        Wed 25 October 2023
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/code/">Code</a>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <h2 id="the-problem">The problem</h2>
+<p>A website I ran was being aggresively scraped by someone using a particular UserAgent string. It wasn't a normal search engine or similar bot (e.g. GoogleBot) so adding something to robots.txt wasn't going to work.</p>
+<p>This site is using <a href="https://dokku.com/">dokku</a> to serve the web app, dokku uses <a href="https://www.nginx.com/">nginx</a> to route requests to the app.</p>
+<h2 id="the-solution">The solution</h2>
+<p>You can use dokku's server configuration to add a rule to nginx telling it to return HTTP status 444 when given a particular User Agent string.</p>
+<p><a href="https://dokku.com/docs/networking/proxies/nginx/#customizing-via-configuration-files-included-by-the-default-templates">Dokku loads any nginx conf files</a> which are stored in the <code>/home/dokku/$APPNAME/nginx.conf.d/</code> directory (replace <code>$APPNAME</code> with the name of your app). These files are loaded into the server block of the main configuration for the app.</p>
+<p>On your server, first make sure the directory exists by running:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/home/dokku/<span class="nv">$APPNAME</span>/nginx.conf.d/
+</code></pre></div>
+
+<p>(again, replace <code>$APPNAME</code> with the app you're using it on).</p>
+<p>Then create the file. I called mine <code>bots.conf</code>, and used nano to edit it:</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/home/dokku/<span class="nv">$APPNAME</span>/nginx.conf.d/bots.conf
+</code></pre></div>
+
+<p>Add the following rule to the file, and then save it.</p>
+<div class="highlight"><pre><span></span><code>if ($http_user_agent = &quot;bot-name&quot;){
+    return 444;
+}
+</code></pre></div>
+
+<p><a href="https://http.dev/444">444 is an unofficial status code</a> that nginx uses. Instead of returning anything, nginx will simply close the connection without a response.</p>
+<p>My example will close the connection if the user agent string exactly equals "bot-name". You could also use regular expressions here for more flexible matching (see the <a href="https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if">documentation on <code>if</code> for more details</a>).</p>
+<p>To exclude more than one bot, simply add multiple rules to the file.</p>
+<p>Next make sure that dokku owns the file you've created</p>
+<div class="highlight"><pre><span></span><code>chown<span class="w"> </span>dokku:dokku<span class="w"> </span>/home/dokku/<span class="nv">$APPNAME</span>/nginx.conf.d/bots.conf
+</code></pre></div>
+
+<p>Finally reload nginx - the rule should then be applied.</p>
+<div class="highlight"><pre><span></span><code>service<span class="w"> </span>nginx<span class="w"> </span>reload
+</code></pre></div>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+    </main>
+    <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
+        <div class="h4 fl pr5">
+            <img src="https://dkane.net/theme/images/logo.svg" class="h3" title="Kane Data Limited">
+        </div>
+        <div>
+<a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+ | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+ | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastodon.social</a>
+ | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+ | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
+            | <a href="/feed.rss" class="link yellow">RSS</a>
+        </div>
+        <div class="mt3">
+<a href="https://findthatcharity.uk/" class="link yellow" rel="me">Find That Charity</a>
+ | <a href="https://findthatpostcode.uk/" class="link yellow" rel="me">Find That Postcode</a>
+ | <a href="https://ngoexplorer.org/" class="link yellow" rel="me">NGO Explorer</a>
+ | <a href="https://charizone.co.uk/" class="link yellow" rel="me">Charizone</a>
+ | <a href="https://charityclassification.org.uk/" class="link yellow" rel="me">Charity Classification</a>
+        </div>
+        <div class="mt3 f6">
+            &copy 2018 - 2023 Kane Data Limited |
+            <address id="about" class="vcard body di fs-normal">
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+            </address><!-- /#about --> |
+            Kane Data Limited is registered as a company in England (<a
+                href="https://find-and-update.company-information.service.gov.uk/company/14015213"
+                class="link yellow">company number 14015213</a>)
+        </div>
+    </footer><!-- /#contentinfo -->
+<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+
+</html>
