@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Wed, 25 Oct 2023 15:16:06 +0100</lastBuildDate><item><title>Blocking bots by UserAgent in dokku using nginx</title><link>https://dkane.net/2023/blocking-bots-by-useragent-in-dokku-using-nginx/</link><description>&lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
+<rss version="2.0"><channel><title>David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Wed, 08 May 2024 10:03:01 +0100</lastBuildDate><item><title>Using Django's GeneratedField</title><link>https://dkane.net/2024/using-djangos-generatedfield/</link><description>&lt;p&gt;Django (the python web framework) version 5.0, released in December 2023, introduced a new field type for models - the &lt;a href="https://docs.djangoproject.com/en/5.0/releases/5.0/#database-generated-model-field"&gt;&lt;code&gt;GeneratedField&lt;/code&gt;&lt;/a&gt;. This is potentially a very handy tool - it allows you to define fields that are based on other fields, but gives you the flexibility and speed that comes with a field belonging to the database, without the overhead of needing to store duplicate data.&lt;/p&gt;
+&lt;p&gt;I recently had an opportunity to use this field in a real life project, so I wanted to test how well it worked.&lt;/p&gt;
+&lt;h2 id="my-use-case"&gt;My use case&lt;/h2&gt;
+&lt;p&gt;I work a lot with financial data that comes from regulators, and that data is often wrong or needs cleaning in some way. However, I'm also consuming a "firehose" of data from those regulators, with updates coming every day.&lt;/p&gt;
+&lt;p&gt;What I need is a way of storing both the original value that comes from the regulator, along with the ability to overwrite it with a manually checked value. That way I can keep storing the original value from regulator data without needing to re-enter the manual value every time.&lt;/p&gt;
+&lt;p&gt;So if I'm gathering an organisation's turnover in a given year I end up with two fields in the database:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;turnover_regulator&lt;/code&gt; - the value of Turnover from the regulator's data. This could be null if not provided, but would typically be available for most organisations. This field is updated by a nightly data fetching process - any data is this field is overwritten every night.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;turnover_manual&lt;/code&gt; - this is a field that is null by default but can be manually changed to a correct value if needed. This field isn't touched by the data fetching process so any changes will be kept.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both these fields are integer, float or decimal depending on the exact need, and they can both have null values. So in a django model they would look something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FinancialYear&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;organisation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;financial_year_end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;turnover_regulator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DecimalField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;turnover_manual&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DecimalField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once this data is stored, I need some way of finding the best available estimate of turnover for an organisation. This is found by checking whether &lt;code&gt;turnover_manual&lt;/code&gt; has a value in it - if it does then use that, if not then use the value in &lt;code&gt;turnover_regulator&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="the-old-way"&gt;The old way&lt;/h2&gt;
+&lt;p&gt;With this setup I would have two options for calculating the final &lt;code&gt;turnover&lt;/code&gt; figure:&lt;/p&gt;
+&lt;h3 id="1-django-model-property"&gt;1. Django model property&lt;/h3&gt;
+&lt;p&gt;I could set up a property on the model which fetches both values from the database and then uses Python to choose which one to use. It might look something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FinancialYear&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;turnover&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;turnover_manual&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;turnover_manual&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;turnover_regulator&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This works fine for looking at a single record, and has the advantage of not needing unnecessary storage in the database. However, when dealing with thousands of rows it requires every row to be fetched from the database and then processed in Python, so you can't take advantage of the optimisations that come with calculating things in the database. For example, I wouldn't be able to create a sum of turnover for a set of organisations using the database.&lt;/p&gt;
+&lt;h3 id="2-updating-a-separate-field"&gt;2. Updating a separate field&lt;/h3&gt;
+&lt;p&gt;The other way to store this is to create a separate &lt;code&gt;turnover&lt;/code&gt; field on the model which you thne need to make sure is updated with the right value.&lt;/p&gt;
+&lt;p&gt;You could update it by patching into the models' &lt;code&gt;save()&lt;/code&gt; method, although this isn't always trigged when the model is updated in bulk. Or you could have some kind of bulk update process that runs periodically - although this would mean that there's times when the field is out of sync. Or you may be able to set up a trigger to update the data in the database - but this would decouple the database code from Django and could have performance concerns.&lt;/p&gt;
+&lt;h2 id="using-generatedfield-instead"&gt;Using &lt;code&gt;GeneratedField&lt;/code&gt; instead&lt;/h2&gt;
+&lt;p&gt;The new &lt;code&gt;GeneratedField&lt;/code&gt; gives us a third option. Instead, we can use &lt;code&gt;GeneratedField&lt;/code&gt; to define an SQL function, and then the database will make sure that the value is always available to use as if it was any normal field.&lt;/p&gt;
+&lt;p&gt;I did this using the following definition:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FinancialYear&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;turnover&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GeneratedField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;functions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Coalesce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;turnover_manual&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;turnover_regulator&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;output_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DecimalField&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="n"&gt;db_persist&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;What I'm doing here is defining a field called &lt;code&gt;turnover&lt;/code&gt; that uses the &lt;code&gt;Coalesce&lt;/code&gt; SQL function to choose the first non-null value from the two fields. It's a pretty simple use-case, but it is possible to do more complex expression there too.&lt;/p&gt;
+&lt;p&gt;I've also defined an &lt;code&gt;output_field&lt;/code&gt; which tells Django/the database what type of data will be returned, and &lt;code&gt;db_persist&lt;/code&gt; which sets whether it's permanently stored in the database or not (I only used this when it was set to &lt;code&gt;True&lt;/code&gt; so I haven't seen what the performance impact might be).&lt;/p&gt;
+&lt;p&gt;I found this worked really well - I could access the value in Django, for example adding it as a (read-only) field in admin pages, but it was also available in more complex SQL queries that I was creating to aggregate and filter data. I haven't done any proper benchmarking but I didn't notice any big impacts on performance when using it. And it seemed to work - Django and the databases take care of the details of keeping the field up-to-date, so I didn't need to worry about out-of-date data being used.&lt;/p&gt;
+&lt;h2 id="limitations"&gt;Limitations&lt;/h2&gt;
+&lt;p&gt;My experience was generally great, but there were a few limitations I found. I've also only tested it in a fairly narrow way - I only used it with Sqlite, and only with a narrow set of generated field expressions so there may be other issues.&lt;/p&gt;
+&lt;h3 id="bugs"&gt;Bugs&lt;/h3&gt;
+&lt;p&gt;This is quite a new feature, so I imagine there are a few bugs around that might cause issues when using it.&lt;/p&gt;
+&lt;p&gt;I particularly found &lt;a href="https://code.djangoproject.com/ticket/35350"&gt;an issue with creating new objects when the primary key was defined rather than generated&lt;/a&gt; - this happened to match my exact use-case! Fortunately, this bug has now been fixed in version 5.0.5 (released this week), but as with any new features there may be others out there.&lt;/p&gt;
+&lt;h3 id="generating-migrations"&gt;Generating migrations&lt;/h3&gt;
+&lt;p&gt;At the moment, &lt;code&gt;GeneratedField&lt;/code&gt; will work correctly when first created in a migration, but changing the &lt;code&gt;GeneratedField&lt;/code&gt; will result in a migration that doesn't work. There is a simple workaround for this - simply replace the &lt;code&gt;migrations.AlterField&lt;/code&gt; operation that is created with two new migrations - one that does &lt;code&gt;migrations.RemoveField&lt;/code&gt; and one that does &lt;code&gt;migrations.AddField&lt;/code&gt; (because the field is generated from other data you don't need to worry about losing data).&lt;/p&gt;
+&lt;p&gt;It isn't ideal to have to do this manually every time you change the &lt;code&gt;GeneratedField&lt;/code&gt;, but it's not a big problem.&lt;/p&gt;
+&lt;h3 id="using-with-relationships"&gt;Using with relationships&lt;/h3&gt;
+&lt;p&gt;As &lt;a href="https://docs.djangoproject.com/en/5.0/ref/models/fields/#generatedfield"&gt;the docs explain&lt;/a&gt;, &lt;code&gt;GeneratedField&lt;/code&gt;s can only access fields from the same model, so it's not possible to access fields in related tables. This does block of some of the potential use cases for a generated field in aggregating data from a related model. But again, not a major blocker.&lt;/p&gt;
+&lt;h2 id="further-reading"&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.djangoproject.com/en/5.0/releases/5.0/#database-generated-model-field"&gt;Django 5.0 Release notes announcing the feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.djangoproject.com/en/5.0/ref/models/fields/#generatedfield"&gt;Django model Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://modern-sql.com/caniuse/generated-always-as"&gt;sql &lt;code&gt;GENERATED ALWAYS&lt;/code&gt; support&lt;/a&gt; - this is what Django uses behind the scenes to store the value&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.paulox.net/2023/11/07/database-generated-columns-part-1-django-and-sqlite/"&gt;Another blog post explaining the feature&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Wed, 08 May 2024 10:03:01 +0100</pubDate><guid isPermaLink="false">tag:dkane.net,2024-05-08:/2024/using-djangos-generatedfield/</guid><category>Code</category><category>Django</category></item><item><title>Blocking bots by UserAgent in dokku using nginx</title><link>https://dkane.net/2023/blocking-bots-by-useragent-in-dokku-using-nginx/</link><description>&lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
 &lt;p&gt;A website I ran was being aggresively scraped by someone using a particular UserAgent string. It wasn't a normal search engine or similar bot (e.g. GoogleBot) so adding something to robots.txt wasn't going to work.&lt;/p&gt;
 &lt;p&gt;This site is using &lt;a href="https://dokku.com/"&gt;dokku&lt;/a&gt; to serve the web app, dokku uses &lt;a href="https://www.nginx.com/"&gt;nginx&lt;/a&gt; to route requests to the app.&lt;/p&gt;
 &lt;h2 id="the-solution"&gt;The solution&lt;/h2&gt;
