@@ -1,5 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2024-05-08T10:03:01+01:00</updated><entry><title>Using Django's GeneratedField</title><link href="https://dkane.net/2024/using-djangos-generatedfield/" rel="alternate"></link><published>2024-05-08T10:03:01+01:00</published><updated>2024-05-08T10:03:01+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2024-05-08:/2024/using-djangos-generatedfield/</id><summary type="html">&lt;p&gt;Django (the python web framework) version 5.0, released in December 2023, introduced a new field type for models - the &lt;a href="https://docs.djangoproject.com/en/5.0/releases/5.0/#database-generated-model-field"&gt;&lt;code&gt;GeneratedField&lt;/code&gt;&lt;/a&gt;. This is potentially a very handy tool - it allows you to define fields that are based on other fields, but gives you the flexibility and speed that comes with …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Django (the python web framework) version 5.0, released in December 2023, introduced a new field type for models - the &lt;a href="https://docs.djangoproject.com/en/5.0/releases/5.0/#database-generated-model-field"&gt;&lt;code&gt;GeneratedField&lt;/code&gt;&lt;/a&gt;. This is potentially a very handy tool - it allows you to define fields that are based on other fields, but gives you the flexibility and speed that comes with a field belonging to the database, without the overhead of needing to store duplicate data.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>David Kane</title><link href="https://dkane.net/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://dkane.net/</id><updated>2024-06-05T11:05:50+01:00</updated><entry><title>Getting VueJS 3 to work nicely with Django</title><link href="https://dkane.net/2024/getting-vuejs-3-to-work-nicely-with-django/" rel="alternate"></link><published>2024-06-05T11:05:50+01:00</published><updated>2024-06-05T11:05:50+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2024-06-05:/2024/getting-vuejs-3-to-work-nicely-with-django/</id><summary type="html">&lt;p&gt;Most of the tutorials for using Django and VueJS assume that you want to completely remove Django views and instead just use VueJS to serve the entire frontend.&lt;/p&gt;
+&lt;p&gt;My usecase are usually different - I mainly find that I want to use VueJS sparingly to provide some enhancement to a particular …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Most of the tutorials for using Django and VueJS assume that you want to completely remove Django views and instead just use VueJS to serve the entire frontend.&lt;/p&gt;
+&lt;p&gt;My usecase are usually different - I mainly find that I want to use VueJS sparingly to provide some enhancement to a particular page, serving all the pages in Django through the usual way.&lt;/p&gt;
+&lt;p&gt;I've not found a good tutorial for doing this, so I thought I would write my own. This tutorial assumes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you know your way around Django and VueJS, and just want to connect them.&lt;/li&gt;
+&lt;li&gt;You've already got a working Django site that you want to add to.&lt;/li&gt;
+&lt;li&gt;You've got NPM installed to add VueJS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There's also a couple of requirements that are specific to how I like to set up Django, but these are optional. In particular:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I prefer to use Jinja2 templates rather than Django's built in templating&lt;/li&gt;
+&lt;li&gt;I use Whitenoise to serve static files&lt;/li&gt;
+&lt;li&gt;I use Dokku for app deployment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="initial-setup"&gt;Initial setup&lt;/h2&gt;
+&lt;h3 id="1-install-django-vite"&gt;1. Install &lt;a href="https://github.com/MrBin99/django-vite"&gt;django-vite&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;django-vite&lt;/code&gt; provides some useful template tags to automatically find the scripts to add to a page.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run &lt;code&gt;pip install django-vite&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;django_vite&lt;/code&gt; to &lt;code&gt;INSTALLED_APPS&lt;/code&gt; in &lt;code&gt;settings.py&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="2-create-the-vue-app-in-your-directory"&gt;2. Create the vue app in your directory&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;npm&lt;span class="w"&gt; &lt;/span&gt;create&lt;span class="w"&gt; &lt;/span&gt;vite@latest&lt;span class="w"&gt; &lt;/span&gt;frontend&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;--template&lt;span class="w"&gt; &lt;/span&gt;vue
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates a directory called &lt;code&gt;/frontend/&lt;/code&gt; in the root directory of your django project.
+If you want to call it something different you can change &lt;code&gt;frontend&lt;/code&gt; in the command.&lt;/p&gt;
+&lt;p&gt;Delete the &lt;code&gt;/frontend/index.html&lt;/code&gt; file that's created here - we'll be inserting the scripts into our django templates
+so we don't need this file. You might also want to delete more of the sample files that are created at this stage.&lt;/p&gt;
+&lt;h3 id="3-update-settingspy-again"&gt;3. Update &lt;code&gt;settings.py&lt;/code&gt; again&lt;/h3&gt;
+&lt;p&gt;We need to tell django where to look for the static files. Add a value to your &lt;code&gt;STATICFILES_DIRS&lt;/code&gt; setting:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;STATICFILES_DIRS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BASE_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;frontend&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;dist&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="c1"&gt;# or&lt;/span&gt;
+    &lt;span class="n"&gt;BASE_DIR&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;frontend&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;dist&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Also add a setting called &lt;code&gt;DJANGO_VITE&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;DJANGO_VITE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;default&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dev_mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will use the existing &lt;code&gt;DEBUG&lt;/code&gt; setting to work out whether django vite operates in dev mode or production mode.&lt;/p&gt;
+&lt;p&gt;In dev mode you must be running a static server using &lt;code&gt;npm run dev&lt;/code&gt;. This will run a server at &lt;code&gt;http://localhost:5173/static/&lt;/code&gt; which serves the files.&lt;/p&gt;
+&lt;p&gt;In production mode, you must have generated the files using &lt;code&gt;npm run build&lt;/code&gt; and then run &lt;code&gt;python manage.py collectstatic&lt;/code&gt; to find the files. This will make sure that the files are added to your &lt;code&gt;staticfiles&lt;/code&gt; directory.&lt;/p&gt;
+&lt;p&gt;If you're using Whitenoise to serve your static files, you may also need to add a new test that takes into account the URL format generated by Vite. This is described in the &lt;a href="https://github.com/MrBin99/django-vite?tab=readme-ov-file#whitenoise"&gt;django-vite documentation&lt;/a&gt;. I added the snippet to &lt;code&gt;settings.py&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="4-update-frontendviteconfigjs"&gt;4. Update &lt;code&gt;frontend/vite.config.js&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;vite.config.js&lt;/code&gt; file tells vite both which files to build and where to put the outputs. This should look like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;defineConfig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;vite&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;path&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;vue&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@vitejs/plugin-vue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;defineConfig&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;base&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/static/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;vue&lt;/span&gt;&lt;span class="p"&gt;()],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;build&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;manifest&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;manifest.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;outDir&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./dist&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;rollupOptions&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./src/main.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This sets the following options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;base: "/static/"&lt;/code&gt; - this makes sure that the vite development server serves files from &lt;code&gt;/static/&lt;/code&gt; url, as this is where they will be served in production.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;manifest: "manifest.json"&lt;/code&gt; - the manifest file shows where all the outputs can be found&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;outDir: resolve("./dist")&lt;/code&gt; - this sets the directory where outputs are stored to &lt;code&gt;/frontend/dist/&lt;/code&gt;. This is the same as is defined in &lt;code&gt;settings.py&lt;/code&gt; above. I chose this directory because it's already excluded from git by the default .gitignore.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main: resolve("./src/main.js")&lt;/code&gt; - this is an example of an entrypoint for an app. This will create an app called "main" using the script found at &lt;code&gt;/frontend/src/main.js&lt;/code&gt;. You can create one of these entries for each entrypoint within your app.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="4-optional-set-up-jinja-to-use-the-django_vite-template-tags"&gt;4. [optional] Set up Jinja to use the django_vite template tags&lt;/h3&gt;
+&lt;p&gt;I prefer to use Jinja over the default Django templates. This extra step is needed to make the django-vite template tags available to Jinja templates.&lt;/p&gt;
+&lt;p&gt;I've set up a Jinja2 environment &lt;a href="https://docs.djangoproject.com/en/5.0/topics/templates/#django.template.backends.jinja2.Jinja2"&gt;as described in the Django docs&lt;/a&gt;
+so I add the django-vite template tags to the global environment there.&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Show how to add django_vite tags to jinja global environment&lt;/summary&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django_vite.templatetags.django_vite&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;vite_asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;vite_asset_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;vite_hmr_client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;vite_legacy_asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;vite_legacy_polyfills&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;vite_preload_asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;vite_react_refresh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;jinja2&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;env&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;globals&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;# ... any other globals&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_hmr_client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_hmr_client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_asset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_preload_asset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_preload_asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_asset_url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_asset_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_legacy_polyfills&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_legacy_polyfills&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_legacy_asset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_legacy_asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;vite_react_refresh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;vite_react_refresh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;# ... any filters&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/details&gt;
+
+&lt;h2 id="adding-a-frontend-app"&gt;Adding a frontend app&lt;/h2&gt;
+&lt;p&gt;This setup allows you to serve different VueJS apps from different pages in your app. To add a VueJS app to a page, you need to do the following:&lt;/p&gt;
+&lt;h3 id="1-create-a-vuejs-app-in-the-frontendsrc-directory"&gt;1. Create a VueJS app in the frontend/src directory&lt;/h3&gt;
+&lt;p&gt;This should look something like the &lt;code&gt;/frontend/src/main.js&lt;/code&gt; script, e.g. it should mount a VueJS component to a particular HTML element, usually identified by its ID. A calculator app saved in &lt;code&gt;calculator.js&lt;/code&gt; might look something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;createApp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;vue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;CalculatorApp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./CalculatorApp.vue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;vite/modulepreload-polyfill&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="nx"&gt;createApp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;CalculatorApp&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;mount&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#calculator&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="2-add-the-new-app-to-viteconfigjs"&gt;2. Add the new app to &lt;code&gt;vite.config.js&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Within your existing &lt;code&gt;vite.config.js&lt;/code&gt; file add another entry to &lt;code&gt;build.rollupOptions.input&lt;/code&gt;, alongside any existing entries:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;defineConfig&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;build&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;rollupOptions&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./src/main.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;calculator&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./src/calculator.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-insert-the-template-tags-into-your-templates"&gt;3. Insert the template tags into your templates&lt;/h3&gt;
+&lt;p&gt;As I mentioned above, I use Jinja2 for compiling templates. My base templates tend to have a &lt;code&gt;headscripts&lt;/code&gt; block which is where &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags go. So my template has a block like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;block&lt;/span&gt; &lt;span class="nv"&gt;headscripts&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;
+&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;vite_hmr_client&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;
+&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;vite_asset&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;src/calculator.js&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endblock&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;vite_hmr_client()&lt;/code&gt; call creates script tags in development mode to load the development script. And the &lt;code&gt;vite_asset('src/calculator.js')&lt;/code&gt; call loads the actual calculator script.&lt;/p&gt;
+&lt;p&gt;In the django template language it would look more like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;load&lt;/span&gt; &lt;span class="nv"&gt;django_vite&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;block&lt;/span&gt; &lt;span class="nv"&gt;headscripts&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nb"&gt;block&lt;/span&gt;&lt;span class="nv"&gt;.super&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;vite_hmr_client&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;vite_asset&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;src/calculator.js&amp;#39;&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endblock&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You'll also need to at this point add a &lt;code&gt;&amp;lt;div id="calculator"&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt; tag to your template to provide somewhere for your app to live.&lt;/p&gt;
+&lt;h2 id="serving-in-development-mode"&gt;Serving in development mode&lt;/h2&gt;
+&lt;p&gt;When developing your site locally, you'll need to run two different servers.&lt;/p&gt;
+&lt;p&gt;I usually use django's built in development server by running &lt;code&gt;python manage.py runserver&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You'll also need to run the vite server by running &lt;code&gt;npm run dev&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="serving-the-files-in-production-mode"&gt;Serving the files in production mode&lt;/h2&gt;
+&lt;p&gt;When your site is in production, the built files will need to be available for the static file storage engine to use. You can build the files by running &lt;code&gt;npm run build&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This will create the files in &lt;code&gt;/frontend/dist/&lt;/code&gt;. By default this folder won't be included in Git, so if you're using something like Heroku or Dokku to deploy, then these files won't make it into your staticfiles. There are two ways to achieve this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can add a step to deployment to run the build process during deployment. I achieve this in dokku by adding a &lt;code&gt;release: sh ./release.sh&lt;/code&gt; line to my Procfile. The &lt;code&gt;release.sh&lt;/code&gt; file then looks like:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;npm&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;--prefix&lt;span class="w"&gt; &lt;/span&gt;frontend&lt;span class="w"&gt; &lt;/span&gt;build
+python&lt;span class="w"&gt; &lt;/span&gt;manage.py&lt;span class="w"&gt; &lt;/span&gt;collectstatic&lt;span class="w"&gt; &lt;/span&gt;--noinput
+python&lt;span class="w"&gt; &lt;/span&gt;manage.py&lt;span class="w"&gt; &lt;/span&gt;migrate&lt;span class="w"&gt; &lt;/span&gt;--noinput
+python&lt;span class="w"&gt; &lt;/span&gt;manage.py&lt;span class="w"&gt; &lt;/span&gt;createcachetable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Or you can unignore the &lt;code&gt;/frontend/dist&lt;/code&gt; folder from git (or use a different folder to output) and make sure you build the files every time you deploy.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Code"></category><category term="Django"></category></entry><entry><title>Using Django's GeneratedField</title><link href="https://dkane.net/2024/using-djangos-generatedfield/" rel="alternate"></link><published>2024-05-08T10:03:01+01:00</published><updated>2024-05-08T10:03:01+01:00</updated><author><name>David Kane</name></author><id>tag:dkane.net,2024-05-08:/2024/using-djangos-generatedfield/</id><summary type="html">&lt;p&gt;Django (the python web framework) version 5.0, released in December 2023, introduced a new field type for models - the &lt;a href="https://docs.djangoproject.com/en/5.0/releases/5.0/#database-generated-model-field"&gt;&lt;code&gt;GeneratedField&lt;/code&gt;&lt;/a&gt;. This is potentially a very handy tool - it allows you to define fields that are based on other fields, but gives you the flexibility and speed that comes with …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Django (the python web framework) version 5.0, released in December 2023, introduced a new field type for models - the &lt;a href="https://docs.djangoproject.com/en/5.0/releases/5.0/#database-generated-model-field"&gt;&lt;code&gt;GeneratedField&lt;/code&gt;&lt;/a&gt;. This is potentially a very handy tool - it allows you to define fields that are based on other fields, but gives you the flexibility and speed that comes with a field belonging to the database, without the overhead of needing to store duplicate data.&lt;/p&gt;
 &lt;p&gt;I recently had an opportunity to use this field in a real life project, so I wanted to test how well it worked.&lt;/p&gt;
 &lt;h2 id="my-use-case"&gt;My use case&lt;/h2&gt;
 &lt;p&gt;I work a lot with financial data that comes from regulators, and that data is often wrong or needs cleaning in some way. However, I'm also consuming a "firehose" of data from those regulators, with updates coming every day.&lt;/p&gt;
