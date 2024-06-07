@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <title>Where to get boundary data on new parliamentary constituencies | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+    <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="https://kanedata.co.uk/pages/about" class="white logo underline double underline-yellow">About</a>
+|    <a href="https://kanedata.co.uk/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+</div>        <h1 class="f1 lh-solid mv0 logo">
+            <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                David Kane
+            </a>
+        </h1>
+        <h1 class="f2-ns f3 lh-solid mv0">Charity data blog</h1>
+    </header><!-- /#banner -->
+    <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2024/where-to-get-boundary-data-on-new-parliamentary-constituencies/" rel="bookmark" class="link near-black"
+            title="Permalink to Where to get boundary data on new parliamentary constituencies">Where to get boundary data on new parliamentary constituencies</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2024-06-07T10:45:00+01:00">
+        Fri 07 June 2024
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p>The 2024 UK General Election happens on July 4th. This election will be fought on a new set of constituency boundaries, with the makeup of constituencies changing for the first time since 2010. You can find out more information about these changes <a href="https://www.parliament.uk/about/how/elections-and-voting/constituencies/">on the parliament.uk website</a>.</p>
+<p>If you're analysing or visualising data by parliamentary constituency, then you probably want to use the new 2024 boundaries. I thought it might be useful to show how to get data on these new boundaries, particularly as lots of the <a href="./where-to-find-boundary-data.md">main sources of boundary data</a> haven't yet updated to take them into account.</p>
+<h2 id="source-data">Source data</h2>
+<p>The source I tend to use for boundaries is the ONS Geoportal. They've <a href="https://geoportal.statistics.gov.uk/search?q=Future_Parlicons&amp;sort=Title%7Ctitle%7Casc">produced a category bringing together all the data on the new constituencies</a>. Some of the useful files are:</p>
+<ul>
+<li>List of the <a href="https://geoportal.statistics.gov.uk/maps/9a876e4777bc47e392e670a7b8bc3f5c">names and codes</a> of the new constituencies</li>
+<li>Boundary data can be downloaded as GeoJSON or in other formats at a variety of resolutions (the higher resolution files are larger): <a href="https://geoportal.statistics.gov.uk/maps/0d698c9712de4afcac9377367d831c1a">Highest resolution 1</a>, <a href="https://geoportal.statistics.gov.uk/maps/e489d4e5fe9f4f9caa6af161da5442af">Highest resolution 2</a>, <a href="https://geoportal.statistics.gov.uk/maps/7f5c8a729c2f4ccbb8edc3a067845823">Lower resolution</a> and <a href="https://geoportal.statistics.gov.uk/maps/ef63f363ac824b79ae9670744fcc4307">lowest resolution</a>.</li>
+<li><a href="https://geoportal.statistics.gov.uk/datasets/6f2f35a9a0b94e7e949eeba7785911d4">Postcode lookup</a> - mapping every UK postcode to the new constituencies</li>
+<li><a href="https://geoportal.statistics.gov.uk/maps/c776b66c0e534b849cae5a5121b7a16a">Lookups from old constituencies to new ones</a> - note that these aren't one-to-one, so where it'll show two constituencies that overlap to form a new one</li>
+<li>Lookups from smaller geographies to the new consitutencies: <a href="https://geoportal.statistics.gov.uk/maps/5968b5b2c0f14dd29ba277beaae6dec3">Output Area 2021</a>, <a href="https://geoportal.statistics.gov.uk/maps/4491820e4f274755a2553c42fc6a250c">Output Area 2011</a>, <a href="https://geoportal.statistics.gov.uk/maps/0d62b50d90d14b8d8b2ccf9f770b5751">LSOA 2021</a>, <a href="https://geoportal.statistics.gov.uk/maps/098360c460dd41beacbdfad83bc4fea2">MSOA 2021</a>, <a href="https://geoportal.statistics.gov.uk/maps/62eb9df29a2f4521b5076a419ff9a47e">Ward</a> - note that these lookups are generally done through a "best fit" method, because the areas don't match exactly.</li>
+</ul>
+<h2 id="find-that-postcode">Find that Postcode</h2>
+<p>I've updated the <a href="https://findthatpostcode.uk/">Find that Postcode</a> tool to use parliamentary constituencies as the default. <a href="https://findthatpostcode.uk/areas/E14001444.html">Here's an example constituency</a>.</p>
+<p>In particular, you can use the <a href="https://findthatpostcode.uk/addtocsv/">Add fields to CSV tool</a> if you have a list of postcodes in CSV format, to add data about parliamentary constituencies (or other areas) to that list.</p>
+<h2 id="other-resources">Other resources</h2>
+<ul>
+<li>Open Innovations have created a <a href="https://open-innovations.org/projects/hexmaps/builder.html?https://raw.githubusercontent.com/odileeds/hexmaps/gh-pages/maps/uk-constituencies-2023.hexjson">hex map layout</a> for the new constituencies.</li>
+<li>Open Innovations have also then used this to create a <a href="https://constituencies.open-innovations.org/">resource of maps using the new constituency data</a>.</li>
+<li>MySociety have a <a href="https://pages.mysociety.org/2025-constituencies/datasets/parliament_con_2025/0_1_4">data resource with data on the new files</a></li>
+<li><a href="http://www.statsmapsnpix.com/2023/07/a-new-uk-constituency-hex-map.html">Alasdair Rae and Philip Brown have also produced a hex map</a> along with some nifty 3-letter codes</li>
+<li>The <a href="https://commonslibrary.parliament.uk/constituency-boundary-review-data-for-new-constituencies/">House of Commons library</a> has some data plus links to other resources</li>
+<li><a href="https://www.ordnancesurvey.co.uk/blog/os-election-maps-boundary-lines">Ordnance Survey have also released boundary data</a></li>
+<li>For more politics-focused data, the <a href="https://www.instituteforgovernment.org.uk/explainer/2023-boundary-changes">Institute for Government</a> have some data on the implications of the boundary changes.</li>
+</ul>
+<p><strong>This map shows an example of a boundary change, produced by the House of Commons Library</strong></p>
+<p><img alt="A map produced by the House of Commons Library showing an example boundary change" src="/images/boundaries/ogmore-1536x1152.webp"></p>
+<p>Source: <a href="https://commonslibrary.parliament.uk/boundary-review-2023-which-seats-will-change/">House of Commons Library</a></p>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+    </main>
+    <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
+        <div class="h4 fl pr5">
+            <img src="https://dkane.net/theme/images/logo.svg" class="h3" title="Kane Data Limited">
+        </div>
+        <div>
+<a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+ | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+ | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastodon.social</a>
+ | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+ | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
+            | <a href="/feed.rss" class="link yellow">RSS</a>
+        </div>
+        <div class="mt3">
+<a href="https://kanedata.co.uk/" class="link yellow" rel="me">Kane Data Ltd</a>
+ | <a href="https://findthatcharity.uk/" class="link yellow" rel="me">Find That Charity</a>
+ | <a href="https://findthatpostcode.uk/" class="link yellow" rel="me">Find That Postcode</a>
+ | <a href="https://ngoexplorer.org/" class="link yellow" rel="me">NGO Explorer</a>
+ | <a href="https://charizone.co.uk/" class="link yellow" rel="me">Charizone</a>
+ | <a href="https://charityclassification.org.uk/" class="link yellow" rel="me">Charity Classification</a>
+        </div>
+        <div class="mt3 f6">
+            &copy 2018 - 2024 Kane Data Limited |
+            <address id="about" class="vcard body di fs-normal">
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+            </address><!-- /#about --> |
+            Kane Data Limited is registered as a company in England (<a
+                href="https://find-and-update.company-information.service.gov.uk/company/14015213"
+                class="link yellow">company number 14015213</a>)
+        </div>
+    </footer><!-- /#contentinfo -->
+<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+
+</html>
