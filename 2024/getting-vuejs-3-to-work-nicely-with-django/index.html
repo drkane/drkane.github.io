@@ -68,10 +68,12 @@
 </ul>
 <p>There's also a couple of requirements that are specific to how I like to set up Django, but these are optional. In particular:</p>
 <ul>
+<li>This is based on VueJS 3 (specifically )</li>
 <li>I prefer to use Jinja2 templates rather than Django's built in templating</li>
 <li>I use Whitenoise to serve static files</li>
-<li>I use Dokku for app deployment</li>
+<li>I use Dokku for app deployment (the tips here may also work with Heroku)</li>
 </ul>
+<p><strong>Edit: 2024-06-19</strong> I've changed some of the details below based on the experience of deploying to dokku</p>
 <h2 id="initial-setup">Initial setup</h2>
 <h3 id="1-install-django-vite">1. Install <a href="https://github.com/MrBin99/django-vite">django-vite</a></h3>
 <p><code>django-vite</code> provides some useful template tags to automatically find the scripts to add to a page.</p>
@@ -83,14 +85,24 @@
 <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>create<span class="w"> </span>vite@latest<span class="w"> </span>frontend<span class="w"> </span>--<span class="w"> </span>--template<span class="w"> </span>vue
 </code></pre></div>
 
-<p>This creates a directory called <code>/frontend/</code> in the root directory of your django project.
+<p>This creates a directory called <code>./frontend/</code> in the root directory of your django project.
 If you want to call it something different you can change <code>frontend</code> in the command.</p>
-<p>Delete the <code>/frontend/index.html</code> file that's created here - we'll be inserting the scripts into our django templates
+<p>Move the <code>package.json</code> file from <code>./frontend/package.json</code> to <code>./package.json</code> (ie into the root directory of your project). Change the three scripts created in <code>package.json</code> so they use the <code>frontend/vite.config.js</code> config file. This will look like:</p>
+<div class="highlight"><pre><span></span><code><span class="err">...</span>
+<span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dev&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vite -c frontend/vite.config.js&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vite build -c frontend/vite.config.js&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vite preview -c frontend/vite.config.js&quot;</span>
+<span class="p">},</span>
+<span class="err">...</span>
+</code></pre></div>
+
+<p>Delete the <code>./frontend/index.html</code> file that's created here - we'll be inserting the scripts into our django templates
 so we don't need this file. You might also want to delete more of the sample files that are created at this stage.</p>
 <h3 id="3-update-settingspy-again">3. Update <code>settings.py</code> again</h3>
 <p>We need to tell django where to look for the static files. Add a value to your <code>STATICFILES_DIRS</code> setting:</p>
 <div class="highlight"><pre><span></span><code><span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="c1"># ...</span>
+    <span class="c1"># ...existing dirs (probably BASE_DIR/static)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;frontend&quot;</span><span class="p">,</span> <span class="s2">&quot;dist&quot;</span><span class="p">),</span>
     <span class="c1"># or</span>
     <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s2">&quot;frontend&quot;</span> <span class="o">/</span> <span class="s2">&quot;dist&quot;</span>
@@ -98,10 +110,16 @@ so we don't need this file. You might also want to delete more of the sample fil
 </code></pre></div>
 
 <p>Also add a setting called <code>DJANGO_VITE</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">DJANGO_VITE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dev_mode&quot;</span><span class="p">:</span> <span class="n">DEBUG</span><span class="p">}}</span>
+<div class="highlight"><pre><span></span><code><span class="n">DJANGO_VITE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;dev_mode&quot;</span><span class="p">:</span> <span class="n">DEBUG</span><span class="p">,</span>
+        <span class="s2">&quot;manifest_path&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;frontend&quot;</span><span class="p">,</span> <span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="s2">&quot;manifest.json&quot;</span><span class="p">),</span>
+    <span class="p">},</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <p>This will use the existing <code>DEBUG</code> setting to work out whether django vite operates in dev mode or production mode.</p>
+<p>It also adds a path telling Django Vite where to find the manifest for production deployment. This will facilitate the building of the static assets in production.</p>
 <p>In dev mode you must be running a static server using <code>npm run dev</code>. This will run a server at <code>http://localhost:5173/static/</code> which serves the files.</p>
 <p>In production mode, you must have generated the files using <code>npm run build</code> and then run <code>python manage.py collectstatic</code> to find the files. This will make sure that the files are added to your <code>staticfiles</code> directory.</p>
 <p>If you're using Whitenoise to serve your static files, you may also need to add a new test that takes into account the URL format generated by Vite. This is described in the <a href="https://github.com/MrBin99/django-vite?tab=readme-ov-file#whitenoise">django-vite documentation</a>. I added the snippet to <code>settings.py</code>.</p>
@@ -116,10 +134,10 @@ so we don't need this file. You might also want to delete more of the sample fil
 <span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">vue</span><span class="p">()],</span>
 <span class="w">  </span><span class="nx">build</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">manifest</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;manifest.json&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">outDir</span><span class="o">:</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;./dist&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">outDir</span><span class="o">:</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;./frontend/dist&quot;</span><span class="p">),</span>
 <span class="w">    </span><span class="nx">rollupOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">main</span><span class="o">:</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;./src/main.js&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">main</span><span class="o">:</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;./frontend/src/main.js&quot;</span><span class="p">),</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">  </span><span class="p">},</span>
@@ -130,8 +148,8 @@ so we don't need this file. You might also want to delete more of the sample fil
 <ul>
 <li><code>base: "/static/"</code> - this makes sure that the vite development server serves files from <code>/static/</code> url, as this is where they will be served in production.</li>
 <li><code>manifest: "manifest.json"</code> - the manifest file shows where all the outputs can be found</li>
-<li><code>outDir: resolve("./dist")</code> - this sets the directory where outputs are stored to <code>/frontend/dist/</code>. This is the same as is defined in <code>settings.py</code> above. I chose this directory because it's already excluded from git by the default .gitignore.</li>
-<li><code>main: resolve("./src/main.js")</code> - this is an example of an entrypoint for an app. This will create an app called "main" using the script found at <code>/frontend/src/main.js</code>. You can create one of these entries for each entrypoint within your app.</li>
+<li><code>outDir: resolve("./frontend/dist")</code> - this sets the directory where outputs are stored to <code>/frontend/dist/</code>. This is the same as is defined in <code>settings.py</code> above. I chose this directory because it's already excluded from git by the default .gitignore.</li>
+<li><code>main: resolve("./frontend/src/main.js")</code> - this is an example of an entrypoint for an app. This will create an app called "main" using the script found at <code>/frontend/src/main.js</code>. You can create one of these entries for each entrypoint within your app.</li>
 </ul>
 <h3 id="4-optional-set-up-jinja-to-use-the-django_vite-template-tags">4. [optional] Set up Jinja to use the django_vite template tags</h3>
 <p>I prefer to use Jinja over the default Django templates. This extra step is needed to make the django-vite template tags available to Jinja templates.</p>
@@ -210,18 +228,18 @@ so I add the django-vite template tags to the global environment there.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headscripts</span> <span class="cp">%}</span>
 <span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span>
 <span class="cp">{{</span> <span class="nv">vite_hmr_client</span><span class="o">()</span> <span class="cp">}}</span>
-<span class="cp">{{</span> <span class="nv">vite_asset</span><span class="o">(</span><span class="s1">&#39;src/calculator.js&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{{</span> <span class="nv">vite_asset</span><span class="o">(</span><span class="s1">&#39;frontend/src/calculator.js&#39;</span><span class="o">)</span> <span class="cp">}}</span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
 </code></pre></div>
 
-<p>The <code>vite_hmr_client()</code> call creates script tags in development mode to load the development script. And the <code>vite_asset('src/calculator.js')</code> call loads the actual calculator script.</p>
+<p>The <code>vite_hmr_client()</code> call creates script tags in development mode to load the development script. And the <code>vite_asset('frontend/src/calculator.js')</code> call loads the actual calculator script.</p>
 <p>In the django template language it would look more like:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">load</span> <span class="nv">django_vite</span> <span class="cp">%}</span>
 
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">headscripts</span> <span class="cp">%}</span>
 <span class="cp">{{</span> <span class="nb">block</span><span class="nv">.super</span> <span class="cp">}}</span>
 <span class="cp">{%</span> <span class="k">vite_hmr_client</span> <span class="cp">%}</span>
-<span class="cp">{%</span> <span class="k">vite_asset</span> <span class="s1">&#39;src/calculator.js&#39;</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">vite_asset</span> <span class="s1">&#39;frontend/src/calculator.js&#39;</span> <span class="cp">%}</span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
 </code></pre></div>
 
@@ -233,18 +251,45 @@ so I add the django-vite template tags to the global environment there.</p>
 <h2 id="serving-the-files-in-production-mode">Serving the files in production mode</h2>
 <p>When your site is in production, the built files will need to be available for the static file storage engine to use. You can build the files by running <code>npm run build</code>.</p>
 <p>This will create the files in <code>/frontend/dist/</code>. By default this folder won't be included in Git, so if you're using something like Heroku or Dokku to deploy, then these files won't make it into your staticfiles. There are two ways to achieve this:</p>
-<ul>
-<li>You can add a step to deployment to run the build process during deployment. I achieve this in dokku by adding a <code>release: sh ./release.sh</code> line to my Procfile. The <code>release.sh</code> file then looks like:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>--prefix<span class="w"> </span>frontend<span class="w"> </span>build
-python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="w"> </span>--noinput
-python<span class="w"> </span>manage.py<span class="w"> </span>migrate<span class="w"> </span>--noinput
-python<span class="w"> </span>manage.py<span class="w"> </span>createcachetable
+<h3 id="1-use-a-nodejs-buildpack-recommended">1. Use a nodejs buildpack (recommended)</h3>
+<p>You can add a nodejs buildpack, which will install the needed modules and build your files to the right place. To do this add a file called <code>.buildpacks</code> in the root directory of your app. This file should contain two lines:</p>
+<div class="highlight"><pre><span></span><code>https://github.com/heroku/heroku-buildpack-nodejs.git
+https://github.com/heroku/heroku-buildpack-python.git
 </code></pre></div>
 
-<ul>
-<li>Or you can unignore the <code>/frontend/dist</code> folder from git (or use a different folder to output) and make sure you build the files every time you deploy.</li>
-</ul>
+<p>When you deploy your app to dokku/heroku, it will then install the needed packages from <code>package.json</code> and then automatically run the <code>npm run build</code> command. These files will then be available for django's collectstatic process.</p>
+<h3 id="2-manually-build-files-every-time-you-deploy">2. Manually build files every time you deploy</h3>
+<p>Or you can unignore the <code>/frontend/dist</code> folder from git (or use a different folder to output) and make sure you build the files every time you deploy.</p>
+<h2 id="appendix-i-example-file-structure">Appendix I - example file structure</h2>
+<p>This shows an indicative file structure of the key files that need to be in the right place.</p>
+<div class="highlight"><pre><span></span><code>- config/   # django configuration directory
+  - admin.py
+  - apps.py
+  - asgi.py
+  - jinja2.py
+  - settings.py   # main django settings file
+  - urls.py
+  - wsgi.py
+- frontend/
+  - dist/   # created by vite build - should be git ignored
+    - assets/
+      - main-1a2b3c4e.js   # compiled main JS
+    - manifest.json
+  - src/
+    - components/
+      - Calculator.vue
+      - ... any other files
+    - calculator.js
+  - vite.config.js   # where vite configuration lives
+- my-app/   # normal django app
+  - migrations/
+  - models.py
+  - views.py
+  - ...etc
+- static/
+  - ... other static files like CSS, images, etc
+- manage.py
+</code></pre></div>
     </div><!-- /.entry-content -->
     </div>
 </section>
