@@ -357,16 +357,16 @@ https://github.com/heroku/heroku-buildpack-python.git
 &lt;p&gt;Finally reload nginx - the rule should then be applied.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;service&lt;span class="w"&gt; &lt;/span&gt;nginx&lt;span class="w"&gt; &lt;/span&gt;reload
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Wed, 25 Oct 2023 15:16:06 +0100</pubDate><guid isPermaLink="false">tag:dkane.net,2023-10-25:/2023/blocking-bots-by-useragent-in-dokku-using-nginx/</guid><category>Code</category></item><item><title>Where to find geographic boundaries for the UK</title><link>https://dkane.net/2022/where-to-find-geographic-boundaries-for-the-uk/</link><description>&lt;p&gt;Geographic boundary data is a requirement for any geographic analysis or map-making.
-But finding boundary data is &lt;a href="https://twitter.com/mapstack_io/status/1600142044986372097"&gt;often a nightmare&lt;/a&gt;. &lt;/p&gt;
+But finding boundary data is &lt;a href="https://twitter.com/mapstack_io/status/1600142044986372097"&gt;often a nightmare&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a problem I've faced too, so I thought it might be useful to outline some of the places to look for boundary data:&lt;/p&gt;
 &lt;h2 id="ons-open-geography-portal"&gt;&lt;a href="https://geoportal.statistics.gov.uk/"&gt;ONS Open Geography Portal&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This site - which leaves a lot to be desired in terms of usability &amp;amp; reliability&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; - is the main place the ONS 
-shares their boundary data. What it lacks in user experience it makes up for in breadth and depth - there are 
+&lt;p&gt;This site - which leaves a lot to be desired in terms of usability &amp;amp; reliability&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; - is the main place the ONS
+shares their boundary data. What it lacks in user experience it makes up for in breadth and depth - there are
 a range of boundaries across lots of different types of area, and with a variety of different variations to download.&lt;/p&gt;
-&lt;p&gt;For a given boundary, there are usually four or five different versions with different resolution. The lower resolution files 
+&lt;p&gt;For a given boundary, there are usually four or five different versions with different resolution. The lower resolution files
 are generally smaller, but will produce simplified versions of the boundaries rather than the exact boundaries.
 The more generalised versions are better for things like chloropleth maps where you're comparing lots of different areas,
-and don't need the boundaries to be exactly right. The exact versions are better for when you show just one area in 
+and don't need the boundaries to be exactly right. The exact versions are better for when you show just one area in
 a lot of detail.&lt;/p&gt;
 &lt;p&gt;The different versions included are:&lt;/p&gt;
 &lt;ul&gt;
@@ -377,8 +377,9 @@ a lot of detail.&lt;/p&gt;
 &lt;li&gt;Ultra generalised (500m)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The "extent of the realm" files include some offshore islands and use the mean low water mark, all the other files use the mean high water mark as a boundary.&lt;/p&gt;
-&lt;p&gt;Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats. &lt;/p&gt;
+&lt;p&gt;Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats.&lt;/p&gt;
 &lt;p&gt;One helpful thing the geoportal provides is historic versions - so if you've used local authority data from 2015 you can get a file that includes local authorities that were active at that time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; Stuart Lowe at Open Innovations has found an issue with some of the GeoJSON produced by the Geoportal, and has &lt;a href="https://open-innovations.github.io/ONS-GeoJSON-Fixer/"&gt;created a tool to fix the files&lt;/a&gt;. &lt;a href="https://open-innovations.org/blog/2024-08-22-fixing-ons-geoportal-geojson"&gt;There's alsoa blog post with more information about the issue&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="ordance-survey-boundary-line"&gt;&lt;a href="https://www.ordnancesurvey.co.uk/business-government/products/boundaryline"&gt;Ordance Survey Boundary-Line&lt;/a&gt;&lt;/h2&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg"&gt;&lt;/p&gt;
@@ -411,11 +412,11 @@ a lot of detail.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"&gt;&lt;/p&gt;
 &lt;/figure&gt;
-&lt;p&gt;This is a repository of boundaries that I've put together, using data from the ONS geoportal. &lt;/p&gt;
+&lt;p&gt;This is a repository of boundaries that I've put together, using data from the ONS geoportal.&lt;/p&gt;
 &lt;p&gt;The aim of this is to produce 3 GeoJSON files for each Local Authority, Combined Authority or Region. Each file shows the boundaries of
 either Lower Super Output Areas (LSOA), Middle Super Output Areas (MSOA) or Wards within that area. They're meant to help people
 who want to map data in a small area. They use a fairly high resolution so you can pick out detail in the areas.&lt;/p&gt;
-&lt;p&gt;If you want to combile GeoJSON files together into one file, you can use my &lt;a href="https://findthatpostcode.uk/tools/merge-geojson"&gt;GeoJSON Merge Tool&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;If you want to combile GeoJSON files together into one file, you can use my &lt;a href="https://findthatpostcode.uk/tools/merge-geojson"&gt;GeoJSON Merge Tool&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="other-resources"&gt;Other Resources&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://bothness.github.io/geo-draw/"&gt;&lt;strong&gt;Draw your own geography&lt;/strong&gt;&lt;/a&gt; - A nice site that allows you to download a set of output areas based on either drawing on the map or choosing an existing area.&lt;/li&gt;

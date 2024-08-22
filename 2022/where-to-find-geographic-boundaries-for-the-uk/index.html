@@ -55,16 +55,16 @@
     </footer><!-- /.post-info -->
     <div class="entry-content f4 lh-copy">
         <p>Geographic boundary data is a requirement for any geographic analysis or map-making.
-But finding boundary data is <a href="https://twitter.com/mapstack_io/status/1600142044986372097">often a nightmare</a>. </p>
+But finding boundary data is <a href="https://twitter.com/mapstack_io/status/1600142044986372097">often a nightmare</a>.</p>
 <p>This is a problem I've faced too, so I thought it might be useful to outline some of the places to look for boundary data:</p>
 <h2 id="ons-open-geography-portal"><a href="https://geoportal.statistics.gov.uk/">ONS Open Geography Portal</a></h2>
-<p>This site - which leaves a lot to be desired in terms of usability &amp; reliability<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> - is the main place the ONS 
-shares their boundary data. What it lacks in user experience it makes up for in breadth and depth - there are 
+<p>This site - which leaves a lot to be desired in terms of usability &amp; reliability<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> - is the main place the ONS
+shares their boundary data. What it lacks in user experience it makes up for in breadth and depth - there are
 a range of boundaries across lots of different types of area, and with a variety of different variations to download.</p>
-<p>For a given boundary, there are usually four or five different versions with different resolution. The lower resolution files 
+<p>For a given boundary, there are usually four or five different versions with different resolution. The lower resolution files
 are generally smaller, but will produce simplified versions of the boundaries rather than the exact boundaries.
 The more generalised versions are better for things like chloropleth maps where you're comparing lots of different areas,
-and don't need the boundaries to be exactly right. The exact versions are better for when you show just one area in 
+and don't need the boundaries to be exactly right. The exact versions are better for when you show just one area in
 a lot of detail.</p>
 <p>The different versions included are:</p>
 <ul>
@@ -75,8 +75,9 @@ a lot of detail.</p>
 <li>Ultra generalised (500m)</li>
 </ul>
 <p>The "extent of the realm" files include some offshore islands and use the mean low water mark, all the other files use the mean high water mark as a boundary.</p>
-<p>Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats. </p>
+<p>Most boundaries can be downloaded in GeoJSON format - you can also get KML, Shapefile or other formats.</p>
 <p>One helpful thing the geoportal provides is historic versions - so if you've used local authority data from 2015 you can get a file that includes local authorities that were active at that time.</p>
+<p><strong>NOTE:</strong> Stuart Lowe at Open Innovations has found an issue with some of the GeoJSON produced by the Geoportal, and has <a href="https://open-innovations.github.io/ONS-GeoJSON-Fixer/">created a tool to fix the files</a>. <a href="https://open-innovations.org/blog/2024-08-22-fixing-ons-geoportal-geojson">There's alsoa blog post with more information about the issue</a>.</p>
 <h2 id="ordance-survey-boundary-line"><a href="https://www.ordnancesurvey.co.uk/business-government/products/boundaryline">Ordance Survey Boundary-Line</a></h2>
 <figure>
 <p><img alt="A snippet of boundary-line from Newcaster" src="/images/boundaries/boundaryline-newcastle.jpg"></p>
@@ -109,11 +110,11 @@ a lot of detail.</p>
 <figure>
 <p><img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"></p>
 </figure>
-<p>This is a repository of boundaries that I've put together, using data from the ONS geoportal. </p>
+<p>This is a repository of boundaries that I've put together, using data from the ONS geoportal.</p>
 <p>The aim of this is to produce 3 GeoJSON files for each Local Authority, Combined Authority or Region. Each file shows the boundaries of
 either Lower Super Output Areas (LSOA), Middle Super Output Areas (MSOA) or Wards within that area. They're meant to help people
 who want to map data in a small area. They use a fairly high resolution so you can pick out detail in the areas.</p>
-<p>If you want to combile GeoJSON files together into one file, you can use my <a href="https://findthatpostcode.uk/tools/merge-geojson">GeoJSON Merge Tool</a>. </p>
+<p>If you want to combile GeoJSON files together into one file, you can use my <a href="https://findthatpostcode.uk/tools/merge-geojson">GeoJSON Merge Tool</a>.</p>
 <h2 id="other-resources">Other Resources</h2>
 <ul>
 <li><a href="https://bothness.github.io/geo-draw/"><strong>Draw your own geography</strong></a> - A nice site that allows you to download a set of output areas based on either drawing on the map or choosing an existing area.</li>
