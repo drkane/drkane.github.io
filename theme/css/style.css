@@ -157,3 +157,15 @@
     padding-bottom: 20px;
     display: block;
 }
+
+.toc {
+    font-size: 0.95rem;
+    padding: 16px;
+    border: 2px solid yellow;
+
+    span.toctitle {
+        font-family: 'Archivo', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}

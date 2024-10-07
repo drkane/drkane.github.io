@@ -74,6 +74,28 @@ for fetching and manipulating data.</p>
 web framework. This might seem like an unintuitive choice at first - Django is a big sprawling piece of
 software, and creating data pipelines is not what it is designed for. But I've found that its
 "batteries-included" approach means that it has all the pieces I need in place.</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#what-you-get-out-of-the-box">What you get out of the box</a><ul>
+<li><a href="#data-model">Data model</a></li>
+<li><a href="#admin-area">Admin area</a></li>
+<li><a href="#user-accessauthentication">User access/authentication</a></li>
+<li><a href="#management-commands">Management commands</a></li>
+</ul>
+</li>
+<li><a href="#what-i-add-with-add-ons">What I add with add-ons</a><ul>
+<li><a href="#django-sql-dashboard">Django SQL Dashboard</a></li>
+<li><a href="#dokku-for-deployment">Dokku for deployment</a></li>
+<li><a href="#django-ninja-api">Django Ninja API</a></li>
+</ul>
+</li>
+<li><a href="#whats-missing-what-are-the-issues">What's missing / what are the issues</a><ul>
+<li><a href="#no-easy-ways-of-getting-data-out">No easy ways of getting data out</a></li>
+<li><a href="#overheads-are-quite-high">Overheads are quite high</a></li>
+<li><a href="#dealing-with-large-datasets">Dealing with large datasets</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="what-you-get-out-of-the-box">What you get out of the box</h2>
 <p>A big attraction for using Django is that it comes fully loaded - a lot of the components I might need
 in a data pipeline are included. Even if you don't need every feature for every project, there's a lot
@@ -95,7 +117,7 @@ tools - adding filters, search, the ability to link records together. You can al
 though you do need to carefully think about how this works when overwriting a data import.</p>
 <h3 id="user-accessauthentication">User access/authentication</h3>
 <p>When working with clients, it is invaluable to be able to <a href="https://docs.djangoproject.com/en/5.1/topics/auth/">set up user accounts</a> out of the box, in order
-to let them see the data. This might be about giving them access to the <a href="#admin-area">admin area</a> or<br>
+to let them see the data. This might be about giving them access to the <a href="#admin-area">admin area</a> or
 setting up some views to show them what the outputs might look like, or filter and download the data
 themselves.</p>
 <p>Adding user authentication, particularly when data can be edited in the admin area, means that I can

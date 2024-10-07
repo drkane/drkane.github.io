@@ -20,6 +20,28 @@ for fetching and manipulating data.&lt;/p&gt;
 web framework. This might seem like an unintuitive choice at first - Django is a big sprawling piece of
 software, and creating data pipelines is not what it is designed for. But I've found that its
 "batteries-included" approach means that it has all the pieces I need in place.&lt;/p&gt;
+&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-you-get-out-of-the-box"&gt;What you get out of the box&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#data-model"&gt;Data model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#admin-area"&gt;Admin area&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#user-accessauthentication"&gt;User access/authentication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#management-commands"&gt;Management commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#what-i-add-with-add-ons"&gt;What I add with add-ons&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#django-sql-dashboard"&gt;Django SQL Dashboard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#dokku-for-deployment"&gt;Dokku for deployment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#django-ninja-api"&gt;Django Ninja API&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#whats-missing-what-are-the-issues"&gt;What's missing / what are the issues&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#no-easy-ways-of-getting-data-out"&gt;No easy ways of getting data out&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#overheads-are-quite-high"&gt;Overheads are quite high&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#dealing-with-large-datasets"&gt;Dealing with large datasets&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;h2 id="what-you-get-out-of-the-box"&gt;What you get out of the box&lt;/h2&gt;
 &lt;p&gt;A big attraction for using Django is that it comes fully loaded - a lot of the components I might need
 in a data pipeline are included. Even if you don't need every feature for every project, there's a lot
@@ -41,7 +63,7 @@ tools - adding filters, search, the ability to link records together. You can al
 though you do need to carefully think about how this works when overwriting a data import.&lt;/p&gt;
 &lt;h3 id="user-accessauthentication"&gt;User access/authentication&lt;/h3&gt;
 &lt;p&gt;When working with clients, it is invaluable to be able to &lt;a href="https://docs.djangoproject.com/en/5.1/topics/auth/"&gt;set up user accounts&lt;/a&gt; out of the box, in order
-to let them see the data. This might be about giving them access to the &lt;a href="#admin-area"&gt;admin area&lt;/a&gt; or&lt;br&gt;
+to let them see the data. This might be about giving them access to the &lt;a href="#admin-area"&gt;admin area&lt;/a&gt; or
 setting up some views to show them what the outputs might look like, or filter and download the data
 themselves.&lt;/p&gt;
 &lt;p&gt;Adding user authentication, particularly when data can be edited in the admin area, means that I can
