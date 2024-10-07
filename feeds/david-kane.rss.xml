@@ -1,5 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>David Kane - David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Fri, 07 Jun 2024 10:45:00 +0100</lastBuildDate><item><title>Where to get boundary data on new parliamentary constituencies</title><link>https://dkane.net/2024/where-to-get-boundary-data-on-new-parliamentary-constituencies/</link><description>&lt;p&gt;The 2024 UK General Election happens on July 4th. This election will be fought on a new set of constituency boundaries, with the makeup of constituencies changing for the first time since 2010. You can find out more information about these changes &lt;a href="https://www.parliament.uk/about/how/elections-and-voting/constituencies/"&gt;on the parliament.uk website&lt;/a&gt;.&lt;/p&gt;
+<rss version="2.0"><channel><title>David Kane - David Kane</title><link>https://dkane.net/</link><description></description><lastBuildDate>Mon, 07 Oct 2024 11:08:47 +0100</lastBuildDate><item><title>Why PostgreSQL + Django is my data pipeline of choice</title><link>https://dkane.net/2024/why-postgresql-django-is-my-data-pipeline-of-choice/</link><description>&lt;p&gt;&lt;em&gt;This blog post is based partly on an interesting conversation at &lt;a href="https://www.odcamp.uk/"&gt;Open Data camp 9 in Manchester&lt;/a&gt;
+this year, where Giles from Open Innovations led a session called &lt;a href="https://docs.google.com/document/d/1zY1KZGlpac-rUnfW3pRwncXotmXe4e1FHzo2VECHQ6M/edit"&gt;DIY FTW! What’s in YOUR toolbox?&lt;/a&gt;. As well as
+showcasing a bunch of tools that I'd not come across, it also made me think about what my
+typical workflow looks like.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A large proportion of my work at the moment involves creating data pipelines. These data pipelines
+start with "inputs" - generally some public data source, like the Charity Commission Register of
+Charities. There is then some cleaning or processing that happens - merging data together, manually
+adding or amending data. And then finally some "outputs" happen - this might be reports on an individual
+charity, or a set of aggregate data around a particular group of charities.&lt;/p&gt;
+&lt;p&gt;There's a few particular requirements for these pipelines - I generally need them to be repeatable,
+including re-running with updated data. This means I need to carefully separate the data cleaning and
+additions so that they are not lost when new data comes in.&lt;/p&gt;
+&lt;p&gt;For a small scale data pipeline - maybe running a quick piece of analyis from data fetched in an SQL
+query, I'll generally turn to a python Notebook. I've also experimented with new tools like &lt;a href="https://duckdb.org/"&gt;DuckDB&lt;/a&gt;
+for fetching and manipulating data.&lt;/p&gt;
+&lt;p&gt;But for anything larger than an afternoon's work, I've found that I'm reaching for &lt;a href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt;, the python
+web framework. This might seem like an unintuitive choice at first - Django is a big sprawling piece of
+software, and creating data pipelines is not what it is designed for. But I've found that its
+"batteries-included" approach means that it has all the pieces I need in place.&lt;/p&gt;
+&lt;h2 id="what-you-get-out-of-the-box"&gt;What you get out of the box&lt;/h2&gt;
+&lt;p&gt;A big attraction for using Django is that it comes fully loaded - a lot of the components I might need
+in a data pipeline are included. Even if you don't need every feature for every project, there's a lot
+of value in having them at your fingertips anyway. I often find that I start a project thinking, for
+example, that I won't need user authentication - but then if the requirements change then it's easy to add.&lt;/p&gt;
+&lt;p&gt;The out of the box parts I find most useful are:&lt;/p&gt;
+&lt;h3 id="data-model"&gt;Data model&lt;/h3&gt;
+&lt;p&gt;A django app is structured around the &lt;a href="https://docs.djangoproject.com/en/5.1/topics/db/models/"&gt;database models&lt;/a&gt; you create. It's easy to define your models in code,
+and there are powerful features for managing relationships between them.&lt;/p&gt;
+&lt;p&gt;A key positive is the flexibility of &lt;a href="https://docs.djangoproject.com/en/5.1/topics/migrations/"&gt;django migrations&lt;/a&gt;. These mean that I can change the data model,
+test the effect these changes will have on the data, and then deploy these changes.&lt;/p&gt;
+&lt;p&gt;If the rigid structure of a data model ends up being too prescriptive for the data you're dealing with,
+there are options to have something more flexible. I've recently been using a pattern of storing data
+in JSON fields, and then &lt;a href="generated-field.md"&gt;using Generated Fields&lt;/a&gt; to access the data.&lt;/p&gt;
+&lt;h3 id="admin-area"&gt;Admin area&lt;/h3&gt;
+&lt;p&gt;After you've defined your database models, Django makes it quick and easy to add an &lt;a href="https://docs.djangoproject.com/en/5.1/ref/contrib/admin/"&gt;admin interface&lt;/a&gt; that
+can be accessed from the web to view the data. You can make some complex views with the built-in admin
+tools - adding filters, search, the ability to link records together. You can also add and edit data -
+though you do need to carefully think about how this works when overwriting a data import.&lt;/p&gt;
+&lt;h3 id="user-accessauthentication"&gt;User access/authentication&lt;/h3&gt;
+&lt;p&gt;When working with clients, it is invaluable to be able to &lt;a href="https://docs.djangoproject.com/en/5.1/topics/auth/"&gt;set up user accounts&lt;/a&gt; out of the box, in order
+to let them see the data. This might be about giving them access to the &lt;a href="#admin-area"&gt;admin area&lt;/a&gt; or&lt;br&gt;
+setting up some views to show them what the outputs might look like, or filter and download the data
+themselves.&lt;/p&gt;
+&lt;p&gt;Adding user authentication, particularly when data can be edited in the admin area, means that I can
+also add an audit trail easily, to see who changed the data and why.&lt;/p&gt;
+&lt;h3 id="management-commands"&gt;Management commands&lt;/h3&gt;
+&lt;p&gt;Often a data pipeline has a set of reusable scripts that don't fit nicely with the website paradigm
+that Django works with. But this is where &lt;a href="https://docs.djangoproject.com/en/5.1/howto/custom-management-commands/"&gt;management commands&lt;/a&gt;
+come in - you can easily define python scripts that run on the data. These are useful for data management
+tasks like import, export or bulk cleaning processes.&lt;/p&gt;
+&lt;p&gt;I've started making use of &lt;a href="https://github.com/GaretJax/django-click"&gt;django-click&lt;/a&gt; which I slightly
+prefer over the native django commands.&lt;/p&gt;
+&lt;p&gt;My one gripe with management commands is that a bit of work is needed in order to define logging,
+transaction management, etc - but it is possible to do that.&lt;/p&gt;
+&lt;h2 id="what-i-add-with-add-ons"&gt;What I add with add-ons&lt;/h2&gt;
+&lt;p&gt;Although Django comes pretty fully-featured out of the box, there are a few add-ons and other tools
+that I typically install at the same time. These add specific functionality that isn't present in
+standard Django, but add particular features around data science.&lt;/p&gt;
+&lt;h3 id="django-sql-dashboard"&gt;Django SQL Dashboard&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://django-sql-dashboard.datasette.io/en/stable/"&gt;Django SQL Dashboard&lt;/a&gt; is a great add on created
+by &lt;a href="https://simonwillison.net/"&gt;Simon Willison&lt;/a&gt; the creator of &lt;a href="https://datasette.io/"&gt;Datasette&lt;/a&gt;
+(and one of the co-creators of Django itself!)&lt;/p&gt;
+&lt;p&gt;The plugin basically lets you write custom SQL queries against your database, which are then displayed
+as webpages. These are great for making always-updated dashboards showing the latest state of your data,
+without needing to wrangle the Django models into the right shape for a custom view (creating aggregate
+queries with Django models can be a bit fiddly).&lt;/p&gt;
+&lt;p&gt;I use these extensively with &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; - for example, &lt;a href="https://findthatcharity.uk/dashboard/data-completeness/"&gt;here's a
+dashboard showing how up-to-date the Charity register is&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've actually created &lt;a href="https://github.com/drkane/django-sql-dashboard"&gt;my own version of the plugin&lt;/a&gt;,
+which adds a bit more customisability, for example by allowing titles and descriptions for individual
+queries within a dashboard.&lt;/p&gt;
+&lt;p&gt;There's a bit of overhead to setting this up - you need to be using a PostgreSQL database, you need to
+create a read-only SQL user, etc. And it does have potential security implications if not done correctly.&lt;/p&gt;
+&lt;h3 id="dokku-for-deployment"&gt;Dokku for deployment&lt;/h3&gt;
+&lt;p&gt;Obviously if you're running Django partly because it's a web server, you need to be able to deploy it
+to the web. I use &lt;a href="https://dokku.com/docs/getting-started/installation/"&gt;dokku&lt;/a&gt; for this - it's
+like running your own heroku instance.&lt;/p&gt;
+&lt;p&gt;Dokku makes it easy to add things like a database (I generally use PostgreSQL) or even a search engine
+like elasticsearch. I can easily test changes locally, then deploy simply using &lt;code&gt;git push&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I also use dokku's scheduling feature to run scripts periodically, for example setting up nightly data
+import.&lt;/p&gt;
+&lt;h3 id="django-ninja-api"&gt;Django Ninja API&lt;/h3&gt;
+&lt;p&gt;This is slightly more rare, but it can be useful to have an API to access the data. I really like
+&lt;a href="https://django-ninja.dev/"&gt;Django Ninja&lt;/a&gt; for defining APIs. It fits easily with the OpenAPI standard,
+which means you get nice documentation and testing out the box. I generally add some sort of API Key
+based authentication to aid with sharing with others.&lt;/p&gt;
+&lt;h2 id="whats-missing-what-are-the-issues"&gt;What's missing / what are the issues&lt;/h2&gt;
+&lt;p&gt;Although it's my tool of choice for data pipelines, Django isn't perfect for this purpose (which
+after all, it wasn't specifically designed for). There are a few gaps and downsides to this approach:&lt;/p&gt;
+&lt;h3 id="no-easy-ways-of-getting-data-out"&gt;No easy ways of getting data out&lt;/h3&gt;
+&lt;p&gt;Often the output of a data pipeline is a bulk output that needs to go somewhere else - a spreadsheet
+download, a set of tables for a report, etc. I usually end up producing some django views to output
+or download these, but it can quickly get complex or inflexible.&lt;/p&gt;
+&lt;p&gt;One approach that I've had some success with is adding functionality to export (and import) from
+admin views. There are some add-ons that do this, or it's relatively straightforward to create your
+own using custom admin templates.&lt;/p&gt;
+&lt;h3 id="overheads-are-quite-high"&gt;Overheads are quite high&lt;/h3&gt;
+&lt;p&gt;This approach does mean there are quite high setup costs, compared to something like a python Notebook.
+For a full deployment, you need to have a server, a domain name, a database. You need to manage SSL
+certificates, users, downtime etc. You need to be able to get command line access to run scripts, etc on
+the server. This is all doable, particularly with something like dokku, but it does require a bit
+of effort.&lt;/p&gt;
+&lt;h3 id="dealing-with-large-datasets"&gt;Dealing with large datasets&lt;/h3&gt;
+&lt;p&gt;Django, particularly in terms of data models, is designed around manually creating and editing individual
+instances of a model. I find with a lot of my work I am working on bulk data imported from a source.
+Sometimes these can run to hundreds of thousands or even millions of rows.&lt;/p&gt;
+&lt;p&gt;While this is all possible to handle, and you can bypass Django to a certain extent, it can be tricky
+when running bulk updates &amp;amp; imports. For example, a pattern I've not quite cracked is bulk upserts - where
+data is either created or updated depending on whether it already exists. This is possible to do, but
+can be a bit fiddly.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I hope I've successfully shown how Django can work well as a tool for managing data pipelines. I have a
+&lt;a href="https://github.com/kanedata/cookiecutter-django-kd"&gt;cookiecutter template&lt;/a&gt; that forms the basis for a
+new django project, which shows some of this approach in practice.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Mon, 07 Oct 2024 11:08:47 +0100</pubDate><guid isPermaLink="false">tag:dkane.net,2024-10-07:/2024/why-postgresql-django-is-my-data-pipeline-of-choice/</guid><category>Blog</category></item><item><title>Where to get boundary data on new parliamentary constituencies</title><link>https://dkane.net/2024/where-to-get-boundary-data-on-new-parliamentary-constituencies/</link><description>&lt;p&gt;The 2024 UK General Election happens on July 4th. This election will be fought on a new set of constituency boundaries, with the makeup of constituencies changing for the first time since 2010. You can find out more information about these changes &lt;a href="https://www.parliament.uk/about/how/elections-and-voting/constituencies/"&gt;on the parliament.uk website&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you're analysing or visualising data by parliamentary constituency, then you probably want to use the new 2024 boundaries. I thought it might be useful to show how to get data on these new boundaries, particularly as lots of the &lt;a href="./where-to-find-boundary-data.md"&gt;main sources of boundary data&lt;/a&gt; haven't yet updated to take them into account.&lt;/p&gt;
 &lt;h2 id="source-data"&gt;Source data&lt;/h2&gt;
 &lt;p&gt;The source I tend to use for boundaries is the ONS Geoportal. They've &lt;a href="https://geoportal.statistics.gov.uk/search?q=Future_Parlicons&amp;amp;sort=Title%7Ctitle%7Casc"&gt;produced a category bringing together all the data on the new constituencies&lt;/a&gt;. Some of the useful files are:&lt;/p&gt;

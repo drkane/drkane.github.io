@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <title>Why PostgreSQL + Django is my data pipeline of choice | David Kane</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo|Raleway|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://dkane.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/pygment.css" />
+    <link rel="stylesheet" href="https://dkane.net/theme/css/twitter-embed.css" />
+    <link rel="shortcut icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dkane.net/favicon.ico" type="image/x-icon">
+
+<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
+<link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
+<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+
+
+  
+</head>
+
+<body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
+    <header id="banner" class="body header-font ph3 ph5-ns pt3 pb3 moon-gray">
+<div class="fr f3-ns mt1 mr2 w-100 w-auto-ns tr pb3">
+    <a href="/blog" class="white logo underline double underline-yellow">Blog</a>
+|    <a href="https://kanedata.co.uk/pages/about" class="white logo underline double underline-yellow">About</a>
+|    <a href="https://kanedata.co.uk/pages/contact" class="white logo underline double underline-yellow">Contact</a>
+</div>        <h1 class="f1 lh-solid mv0 logo">
+            <a href="https://dkane.net/" class="link moon-gray underline-yellow underline">
+                David Kane
+            </a>
+        </h1>
+        <h1 class="f2-ns f3 lh-solid mv0">Charity data blog</h1>
+    </header><!-- /#banner -->
+    <main class="ph0 bg-white cf">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+  <div class="w-60-l w-100 center">
+    <header>
+        <h2 class="f2 header-font">
+        <a href="https://dkane.net/2024/why-postgresql-django-is-my-data-pipeline-of-choice/" rel="bookmark" class="link near-black"
+            title="Permalink to Why PostgreSQL + Django is my data pipeline of choice">Why PostgreSQL + Django is my data pipeline of choice</a></h2>
+            
+    </header>
+    <footer class="post-info pb3 bb">
+        <address class="vcard author dib fs-normal">
+            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+        </address>
+        <span class="ph2"> | </span>
+        <time class="published dib" datetime="2024-10-07T11:08:47+01:00">
+        Mon 07 October 2024
+        </time>
+        <span class="ph2"> | </span>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+    </footer><!-- /.post-info -->
+    <div class="entry-content f4 lh-copy">
+        <p><em>This blog post is based partly on an interesting conversation at <a href="https://www.odcamp.uk/">Open Data camp 9 in Manchester</a>
+this year, where Giles from Open Innovations led a session called <a href="https://docs.google.com/document/d/1zY1KZGlpac-rUnfW3pRwncXotmXe4e1FHzo2VECHQ6M/edit">DIY FTW! What’s in YOUR toolbox?</a>. As well as
+showcasing a bunch of tools that I'd not come across, it also made me think about what my
+typical workflow looks like.</em></p>
+<p>A large proportion of my work at the moment involves creating data pipelines. These data pipelines
+start with "inputs" - generally some public data source, like the Charity Commission Register of
+Charities. There is then some cleaning or processing that happens - merging data together, manually
+adding or amending data. And then finally some "outputs" happen - this might be reports on an individual
+charity, or a set of aggregate data around a particular group of charities.</p>
+<p>There's a few particular requirements for these pipelines - I generally need them to be repeatable,
+including re-running with updated data. This means I need to carefully separate the data cleaning and
+additions so that they are not lost when new data comes in.</p>
+<p>For a small scale data pipeline - maybe running a quick piece of analyis from data fetched in an SQL
+query, I'll generally turn to a python Notebook. I've also experimented with new tools like <a href="https://duckdb.org/">DuckDB</a>
+for fetching and manipulating data.</p>
+<p>But for anything larger than an afternoon's work, I've found that I'm reaching for <a href="https://www.djangoproject.com/">Django</a>, the python
+web framework. This might seem like an unintuitive choice at first - Django is a big sprawling piece of
+software, and creating data pipelines is not what it is designed for. But I've found that its
+"batteries-included" approach means that it has all the pieces I need in place.</p>
+<h2 id="what-you-get-out-of-the-box">What you get out of the box</h2>
+<p>A big attraction for using Django is that it comes fully loaded - a lot of the components I might need
+in a data pipeline are included. Even if you don't need every feature for every project, there's a lot
+of value in having them at your fingertips anyway. I often find that I start a project thinking, for
+example, that I won't need user authentication - but then if the requirements change then it's easy to add.</p>
+<p>The out of the box parts I find most useful are:</p>
+<h3 id="data-model">Data model</h3>
+<p>A django app is structured around the <a href="https://docs.djangoproject.com/en/5.1/topics/db/models/">database models</a> you create. It's easy to define your models in code,
+and there are powerful features for managing relationships between them.</p>
+<p>A key positive is the flexibility of <a href="https://docs.djangoproject.com/en/5.1/topics/migrations/">django migrations</a>. These mean that I can change the data model,
+test the effect these changes will have on the data, and then deploy these changes.</p>
+<p>If the rigid structure of a data model ends up being too prescriptive for the data you're dealing with,
+there are options to have something more flexible. I've recently been using a pattern of storing data
+in JSON fields, and then <a href="generated-field.md">using Generated Fields</a> to access the data.</p>
+<h3 id="admin-area">Admin area</h3>
+<p>After you've defined your database models, Django makes it quick and easy to add an <a href="https://docs.djangoproject.com/en/5.1/ref/contrib/admin/">admin interface</a> that
+can be accessed from the web to view the data. You can make some complex views with the built-in admin
+tools - adding filters, search, the ability to link records together. You can also add and edit data -
+though you do need to carefully think about how this works when overwriting a data import.</p>
+<h3 id="user-accessauthentication">User access/authentication</h3>
+<p>When working with clients, it is invaluable to be able to <a href="https://docs.djangoproject.com/en/5.1/topics/auth/">set up user accounts</a> out of the box, in order
+to let them see the data. This might be about giving them access to the <a href="#admin-area">admin area</a> or<br>
+setting up some views to show them what the outputs might look like, or filter and download the data
+themselves.</p>
+<p>Adding user authentication, particularly when data can be edited in the admin area, means that I can
+also add an audit trail easily, to see who changed the data and why.</p>
+<h3 id="management-commands">Management commands</h3>
+<p>Often a data pipeline has a set of reusable scripts that don't fit nicely with the website paradigm
+that Django works with. But this is where <a href="https://docs.djangoproject.com/en/5.1/howto/custom-management-commands/">management commands</a>
+come in - you can easily define python scripts that run on the data. These are useful for data management
+tasks like import, export or bulk cleaning processes.</p>
+<p>I've started making use of <a href="https://github.com/GaretJax/django-click">django-click</a> which I slightly
+prefer over the native django commands.</p>
+<p>My one gripe with management commands is that a bit of work is needed in order to define logging,
+transaction management, etc - but it is possible to do that.</p>
+<h2 id="what-i-add-with-add-ons">What I add with add-ons</h2>
+<p>Although Django comes pretty fully-featured out of the box, there are a few add-ons and other tools
+that I typically install at the same time. These add specific functionality that isn't present in
+standard Django, but add particular features around data science.</p>
+<h3 id="django-sql-dashboard">Django SQL Dashboard</h3>
+<p><a href="https://django-sql-dashboard.datasette.io/en/stable/">Django SQL Dashboard</a> is a great add on created
+by <a href="https://simonwillison.net/">Simon Willison</a> the creator of <a href="https://datasette.io/">Datasette</a>
+(and one of the co-creators of Django itself!)</p>
+<p>The plugin basically lets you write custom SQL queries against your database, which are then displayed
+as webpages. These are great for making always-updated dashboards showing the latest state of your data,
+without needing to wrangle the Django models into the right shape for a custom view (creating aggregate
+queries with Django models can be a bit fiddly).</p>
+<p>I use these extensively with <a href="https://findthatcharity.uk/">findthatcharity.uk</a> - for example, <a href="https://findthatcharity.uk/dashboard/data-completeness/">here's a
+dashboard showing how up-to-date the Charity register is</a>.</p>
+<p>I've actually created <a href="https://github.com/drkane/django-sql-dashboard">my own version of the plugin</a>,
+which adds a bit more customisability, for example by allowing titles and descriptions for individual
+queries within a dashboard.</p>
+<p>There's a bit of overhead to setting this up - you need to be using a PostgreSQL database, you need to
+create a read-only SQL user, etc. And it does have potential security implications if not done correctly.</p>
+<h3 id="dokku-for-deployment">Dokku for deployment</h3>
+<p>Obviously if you're running Django partly because it's a web server, you need to be able to deploy it
+to the web. I use <a href="https://dokku.com/docs/getting-started/installation/">dokku</a> for this - it's
+like running your own heroku instance.</p>
+<p>Dokku makes it easy to add things like a database (I generally use PostgreSQL) or even a search engine
+like elasticsearch. I can easily test changes locally, then deploy simply using <code>git push</code>.</p>
+<p>I also use dokku's scheduling feature to run scripts periodically, for example setting up nightly data
+import.</p>
+<h3 id="django-ninja-api">Django Ninja API</h3>
+<p>This is slightly more rare, but it can be useful to have an API to access the data. I really like
+<a href="https://django-ninja.dev/">Django Ninja</a> for defining APIs. It fits easily with the OpenAPI standard,
+which means you get nice documentation and testing out the box. I generally add some sort of API Key
+based authentication to aid with sharing with others.</p>
+<h2 id="whats-missing-what-are-the-issues">What's missing / what are the issues</h2>
+<p>Although it's my tool of choice for data pipelines, Django isn't perfect for this purpose (which
+after all, it wasn't specifically designed for). There are a few gaps and downsides to this approach:</p>
+<h3 id="no-easy-ways-of-getting-data-out">No easy ways of getting data out</h3>
+<p>Often the output of a data pipeline is a bulk output that needs to go somewhere else - a spreadsheet
+download, a set of tables for a report, etc. I usually end up producing some django views to output
+or download these, but it can quickly get complex or inflexible.</p>
+<p>One approach that I've had some success with is adding functionality to export (and import) from
+admin views. There are some add-ons that do this, or it's relatively straightforward to create your
+own using custom admin templates.</p>
+<h3 id="overheads-are-quite-high">Overheads are quite high</h3>
+<p>This approach does mean there are quite high setup costs, compared to something like a python Notebook.
+For a full deployment, you need to have a server, a domain name, a database. You need to manage SSL
+certificates, users, downtime etc. You need to be able to get command line access to run scripts, etc on
+the server. This is all doable, particularly with something like dokku, but it does require a bit
+of effort.</p>
+<h3 id="dealing-with-large-datasets">Dealing with large datasets</h3>
+<p>Django, particularly in terms of data models, is designed around manually creating and editing individual
+instances of a model. I find with a lot of my work I am working on bulk data imported from a source.
+Sometimes these can run to hundreds of thousands or even millions of rows.</p>
+<p>While this is all possible to handle, and you can bypass Django to a certain extent, it can be tricky
+when running bulk updates &amp; imports. For example, a pattern I've not quite cracked is bulk upserts - where
+data is either created or updated depending on whether it already exists. This is possible to do, but
+can be a bit fiddly.</p>
+<hr>
+<p>I hope I've successfully shown how Django can work well as a tool for managing data pipelines. I have a
+<a href="https://github.com/kanedata/cookiecutter-django-kd">cookiecutter template</a> that forms the basis for a
+new django project, which shows some of this approach in practice.</p>
+    </div><!-- /.entry-content -->
+    </div>
+</section>
+    </main>
+    <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">
+        <div class="h4 fl pr5">
+            <img src="https://dkane.net/theme/images/logo.svg" class="h3" title="Kane Data Limited">
+        </div>
+        <div>
+<a href="mailto:david@dkane.net" class="link yellow" rel="me">Email</a>
+ | <a href="https://twitter.com/kanedr" class="link yellow" rel="me">@kanedr</a>
+ | <a href="https://mastodon.social/@kanedr" class="link yellow" rel="me">@kanedr@mastodon.social</a>
+ | <a href="https://github.com/drkane" class="link yellow" rel="me">github.com/drkane</a>
+ | <a href="https://github.com/kanedata" class="link yellow" rel="me">github.com/kanedata</a>
+            | <a href="/feed.rss" class="link yellow">RSS</a>
+        </div>
+        <div class="mt3">
+<a href="https://kanedata.co.uk/" class="link yellow" rel="me">Kane Data Ltd</a>
+ | <a href="https://findthatcharity.uk/" class="link yellow" rel="me">Find That Charity</a>
+ | <a href="https://findthatpostcode.uk/" class="link yellow" rel="me">Find That Postcode</a>
+ | <a href="https://ngoexplorer.org/" class="link yellow" rel="me">NGO Explorer</a>
+ | <a href="https://charizone.co.uk/" class="link yellow" rel="me">Charizone</a>
+ | <a href="https://charityclassification.org.uk/" class="link yellow" rel="me">Charity Classification</a>
+        </div>
+        <div class="mt3 f6">
+            &copy 2018 - 2024 Kane Data Limited |
+            <address id="about" class="vcard body di fs-normal">
+                Built with <a href="http://getpelican.com/" class="link yellow">Pelican</a>
+            </address><!-- /#about --> |
+            Kane Data Limited is registered as a company in England (<a
+                href="https://find-and-update.company-information.service.gov.uk/company/14015213"
+                class="link yellow">company number 14015213</a>)
+        </div>
+    </footer><!-- /#contentinfo -->
+<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript></body>
+
+</html>
