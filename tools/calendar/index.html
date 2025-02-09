@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Printable calendar</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('calendarInit', () => {
+                var start_date = new Date().toISOString().slice(0, 10);
+                return {
+                    start_date: start_date,
+                    end_date: '2024-09-01',
+                    weeks: 8,
+                    start_day: 1,
+                    dates: [],
+                    weekend: ["0", "6"],
+                }
+            })
+        })
+
+        function dateRange(startDate, weeks, start_day = 1, steps = 1) {
+            const dateArray = [];
+            let currentDate = new Date(startDate);
+
+            // get monday before current date
+            currentDate.setUTCDate(currentDate.getUTCDate() - (currentDate.getUTCDay() + (7 - start_day)) % 7);
+            var endDate = new Date(currentDate).setUTCDate(currentDate.getUTCDate() + (weeks * 7) - 1);
+
+            while (currentDate <= new Date(endDate)) {
+                dateArray.push(new Date(currentDate));
+                // Use UTC date to prevent problems with time zones and DST
+                currentDate.setUTCDate(currentDate.getUTCDate() + steps);
+            }
+
+            return dateArray;
+        }
+
+        function getPreviousDate(date) {
+            return new Date(new Date(date).setUTCDate(date.getUTCDate() - 1));
+        }
+
+        function dateYear(date, previousDate, index) {
+            if (index == 0) {
+                // if it's the first day then we display date, Month and Year
+                return date.getUTCFullYear();
+            }
+            if (previousDate.getUTCFullYear() != date.getUTCFullYear()) {
+                // if the year has changed then we display date, Month and Year
+                return date.getUTCFullYear();
+            }
+            return '';
+        }
+
+        function dateMonth(date, previousDate, index) {
+            if (index == 0) {
+                // if it's the first day then we display date, Month and Year
+                return date.toLocaleDateString("en-GB", { month: 'short' });
+            }
+            if (previousDate.getUTCFullYear() != date.getUTCFullYear()) {
+                // if the year has changed then we display date, Month and Year
+                return date.toLocaleDateString("en-GB", { month: 'short' });
+            }
+            if (previousDate.getUTCMonth() != date.getUTCMonth()) {
+                // if the month has changed then we display date and Month
+                return date.toLocaleDateString("en-GB", { month: 'short' });
+            }
+            // Otherwise we just display the date
+            return '';
+        }
+
+        function dateClasses(date, weekend) {
+            const classes = [
+                date.toLocaleDateString("en-GB", { weekday: 'long' }).toLowerCase(),
+            ];
+            if (weekend.includes(date.getUTCDay().toString())) {
+                classes.push('weekend');
+            }
+            return classes.join(' ');
+        }
+    </script>
+    <style>
+        body,
+        .merriweather-regular {
+            font-family: "Merriweather", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(100px, 1fr));
+            grid-auto-rows: minmax(100px, auto);
+            gap: 0rem;
+            border: 2px solid black;
+        }
+
+        #calendar>div {
+            padding: 1rem;
+            border: 2px solid black;
+            aspect-ratio: 3/4;
+        }
+
+        #calendar>div.weekend {
+            background-color: #f8d7da;
+            print-color-adjust: exact;
+        }
+
+        .header {
+            padding-bottom: 1rem;
+        }
+
+        @media print {
+            #calendar>div {
+                page-break-inside: avoid;
+            }
+
+            .header {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div x-data="calendarInit" x-effect="dates = dateRange(start_date, weeks, start_day)">
+        <form class="header">
+            <h1>Printable calendar</h1>
+            <label>Start from <input type="date" x-model="start_date"></label> for
+            <label><input type="number" x-model="weeks" min="1" max="52"> weeks</label>.
+            <label>Week starts on:
+                <select x-model="start_day">
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                </select>
+            </label>.
+            <fieldset>
+                <legend>Weekend days</legend>
+                <label><input type="checkbox" x-model="weekend" value="0">Sunday</label>
+                <label><input type="checkbox" x-model="weekend" value="1">Monday</label>
+                <label><input type="checkbox" x-model="weekend" value="2">Tuesday</label>
+                <label><input type="checkbox" x-model="weekend" value="3">Wednesday</label>
+                <label><input type="checkbox" x-model="weekend" value="4">Thursday</label>
+                <label><input type="checkbox" x-model="weekend" value="5">Friday</label>
+                <label><input type="checkbox" x-model="weekend" value="6">Saturday</label>
+            </fieldset>
+            <button onClick="window.print()">Print calendar</button>
+        </form>
+        <!-- one box per date -->
+        <div id="calendar">
+            <template x-for="(date, index) in dates" :key="date.toISOString()">
+                <div :class="dateClasses(date, weekend)">
+                    <span x-text="date.getUTCDate()" class="date"></span>
+                    <span x-text="dateMonth(date, getPreviousDate(date), index)" class="month"></span>
+                    <span x-text="dateYear(date, getPreviousDate(date), index)" class="year"></span>
+                </div>
+            </template>
+        </div>
+    </div>
+</body>
+
+</html>
