@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Text analysis in the voluntary sector | David Kane</title>
+      <title>Setting up dokku to serve a fractal-js design library | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
@@ -16,10 +16,10 @@
 
 <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Full Atom Feed" />
 <link href="/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
-<link href="/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
+<link href="/feeds/code.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
 
-    <meta name="tags" content="Text analysis" />
+    <meta name="tags" content="Dokku" />
   
 </head>
 
@@ -41,8 +41,8 @@
   <div class="w-60-l w-100 center">
     <header>
         <h2 class="f2 header-font">
-        <a href="https://dkane.net/2018/text-analysis-in-the-voluntary-sector/" rel="bookmark" class="link near-black"
-            title="Permalink to Text analysis in the voluntary sector">Text analysis in the voluntary sector</a></h2>
+        <a href="https://dkane.net/2026/setting-up-dokku-to-serve-a-fractal-js-design-library/" rel="bookmark" class="link near-black"
+            title="Permalink to Setting up dokku to serve a fractal-js design library">Setting up dokku to serve a fractal-js design library</a></h2>
             
     </header>
     <footer class="post-info pb3 bb">
@@ -50,31 +50,59 @@
             <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
         </address>
         <span class="ph2"> | </span>
-        <time class="published dib" datetime="2018-11-19T09:58:43+00:00">
-        Mon 19 November 2018
+        <time class="published dib" datetime="2026-01-08T11:14:57+00:00">
+        Thu 08 January 2026
         </time>
         <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+        <a class="url fn link mid-gray" href="https://dkane.net/category/code/">Code</a>
         <span class="ph2"> | </span>
         <span class="fn">Tags: 
-            <a class="url fn link mid-gray" href="https://dkane.net/tag/text-analysis/">Text analysis</a>        </span>
+            <a class="url fn link mid-gray" href="https://dkane.net/tag/dokku/">Dokku</a>        </span>
     </footer><!-- /.post-info -->
     <div class="entry-content f4 lh-copy">
-        <p><img alt="Chart from Google n-grams showing results for data and cheese since 1800. Data overtakes cheese in 1970ish" src="/images/data-cheese-chart.png"> </p>
-<p>Last week at the <a href="https://www.data4goodconf.org.uk/">Data 4 Good event</a> in Birmingham I gave a talk on the opportunities
-and challenges that text analysis offers to the voluntary sector. It was a short lightning
-talk so I was only able to give a quick overview of the possibilities, and it's a big
-area so there's lots more to explore.</p>
-<p>You can find the slides on Google drive.</p>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTvN-R9g5Dtcr72YKIe5RWSSBRqQlpUmaVpQfRDxd5EIPVzwPmzMPbVGCnJapJPjOMnIqhBCii7Eq30/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="width:100%;height:389px;"></iframe>
+        <p>This guide shows you how to deploy a site built with the <a href="https://fractal.build/">Fractal</a> framework to a server set up with <a href="https://dokku.com/">dokku</a>. The guide assumes you already have a working fractal site locally (set up as a git repository) as well as a working dokku server.</p>
+<h2 id="add-needed-files-to-the-repository">Add needed files to the repository</h2>
+<p>You first need to add 3 files to the root directory of your repository.</p>
+<ol>
+<li><code>.static</code>: Add a blank file called <code>.static</code> in the root directory. This tells dokku that it should serve a static site.</li>
+<li><code>app.json</code>: Add a file called <code>app.json</code> in the root directory. This tells dokku what command to run before deploying the site to build the site. This needs the following contents (adjust the command if the actual commands to build the site are different):</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dokku&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;predeploy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cd /app/www &amp;&amp; npm run gulp:build &amp;&amp; npm run fractal:build&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
-<p>In the last slide I suggest some tools you can use to take your data further with text analysis.
-They are:</p>
+<ol>
+<li><code>buildpacks</code>: Add a file called <code>.buildpacks</code> to the root directory. This tells dokku what buildpacks to use. The file should have the following contents:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>https://github.com/heroku/heroku-buildpack-nodejs.git
+https://github.com/dokku/buildpack-nginx.git
+</code></pre></div>
+
+<h2 id="set-up-the-app-on-dokku">Set up the app on dokku</h2>
+<p>This needs to happen on your dokku server. Create the app, and set a config setting <code>NGINX_ROOT</code> to "output" (this is the directory where the site will be built - this should be defined in <code>fractal.config.js</code>).</p>
+<p>In this case we're calling the app <code>design</code> - this can be changed</p>
+<div class="highlight"><pre><span></span><code>dokku<span class="w"> </span>apps:create<span class="w"> </span>design
+dokku<span class="w"> </span>config:set<span class="w"> </span>design<span class="w"> </span><span class="nv">NGINX_ROOT</span><span class="o">=</span><span class="s1">&#39;output&#39;</span>
+</code></pre></div>
+
+<h2 id="deploy-the-site">Deploy the site</h2>
+<p>On your local version, add the dokku server as a git remote. Replace <code>123.456.789.123</code> with the actual IP address or domain name, and <code>design</code> with the actual name of the app.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>dokku<span class="w"> </span>dokku@123.456.789.123:design
+</code></pre></div>
+
+<p>Next push the site to the dokku server. This should build the site:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>dokku<span class="w"> </span>main
+</code></pre></div>
+
+<p>You should now see the site deployed correctly.</p>
+<h2 id="further-resources">Further resources</h2>
 <ul>
-<li><a href="https://databasic.io/en/samediff/"><strong>DataBasic – SameDiff</strong></a> - a simple tool for comparing two sets of text</li>
-<li><a href="https://databasic.io/en/wordcounter/"><strong>DataBasic – word counter</strong></a> - create word clouds and look in more detail at the frequency of words in a piece of text.</li>
-<li><a href="http://www.opencalais.com/opencalais-demo/"><strong>Reuters OpenCalais</strong></a> - a proprietary tool for getting started with entity recognition. I'd be interested to know if there are any similar open-source projects - one I've seen is <a href="https://spacy.io/usage/spacy-101#annotations-ner">spacy</a> but it requires some programming knowledge to use.</li>
-<li><a href="http://openrefine.org/"><strong>OpenRefine</strong></a> - a useful data wrangling tool with lots of useful features for working with text.</li>
+<li><a href="https://github.com/dokku/heroku-buildpack-nginx?tab=readme-ov-file">Additional configuration values for the server</a></li>
 </ul>
     </div><!-- /.entry-content -->
     </div>
