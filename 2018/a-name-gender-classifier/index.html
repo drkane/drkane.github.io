@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>A name gender classifier | David Kane</title>
+    <title>A name gender classifier | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
@@ -18,8 +18,17 @@
 <link href="https://dkane.net/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="https://dkane.net/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
+<meta content="en_GB" name="og:locale" property="og:locale">
+<meta content="David Kane" name="og:site_name" property="og:site_name">
+<meta content="A name gender classifier" name="twitter:title" property="og:title">
+<meta content="article" property="og:type">
+<meta content="https://dkane.net/2018/a-name-gender-classifier/" property="og:url">
+<meta content="2018-02-10T21:19:35+01:00" property="article:published_time">
+<meta content="2018-02-10T21:19:35+01:00" property="article:modified_time">
+<meta content="@kanedr" name="twitter:site">
+<meta content="summary" name="twitter:card">
 
-  
+
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
@@ -36,27 +45,31 @@
         <h1 class="f2-ns f3 lh-solid mv0">Charity data blog</h1>
     </header><!-- /#banner -->
     <main class="ph0 bg-white cf">
-<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6" itemprop="blogPost" itemscope
+  itemtype="https://schema.org/BlogPosting">
   <div class="w-60-l w-100 center">
     <header>
-        <h2 class="f2 header-font">
+      <h2 class="f2 header-font" itemprop="headline">
         <a href="https://dkane.net/2018/a-name-gender-classifier/" rel="bookmark" class="link near-black"
-            title="Permalink to A name gender classifier">A name gender classifier</a></h2>
-            
+          title="Permalink to A name gender classifier">A name gender classifier</a>
+      </h2>
+      
     </header>
-    <footer class="post-info pb3 bb">
-        <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
-        </address>
-        <span class="ph2"> | </span>
-        <time class="published dib" datetime="2018-02-10T21:19:35+01:00">
-        Sat 10 February 2018
-        </time>
-        <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+    <footer class="post-info pb3 bb flex">
+      <address class="dib fs-normal">
+        <span class="vcard author" hidden itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <meta content="https://dkane.net/author/david-kane/" itemprop="url">
+          <meta content="David Kane" itemprop="name">
+        </span>
+        <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+      </address>
+      <time class="published dib" datetime="2018-02-10T21:19:35+01:00" itemprop="https://schema.org/datePublished">
+Sat 10 February 2018
+      </time>
+      <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
     </footer><!-- /.post-info -->
-    <div class="entry-content f4 lh-copy">
-        <p>Something I've needed to do a couple of times is take a long list of names and
+    <div class="entry-content f4 lh-copy" itemprop="articleBody">
+      <p>Something I've needed to do a couple of times is take a long list of names and
 classify them into male and female. For example, I've looked at lists of people
 who attended events to see whether they were reaching more men or women - this
 then helps target future events.</p>
@@ -101,7 +114,7 @@ a difference to the final total. But this isn't a guarantee.</p>
 <h2 id="step-3-testing-the-model">Step 3: testing the model</h2>
 <h2 id="step-4-using-the-model">Step 4: using the model</h2>
     </div><!-- /.entry-content -->
-    </div>
+  </div>
 </section>
     </main>
     <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">

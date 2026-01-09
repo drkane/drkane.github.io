@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Text analysis in the voluntary sector | David Kane</title>
+    <title>Text analysis in the voluntary sector | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
@@ -18,9 +18,18 @@
 <link href="https://dkane.net/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="https://dkane.net/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
+<meta content="en_GB" name="og:locale" property="og:locale">
+<meta content="David Kane" name="og:site_name" property="og:site_name">
+<meta content="Text analysis in the voluntary sector" name="twitter:title" property="og:title">
+<meta content="article" property="og:type">
+<meta content="https://dkane.net/2018/text-analysis-in-the-voluntary-sector/" property="og:url">
+<meta content="2018-11-19T09:58:43+00:00" property="article:published_time">
+<meta content="2018-11-19T09:58:43+00:00" property="article:modified_time">
+<meta content="@kanedr" name="twitter:site">
+<meta content="summary" name="twitter:card">
 
-    <meta name="tags" content="Text analysis" />
-  
+<meta name="tags" content="Text analysis" />
+
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
@@ -37,30 +46,34 @@
         <h1 class="f2-ns f3 lh-solid mv0">Charity data blog</h1>
     </header><!-- /#banner -->
     <main class="ph0 bg-white cf">
-<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6" itemprop="blogPost" itemscope
+  itemtype="https://schema.org/BlogPosting">
   <div class="w-60-l w-100 center">
     <header>
-        <h2 class="f2 header-font">
+      <h2 class="f2 header-font" itemprop="headline">
         <a href="https://dkane.net/2018/text-analysis-in-the-voluntary-sector/" rel="bookmark" class="link near-black"
-            title="Permalink to Text analysis in the voluntary sector">Text analysis in the voluntary sector</a></h2>
-            
+          title="Permalink to Text analysis in the voluntary sector">Text analysis in the voluntary sector</a>
+      </h2>
+      
     </header>
-    <footer class="post-info pb3 bb">
-        <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
-        </address>
-        <span class="ph2"> | </span>
-        <time class="published dib" datetime="2018-11-19T09:58:43+00:00">
-        Mon 19 November 2018
-        </time>
-        <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
-        <span class="ph2"> | </span>
-        <span class="fn">Tags: 
-            <a class="url fn link mid-gray" href="https://dkane.net/tag/text-analysis/">Text analysis</a>        </span>
+    <footer class="post-info pb3 bb flex">
+      <address class="dib fs-normal">
+        <span class="vcard author" hidden itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <meta content="https://dkane.net/author/david-kane/" itemprop="url">
+          <meta content="David Kane" itemprop="name">
+        </span>
+        <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+      </address>
+      <time class="published dib" datetime="2018-11-19T09:58:43+00:00" itemprop="https://schema.org/datePublished">
+Mon 19 November 2018
+      </time>
+      <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+      <span class="fn">Tags:
+        <a class="url fn link mid-gray"
+          href="https://dkane.net/tag/text-analysis/">Text analysis</a>      </span>
     </footer><!-- /.post-info -->
-    <div class="entry-content f4 lh-copy">
-        <p><img alt="Chart from Google n-grams showing results for data and cheese since 1800. Data overtakes cheese in 1970ish" src="/images/data-cheese-chart.png"> </p>
+    <div class="entry-content f4 lh-copy" itemprop="articleBody">
+      <p><img alt="Chart from Google n-grams showing results for data and cheese since 1800. Data overtakes cheese in 1970ish" src="/images/data-cheese-chart.png"> </p>
 <p>Last week at the <a href="https://www.data4goodconf.org.uk/">Data 4 Good event</a> in Birmingham I gave a talk on the opportunities
 and challenges that text analysis offers to the voluntary sector. It was a short lightning
 talk so I was only able to give a quick overview of the possibilities, and it's a big
@@ -77,7 +90,7 @@ They are:</p>
 <li><a href="http://openrefine.org/"><strong>OpenRefine</strong></a> - a useful data wrangling tool with lots of useful features for working with text.</li>
 </ul>
     </div><!-- /.entry-content -->
-    </div>
+  </div>
 </section>
     </main>
     <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">

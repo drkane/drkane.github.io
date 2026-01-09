@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Adding charity details using findthatcharity - Part II | David Kane</title>
+    <title>Adding charity details using findthatcharity - Part II | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
@@ -18,10 +18,19 @@
 <link href="https://dkane.net/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="https://dkane.net/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
+<meta content="en_GB" name="og:locale" property="og:locale">
+<meta content="David Kane" name="og:site_name" property="og:site_name">
+<meta content="Adding charity details using findthatcharity - Part II" name="twitter:title" property="og:title">
+<meta content="article" property="og:type">
+<meta content="https://dkane.net/2018/adding-charity-details-using-findthatcharity-part-ii/" property="og:url">
+<meta content="2018-03-31T13:25:00+01:00" property="article:published_time">
+<meta content="2018-03-31T13:25:00+01:00" property="article:modified_time">
+<meta content="@kanedr" name="twitter:site">
+<meta content="summary" name="twitter:card">
 
-    <meta name="tags" content="Charities" />
-    <meta name="tags" content="findthatcharity" />
-  
+<meta name="tags" content="Charities" />
+<meta name="tags" content="findthatcharity" />
+
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
@@ -38,118 +47,76 @@
         <h1 class="f2-ns f3 lh-solid mv0">Charity data blog</h1>
     </header><!-- /#banner -->
     <main class="ph0 bg-white cf">
-<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6" itemprop="blogPost" itemscope
+  itemtype="https://schema.org/BlogPosting">
   <div class="w-60-l w-100 center">
     <header>
-        <h2 class="f2 header-font">
+      <h2 class="f2 header-font" itemprop="headline">
         <a href="https://dkane.net/2018/adding-charity-details-using-findthatcharity-part-ii/" rel="bookmark" class="link near-black"
-            title="Permalink to Adding charity details using findthatcharity - Part II">Adding charity details using findthatcharity - Part II</a></h2>
-            
+          title="Permalink to Adding charity details using findthatcharity - Part II">Adding charity details using findthatcharity - Part II</a>
+      </h2>
+      
     </header>
-    <footer class="post-info pb3 bb">
-        <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
-        </address>
-        <span class="ph2"> | </span>
-        <time class="published dib" datetime="2018-03-31T13:25:00+01:00">
-        Sat 31 March 2018
-        </time>
-        <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
-        <span class="ph2"> | </span>
-        <span class="fn">Tags: 
-            <a class="url fn link mid-gray" href="https://dkane.net/tag/charities/">Charities</a> and <a class="url fn link mid-gray" href="https://dkane.net/tag/findthatcharity/">findthatcharity</a>        </span>
+    <footer class="post-info pb3 bb flex">
+      <address class="dib fs-normal">
+        <span class="vcard author" hidden itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <meta content="https://dkane.net/author/david-kane/" itemprop="url">
+          <meta content="David Kane" itemprop="name">
+        </span>
+        <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+      </address>
+      <time class="published dib" datetime="2018-03-31T13:25:00+01:00" itemprop="https://schema.org/datePublished">
+Sat 31 March 2018
+      </time>
+      <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+      <span class="fn">Tags:
+        <a class="url fn link mid-gray"
+          href="https://dkane.net/tag/charities/">Charities</a> and <a class="url fn link mid-gray"
+          href="https://dkane.net/tag/findthatcharity/">findthatcharity</a>      </span>
     </footer><!-- /.post-info -->
-    <div class="entry-content f4 lh-copy">
-        <p><a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/">...continued from part 1</a></p>
+    <div class="entry-content f4 lh-copy" itemprop="articleBody">
+      <p><a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/">...continued from part 1</a></p>
+<p><em>Update 2026-01-09: I've updated the screenshots and links for the latest version of OpenRefine.
+This update uses a much simpler way of adding additional data in columns.</em></p>
 <h2 id="part-ii-add-charity-details">Part II - add charity details</h2>
-<p>Once you've got a list of organisations in OpenRefine with charity numbers you
+<p>Once you've got a list of organisations in OpenRefine with organisation identifiers you
 can then add more details about the organisations using <a href="https://findthatcharity.uk/">findthatcharity.uk</a>.
 You can add:</p>
 <ul>
-<li>postcode</li>
 <li>website</li>
 <li>latest income</li>
 <li>link to Charity Commission register</li>
 <li>date registered/removed</li>
 <li>Company Number</li>
 </ul>
-<h3 id="1-fetch-json-data">1: Fetch JSON data</h3>
-<p>First you fetch data from the findthatcharity page for that charity. We'll be getting
-the data in "JSON" format - this means we can get the fields we need out of the data.</p>
-<p>To fetch the data, click the arrow menu next to the column with the charity numbers and
-select <code>Edit Column &gt; Add column by fetching URLs...</code>. </p>
+<h3 id="1-add-columns-from-reconciled-column">1: Add columns from reconciled column</h3>
+<p>The Reconciliation API that powers the charity lookup also allows you to fill in additional details
+about those organisations.</p>
+<p>To fetch the data, click the arrow menu next to your reconciled column and select
+<code>Edit Column &gt; Add columns from reconciled values...</code>.</p>
 <figure>
-<p><img alt="Screenshot of OpenRefine option for adding column based on an url" src="/images/reconcile/add-column-by-url.png"></p>
+<p><img alt="Screenshot of OpenRefine option for adding column from reconciled values" src="/images/reconcile/add-column-from-reconciled-values.png"></p>
 </figure>
-<p>In the resulting dialog you need to add a formula which will create the URL that needs
-to be fetched. This means adding the charity number value into a template. The formula
-you need is:</p>
-<div class="highlight"><pre><span></span><code>&quot;https://findthatcharity.uk/charity/&quot; + value + &quot;.json&quot;
-</code></pre></div>
-
-<p>Make sure you include the quotation marks in the correct place. Add a new column name
-(something like "Charity Details"). The "Throttle delay" setting helps to lessen the
-load on the site being fetched from - the default value is 5000 milliseconds (5 seconds).
-Findthat charity can cope with more requests than that (within reason!) So I'll generally
-set it to 50-100 milliseconds, which works out as between 10 and 20 requests per second.</p>
-<p>The resulting dialog should look something like the following. You'll see a preview of the
-url which should look sensible. You can test that the URL is correct by visiting one of the
-preview URLs. You'll also see that columns with a <code>null</code> value also produce a <code>null</code> URL
-so won't be fetched.</p>
+<p>In the resulting dialog you need to select which columns you would like to add. Start typing
+to find the columns you're looking for. In this case we're adding the website address and the
+date the organisation was registered.</p>
 <figure>
-<p><img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/add-column-dialog.png"></p>
+<p><img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/add-column-dialog-reconciled.png"></p>
 </figure>
-<h3 id="2-extract-details-from-the-json-data">2. Extract details from the JSON data</h3>
-<p>You should see a new column filled with JSON data - it looks very hard to read, but all the 
-data we'll looking for. You'll need to get OpenRefine to look through this data and extract
-the fields you're looking for.</p>
-<p>I'll demo this with the <code>latestincome</code> and <code>company number</code> fields, but the same principle
-can be used to extract anything from the data.</p>
-<p>Use the arrow menu next to the new column, and then select <code>Edit Column &gt; Add column based on this column...</code>
-Again, we'll enter a formula to parse the JSON and find the right value within. We're using
-the <code>parseJson</code> OpenRefine function. Enter the following formula:</p>
-<div class="highlight"><pre><span></span><code>parseJson(value)[&quot;latest_income&quot;]
-</code></pre></div>
-
-<p>Enter a name for the column and press OK to add it.</p>
+<p>Click ok to add the new columns. This may take a while depending on how many rows you have.</p>
 <figure>
-<p><img alt="Dialog for adding a new column by parsing JSON" src="/images/reconcile/parse-json-1.png"></p>
+<p><img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/extend-results.png"></p>
 </figure>
-<h4 id="company-number">Company number</h4>
-<p>Adding a company number is slightly more complicated. This is because the <code>company_number</code>
-field can contain multiple values (if a charity is linked with more than one company).
-So the formula we'll use in this instance is:</p>
-<div class="highlight"><pre><span></span><code>parseJson(value)[&quot;company_number&quot;][0][&quot;number&quot;]
-</code></pre></div>
-
-<p>The <code>[0]</code> part selects the first value within the list of values of <code>company_number</code>, and
-then <code>["number"]</code> selects the company number within that.</p>
-<h3 id="3-save-the-data">3. Save the data</h3>
-<p>While OpenRefine is useful for this kind of data cleaning and linking, you'll want to 
-export the data to another programme to perform analysis. You can do this using the 
+<h3 id="2-save-the-data">2. Save the data</h3>
+<p>While OpenRefine is useful for this kind of data cleaning and linking, you'll want to
+export the data to another programme to perform analysis. You can do this using the
 <code>Export</code> menu found in the top right hand corner. The default formats are pretty
 straightforward, and it's possible to create more sophisticated exports (including a JSON
 export) using the <code>Custom tabular exporter...</code> option.</p>
 <p>One thing to remember with export - it will use any active filters when exporting, so make
 sure you don't have restrictive filters that exclude data you actually need.</p>
-<h3 id="4-optional-using-charity-base">4. Optional - using Charity Base</h3>
-<p>The data found on findthatcharity.uk is minimal as it is only included to support the site's
-main purpose of being a search engine. If there are other details you need then you may need
-to look for other data sources.</p>
-<p>A good place to look is <a href="https://charitybase.uk/">CharityBase</a> which has more detailed data
-extracted from the Charity Commission.</p>
-<p>A sample formula for getting a CharityBase URL for extracting data might look like:</p>
-<div class="highlight"><pre><span></span><code><span class="s">&quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;charityNumber=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&amp;fields=mainCharity.income,registration,beta.people.employees&quot;</span>
-</code></pre></div>
-
-<p>(Note that you need to specify the fields you want to return - here we're looking for the 
-number of employees).</p>
-<p>And the sample formula for parsing the resulting JSON data might look like:</p>
-<div class="highlight"><pre><span></span><code>parseJson(value)[&quot;charities&quot;][0][&quot;beta&quot;][&quot;people&quot;][&quot;employees&quot;]
-</code></pre></div>
     </div><!-- /.entry-content -->
-    </div>
+  </div>
 </section>
     </main>
     <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">

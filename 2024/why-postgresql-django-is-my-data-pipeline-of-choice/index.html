@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Why PostgreSQL + Django is my data pipeline of choice | David Kane</title>
+    <title>Why PostgreSQL + Django is my data pipeline of choice | David Kane</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://dkane.net/theme/css/tachyons.min.css" />
@@ -18,8 +18,17 @@
 <link href="https://dkane.net/feed.rss" type="application/rss+xml" rel="alternate" title="David Kane Full RSS Feed" />
 <link href="https://dkane.net/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate" title="David Kane Categories Atom Feed" />
 
+<meta content="en_GB" name="og:locale" property="og:locale">
+<meta content="David Kane" name="og:site_name" property="og:site_name">
+<meta content="Why PostgreSQL + Django is my data pipeline of choice" name="twitter:title" property="og:title">
+<meta content="article" property="og:type">
+<meta content="https://dkane.net/2024/why-postgresql-django-is-my-data-pipeline-of-choice/" property="og:url">
+<meta content="2024-10-07T11:08:47+01:00" property="article:published_time">
+<meta content="2024-10-07T11:08:47+01:00" property="article:modified_time">
+<meta content="@kanedr" name="twitter:site">
+<meta content="summary" name="twitter:card">
 
-  
+
 </head>
 
 <body id="index" class="home w-100 sans-serif near-black base-font bg-wavy">
@@ -36,27 +45,31 @@
         <h1 class="f2-ns f3 lh-solid mv0">Charity data blog</h1>
     </header><!-- /#banner -->
     <main class="ph0 bg-white cf">
-<section id="content" class="fl w-100 ph3 ph5-ns pb6">
+<section id="content" class="fl w-100 ph3 ph5-ns pb6" itemprop="blogPost" itemscope
+  itemtype="https://schema.org/BlogPosting">
   <div class="w-60-l w-100 center">
     <header>
-        <h2 class="f2 header-font">
+      <h2 class="f2 header-font" itemprop="headline">
         <a href="https://dkane.net/2024/why-postgresql-django-is-my-data-pipeline-of-choice/" rel="bookmark" class="link near-black"
-            title="Permalink to Why PostgreSQL + Django is my data pipeline of choice">Why PostgreSQL + Django is my data pipeline of choice</a></h2>
-            
+          title="Permalink to Why PostgreSQL + Django is my data pipeline of choice">Why PostgreSQL + Django is my data pipeline of choice</a>
+      </h2>
+      
     </header>
-    <footer class="post-info pb3 bb">
-        <address class="vcard author dib fs-normal">
-            <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
-        </address>
-        <span class="ph2"> | </span>
-        <time class="published dib" datetime="2024-10-07T11:08:47+01:00">
-        Mon 07 October 2024
-        </time>
-        <span class="ph2"> | </span>
-        <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
+    <footer class="post-info pb3 bb flex">
+      <address class="dib fs-normal">
+        <span class="vcard author" hidden itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <meta content="https://dkane.net/author/david-kane/" itemprop="url">
+          <meta content="David Kane" itemprop="name">
+        </span>
+        <a class="url fn link near-black" href="https://dkane.net/author/david-kane/">David Kane</a>
+      </address>
+      <time class="published dib" datetime="2024-10-07T11:08:47+01:00" itemprop="https://schema.org/datePublished">
+Mon 07 October 2024
+      </time>
+      <a class="url fn link mid-gray" href="https://dkane.net/category/blog/">Blog</a>
     </footer><!-- /.post-info -->
-    <div class="entry-content f4 lh-copy">
-        <p><em>This blog post is based partly on an interesting conversation at <a href="https://www.odcamp.uk/">Open Data camp 9 in Manchester</a>
+    <div class="entry-content f4 lh-copy" itemprop="articleBody">
+      <p><em>This blog post is based partly on an interesting conversation at <a href="https://www.odcamp.uk/">Open Data camp 9 in Manchester</a>
 this year, where Giles from Open Innovations led a session called <a href="https://docs.google.com/document/d/1zY1KZGlpac-rUnfW3pRwncXotmXe4e1FHzo2VECHQ6M/edit">DIY FTW! What’s in YOUR toolbox?</a>. As well as
 showcasing a bunch of tools that I'd not come across, it also made me think about what my
 typical workflow looks like.</em></p>
@@ -193,7 +206,7 @@ can be a bit fiddly.</p>
 <a href="https://github.com/kanedata/cookiecutter-django-kd">cookiecutter template</a> that forms the basis for a
 new django project, which shows some of this approach in practice.</p>
     </div><!-- /.entry-content -->
-    </div>
+  </div>
 </section>
     </main>
     <footer id="contentinfo" class="body ph3 ph5-ns db pv5 moon-gray bg-near-black">

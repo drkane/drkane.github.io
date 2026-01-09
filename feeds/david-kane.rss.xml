@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>David Kane - David Kane</title><link>https://dkane.net/</link><description/><atom:link href="https://dkane.net/feeds/david-kane.rss.xml" rel="self"/><lastBuildDate>Thu, 08 Jan 2026 11:14:57 +0000</lastBuildDate><item><title>Setting up dokku to serve a fractal-js design library</title><link>https://dkane.net/2026/setting-up-dokku-to-serve-a-fractal-js-design-library/</link><description>&lt;p&gt;This guide shows you how to deploy a site built with the &lt;a href="https://fractal.build/"&gt;Fractal&lt;/a&gt; framework to a server set up with &lt;a href="https://dokku.com/"&gt;dokku&lt;/a&gt;. The guide assumes you already have a working fractal site locally (set up as a git repository) as well as a working dokku server.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>David Kane - David Kane</title><link>https://dkane.net/</link><description/><atom:link href="https://dkane.net/feeds/david-kane.rss.xml" rel="self"/><lastBuildDate>Fri, 09 Jan 2026 10:21:22 +0000</lastBuildDate><item><title>Setting up dokku to serve a fractal-js design library</title><link>https://dkane.net/2026/setting-up-dokku-to-serve-a-fractal-js-design-library/</link><description>&lt;p&gt;This guide shows you how to deploy a site built with the &lt;a href="https://fractal.build/"&gt;Fractal&lt;/a&gt; framework to a server set up with &lt;a href="https://dokku.com/"&gt;dokku&lt;/a&gt;. The guide assumes you already have a working fractal site locally (set up as a git repository) as well as a working dokku server.&lt;/p&gt;
 &lt;h2 id="add-needed-files-to-the-repository"&gt;Add needed files to the repository&lt;/h2&gt;
 &lt;p&gt;You first need to add 3 files to the root directory of your repository.&lt;/p&gt;
 &lt;ol&gt;
@@ -1283,174 +1283,159 @@ the terms under which the data was used from GrantNav.&lt;/p&gt;
 &lt;p&gt;All data has been used under the license applied by the data publisher. 
 &lt;a href="http://grantnav.threesixtygiving.org/datasets/#copyright"&gt;A list of the licenses used&lt;/a&gt; can be found on GrantNav.&lt;/p&gt;
 &lt;p&gt;Contains data from &lt;a href="http://grantnav.threesixtygiving.org/datasets/"&gt;GrantNav&lt;/a&gt; a &lt;a href="http://www.threesixtygiving.org/"&gt;360Giving&lt;/a&gt; application released under the terms of the &lt;a href="https://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution Sharealike license (CC-BY-SA)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Thu, 14 Jun 2018 12:57:19 +0100</pubDate><guid>tag:dkane.net,2018-06-14:/2018/grants-in-kingston/</guid><category>Blog</category><category>Grants</category><category>Kingston</category></item><item><title>Adding charity details using findthatcharity - Part II</title><link>https://dkane.net/2018/adding-charity-details-using-findthatcharity-part-ii/</link><description>&lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharityuk-part-i/"&gt;...continued from part 1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Update 2026-01-09: I've updated the screenshots and links for the latest version of OpenRefine.
+This update uses a much simpler way of adding additional data in columns.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="part-ii-add-charity-details"&gt;Part II - add charity details&lt;/h2&gt;
-&lt;p&gt;Once you've got a list of organisations in OpenRefine with charity numbers you
+&lt;p&gt;Once you've got a list of organisations in OpenRefine with organisation identifiers you
 can then add more details about the organisations using &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt;.
 You can add:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;postcode&lt;/li&gt;
 &lt;li&gt;website&lt;/li&gt;
 &lt;li&gt;latest income&lt;/li&gt;
 &lt;li&gt;link to Charity Commission register&lt;/li&gt;
 &lt;li&gt;date registered/removed&lt;/li&gt;
 &lt;li&gt;Company Number&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="1-fetch-json-data"&gt;1: Fetch JSON data&lt;/h3&gt;
-&lt;p&gt;First you fetch data from the findthatcharity page for that charity. We'll be getting
-the data in "JSON" format - this means we can get the fields we need out of the data.&lt;/p&gt;
-&lt;p&gt;To fetch the data, click the arrow menu next to the column with the charity numbers and
-select &lt;code&gt;Edit Column &amp;gt; Add column by fetching URLs...&lt;/code&gt;. &lt;/p&gt;
+&lt;h3 id="1-add-columns-from-reconciled-column"&gt;1: Add columns from reconciled column&lt;/h3&gt;
+&lt;p&gt;The Reconciliation API that powers the charity lookup also allows you to fill in additional details
+about those organisations.&lt;/p&gt;
+&lt;p&gt;To fetch the data, click the arrow menu next to your reconciled column and select
+&lt;code&gt;Edit Column &amp;gt; Add columns from reconciled values...&lt;/code&gt;.&lt;/p&gt;
 &lt;figure&gt;
-&lt;p&gt;&lt;img alt="Screenshot of OpenRefine option for adding column based on an url" src="/images/reconcile/add-column-by-url.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of OpenRefine option for adding column from reconciled values" src="/images/reconcile/add-column-from-reconciled-values.png"&gt;&lt;/p&gt;
 &lt;/figure&gt;
-&lt;p&gt;In the resulting dialog you need to add a formula which will create the URL that needs
-to be fetched. This means adding the charity number value into a template. The formula
-you need is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;quot;https://findthatcharity.uk/charity/&amp;quot; + value + &amp;quot;.json&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Make sure you include the quotation marks in the correct place. Add a new column name
-(something like "Charity Details"). The "Throttle delay" setting helps to lessen the
-load on the site being fetched from - the default value is 5000 milliseconds (5 seconds).
-Findthat charity can cope with more requests than that (within reason!) So I'll generally
-set it to 50-100 milliseconds, which works out as between 10 and 20 requests per second.&lt;/p&gt;
-&lt;p&gt;The resulting dialog should look something like the following. You'll see a preview of the
-url which should look sensible. You can test that the URL is correct by visiting one of the
-preview URLs. You'll also see that columns with a &lt;code&gt;null&lt;/code&gt; value also produce a &lt;code&gt;null&lt;/code&gt; URL
-so won't be fetched.&lt;/p&gt;
+&lt;p&gt;In the resulting dialog you need to select which columns you would like to add. Start typing
+to find the columns you're looking for. In this case we're adding the website address and the
+date the organisation was registered.&lt;/p&gt;
 &lt;figure&gt;
-&lt;p&gt;&lt;img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/add-column-dialog.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/add-column-dialog-reconciled.png"&gt;&lt;/p&gt;
 &lt;/figure&gt;
-&lt;h3 id="2-extract-details-from-the-json-data"&gt;2. Extract details from the JSON data&lt;/h3&gt;
-&lt;p&gt;You should see a new column filled with JSON data - it looks very hard to read, but all the 
-data we'll looking for. You'll need to get OpenRefine to look through this data and extract
-the fields you're looking for.&lt;/p&gt;
-&lt;p&gt;I'll demo this with the &lt;code&gt;latestincome&lt;/code&gt; and &lt;code&gt;company number&lt;/code&gt; fields, but the same principle
-can be used to extract anything from the data.&lt;/p&gt;
-&lt;p&gt;Use the arrow menu next to the new column, and then select &lt;code&gt;Edit Column &amp;gt; Add column based on this column...&lt;/code&gt;
-Again, we'll enter a formula to parse the JSON and find the right value within. We're using
-the &lt;code&gt;parseJson&lt;/code&gt; OpenRefine function. Enter the following formula:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;parseJson(value)[&amp;quot;latest_income&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Enter a name for the column and press OK to add it.&lt;/p&gt;
+&lt;p&gt;Click ok to add the new columns. This may take a while depending on how many rows you have.&lt;/p&gt;
 &lt;figure&gt;
-&lt;p&gt;&lt;img alt="Dialog for adding a new column by parsing JSON" src="/images/reconcile/parse-json-1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Preview of the Add column by fetching from URL dialog" src="/images/reconcile/extend-results.png"&gt;&lt;/p&gt;
 &lt;/figure&gt;
-&lt;h4 id="company-number"&gt;Company number&lt;/h4&gt;
-&lt;p&gt;Adding a company number is slightly more complicated. This is because the &lt;code&gt;company_number&lt;/code&gt;
-field can contain multiple values (if a charity is linked with more than one company).
-So the formula we'll use in this instance is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;parseJson(value)[&amp;quot;company_number&amp;quot;][0][&amp;quot;number&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code&gt;[0]&lt;/code&gt; part selects the first value within the list of values of &lt;code&gt;company_number&lt;/code&gt;, and
-then &lt;code&gt;["number"]&lt;/code&gt; selects the company number within that.&lt;/p&gt;
-&lt;h3 id="3-save-the-data"&gt;3. Save the data&lt;/h3&gt;
-&lt;p&gt;While OpenRefine is useful for this kind of data cleaning and linking, you'll want to 
-export the data to another programme to perform analysis. You can do this using the 
+&lt;h3 id="2-save-the-data"&gt;2. Save the data&lt;/h3&gt;
+&lt;p&gt;While OpenRefine is useful for this kind of data cleaning and linking, you'll want to
+export the data to another programme to perform analysis. You can do this using the
 &lt;code&gt;Export&lt;/code&gt; menu found in the top right hand corner. The default formats are pretty
 straightforward, and it's possible to create more sophisticated exports (including a JSON
 export) using the &lt;code&gt;Custom tabular exporter...&lt;/code&gt; option.&lt;/p&gt;
 &lt;p&gt;One thing to remember with export - it will use any active filters when exporting, so make
-sure you don't have restrictive filters that exclude data you actually need.&lt;/p&gt;
-&lt;h3 id="4-optional-using-charity-base"&gt;4. Optional - using Charity Base&lt;/h3&gt;
-&lt;p&gt;The data found on findthatcharity.uk is minimal as it is only included to support the site's
-main purpose of being a search engine. If there are other details you need then you may need
-to look for other data sources.&lt;/p&gt;
-&lt;p&gt;A good place to look is &lt;a href="https://charitybase.uk/"&gt;CharityBase&lt;/a&gt; which has more detailed data
-extracted from the Charity Commission.&lt;/p&gt;
-&lt;p&gt;A sample formula for getting a CharityBase URL for extracting data might look like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="s"&gt;&amp;quot;https://charitybase.uk/api/v0.2.0/charities?subNumber=0&amp;amp;charityNumber=&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;amp;fields=mainCharity.income,registration,beta.people.employees&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;(Note that you need to specify the fields you want to return - here we're looking for the 
-number of employees).&lt;/p&gt;
-&lt;p&gt;And the sample formula for parsing the resulting JSON data might look like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;parseJson(value)[&amp;quot;charities&amp;quot;][0][&amp;quot;beta&amp;quot;][&amp;quot;people&amp;quot;][&amp;quot;employees&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Sat, 31 Mar 2018 13:25:00 +0100</pubDate><guid>tag:dkane.net,2018-03-31:/2018/adding-charity-details-using-findthatcharity-part-ii/</guid><category>Blog</category><category>Charities</category><category>findthatcharity</category></item><item><title>Adding charity details using findthatcharity.uk - Part I</title><link>https://dkane.net/2018/adding-charity-details-using-findthatcharityuk-part-i/</link><description>&lt;h2 id="part-i-add-charity-numbers"&gt;Part I - add charity numbers&lt;/h2&gt;
+sure you don't have restrictive filters that exclude data you actually need.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Sat, 31 Mar 2018 13:25:00 +0100</pubDate><guid>tag:dkane.net,2018-03-31:/2018/adding-charity-details-using-findthatcharity-part-ii/</guid><category>Blog</category><category>Charities</category><category>findthatcharity</category></item><item><title>Adding charity details using findthatcharity.uk - Part I</title><link>https://dkane.net/2018/adding-charity-details-using-findthatcharityuk-part-i/</link><description>&lt;h2 id="part-i-add-organisation-identifiers"&gt;Part I - add Organisation Identifiers&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;See part II&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Update 2026-01-09: I've updated the screenshots and links for the latest version of OpenRefine&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; is a site I've created to help access
 data about charities. One of the ways you can use it is to add details about a list of
 charities if you only know their names.&lt;/p&gt;
-&lt;p&gt;This is often called "reconciliation" - turning a list of names into something that 
+&lt;p&gt;This is often called "reconciliation" - turning a list of names into something that
 unambiguously identifies the charity. Charities are often known by different names, or
-have variations like "Ltd" rather than "Limited", so by adding charity numbers we can
-make sure we're talking about the same charity whether we say "Comic Relief" or "Charity
-Projects".&lt;/p&gt;
-&lt;p&gt;In this post I'm going to show you how to use &lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; 
-and &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; to turn charity names into 
-numbers. In the next part, I'll show how to use charity numbers to fetch extra information
-about a charity - like their web address or latest income.&lt;/p&gt;
+have variations like "Ltd" rather than "Limited", so by adding organisation identifiers
+like charity numbers we can make sure we're talking about the same charity whether we
+say "Comic Relief" or "Charity Projects".&lt;/p&gt;
+&lt;aside class="cf w-100 mv3 mh3 mh0-ns pv1 ph3-ns near-black link no-underline bg-yellow shadow-4"&gt;
+&lt;h3 id="whats-an-organisation-identifier"&gt;What's an organisation identifier?&lt;/h3&gt;
+&lt;p&gt;An organisation identifier is a unique piece of text that definitively identifies an organisation. Examples include charity numbers and company numbers. Identifiers are usually assigned by an external body like a regulator.&lt;/p&gt;
+&lt;p&gt;Findthatcharity uses the &lt;a href="http://org-id.guide/about"&gt;Org ID scheme&lt;/a&gt; to create identifiers. The Org ID scheme consists of two parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the prefix shows how the identifier was issued. For example, &lt;code&gt;GB-CHC&lt;/code&gt; indicates that the identifier was issued by the Charity Commission&lt;/li&gt;
+&lt;li&gt;the second part gives the identifier itself, for example a charity number like &lt;code&gt;1234567&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two parts combine to give an identifier like &lt;code&gt;GB-CHC-1234567&lt;/code&gt;.&lt;/p&gt;
+&lt;/aside&gt;
+&lt;p&gt;In this post I'm going to show you how to use &lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt;
+and &lt;a href="https://findthatcharity.uk/"&gt;findthatcharity.uk&lt;/a&gt; to turn charity names into
+organisation identifiers. In &lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;the next part&lt;/a&gt;, I'll show how to use organisation identifiers to fetch extra information about a charity - like their web address or latest income.&lt;/p&gt;
 &lt;h3 id="1-get-open-refine"&gt;1. Get Open Refine&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; is a great data cleaning/wrangling tool. It was 
-originally started by Google (and so is sometimes still called Google Refine), but 
+&lt;p&gt;&lt;a href="http://openrefine.org/"&gt;OpenRefine&lt;/a&gt; is a great data cleaning/wrangling tool. It was
+originally started by Google (and so is sometimes still called Google Refine), but
 is now run by a team of volunteer developers.&lt;/p&gt;
 &lt;p&gt;You can find the download for your platform on the &lt;a href="http://openrefine.org/download.html"&gt;download page&lt;/a&gt;.
-Note that if you're a Windows user you won't "install" it in the same way you might for
-other programs - instead you extract the zip file into a directory and then run &lt;code&gt;refine.bat&lt;/code&gt;
-from that directory.&lt;/p&gt;
+Note that if you're a Windows user you can either use a typical installer or you can download and extract
+a zip file into a directory and then run &lt;code&gt;refine.bat&lt;/code&gt; from that directory.&lt;/p&gt;
 &lt;p&gt;Again, OpenRefine might be a bit different from other programs you've seen in that it
 doesn't open in it's own window - instead it has a "server" that runs in the background,
 and you interact with it through a web browser. The address you visit (normally &lt;a href="http://localhost:3333"&gt;http://localhost:3333&lt;/a&gt;)
-is only accessible through your computer though - other parts of the internet can't 
+is only accessible through your computer though - other parts of the internet can't
 see it.&lt;/p&gt;
 &lt;h3 id="2-load-your-data"&gt;2. Load your data&lt;/h3&gt;
 &lt;p&gt;When you first open OpenRefine you'll see a page that looks a bit like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Web page screenshot showing the OpenRefine screen for importing data" src="/images/reconcile/first-screen.png"&gt; &lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img alt="Web page screenshot showing the OpenRefine screen for importing data" src="/images/reconcile/first-screen.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;p&gt;You can follow the instructions for importing your data. OpenRefine has some very
 flexible options for importing data. The important thing about your data is that
 it should be a "flat file" - a simple table with rows and columns. You might need
 to use another program (like Excel) to get your data in this format first.&lt;/p&gt;
-&lt;p&gt;I've chosen to use some data published by the &lt;a href="http://cheshirecommunityfoundation.org.uk/wp-content/uploads/2017/06/Grants-Awarded-Fiscal-Year-2016.xlsx"&gt;Cheshire Community Foundation [xlsx - 57Kb]&lt;/a&gt;
-on the grants they've published. This data is published to the &lt;a href="https://www.threesixtygiving.org/"&gt;360 Giving grant data standard&lt;/a&gt;
-and I found it in the &lt;a href="https://www.threesixtygiving.org/data/data-registry/"&gt;360 Giving data registry&lt;/a&gt;.
+&lt;p&gt;I've chosen to use some data published by the &lt;a href="https://cheshirecommunityfoundation.sharepoint.com/:x:/g/ESWa8b_ylctOgvaMvz_53OkB0ctQ4vZUfkh9DvJnEwVo0g?e=wy4F1Y&amp;amp;download=1"&gt;Cheshire Community Foundation [xlsx - 73Kb]&lt;/a&gt;
+on the grants they've published. This data is published to the &lt;a href="https://www.360giving.org/about/data-standard/"&gt;360 Giving grant data standard&lt;/a&gt;
+and I found it in the &lt;a href="https://qualitydashboard.threesixtygiving.org/publishers"&gt;360 Giving data registry&lt;/a&gt;.
 It already includes charity numbers so we wouldn't need to do this reconciliation
 process, but it's useful to have them there to check how good the reconiliation
 process is.&lt;/p&gt;
 &lt;p&gt;I can point OpenRefine at this URL and it will download and load it itself. Here's what the
 data looks like once it's been imported. I've hidden the &lt;code&gt;description&lt;/code&gt; field to get more
 rows on the screen.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Data loaded into OpenRefine" src="/images/reconcile/data-ready.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;h3 id="3-reconcile-charity-names"&gt;3. Reconcile charity names&lt;/h3&gt;
 &lt;p&gt;We're going to be using the &lt;code&gt;Recipient Org:Name&lt;/code&gt; field to reconcile - this contains the
 name of the organisation that received the grant. Click on the arrow next to the column
 title to bring up the menu, and click &lt;code&gt;Reconcile &amp;gt; Start reconciling...&lt;/code&gt;.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Location of the reconcile menu" src="/images/reconcile/reconcile-menu.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;p&gt;Now you need to add the Find that Charity reconciliation service. This is a web service
 that will recieve data from OpenRefine (in this case the name of a charity) and tries
-to match it to an entity. It returns a list of possible matches, and allows us to 
-extract the ID of each match (in this case the charity number).&lt;/p&gt;
-&lt;p&gt;Click &lt;code&gt;Add Standard Service...&lt;/code&gt; and then paste &lt;code&gt;https://findthatcharity.uk/reconcile&lt;/code&gt;
+to match it to an entity. It returns a list of possible matches, and allows us to
+extract the ID of each match (in this case the organisation identifier).&lt;/p&gt;
+&lt;p&gt;Click &lt;code&gt;Add Standard Service...&lt;/code&gt; and then paste &lt;code&gt;https://findthatcharity.uk/api/v1/reconcile/&lt;/code&gt;
 in the textbox, and click &lt;code&gt;Add Service&lt;/code&gt;. This will then (possibly after a short delay)
-add a service called "charitysearch".&lt;/p&gt;
+add a service called "Find that Charity Reconciliation API".&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Dialog box for adding a reconciliation service" src="/images/reconcile/add-service.png"&gt;&lt;/p&gt;
-&lt;p&gt;You'll see a list with just "charity" on the left hand side (you might need to hide 
-the sidebar). You can leave the default options (at the moment findthatcharity doesn't
-take any additional properties to help matching, but this might be something we add 
-later).&lt;/p&gt;
-&lt;p&gt;Click &lt;code&gt;Start Reconciling&lt;/code&gt; to make the magic happen. This might take a while if you
+&lt;/figure&gt;
+&lt;p&gt;On the left hand side you can see a list of different organisation types that Find that Charity
+provides data for - you can use these to restrict the types of matches that it looks for.
+If you want to match against any type of organisation you can choose "Reconcile against no particular type"&lt;/p&gt;
+&lt;p&gt;On the right hand side there is an option of sending additional properties to
+Find that Charity along with the name - at the moment it doesn't
+take any additional properties to help matching, but this might be something we add
+later.&lt;/p&gt;
+&lt;p&gt;Click &lt;code&gt;Start reconciling...&lt;/code&gt; to make the magic happen. This might take a while if you
 have lots of records. OpenRefine will batch up charities and send a few at a time
 to findthatcharity, but the server can only cope with so many requests at a time.
 If you need to do lots of requests (&amp;gt;5,000 in one go), speak to me directly.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Completed options for running reconcilation" src="/images/reconcile/start-reconciling.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;p&gt;You'll see a counter with the percentage complete at the top, and when finished each field will
-show the matches that have been made. &lt;/p&gt;
+show the matches that have been made. If an organisation has been automatched (if Find that Charity
+has enough confidence that the organisation can be matched to one record) then it will show as a link
+to that organisation, otherwise it will show a list of potential matches along with checkboxes.&lt;/p&gt;
+&lt;p&gt;If no potential matches could be found or there was an error then the organisation will indicate that.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Reconciliation results, showing a series of checkboxes for each entry with possible matches" src="/images/reconcile/reconcile-results.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;h3 id="4-check-the-matches"&gt;4. Check the matches&lt;/h3&gt;
 &lt;p&gt;You now need to check the matches. Depending on your time and the number of records, there's a
-few options for this. &lt;/p&gt;
+few options for this.&lt;/p&gt;
 &lt;h4 id="manually-check-every-record"&gt;Manually check every record&lt;/h4&gt;
 &lt;p&gt;You can manually check each record - just click on the single tick next to the correct match.
 You can also click the box with two ticks if you'd like every instance of this record to be
 matched to this entity.&lt;/p&gt;
+&lt;p&gt;Hovering over the link for each match gives a preview of their record on Find that Charity, with
+some additional information like postcodes that can help match it.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img alt="A preview of a charity from hovering over the link" src="/images/reconcile/hover-preview.png"&gt;&lt;/p&gt;
+&lt;/figure&gt;
 &lt;h4 id="match-all-records-to-the-best-result"&gt;Match all records to the best result&lt;/h4&gt;
 &lt;p&gt;If you trust the algorithm, or have done some manual checking and think they're all correct, you
-can just take the best match for each record. To do this, click the arrow menu next to the 
+can just take the best match for each record. To do this, click the arrow menu next to the
 &lt;code&gt;Recipient Org:Name&lt;/code&gt; column heading, and select &lt;code&gt;Reconcile &amp;gt; Actions &amp;gt; Match each cell to its best candidate&lt;/code&gt;.&lt;/p&gt;
 &lt;h4 id="filter-and-match"&gt;Filter and match&lt;/h4&gt;
 &lt;p&gt;You can also combine these two approaches using filters. On the left hand side of the screen,
-OpenRefine has added two "facets" based on the results of the reconciliation. &lt;/p&gt;
+OpenRefine has added two "facets" based on the results of the reconciliation.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;judgement&lt;/code&gt; facet at the top shows the overall result - either &lt;code&gt;(blank)&lt;/code&gt; where no matches
 have been found, &lt;code&gt;none&lt;/code&gt; where there are some matches or &lt;code&gt;matched&lt;/code&gt; where a single match has
 been selected (some records are marked as &lt;code&gt;matched&lt;/code&gt; already if findthatcharity thinks they
@@ -1460,20 +1445,18 @@ to select different numbers by dragging the range sliders. You can also remove &
 these are the ones with no match.&lt;/p&gt;
 &lt;p&gt;You can drag the score fact to select only those with high matching scores - this will filter
 to show only those rows with the selected scores. The &lt;code&gt;Match each cell to its best candidate&lt;/code&gt;
-action also respects this filter, so you can use that to match all the records found by the 
+action also respects this filter, so you can use that to match all the records found by the
 filter, with the remainder remaining unmatched.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img alt="Results of combining the score filter with matching each cell to best candidate" src="/images/reconcile/filtered-matches.png"&gt;&lt;/p&gt;
-&lt;h3 id="5-add-charity-number"&gt;5. Add charity number&lt;/h3&gt;
-&lt;p&gt;Once you're happy with the matches you can add a new column with the matched charity number in.
-To do this, use the arrow menu next to the column heading, and click &lt;code&gt;Edit column &amp;gt; Add column based on this column...&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;The box that pops up allows you to specify lots of different columns. Add a name for your column
-at the top ("Charity Number" would make sense), and then add &lt;code&gt;cell.recon.match.id&lt;/code&gt; in the "Expression"
-box. This will look at the cell reconcilation object, and find the &lt;code&gt;id&lt;/code&gt; of the matched candidate.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Entering an expression for getting the matched cell id" src="/images/reconcile/add-charity-number.png"&gt;&lt;/p&gt;
-&lt;p&gt;Press &lt;code&gt;OK&lt;/code&gt; to add this column.&lt;/p&gt;
+&lt;/figure&gt;
+&lt;h3 id="5-add-organisation-identifier"&gt;5. Add organisation identifier&lt;/h3&gt;
+&lt;p&gt;Once you're happy with the matches you can add a new column with the matched Organisation Identifier in.
+To do this, use the arrow menu next to the column heading, and click &lt;code&gt;Reconcile &amp;gt; Add entity identifiers column...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The box that pops up lets you choose a name for this column. Click &lt;code&gt;OK&lt;/code&gt; to add this column.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;That's it for part one - hopefully you've now got a charity number for all the charities in 
-your data. In &lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;the next part&lt;/a&gt; I'll take a look at using the charity number to add more details
+&lt;p&gt;That's it for part one - hopefully you've now got an organisation identifier for all the charities in
+your data. In &lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;the next part&lt;/a&gt; I'll take a look at using the organisation identifier to add more details
 about the charity, like it's web address or latest income.&lt;/p&gt;
 &lt;p&gt;&lt;a href="/2018/adding-charity-details-using-findthatcharity-part-ii/"&gt;Part II continues here...&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Kane</dc:creator><pubDate>Mon, 26 Mar 2018 13:25:00 +0100</pubDate><guid>tag:dkane.net,2018-03-26:/2018/adding-charity-details-using-findthatcharityuk-part-i/</guid><category>Blog</category><category>Charities</category><category>findthatcharity</category></item><item><title>Back in the GDPR</title><link>https://dkane.net/2018/back-in-the-gdpr/</link><description>&lt;p&gt;G-day (the 25 May) is fast approaching, when charities will need to be GDPR-compliant. While &lt;a href="https://www.thirdsector.co.uk/less-half-charities-heard-new-data-protection-rule/fundraising/article/1455490"&gt;half of charities apparently haven't heard of it&lt;/a&gt; there's no shortage of resources so I've put together &lt;a href="https://github.com/drkane/charity-gdpr-resources"&gt;a list of the resources I've seen produced&lt;/a&gt; on github.&lt;/p&gt;
 &lt;p&gt;If you see anything missing then please add an issue or make a pull request (or &lt;a href="https://twitter.com/kanedr"&gt;tweet me @kanedr&lt;/a&gt;) and I'll add it.&lt;/p&gt;
