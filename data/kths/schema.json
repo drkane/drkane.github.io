@@ -38,116 +38,88 @@
                     "title": "Financial Year Start"
                 },
                 "turnover": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The turnover for this annual record, in pounds",
                     "examples": [
                         100000.0
                     ],
-                    "title": "Turnover"
+                    "title": "Turnover",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "expenditure": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The expenditure for this annual record, in pounds",
                     "examples": [
                         80000.0
                     ],
-                    "title": "Expenditure"
+                    "title": "Expenditure",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "profit_surplus": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The profit or surplus for this annual record, in pounds",
                     "examples": [
                         20000.0
                     ],
-                    "title": "Profit/Surplus"
+                    "title": "Profit/Surplus",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "assets": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The assets or reserves at the end of the financial year for this annual record, in pounds",
                     "examples": [
                         50000.0
                     ],
-                    "title": "Assets"
+                    "title": "Assets",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "number_of_employees": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The number of employees for this annual record, as a full time equivalent",
                     "examples": [
                         50
                     ],
-                    "title": "Number of Employees"
+                    "title": "Number of Employees",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "volunteer_hours": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The number of volunteer hours for this annual record, as number of volunteer hours per year",
                     "examples": [
                         1000
                     ],
-                    "title": "Volunteer Hours"
+                    "title": "Volunteer Hours",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "n_directors": {
-                    "anyOf": [
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The number of directors or trustees for this annual record",
                     "examples": [
                         5
                     ],
-                    "title": "Number of Directors"
+                    "title": "Number of Directors",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
                 }
             },
             "title": "Annual Record",
@@ -162,40 +134,79 @@
             "title": "AreaSource",
             "type": "string"
         },
+        "ClassificationEntry": {
+            "description": "Represents a single entry for classifying an entity to a vocabulary term\n\nThese are used to create the final classification for an entity. This is done by\nordering the classification entries based on their scores, with higher scores indicating greater confidence.\n\nThe `last_updated` field should be used as a tie-breaker when scores are equal, with later timestamps\ntaking precedence.\n\nFor entries where the `Vocabulary` is single, the highest scoring entry should be selected as the final classification.\n\nFor entries where the `Vocabulary` allows multiple entries, all entries with sufficiently high scores\nshould be considered for the final classification.\n\nIf a classification entry is marked with `exclude=True`, all entries for that term with a lower score\nshould be disregarded when determining the final classification.",
+            "properties": {
+                "entity": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OperatorModel"
+                        },
+                        {
+                            "$ref": "#/$defs/SiteModel"
+                        }
+                    ],
+                    "description": "The entity being classified",
+                    "title": "Entity"
+                },
+                "term": {
+                    "$ref": "#/$defs/VocabularyEntry",
+                    "description": "The vocabulary term for this classification entry",
+                    "title": "Term"
+                },
+                "score": {
+                    "description": "The confidence score for this classification entry. Higher values indicate greater confidence.",
+                    "title": "Score",
+                    "type": "integer"
+                },
+                "exclude": {
+                    "default": false,
+                    "description": "Indicates whether this classification entry indicates that the term should be excluded from consideration. False means that this is a positive result for the classification",
+                    "title": "Exclude",
+                    "type": "boolean"
+                },
+                "last_updated": {
+                    "description": "The timestamp of the last update for this classification entry",
+                    "format": "date-time",
+                    "title": "Last Updated",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "entity",
+                "term",
+                "score",
+                "last_updated"
+            ],
+            "title": "ClassificationEntry",
+            "type": "object"
+        },
         "ContactDetails": {
             "description": "Represents the contact details of an entity",
             "properties": {
                 "email": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The email address for contacting the entity",
                     "examples": [
                         "example@example.com"
                     ],
-                    "title": "Email"
+                    "title": "Email",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "phone": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The phone number for contacting the entity",
                     "examples": [
                         "+441234567890"
                     ],
-                    "title": "Phone"
+                    "title": "Phone",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "address": {
                     "description": "The postal address of the entity",
@@ -246,7 +257,8 @@
                 "Mutual",
                 "Charity (England & Wales)",
                 "Charity (Scotland)",
-                "Charity (Northern Ireland)"
+                "Charity (Northern Ireland)",
+                "Sole Trader"
             ],
             "title": "LegalForm",
             "type": "string"
@@ -255,116 +267,88 @@
             "description": "Represents a location within the model",
             "properties": {
                 "latitude": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The latitude of the location",
                     "examples": [
                         51.50101
                     ],
-                    "title": "Latitude"
+                    "title": "Latitude",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "longitude": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The longitude of the location",
                     "examples": [
                         -0.141563
                     ],
-                    "title": "Longitude"
+                    "title": "Longitude",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "postcode": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The postcode of the location",
                     "examples": [
                         "SW1A 1AA"
                     ],
-                    "title": "Postcode"
+                    "title": "Postcode",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "ward_code": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The ward code of the location",
                     "examples": [
                         "E05013806"
                     ],
-                    "title": "Ward Code"
+                    "title": "Ward Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "localauthority_code": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The local authority code of the location",
                     "examples": [
                         "E09000033"
                     ],
-                    "title": "Local Authority Code"
+                    "title": "Local Authority Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "region_code": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The region code of the location",
                     "examples": [
                         "E12000007"
                     ],
-                    "title": "Region Code"
+                    "title": "Region Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "country_code": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "default": null,
                     "description": "The country code of the location",
                     "examples": [
                         "E92000001"
                     ],
-                    "title": "Country Code"
+                    "title": "Country Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "location_type": {
                     "$ref": "#/$defs/LocationType",
@@ -890,7 +874,56 @@
             ],
             "title": "Social Media Handle",
             "type": "object"
+        },
+        "VocabularyEntry": {
+            "description": "Represents a single entry within a classification vocabulary",
+            "properties": {
+                "id": {
+                    "description": "The identifier for the vocabulary entry within the classification",
+                    "examples": [
+                        "A21",
+                        "B19"
+                    ],
+                    "title": "ID",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title of the vocabulary entry",
+                    "examples": [
+                        "Sports activities",
+                        "Culture and arts not elsewhere classified"
+                    ],
+                    "title": "Title",
+                    "type": "string"
+                },
+                "parent": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VocabularyEntry"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The parent entry within the vocabulary, if any",
+                    "title": "Parent"
+                }
+            },
+            "required": [
+                "id",
+                "title"
+            ],
+            "title": "VocabularyEntry",
+            "type": "object"
         }
     },
-    "$ref": "#/$defs/OperatorModel"
+    "anyOf": [
+        {
+            "$ref": "#/$defs/OperatorModel"
+        },
+        {
+            "$ref": "#/$defs/ClassificationEntry"
+        }
+    ]
 }

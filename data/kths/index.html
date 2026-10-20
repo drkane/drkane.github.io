@@ -335,6 +335,95 @@
         
         
 
+<h2 id="ClassificationEntry">ClassificationEntry</h2>
+
+
+<p><p>Represents a single entry for classifying an entity to a vocabulary term</p>
+<p>These are used to create the final classification for an entity. This is done by
+ordering the classification entries based on their scores, with higher scores indicating greater confidence.</p>
+<p>The <code>last_updated</code> field should be used as a tie-breaker when scores are equal, with later timestamps
+taking precedence.</p>
+<p>For entries where the <code>Vocabulary</code> is single, the highest scoring entry should be selected as the final classification.</p>
+<p>For entries where the <code>Vocabulary</code> allows multiple entries, all entries with sufficiently high scores
+should be considered for the final classification.</p>
+<p>If a classification entry is marked with <code>exclude=True</code>, all entries for that term with a lower score
+should be disregarded when determining the final classification.</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Entity</td>
+        <td><code>entity</code></td>
+        <td><p>Any Of <a href="#OperatorModel"><code>OperatorModel</code></a>, <a href="#SiteModel"><code>SiteModel</code></a></p></td>
+        <td>Yes</td>
+        <td><p>The entity being classified</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Term</td>
+        <td><code>term</code></td>
+        <td><p><a href="#VocabularyEntry"><code>VocabularyEntry</code></a></p></td>
+        <td>Yes</td>
+        <td><p>The vocabulary term for this classification entry</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Score</td>
+        <td><code>score</code></td>
+        <td><p>integer</p></td>
+        <td>Yes</td>
+        <td><p>The confidence score for this classification entry. Higher values indicate greater confidence.</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Exclude</td>
+        <td><code>exclude</code></td>
+        <td><p>boolean</p></td>
+        <td>No</td>
+        <td><p>Indicates whether this classification entry indicates that the term should be excluded from consideration. False means that this is a positive result for the classification</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Last Updated</td>
+        <td><code>last_updated</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td><p>The timestamp of the last update for this classification entry</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
 <h2 id="AnnualModel">Annual Record</h2>
 
 
@@ -1096,6 +1185,80 @@
         
         
 
+<h2 id="VocabularyEntry">VocabularyEntry</h2>
+
+
+<p><p>Represents a single entry within a classification vocabulary</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>ID</td>
+        <td><code>id</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td><p>The identifier for the vocabulary entry within the classification</p></td>
+        <td>
+            <ul>
+                
+                <li><code>A21</code></li>
+                
+                <li><code>B19</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Title</td>
+        <td><code>title</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td><p>The title of the vocabulary entry</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Sports activities</code></li>
+                
+                <li><code>Culture and arts not elsewhere classified</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Parent</td>
+        <td><code>parent</code></td>
+        <td><p><a href="#VocabularyEntry"><code>VocabularyEntry</code></a></p></td>
+        <td>No</td>
+        <td><p>The parent entry within the vocabulary, if any</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
 <h2 id="AreaSource">AreaSource</h2>
 
 
@@ -1181,6 +1344,8 @@
     <li>Charity (Scotland)</li>
     
     <li>Charity (Northern Ireland)</li>
+    
+    <li>Sole Trader</li>
     
 </ul>
 
