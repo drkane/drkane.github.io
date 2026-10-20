@@ -1,0 +1,854 @@
+
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title></title>
+    <style>
+        :root {
+            --pico-font-size: 14px;
+        }
+
+        td>p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        
+        
+
+<h2 id="OperatorModel">Operator</h2>
+
+
+<p><p>Represents a heritage organisation within the model</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Name</td>
+        <td><code>name</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Alternative Names</td>
+        <td><code>alternative_names</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Organisation IDs</td>
+        <td><code>org_ids</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>List of organisation IDs associated with this entity. Uses the <a href="https://org-id.guide/about">Org ID</a> format.</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;GB-CHC-123456&#39;]</code></li>
+                
+                <li><code>[&#39;GB-HESA-1234&#39;]</code></li>
+                
+                <li><code>[&#39;GB-CHC-1234567&#39;, &#39;GB-COH-12345678&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Company Number</td>
+        <td><code>company_number</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>Registered company number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-COH-</code> prefix.</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;12345678&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Charity Number</td>
+        <td><code>charity_number</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>Registered charity number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-CHC-</code>, <code>GB-SC-</code> or <code>GB-NIC-</code> prefix.</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;1234567&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Date Registered</td>
+        <td><code>date_registered</code></td>
+        <td><p>Date</p></td>
+        <td>No</td>
+        <td><p>The date when the entity was registered</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Date Ceased</td>
+        <td><code>date_ceased</code></td>
+        <td><p>Date</p></td>
+        <td>No</td>
+        <td><p>The date when the entity ceased to exist, if applicable</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Legal Form</td>
+        <td><code>legal_form</code></td>
+        <td><p>List [<a href="#LegalForm"><code>LegalForm</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>The legal form of the entity</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;Registered Company&#39;]</code></li>
+                
+                <li><code>[&#39;Charity (England &amp; Wales)&#39;, &#39;Charity (Scotland)&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Parent Entity</td>
+        <td><code>parent_entity</code></td>
+        <td><p>Any Of <a href="#OperatorModel"><code>OperatorModel</code></a>, <a href="#SiteModel"><code>SiteModel</code></a></p></td>
+        <td>No</td>
+        <td><p>The parent entity of this entity, if applicable</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Locations</td>
+        <td><code>locations</code></td>
+        <td><p>List [<a href="#LocationModel"><code>LocationModel</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>List of locations associated with this entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Geographic Range</td>
+        <td><code>geographic_range</code></td>
+        <td><p><a href="#GeographicRange"><code>GeographicRange</code></a></p></td>
+        <td>No</td>
+        <td><p>The geographic range of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Website URL</td>
+        <td><code>website_url</code></td>
+        <td><p>URI</p></td>
+        <td>No</td>
+        <td><p>The website URL of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Social Media Handles</td>
+        <td><code>social_media_handles</code></td>
+        <td><p>List [<a href="#SocialMediaHandle"><code>SocialMediaHandle</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>List of social media handles associated with this entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Contact Details</td>
+        <td><code>contact_details</code></td>
+        <td><p><a href="#ContactDetails"><code>ContactDetails</code></a></p></td>
+        <td>No</td>
+        <td><p>The contact details of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Sites</td>
+        <td><code>sites</code></td>
+        <td><p>List [<a href="#SiteModel"><code>SiteModel</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>The list of heritage sites associated with this operator</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Annual Records</td>
+        <td><code>annual_records</code></td>
+        <td><p>List [<a href="#AnnualModel"><code>AnnualModel</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>The list of annual records associated with this operator</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="AnnualModel">Annual Record</h2>
+
+
+<p><p>Represents an annual record associated with an entity</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Financial Year End</td>
+        <td><code>financial_year_end</code></td>
+        <td><p>Date</p></td>
+        <td>No</td>
+        <td><p>The end date of the financial year for this annual record</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Financial Year Start</td>
+        <td><code>financial_year_start</code></td>
+        <td><p>Date</p></td>
+        <td>No</td>
+        <td><p>The start date of the financial year for this annual record</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Turnover</td>
+        <td><code>turnover</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The turnover for this annual record, in pounds</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Expenditure</td>
+        <td><code>expenditure</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The expenditure for this annual record, in pounds</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Profit/Surplus</td>
+        <td><code>profit_surplus</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The profit or surplus for this annual record, in pounds</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Assets</td>
+        <td><code>assets</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The assets or reserves at the end of the financial year for this annual record, in pounds</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Number of Employees</td>
+        <td><code>number_of_employees</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The number of employees for this annual record, as a full time equivalent</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Volunteer Hours</td>
+        <td><code>volunteer_hours</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The number of volunteer hours for this annual record, as number of volunteer hours per year</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Number of Directors</td>
+        <td><code>n_directors</code></td>
+        <td><p>integer</p></td>
+        <td>No</td>
+        <td><p>The number of directors or trustees for this annual record</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="ContactDetails">Contact Details</h2>
+
+
+<p><p>Represents the contact details of an entity</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Email</td>
+        <td><code>email</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The email address for contacting the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Phone</td>
+        <td><code>phone</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The phone number for contacting the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Address</td>
+        <td><code>address</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>The postal address of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="LocationModel">Location</h2>
+
+
+<p><p>Represents a location within the model</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Latitude</td>
+        <td><code>latitude</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The latitude of the location</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Longitude</td>
+        <td><code>longitude</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The longitude of the location</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Postcode</td>
+        <td><code>postcode</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The postcode of the location</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Local Authority Code</td>
+        <td><code>localauthority_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The local authority code of the location</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Location Type</td>
+        <td><code>location_type</code></td>
+        <td><p><a href="#LocationType"><code>LocationType</code></a></p></td>
+        <td>No</td>
+        <td><p>The type of the location</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="SiteModel">Site</h2>
+
+
+<p><p>Represents a heritage site within the model</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Name</td>
+        <td><code>name</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Alternative Names</td>
+        <td><code>alternative_names</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Organisation IDs</td>
+        <td><code>org_ids</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>List of organisation IDs associated with this entity. Uses the <a href="https://org-id.guide/about">Org ID</a> format.</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;GB-CHC-123456&#39;]</code></li>
+                
+                <li><code>[&#39;GB-HESA-1234&#39;]</code></li>
+                
+                <li><code>[&#39;GB-CHC-1234567&#39;, &#39;GB-COH-12345678&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Company Number</td>
+        <td><code>company_number</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>Registered company number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-COH-</code> prefix.</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;12345678&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Charity Number</td>
+        <td><code>charity_number</code></td>
+        <td><p>List [string]</p></td>
+        <td>Yes</td>
+        <td><p>Registered charity number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-CHC-</code>, <code>GB-SC-</code> or <code>GB-NIC-</code> prefix.</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;1234567&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Date Registered</td>
+        <td><code>date_registered</code></td>
+        <td><p>Date</p></td>
+        <td>No</td>
+        <td><p>The date when the entity was registered</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Date Ceased</td>
+        <td><code>date_ceased</code></td>
+        <td><p>Date</p></td>
+        <td>No</td>
+        <td><p>The date when the entity ceased to exist, if applicable</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Legal Form</td>
+        <td><code>legal_form</code></td>
+        <td><p>List [<a href="#LegalForm"><code>LegalForm</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>The legal form of the entity</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;Registered Company&#39;]</code></li>
+                
+                <li><code>[&#39;Charity (England &amp; Wales)&#39;, &#39;Charity (Scotland)&#39;]</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Parent Entity</td>
+        <td><code>parent_entity</code></td>
+        <td><p>Any Of <a href="#OperatorModel"><code>OperatorModel</code></a>, <a href="#SiteModel"><code>SiteModel</code></a></p></td>
+        <td>No</td>
+        <td><p>The parent entity of this entity, if applicable</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Locations</td>
+        <td><code>locations</code></td>
+        <td><p>List [<a href="#LocationModel"><code>LocationModel</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>List of locations associated with this entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Geographic Range</td>
+        <td><code>geographic_range</code></td>
+        <td><p><a href="#GeographicRange"><code>GeographicRange</code></a></p></td>
+        <td>No</td>
+        <td><p>The geographic range of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Website URL</td>
+        <td><code>website_url</code></td>
+        <td><p>URI</p></td>
+        <td>No</td>
+        <td><p>The website URL of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Social Media Handles</td>
+        <td><code>social_media_handles</code></td>
+        <td><p>List [<a href="#SocialMediaHandle"><code>SocialMediaHandle</code></a>]</p></td>
+        <td>Yes</td>
+        <td><p>List of social media handles associated with this entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Contact Details</td>
+        <td><code>contact_details</code></td>
+        <td><p><a href="#ContactDetails"><code>ContactDetails</code></a></p></td>
+        <td>No</td>
+        <td><p>The contact details of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="SocialMediaHandle">Social Media Handle</h2>
+
+
+<p><p>Represents a social media handle associated with an entity</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Platform</td>
+        <td><code>platform</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td><p>The social media platform (e.g., Twitter, Facebook)</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Handle</td>
+        <td><code>handle</code></td>
+        <td><p>string</p></td>
+        <td>Yes</td>
+        <td><p>The social media handle or username</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>URL</td>
+        <td><code>url</code></td>
+        <td><p>URI</p></td>
+        <td>Yes</td>
+        <td><p>The URL of the social media profile</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="GeographicRange">GeographicRange</h2>
+
+
+
+
+<h3>Enum Values</h3>
+<ul>
+    
+    <li>Local</li>
+    
+    <li>Regional</li>
+    
+    <li>National</li>
+    
+    <li>International</li>
+    
+</ul>
+
+
+        
+        
+
+<h2 id="LegalForm">LegalForm</h2>
+
+
+
+
+<h3>Enum Values</h3>
+<ul>
+    
+    <li>Registered Company</li>
+    
+    <li>Charity (England &amp; Wales)</li>
+    
+    <li>Charity (Scotland)</li>
+    
+    <li>Charity (Northern Ireland)</li>
+    
+</ul>
+
+
+        
+        
+
+<h2 id="LocationType">LocationType</h2>
+
+
+
+
+<h3>Enum Values</h3>
+<ul>
+    
+    <li>Headquarters</li>
+    
+    <li>Site</li>
+    
+    <li>Branch</li>
+    
+    <li>Operating Area</li>
+    
+</ul>
+
+
+        
+    </main>
+</body>
+
+</html>

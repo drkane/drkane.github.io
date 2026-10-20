@@ -1,0 +1,689 @@
+{
+    "$defs": {
+        "AnnualModel": {
+            "description": "Represents an annual record associated with an entity",
+            "properties": {
+                "financial_year_end": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The end date of the financial year for this annual record",
+                    "title": "Financial Year End"
+                },
+                "financial_year_start": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The start date of the financial year for this annual record",
+                    "title": "Financial Year Start"
+                },
+                "turnover": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The turnover for this annual record, in pounds",
+                    "title": "Turnover"
+                },
+                "expenditure": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The expenditure for this annual record, in pounds",
+                    "title": "Expenditure"
+                },
+                "profit_surplus": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The profit or surplus for this annual record, in pounds",
+                    "title": "Profit/Surplus"
+                },
+                "assets": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The assets or reserves at the end of the financial year for this annual record, in pounds",
+                    "title": "Assets"
+                },
+                "number_of_employees": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The number of employees for this annual record, as a full time equivalent",
+                    "title": "Number of Employees"
+                },
+                "volunteer_hours": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The number of volunteer hours for this annual record, as number of volunteer hours per year",
+                    "title": "Volunteer Hours"
+                },
+                "n_directors": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The number of directors or trustees for this annual record",
+                    "title": "Number of Directors"
+                }
+            },
+            "title": "Annual Record",
+            "type": "object"
+        },
+        "ContactDetails": {
+            "description": "Represents the contact details of an entity",
+            "properties": {
+                "email": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The email address for contacting the entity",
+                    "title": "Email"
+                },
+                "phone": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The phone number for contacting the entity",
+                    "title": "Phone"
+                },
+                "address": {
+                    "description": "The postal address of the entity",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Address",
+                    "type": "array"
+                }
+            },
+            "title": "Contact Details",
+            "type": "object"
+        },
+        "GeographicRange": {
+            "enum": [
+                "Local",
+                "Regional",
+                "National",
+                "International"
+            ],
+            "title": "GeographicRange",
+            "type": "string"
+        },
+        "LegalForm": {
+            "enum": [
+                "Registered Company",
+                "Charity (England & Wales)",
+                "Charity (Scotland)",
+                "Charity (Northern Ireland)"
+            ],
+            "title": "LegalForm",
+            "type": "string"
+        },
+        "LocationModel": {
+            "description": "Represents a location within the model",
+            "properties": {
+                "latitude": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The latitude of the location",
+                    "title": "Latitude"
+                },
+                "longitude": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The longitude of the location",
+                    "title": "Longitude"
+                },
+                "postcode": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The postcode of the location",
+                    "title": "Postcode"
+                },
+                "localauthority_code": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The local authority code of the location",
+                    "title": "Local Authority Code"
+                },
+                "location_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/LocationType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The type of the location",
+                    "title": "Location Type"
+                }
+            },
+            "title": "Location",
+            "type": "object"
+        },
+        "LocationType": {
+            "enum": [
+                "Headquarters",
+                "Site",
+                "Branch",
+                "Operating Area"
+            ],
+            "title": "LocationType",
+            "type": "string"
+        },
+        "OperatorModel": {
+            "description": "Represents a heritage organisation within the model",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "alternative_names": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Alternative Names",
+                    "type": "array"
+                },
+                "org_ids": {
+                    "description": "List of organisation IDs associated with this entity. Uses the [Org ID](https://org-id.guide/about) format.",
+                    "examples": [
+                        [
+                            "GB-CHC-123456"
+                        ],
+                        [
+                            "GB-HESA-1234"
+                        ],
+                        [
+                            "GB-CHC-1234567",
+                            "GB-COH-12345678"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Organisation IDs",
+                    "type": "array"
+                },
+                "company_number": {
+                    "description": "Registered company number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-COH-` prefix.",
+                    "examples": [
+                        [
+                            "12345678"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Company Number",
+                    "type": "array"
+                },
+                "charity_number": {
+                    "description": "Registered charity number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-CHC-`, `GB-SC-` or `GB-NIC-` prefix.",
+                    "examples": [
+                        [
+                            "1234567"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Charity Number",
+                    "type": "array"
+                },
+                "date_registered": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The date when the entity was registered",
+                    "title": "Date Registered"
+                },
+                "date_ceased": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The date when the entity ceased to exist, if applicable",
+                    "title": "Date Ceased"
+                },
+                "legal_form": {
+                    "description": "The legal form of the entity",
+                    "examples": [
+                        [
+                            "Registered Company"
+                        ],
+                        [
+                            "Charity (England & Wales)",
+                            "Charity (Scotland)"
+                        ]
+                    ],
+                    "items": {
+                        "$ref": "#/$defs/LegalForm"
+                    },
+                    "title": "Legal Form",
+                    "type": "array"
+                },
+                "parent_entity": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OperatorModel"
+                        },
+                        {
+                            "$ref": "#/$defs/SiteModel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The parent entity of this entity, if applicable",
+                    "title": "Parent Entity"
+                },
+                "locations": {
+                    "description": "List of locations associated with this entity",
+                    "items": {
+                        "$ref": "#/$defs/LocationModel"
+                    },
+                    "title": "Locations",
+                    "type": "array"
+                },
+                "geographic_range": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/GeographicRange"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The geographic range of the entity",
+                    "title": "Geographic Range"
+                },
+                "website_url": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The website URL of the entity",
+                    "title": "Website URL"
+                },
+                "social_media_handles": {
+                    "description": "List of social media handles associated with this entity",
+                    "items": {
+                        "$ref": "#/$defs/SocialMediaHandle"
+                    },
+                    "title": "Social Media Handles",
+                    "type": "array"
+                },
+                "contact_details": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ContactDetails"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The contact details of the entity",
+                    "title": "Contact Details"
+                },
+                "sites": {
+                    "description": "The list of heritage sites associated with this operator",
+                    "items": {
+                        "$ref": "#/$defs/SiteModel"
+                    },
+                    "title": "Sites",
+                    "type": "array"
+                },
+                "annual_records": {
+                    "description": "The list of annual records associated with this operator",
+                    "items": {
+                        "$ref": "#/$defs/AnnualModel"
+                    },
+                    "title": "Annual Records",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Operator",
+            "type": "object"
+        },
+        "SiteModel": {
+            "description": "Represents a heritage site within the model",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "alternative_names": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Alternative Names",
+                    "type": "array"
+                },
+                "org_ids": {
+                    "description": "List of organisation IDs associated with this entity. Uses the [Org ID](https://org-id.guide/about) format.",
+                    "examples": [
+                        [
+                            "GB-CHC-123456"
+                        ],
+                        [
+                            "GB-HESA-1234"
+                        ],
+                        [
+                            "GB-CHC-1234567",
+                            "GB-COH-12345678"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Organisation IDs",
+                    "type": "array"
+                },
+                "company_number": {
+                    "description": "Registered company number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-COH-` prefix.",
+                    "examples": [
+                        [
+                            "12345678"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Company Number",
+                    "type": "array"
+                },
+                "charity_number": {
+                    "description": "Registered charity number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-CHC-`, `GB-SC-` or `GB-NIC-` prefix.",
+                    "examples": [
+                        [
+                            "1234567"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Charity Number",
+                    "type": "array"
+                },
+                "date_registered": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The date when the entity was registered",
+                    "title": "Date Registered"
+                },
+                "date_ceased": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The date when the entity ceased to exist, if applicable",
+                    "title": "Date Ceased"
+                },
+                "legal_form": {
+                    "description": "The legal form of the entity",
+                    "examples": [
+                        [
+                            "Registered Company"
+                        ],
+                        [
+                            "Charity (England & Wales)",
+                            "Charity (Scotland)"
+                        ]
+                    ],
+                    "items": {
+                        "$ref": "#/$defs/LegalForm"
+                    },
+                    "title": "Legal Form",
+                    "type": "array"
+                },
+                "parent_entity": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OperatorModel"
+                        },
+                        {
+                            "$ref": "#/$defs/SiteModel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The parent entity of this entity, if applicable",
+                    "title": "Parent Entity"
+                },
+                "locations": {
+                    "description": "List of locations associated with this entity",
+                    "items": {
+                        "$ref": "#/$defs/LocationModel"
+                    },
+                    "title": "Locations",
+                    "type": "array"
+                },
+                "geographic_range": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/GeographicRange"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The geographic range of the entity",
+                    "title": "Geographic Range"
+                },
+                "website_url": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The website URL of the entity",
+                    "title": "Website URL"
+                },
+                "social_media_handles": {
+                    "description": "List of social media handles associated with this entity",
+                    "items": {
+                        "$ref": "#/$defs/SocialMediaHandle"
+                    },
+                    "title": "Social Media Handles",
+                    "type": "array"
+                },
+                "contact_details": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ContactDetails"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The contact details of the entity",
+                    "title": "Contact Details"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Site",
+            "type": "object"
+        },
+        "SocialMediaHandle": {
+            "description": "Represents a social media handle associated with an entity",
+            "properties": {
+                "platform": {
+                    "description": "The social media platform (e.g., Twitter, Facebook)",
+                    "title": "Platform",
+                    "type": "string"
+                },
+                "handle": {
+                    "description": "The social media handle or username",
+                    "title": "Handle",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL of the social media profile",
+                    "format": "uri",
+                    "minLength": 1,
+                    "title": "URL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "platform",
+                "handle",
+                "url"
+            ],
+            "title": "Social Media Handle",
+            "type": "object"
+        }
+    },
+    "$ref": "#/$defs/OperatorModel"
+}
