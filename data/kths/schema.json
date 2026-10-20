@@ -156,7 +156,8 @@
         "AreaSource": {
             "enum": [
                 "Postcode",
-                "Area Code"
+                "Area Code",
+                "Point"
             ],
             "title": "AreaSource",
             "type": "string"
