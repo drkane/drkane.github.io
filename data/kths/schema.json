@@ -15,6 +15,9 @@
                     ],
                     "default": null,
                     "description": "The end date of the financial year for this annual record",
+                    "examples": [
+                        "2023-03-31"
+                    ],
                     "title": "Financial Year End"
                 },
                 "financial_year_start": {
@@ -29,6 +32,9 @@
                     ],
                     "default": null,
                     "description": "The start date of the financial year for this annual record",
+                    "examples": [
+                        "2022-04-01"
+                    ],
                     "title": "Financial Year Start"
                 },
                 "turnover": {
@@ -42,6 +48,9 @@
                     ],
                     "default": null,
                     "description": "The turnover for this annual record, in pounds",
+                    "examples": [
+                        100000.0
+                    ],
                     "title": "Turnover"
                 },
                 "expenditure": {
@@ -55,6 +64,9 @@
                     ],
                     "default": null,
                     "description": "The expenditure for this annual record, in pounds",
+                    "examples": [
+                        80000.0
+                    ],
                     "title": "Expenditure"
                 },
                 "profit_surplus": {
@@ -68,6 +80,9 @@
                     ],
                     "default": null,
                     "description": "The profit or surplus for this annual record, in pounds",
+                    "examples": [
+                        20000.0
+                    ],
                     "title": "Profit/Surplus"
                 },
                 "assets": {
@@ -81,6 +96,9 @@
                     ],
                     "default": null,
                     "description": "The assets or reserves at the end of the financial year for this annual record, in pounds",
+                    "examples": [
+                        50000.0
+                    ],
                     "title": "Assets"
                 },
                 "number_of_employees": {
@@ -94,6 +112,9 @@
                     ],
                     "default": null,
                     "description": "The number of employees for this annual record, as a full time equivalent",
+                    "examples": [
+                        50
+                    ],
                     "title": "Number of Employees"
                 },
                 "volunteer_hours": {
@@ -107,6 +128,9 @@
                     ],
                     "default": null,
                     "description": "The number of volunteer hours for this annual record, as number of volunteer hours per year",
+                    "examples": [
+                        1000
+                    ],
                     "title": "Volunteer Hours"
                 },
                 "n_directors": {
@@ -120,11 +144,22 @@
                     ],
                     "default": null,
                     "description": "The number of directors or trustees for this annual record",
+                    "examples": [
+                        5
+                    ],
                     "title": "Number of Directors"
                 }
             },
             "title": "Annual Record",
             "type": "object"
+        },
+        "AreaSource": {
+            "enum": [
+                "Postcode",
+                "Area Code"
+            ],
+            "title": "AreaSource",
+            "type": "string"
         },
         "ContactDetails": {
             "description": "Represents the contact details of an entity",
@@ -140,6 +175,9 @@
                     ],
                     "default": null,
                     "description": "The email address for contacting the entity",
+                    "examples": [
+                        "example@example.com"
+                    ],
                     "title": "Email"
                 },
                 "phone": {
@@ -153,10 +191,20 @@
                     ],
                     "default": null,
                     "description": "The phone number for contacting the entity",
+                    "examples": [
+                        "+441234567890"
+                    ],
                     "title": "Phone"
                 },
                 "address": {
                     "description": "The postal address of the entity",
+                    "examples": [
+                        [
+                            "123 Example Street",
+                            "Example Town",
+                            "SW1A 1AA"
+                        ]
+                    ],
                     "items": {
                         "type": "string"
                     },
@@ -177,9 +225,24 @@
             "title": "GeographicRange",
             "type": "string"
         },
+        "HeritageDomain": {
+            "enum": [
+                "Educating",
+                "Advocating",
+                "Researching",
+                "Conserving",
+                "Managing",
+                "Engaging"
+            ],
+            "title": "HeritageDomain",
+            "type": "string"
+        },
         "LegalForm": {
             "enum": [
                 "Registered Company",
+                "Community Interest Company",
+                "Private Limited Company",
+                "Mutual",
                 "Charity (England & Wales)",
                 "Charity (Scotland)",
                 "Charity (Northern Ireland)"
@@ -201,6 +264,9 @@
                     ],
                     "default": null,
                     "description": "The latitude of the location",
+                    "examples": [
+                        51.50101
+                    ],
                     "title": "Latitude"
                 },
                 "longitude": {
@@ -214,6 +280,9 @@
                     ],
                     "default": null,
                     "description": "The longitude of the location",
+                    "examples": [
+                        -0.141563
+                    ],
                     "title": "Longitude"
                 },
                 "postcode": {
@@ -227,7 +296,26 @@
                     ],
                     "default": null,
                     "description": "The postcode of the location",
+                    "examples": [
+                        "SW1A 1AA"
+                    ],
                     "title": "Postcode"
+                },
+                "ward_code": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The ward code of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Ward Code"
                 },
                 "localauthority_code": {
                     "anyOf": [
@@ -240,20 +328,64 @@
                     ],
                     "default": null,
                     "description": "The local authority code of the location",
+                    "examples": [
+                        "E09000033"
+                    ],
                     "title": "Local Authority Code"
                 },
-                "location_type": {
+                "region_code": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/LocationType"
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
+                    "description": "The region code of the location",
+                    "examples": [
+                        "E12000007"
+                    ],
+                    "title": "Region Code"
+                },
+                "country_code": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The country code of the location",
+                    "examples": [
+                        "E92000001"
+                    ],
+                    "title": "Country Code"
+                },
+                "location_type": {
+                    "$ref": "#/$defs/LocationType",
+                    "default": "Headquarters",
                     "description": "The type of the location",
+                    "examples": [
+                        "Headquarters",
+                        "Site",
+                        "Branch",
+                        "Operating Area"
+                    ],
                     "title": "Location Type"
+                },
+                "area_source": {
+                    "$ref": "#/$defs/AreaSource",
+                    "default": "Postcode",
+                    "description": "The source of the area information for the location",
+                    "examples": [
+                        "Postcode",
+                        "Area Code"
+                    ],
+                    "title": "Area Source"
                 }
             },
             "title": "Location",
@@ -273,10 +405,19 @@
             "description": "Represents a heritage organisation within the model",
             "properties": {
                 "name": {
+                    "examples": [
+                        "Example Entity"
+                    ],
                     "title": "Name",
                     "type": "string"
                 },
                 "alternative_names": {
+                    "examples": [
+                        [
+                            "Example Entity Ltd",
+                            "Example Entity Inc"
+                        ]
+                    ],
                     "items": {
                         "type": "string"
                     },
@@ -341,6 +482,9 @@
                     ],
                     "default": null,
                     "description": "The date when the entity was registered",
+                    "examples": [
+                        "2005-01-01"
+                    ],
                     "title": "Date Registered"
                 },
                 "date_ceased": {
@@ -355,6 +499,9 @@
                     ],
                     "default": null,
                     "description": "The date when the entity ceased to exist, if applicable",
+                    "examples": [
+                        "2023-12-31"
+                    ],
                     "title": "Date Ceased"
                 },
                 "legal_form": {
@@ -409,6 +556,9 @@
                     ],
                     "default": null,
                     "description": "The geographic range of the entity",
+                    "examples": [
+                        "Local"
+                    ],
                     "title": "Geographic Range"
                 },
                 "website_url": {
@@ -424,6 +574,9 @@
                     ],
                     "default": null,
                     "description": "The website URL of the entity",
+                    "examples": [
+                        "https://www.example.com"
+                    ],
                     "title": "Website URL"
                 },
                 "social_media_handles": {
@@ -462,6 +615,29 @@
                     },
                     "title": "Annual Records",
                     "type": "array"
+                },
+                "is_heritage": {
+                    "default": true,
+                    "description": "Indicates whether the entity is a heritage site",
+                    "title": "Is Heritage",
+                    "type": "boolean"
+                },
+                "heritage_domain": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HeritageDomain"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The domain of heritage activities for this operator",
+                    "examples": [
+                        "Educating",
+                        "Advocating"
+                    ],
+                    "title": "Heritage Domain"
                 }
             },
             "required": [
@@ -474,10 +650,19 @@
             "description": "Represents a heritage site within the model",
             "properties": {
                 "name": {
+                    "examples": [
+                        "Example Entity"
+                    ],
                     "title": "Name",
                     "type": "string"
                 },
                 "alternative_names": {
+                    "examples": [
+                        [
+                            "Example Entity Ltd",
+                            "Example Entity Inc"
+                        ]
+                    ],
                     "items": {
                         "type": "string"
                     },
@@ -542,6 +727,9 @@
                     ],
                     "default": null,
                     "description": "The date when the entity was registered",
+                    "examples": [
+                        "2005-01-01"
+                    ],
                     "title": "Date Registered"
                 },
                 "date_ceased": {
@@ -556,6 +744,9 @@
                     ],
                     "default": null,
                     "description": "The date when the entity ceased to exist, if applicable",
+                    "examples": [
+                        "2023-12-31"
+                    ],
                     "title": "Date Ceased"
                 },
                 "legal_form": {
@@ -610,6 +801,9 @@
                     ],
                     "default": null,
                     "description": "The geographic range of the entity",
+                    "examples": [
+                        "Local"
+                    ],
                     "title": "Geographic Range"
                 },
                 "website_url": {
@@ -625,6 +819,9 @@
                     ],
                     "default": null,
                     "description": "The website URL of the entity",
+                    "examples": [
+                        "https://www.example.com"
+                    ],
                     "title": "Website URL"
                 },
                 "social_media_handles": {
@@ -659,17 +856,26 @@
             "description": "Represents a social media handle associated with an entity",
             "properties": {
                 "platform": {
-                    "description": "The social media platform (e.g., Twitter, Facebook)",
+                    "description": "The social media platform (e.g., Instagram, Facebook, YouTube)",
+                    "examples": [
+                        "YouTube"
+                    ],
                     "title": "Platform",
                     "type": "string"
                 },
                 "handle": {
                     "description": "The social media handle or username",
+                    "examples": [
+                        "@example_handle"
+                    ],
                     "title": "Handle",
                     "type": "string"
                 },
                 "url": {
                     "description": "The URL of the social media profile",
+                    "examples": [
+                        "https://youtube.com/@example_handle"
+                    ],
                     "format": "uri",
                     "minLength": 1,
                     "title": "URL",

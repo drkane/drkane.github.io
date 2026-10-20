@@ -20,6 +20,20 @@
 </head>
 
 <body>
+    <header class="container">
+        <nav>
+            <ul>
+                <li>
+                    <h1>Schema Documentation</h1>
+                </li>
+            </ul>
+            <ul>
+                <li><a href="/">About</a></li>
+                <li><a href="/schema.json">Open API Specification</a></li>
+                <li><a href="/schema.docx" download>Download DOCX</a></li>
+            </ul>
+        </nav>
+    </header>
     <main class="container">
         
         
@@ -50,6 +64,12 @@
         <td>Yes</td>
         <td></td>
         <td>
+            <ul>
+                
+                <li><code>Example Entity</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -61,6 +81,12 @@
         <td>Yes</td>
         <td></td>
         <td>
+            <ul>
+                
+                <li><code>[&#39;Example Entity Ltd&#39;, &#39;Example Entity Inc&#39;]</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -127,6 +153,12 @@
         <td>No</td>
         <td><p>The date when the entity was registered</p></td>
         <td>
+            <ul>
+                
+                <li><code>2005-01-01</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -138,6 +170,12 @@
         <td>No</td>
         <td><p>The date when the entity ceased to exist, if applicable</p></td>
         <td>
+            <ul>
+                
+                <li><code>2023-12-31</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -190,6 +228,12 @@
         <td>No</td>
         <td><p>The geographic range of the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>Local</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -201,6 +245,12 @@
         <td>No</td>
         <td><p>The website URL of the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>https://www.example.com</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -248,6 +298,36 @@
         </td>
     </tr>
     
+    
+    <tr>
+        <td>Is Heritage</td>
+        <td><code>is_heritage</code></td>
+        <td><p>boolean</p></td>
+        <td>No</td>
+        <td><p>Indicates whether the entity is a heritage site</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Heritage Domain</td>
+        <td><code>heritage_domain</code></td>
+        <td><p><a href="#HeritageDomain"><code>HeritageDomain</code></a></p></td>
+        <td>No</td>
+        <td><p>The domain of heritage activities for this operator</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Educating</code></li>
+                
+                <li><code>Advocating</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
 </table>
 
 
@@ -281,6 +361,12 @@
         <td>No</td>
         <td><p>The end date of the financial year for this annual record</p></td>
         <td>
+            <ul>
+                
+                <li><code>2023-03-31</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -292,6 +378,12 @@
         <td>No</td>
         <td><p>The start date of the financial year for this annual record</p></td>
         <td>
+            <ul>
+                
+                <li><code>2022-04-01</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -303,6 +395,12 @@
         <td>No</td>
         <td><p>The turnover for this annual record, in pounds</p></td>
         <td>
+            <ul>
+                
+                <li><code>100000.0</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -314,6 +412,12 @@
         <td>No</td>
         <td><p>The expenditure for this annual record, in pounds</p></td>
         <td>
+            <ul>
+                
+                <li><code>80000.0</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -325,6 +429,12 @@
         <td>No</td>
         <td><p>The profit or surplus for this annual record, in pounds</p></td>
         <td>
+            <ul>
+                
+                <li><code>20000.0</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -336,6 +446,12 @@
         <td>No</td>
         <td><p>The assets or reserves at the end of the financial year for this annual record, in pounds</p></td>
         <td>
+            <ul>
+                
+                <li><code>50000.0</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -347,6 +463,12 @@
         <td>No</td>
         <td><p>The number of employees for this annual record, as a full time equivalent</p></td>
         <td>
+            <ul>
+                
+                <li><code>50</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -358,6 +480,12 @@
         <td>No</td>
         <td><p>The number of volunteer hours for this annual record, as number of volunteer hours per year</p></td>
         <td>
+            <ul>
+                
+                <li><code>1000</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -369,6 +497,12 @@
         <td>No</td>
         <td><p>The number of directors or trustees for this annual record</p></td>
         <td>
+            <ul>
+                
+                <li><code>5</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -405,6 +539,12 @@
         <td>No</td>
         <td><p>The email address for contacting the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>example@example.com</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -416,6 +556,12 @@
         <td>No</td>
         <td><p>The phone number for contacting the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>+441234567890</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -427,6 +573,12 @@
         <td>Yes</td>
         <td><p>The postal address of the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>[&#39;123 Example Street&#39;, &#39;Example Town&#39;, &#39;SW1A 1AA&#39;]</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -463,6 +615,12 @@
         <td>No</td>
         <td><p>The latitude of the location</p></td>
         <td>
+            <ul>
+                
+                <li><code>51.50101</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -474,6 +632,12 @@
         <td>No</td>
         <td><p>The longitude of the location</p></td>
         <td>
+            <ul>
+                
+                <li><code>-0.141563</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -485,6 +649,29 @@
         <td>No</td>
         <td><p>The postcode of the location</p></td>
         <td>
+            <ul>
+                
+                <li><code>SW1A 1AA</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Ward Code</td>
+        <td><code>ward_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The ward code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E05013806</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -496,6 +683,46 @@
         <td>No</td>
         <td><p>The local authority code of the location</p></td>
         <td>
+            <ul>
+                
+                <li><code>E09000033</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Region Code</td>
+        <td><code>region_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The region code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E12000007</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Country Code</td>
+        <td><code>country_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The country code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E92000001</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -507,6 +734,37 @@
         <td>No</td>
         <td><p>The type of the location</p></td>
         <td>
+            <ul>
+                
+                <li><code>Headquarters</code></li>
+                
+                <li><code>Site</code></li>
+                
+                <li><code>Branch</code></li>
+                
+                <li><code>Operating Area</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Area Source</td>
+        <td><code>area_source</code></td>
+        <td><p><a href="#AreaSource"><code>AreaSource</code></a></p></td>
+        <td>No</td>
+        <td><p>The source of the area information for the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Postcode</code></li>
+                
+                <li><code>Area Code</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -543,6 +801,12 @@
         <td>Yes</td>
         <td></td>
         <td>
+            <ul>
+                
+                <li><code>Example Entity</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -554,6 +818,12 @@
         <td>Yes</td>
         <td></td>
         <td>
+            <ul>
+                
+                <li><code>[&#39;Example Entity Ltd&#39;, &#39;Example Entity Inc&#39;]</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -620,6 +890,12 @@
         <td>No</td>
         <td><p>The date when the entity was registered</p></td>
         <td>
+            <ul>
+                
+                <li><code>2005-01-01</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -631,6 +907,12 @@
         <td>No</td>
         <td><p>The date when the entity ceased to exist, if applicable</p></td>
         <td>
+            <ul>
+                
+                <li><code>2023-12-31</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -683,6 +965,12 @@
         <td>No</td>
         <td><p>The geographic range of the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>Local</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -694,6 +982,12 @@
         <td>No</td>
         <td><p>The website URL of the entity</p></td>
         <td>
+            <ul>
+                
+                <li><code>https://www.example.com</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -750,8 +1044,14 @@
         <td><code>platform</code></td>
         <td><p>string</p></td>
         <td>Yes</td>
-        <td><p>The social media platform (e.g., Twitter, Facebook)</p></td>
+        <td><p>The social media platform (e.g., Instagram, Facebook, YouTube)</p></td>
         <td>
+            <ul>
+                
+                <li><code>YouTube</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -763,6 +1063,12 @@
         <td>Yes</td>
         <td><p>The social media handle or username</p></td>
         <td>
+            <ul>
+                
+                <li><code>@example_handle</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -774,6 +1080,12 @@
         <td>Yes</td>
         <td><p>The URL of the social media profile</p></td>
         <td>
+            <ul>
+                
+                <li><code>https://youtube.com/@example_handle</code></li>
+                
+            </ul>
+            
         </td>
     </tr>
     
@@ -784,12 +1096,28 @@
         
         
 
+<h2 id="AreaSource">AreaSource</h2>
+
+
+
+
+<ul>
+    
+    <li>Postcode</li>
+    
+    <li>Area Code</li>
+    
+</ul>
+
+
+        
+        
+
 <h2 id="GeographicRange">GeographicRange</h2>
 
 
 
 
-<h3>Enum Values</h3>
 <ul>
     
     <li>Local</li>
@@ -806,15 +1134,45 @@
         
         
 
+<h2 id="HeritageDomain">HeritageDomain</h2>
+
+
+
+
+<ul>
+    
+    <li>Educating</li>
+    
+    <li>Advocating</li>
+    
+    <li>Researching</li>
+    
+    <li>Conserving</li>
+    
+    <li>Managing</li>
+    
+    <li>Engaging</li>
+    
+</ul>
+
+
+        
+        
+
 <h2 id="LegalForm">LegalForm</h2>
 
 
 
 
-<h3>Enum Values</h3>
 <ul>
     
     <li>Registered Company</li>
+    
+    <li>Community Interest Company</li>
+    
+    <li>Private Limited Company</li>
+    
+    <li>Mutual</li>
     
     <li>Charity (England &amp; Wales)</li>
     
@@ -833,7 +1191,6 @@
 
 
 
-<h3>Enum Values</h3>
 <ul>
     
     <li>Headquarters</li>
@@ -849,6 +1206,7 @@
 
         
     </main>
+    <footer class="container"></footer>
 </body>
 
 </html>
