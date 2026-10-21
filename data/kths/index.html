@@ -213,7 +213,7 @@
     <tr>
         <td>Locations</td>
         <td><code>locations</code></td>
-        <td><p>List of <a href="#LocationModel"><code>Location</code></a></p></td>
+        <td><p>List of One of <a href="#GeoAreaCodeModel"><code>Geo Area Code</code></a>, <a href="#GeoPointModel"><code>Geo Point</code></a>, <a href="#GeoPostcodeModel"><code>Geo Postcode</code></a></p></td>
         <td>Yes</td>
         <td><p>List of locations associated with this entity</p></td>
         <td>
@@ -678,10 +678,10 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="LocationModel">Location</h2>
+<h2 id="GeoAreaCodeModel">Geo Area Code</h2>
 
 
-<p><p>Represents a location within the model</p></p>
+<p><p>Represents a geographic location identified by area code within the model</p></p>
 
 
 <table class="striped">
@@ -695,57 +695,6 @@ should be disregarded when determining the final classification.</p></p>
             <th>Examples</th>
         </tr>
     </thead>
-    
-    
-    <tr>
-        <td>Latitude</td>
-        <td><code>latitude</code></td>
-        <td><p>number</p></td>
-        <td>No</td>
-        <td><p>The latitude of the location</p></td>
-        <td>
-            <ul>
-                
-                <li><code>51.50101</code></li>
-                
-            </ul>
-            
-        </td>
-    </tr>
-    
-    
-    <tr>
-        <td>Longitude</td>
-        <td><code>longitude</code></td>
-        <td><p>number</p></td>
-        <td>No</td>
-        <td><p>The longitude of the location</p></td>
-        <td>
-            <ul>
-                
-                <li><code>-0.141563</code></li>
-                
-            </ul>
-            
-        </td>
-    </tr>
-    
-    
-    <tr>
-        <td>Postcode</td>
-        <td><code>postcode</code></td>
-        <td><p>string</p></td>
-        <td>No</td>
-        <td><p>The postcode of the location</p></td>
-        <td>
-            <ul>
-                
-                <li><code>SW1A 1AA</code></li>
-                
-            </ul>
-            
-        </td>
-    </tr>
     
     
     <tr>
@@ -851,6 +800,344 @@ should be disregarded when determining the final classification.</p></p>
                 <li><code>Postcode</code></li>
                 
                 <li><code>Area Code</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Area Code</td>
+        <td><code>area_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The area code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E92000001</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="GeoPointModel">Geo Point</h2>
+
+
+<p><p>Represents a geographic point within the model</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Ward Code</td>
+        <td><code>ward_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The ward code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E05013806</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Local Authority Code</td>
+        <td><code>localauthority_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The local authority code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E09000033</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Region Code</td>
+        <td><code>region_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The region code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E12000007</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Country Code</td>
+        <td><code>country_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The country code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E92000001</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Location Type</td>
+        <td><code>location_type</code></td>
+        <td><p><a href="#LocationType"><code>LocationType</code></a></p></td>
+        <td>No</td>
+        <td><p>The type of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Headquarters</code></li>
+                
+                <li><code>Site</code></li>
+                
+                <li><code>Branch</code></li>
+                
+                <li><code>Operating Area</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Area Source</td>
+        <td><code>area_source</code></td>
+        <td><p><a href="#AreaSource"><code>AreaSource</code></a></p></td>
+        <td>No</td>
+        <td><p>The source of the area information for the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Postcode</code></li>
+                
+                <li><code>Area Code</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Latitude</td>
+        <td><code>latitude</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The latitude of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>51.50101</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Longitude</td>
+        <td><code>longitude</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The longitude of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>-0.141563</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="GeoPostcodeModel">Geo Postcode</h2>
+
+
+<p><p>Represents a geographic location identified by postcode within the model</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>Ward Code</td>
+        <td><code>ward_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The ward code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E05013806</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Local Authority Code</td>
+        <td><code>localauthority_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The local authority code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E09000033</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Region Code</td>
+        <td><code>region_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The region code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E12000007</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Country Code</td>
+        <td><code>country_code</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The country code of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>E92000001</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Location Type</td>
+        <td><code>location_type</code></td>
+        <td><p><a href="#LocationType"><code>LocationType</code></a></p></td>
+        <td>No</td>
+        <td><p>The type of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Headquarters</code></li>
+                
+                <li><code>Site</code></li>
+                
+                <li><code>Branch</code></li>
+                
+                <li><code>Operating Area</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Area Source</td>
+        <td><code>area_source</code></td>
+        <td><p><a href="#AreaSource"><code>AreaSource</code></a></p></td>
+        <td>No</td>
+        <td><p>The source of the area information for the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Postcode</code></li>
+                
+                <li><code>Area Code</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Postcode</td>
+        <td><code>postcode</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The postcode of the location</p></td>
+        <td>
+            <ul>
+                
+                <li><code>SW1A 1AA</code></li>
                 
             </ul>
             
@@ -1039,7 +1326,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Locations</td>
         <td><code>locations</code></td>
-        <td><p>List of <a href="#LocationModel"><code>Location</code></a></p></td>
+        <td><p>List of One of <a href="#GeoAreaCodeModel"><code>Geo Area Code</code></a>, <a href="#GeoPointModel"><code>Geo Point</code></a>, <a href="#GeoPostcodeModel"><code>Geo Postcode</code></a></p></td>
         <td>Yes</td>
         <td><p>List of locations associated with this entity</p></td>
         <td>

@@ -227,81 +227,9 @@
             "title": "Contact Details",
             "type": "object"
         },
-        "GeographicRange": {
-            "enum": [
-                "Local",
-                "Regional",
-                "National",
-                "International"
-            ],
-            "title": "GeographicRange",
-            "type": "string"
-        },
-        "HeritageDomain": {
-            "enum": [
-                "Educating",
-                "Advocating",
-                "Researching",
-                "Conserving",
-                "Managing",
-                "Engaging"
-            ],
-            "title": "HeritageDomain",
-            "type": "string"
-        },
-        "LegalForm": {
-            "enum": [
-                "Registered Company",
-                "Community Interest Company",
-                "Private Limited Company",
-                "Mutual",
-                "Charity (England & Wales)",
-                "Charity (Scotland)",
-                "Charity (Northern Ireland)",
-                "Sole Trader"
-            ],
-            "title": "LegalForm",
-            "type": "string"
-        },
-        "LocationModel": {
-            "description": "Represents a location within the model",
+        "GeoAreaCodeModel": {
+            "description": "Represents a geographic location identified by area code within the model",
             "properties": {
-                "latitude": {
-                    "default": null,
-                    "description": "The latitude of the location",
-                    "examples": [
-                        51.50101
-                    ],
-                    "title": "Latitude",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "longitude": {
-                    "default": null,
-                    "description": "The longitude of the location",
-                    "examples": [
-                        -0.141563
-                    ],
-                    "title": "Longitude",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "postcode": {
-                    "default": null,
-                    "description": "The postcode of the location",
-                    "examples": [
-                        "SW1A 1AA"
-                    ],
-                    "title": "Postcode",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "ward_code": {
                     "default": null,
                     "description": "The ward code of the location",
@@ -371,10 +299,248 @@
                         "Area Code"
                     ],
                     "title": "Area Source"
+                },
+                "area_code": {
+                    "default": null,
+                    "description": "The area code of the location",
+                    "examples": [
+                        "E92000001"
+                    ],
+                    "title": "Area Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
-            "title": "Location",
+            "title": "Geo Area Code",
             "type": "object"
+        },
+        "GeoPointModel": {
+            "description": "Represents a geographic point within the model",
+            "properties": {
+                "ward_code": {
+                    "default": null,
+                    "description": "The ward code of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Ward Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "localauthority_code": {
+                    "default": null,
+                    "description": "The local authority code of the location",
+                    "examples": [
+                        "E09000033"
+                    ],
+                    "title": "Local Authority Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region_code": {
+                    "default": null,
+                    "description": "The region code of the location",
+                    "examples": [
+                        "E12000007"
+                    ],
+                    "title": "Region Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "country_code": {
+                    "default": null,
+                    "description": "The country code of the location",
+                    "examples": [
+                        "E92000001"
+                    ],
+                    "title": "Country Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "$ref": "#/$defs/LocationType",
+                    "default": "Headquarters",
+                    "description": "The type of the location",
+                    "examples": [
+                        "Headquarters",
+                        "Site",
+                        "Branch",
+                        "Operating Area"
+                    ],
+                    "title": "Location Type"
+                },
+                "area_source": {
+                    "$ref": "#/$defs/AreaSource",
+                    "default": "Postcode",
+                    "description": "The source of the area information for the location",
+                    "examples": [
+                        "Postcode",
+                        "Area Code"
+                    ],
+                    "title": "Area Source"
+                },
+                "latitude": {
+                    "default": null,
+                    "description": "The latitude of the location",
+                    "examples": [
+                        51.50101
+                    ],
+                    "title": "Latitude",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "longitude": {
+                    "default": null,
+                    "description": "The longitude of the location",
+                    "examples": [
+                        -0.141563
+                    ],
+                    "title": "Longitude",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Geo Point",
+            "type": "object"
+        },
+        "GeoPostcodeModel": {
+            "description": "Represents a geographic location identified by postcode within the model",
+            "properties": {
+                "ward_code": {
+                    "default": null,
+                    "description": "The ward code of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Ward Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "localauthority_code": {
+                    "default": null,
+                    "description": "The local authority code of the location",
+                    "examples": [
+                        "E09000033"
+                    ],
+                    "title": "Local Authority Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region_code": {
+                    "default": null,
+                    "description": "The region code of the location",
+                    "examples": [
+                        "E12000007"
+                    ],
+                    "title": "Region Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "country_code": {
+                    "default": null,
+                    "description": "The country code of the location",
+                    "examples": [
+                        "E92000001"
+                    ],
+                    "title": "Country Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "$ref": "#/$defs/LocationType",
+                    "default": "Headquarters",
+                    "description": "The type of the location",
+                    "examples": [
+                        "Headquarters",
+                        "Site",
+                        "Branch",
+                        "Operating Area"
+                    ],
+                    "title": "Location Type"
+                },
+                "area_source": {
+                    "$ref": "#/$defs/AreaSource",
+                    "default": "Postcode",
+                    "description": "The source of the area information for the location",
+                    "examples": [
+                        "Postcode",
+                        "Area Code"
+                    ],
+                    "title": "Area Source"
+                },
+                "postcode": {
+                    "default": null,
+                    "description": "The postcode of the location",
+                    "examples": [
+                        "SW1A 1AA"
+                    ],
+                    "title": "Postcode",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Geo Postcode",
+            "type": "object"
+        },
+        "GeographicRange": {
+            "enum": [
+                "Local",
+                "Regional",
+                "National",
+                "International"
+            ],
+            "title": "GeographicRange",
+            "type": "string"
+        },
+        "HeritageDomain": {
+            "enum": [
+                "Educating",
+                "Advocating",
+                "Researching",
+                "Conserving",
+                "Managing",
+                "Engaging"
+            ],
+            "title": "HeritageDomain",
+            "type": "string"
+        },
+        "LegalForm": {
+            "enum": [
+                "Registered Company",
+                "Community Interest Company",
+                "Private Limited Company",
+                "Mutual",
+                "Charity (England & Wales)",
+                "Charity (Scotland)",
+                "Charity (Northern Ireland)",
+                "Sole Trader"
+            ],
+            "title": "LegalForm",
+            "type": "string"
         },
         "LocationType": {
             "enum": [
@@ -525,7 +691,17 @@
                 "locations": {
                     "description": "List of locations associated with this entity",
                     "items": {
-                        "$ref": "#/$defs/LocationModel"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/GeoAreaCodeModel"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoPointModel"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoPostcodeModel"
+                            }
+                        ]
                     },
                     "title": "Locations",
                     "type": "array"
@@ -770,7 +946,17 @@
                 "locations": {
                     "description": "List of locations associated with this entity",
                     "items": {
-                        "$ref": "#/$defs/LocationModel"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/GeoAreaCodeModel"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoPointModel"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoPostcodeModel"
+                            }
+                        ]
                     },
                     "title": "Locations",
                     "type": "array"
