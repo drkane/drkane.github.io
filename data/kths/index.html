@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <title></title>
+    <title>KTHS Schema</title>
     <style>
         :root {
             --pico-font-size: 14px;
@@ -24,7 +24,7 @@
         <nav>
             <ul>
                 <li>
-                    <h1>Schema Documentation</h1>
+                    <h1>KTHS Schema</h1>
                 </li>
             </ul>
             <ul>
@@ -60,7 +60,7 @@
     <tr>
         <td>Name</td>
         <td><code>name</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td></td>
         <td>
@@ -77,7 +77,7 @@
     <tr>
         <td>Alternative Names</td>
         <td><code>alternative_names</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td></td>
         <td>
@@ -94,7 +94,7 @@
     <tr>
         <td>Organisation IDs</td>
         <td><code>org_ids</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>List of organisation IDs associated with this entity. Uses the <a href="https://org-id.guide/about">Org ID</a> format.</p></td>
         <td>
@@ -115,7 +115,7 @@
     <tr>
         <td>Company Number</td>
         <td><code>company_number</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>Registered company number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-COH-</code> prefix.</p></td>
         <td>
@@ -132,7 +132,7 @@
     <tr>
         <td>Charity Number</td>
         <td><code>charity_number</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>Registered charity number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-CHC-</code>, <code>GB-SC-</code> or <code>GB-NIC-</code> prefix.</p></td>
         <td>
@@ -149,7 +149,7 @@
     <tr>
         <td>Date Registered</td>
         <td><code>date_registered</code></td>
-        <td><p>Date</p></td>
+        <td><p><code>Date</code></p></td>
         <td>No</td>
         <td><p>The date when the entity was registered</p></td>
         <td>
@@ -166,7 +166,7 @@
     <tr>
         <td>Date Ceased</td>
         <td><code>date_ceased</code></td>
-        <td><p>Date</p></td>
+        <td><p><code>Date</code></p></td>
         <td>No</td>
         <td><p>The date when the entity ceased to exist, if applicable</p></td>
         <td>
@@ -183,7 +183,7 @@
     <tr>
         <td>Legal Form</td>
         <td><code>legal_form</code></td>
-        <td><p>List [<a href="#LegalForm"><code>LegalForm</code></a>]</p></td>
+        <td><p>List of <a href="#LegalForm"><code>LegalForm</code></a></p></td>
         <td>Yes</td>
         <td><p>The legal form of the entity</p></td>
         <td>
@@ -202,7 +202,7 @@
     <tr>
         <td>Parent Entity</td>
         <td><code>parent_entity</code></td>
-        <td><p>Any Of <a href="#OperatorModel"><code>OperatorModel</code></a>, <a href="#SiteModel"><code>SiteModel</code></a></p></td>
+        <td><p>One of <a href="#OperatorModel"><code>Operator</code></a>, <a href="#SiteModel"><code>Site</code></a></p></td>
         <td>No</td>
         <td><p>The parent entity of this entity, if applicable</p></td>
         <td>
@@ -213,7 +213,7 @@
     <tr>
         <td>Locations</td>
         <td><code>locations</code></td>
-        <td><p>List [<a href="#LocationModel"><code>LocationModel</code></a>]</p></td>
+        <td><p>List of <a href="#LocationModel"><code>Location</code></a></p></td>
         <td>Yes</td>
         <td><p>List of locations associated with this entity</p></td>
         <td>
@@ -241,7 +241,7 @@
     <tr>
         <td>Website URL</td>
         <td><code>website_url</code></td>
-        <td><p>URI</p></td>
+        <td><p><code>URI</code></p></td>
         <td>No</td>
         <td><p>The website URL of the entity</p></td>
         <td>
@@ -258,7 +258,7 @@
     <tr>
         <td>Social Media Handles</td>
         <td><code>social_media_handles</code></td>
-        <td><p>List [<a href="#SocialMediaHandle"><code>SocialMediaHandle</code></a>]</p></td>
+        <td><p>List of <a href="#SocialMediaHandle"><code>Social Media Handle</code></a></p></td>
         <td>Yes</td>
         <td><p>List of social media handles associated with this entity</p></td>
         <td>
@@ -269,7 +269,7 @@
     <tr>
         <td>Contact Details</td>
         <td><code>contact_details</code></td>
-        <td><p><a href="#ContactDetails"><code>ContactDetails</code></a></p></td>
+        <td><p><a href="#ContactDetails"><code>Contact Details</code></a></p></td>
         <td>No</td>
         <td><p>The contact details of the entity</p></td>
         <td>
@@ -280,7 +280,7 @@
     <tr>
         <td>Sites</td>
         <td><code>sites</code></td>
-        <td><p>List [<a href="#SiteModel"><code>SiteModel</code></a>]</p></td>
+        <td><p>List of <a href="#SiteModel"><code>Site</code></a></p></td>
         <td>Yes</td>
         <td><p>The list of heritage sites associated with this operator</p></td>
         <td>
@@ -291,7 +291,7 @@
     <tr>
         <td>Annual Records</td>
         <td><code>annual_records</code></td>
-        <td><p>List [<a href="#AnnualModel"><code>AnnualModel</code></a>]</p></td>
+        <td><p>List of <a href="#AnnualModel"><code>Annual Record</code></a></p></td>
         <td>Yes</td>
         <td><p>The list of annual records associated with this operator</p></td>
         <td>
@@ -302,7 +302,7 @@
     <tr>
         <td>Is Heritage</td>
         <td><code>is_heritage</code></td>
-        <td><p>boolean</p></td>
+        <td><p><code>boolean</code></p></td>
         <td>No</td>
         <td><p>Indicates whether the entity is a heritage site</p></td>
         <td>
@@ -366,7 +366,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Entity</td>
         <td><code>entity</code></td>
-        <td><p>Any Of <a href="#OperatorModel"><code>OperatorModel</code></a>, <a href="#SiteModel"><code>SiteModel</code></a></p></td>
+        <td><p>One of <a href="#OperatorModel"><code>Operator</code></a>, <a href="#SiteModel"><code>Site</code></a></p></td>
         <td>Yes</td>
         <td><p>The entity being classified</p></td>
         <td>
@@ -388,7 +388,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Score</td>
         <td><code>score</code></td>
-        <td><p>integer</p></td>
+        <td><p><code>integer</code></p></td>
         <td>Yes</td>
         <td><p>The confidence score for this classification entry. Higher values indicate greater confidence.</p></td>
         <td>
@@ -399,7 +399,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Exclude</td>
         <td><code>exclude</code></td>
-        <td><p>boolean</p></td>
+        <td><p><code>boolean</code></p></td>
         <td>No</td>
         <td><p>Indicates whether this classification entry indicates that the term should be excluded from consideration. False means that this is a positive result for the classification</p></td>
         <td>
@@ -410,7 +410,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Last Updated</td>
         <td><code>last_updated</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td><p>The timestamp of the last update for this classification entry</p></td>
         <td>
@@ -446,7 +446,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Financial Year End</td>
         <td><code>financial_year_end</code></td>
-        <td><p>Date</p></td>
+        <td><p><code>Date</code></p></td>
         <td>No</td>
         <td><p>The end date of the financial year for this annual record</p></td>
         <td>
@@ -463,7 +463,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Financial Year Start</td>
         <td><code>financial_year_start</code></td>
-        <td><p>Date</p></td>
+        <td><p><code>Date</code></p></td>
         <td>No</td>
         <td><p>The start date of the financial year for this annual record</p></td>
         <td>
@@ -658,7 +658,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Address</td>
         <td><code>address</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>The postal address of the entity</p></td>
         <td>
@@ -886,7 +886,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Name</td>
         <td><code>name</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td></td>
         <td>
@@ -903,7 +903,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Alternative Names</td>
         <td><code>alternative_names</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td></td>
         <td>
@@ -920,7 +920,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Organisation IDs</td>
         <td><code>org_ids</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>List of organisation IDs associated with this entity. Uses the <a href="https://org-id.guide/about">Org ID</a> format.</p></td>
         <td>
@@ -941,7 +941,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Company Number</td>
         <td><code>company_number</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>Registered company number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-COH-</code> prefix.</p></td>
         <td>
@@ -958,7 +958,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Charity Number</td>
         <td><code>charity_number</code></td>
-        <td><p>List [string]</p></td>
+        <td><p>List of <code>string</code></p></td>
         <td>Yes</td>
         <td><p>Registered charity number associated with this entity. Derived from the <code>org_ids</code> field, including an organisation with the <code>GB-CHC-</code>, <code>GB-SC-</code> or <code>GB-NIC-</code> prefix.</p></td>
         <td>
@@ -975,7 +975,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Date Registered</td>
         <td><code>date_registered</code></td>
-        <td><p>Date</p></td>
+        <td><p><code>Date</code></p></td>
         <td>No</td>
         <td><p>The date when the entity was registered</p></td>
         <td>
@@ -992,7 +992,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Date Ceased</td>
         <td><code>date_ceased</code></td>
-        <td><p>Date</p></td>
+        <td><p><code>Date</code></p></td>
         <td>No</td>
         <td><p>The date when the entity ceased to exist, if applicable</p></td>
         <td>
@@ -1009,7 +1009,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Legal Form</td>
         <td><code>legal_form</code></td>
-        <td><p>List [<a href="#LegalForm"><code>LegalForm</code></a>]</p></td>
+        <td><p>List of <a href="#LegalForm"><code>LegalForm</code></a></p></td>
         <td>Yes</td>
         <td><p>The legal form of the entity</p></td>
         <td>
@@ -1028,7 +1028,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Parent Entity</td>
         <td><code>parent_entity</code></td>
-        <td><p>Any Of <a href="#OperatorModel"><code>OperatorModel</code></a>, <a href="#SiteModel"><code>SiteModel</code></a></p></td>
+        <td><p>One of <a href="#OperatorModel"><code>Operator</code></a>, <a href="#SiteModel"><code>Site</code></a></p></td>
         <td>No</td>
         <td><p>The parent entity of this entity, if applicable</p></td>
         <td>
@@ -1039,7 +1039,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Locations</td>
         <td><code>locations</code></td>
-        <td><p>List [<a href="#LocationModel"><code>LocationModel</code></a>]</p></td>
+        <td><p>List of <a href="#LocationModel"><code>Location</code></a></p></td>
         <td>Yes</td>
         <td><p>List of locations associated with this entity</p></td>
         <td>
@@ -1067,7 +1067,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Website URL</td>
         <td><code>website_url</code></td>
-        <td><p>URI</p></td>
+        <td><p><code>URI</code></p></td>
         <td>No</td>
         <td><p>The website URL of the entity</p></td>
         <td>
@@ -1084,7 +1084,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Social Media Handles</td>
         <td><code>social_media_handles</code></td>
-        <td><p>List [<a href="#SocialMediaHandle"><code>SocialMediaHandle</code></a>]</p></td>
+        <td><p>List of <a href="#SocialMediaHandle"><code>Social Media Handle</code></a></p></td>
         <td>Yes</td>
         <td><p>List of social media handles associated with this entity</p></td>
         <td>
@@ -1095,7 +1095,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Contact Details</td>
         <td><code>contact_details</code></td>
-        <td><p><a href="#ContactDetails"><code>ContactDetails</code></a></p></td>
+        <td><p><a href="#ContactDetails"><code>Contact Details</code></a></p></td>
         <td>No</td>
         <td><p>The contact details of the entity</p></td>
         <td>
@@ -1131,7 +1131,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Platform</td>
         <td><code>platform</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td><p>The social media platform (e.g., Instagram, Facebook, YouTube)</p></td>
         <td>
@@ -1148,7 +1148,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Handle</td>
         <td><code>handle</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td><p>The social media handle or username</p></td>
         <td>
@@ -1165,7 +1165,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>URL</td>
         <td><code>url</code></td>
-        <td><p>URI</p></td>
+        <td><p><code>URI</code></p></td>
         <td>Yes</td>
         <td><p>The URL of the social media profile</p></td>
         <td>
@@ -1207,7 +1207,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>ID</td>
         <td><code>id</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td><p>The identifier for the vocabulary entry within the classification</p></td>
         <td>
@@ -1226,7 +1226,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Title</td>
         <td><code>title</code></td>
-        <td><p>string</p></td>
+        <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td><p>The title of the vocabulary entry</p></td>
         <td>
