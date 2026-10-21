@@ -672,22 +672,6 @@
                     "title": "Legal Form",
                     "type": "array"
                 },
-                "parent_entity": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/OperatorModel"
-                        },
-                        {
-                            "$ref": "#/$defs/SiteModel"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The parent entity of this entity, if applicable",
-                    "title": "Parent Entity"
-                },
                 "locations": {
                     "description": "List of locations associated with this entity",
                     "items": {
@@ -760,6 +744,22 @@
                     "default": null,
                     "description": "The contact details of the entity",
                     "title": "Contact Details"
+                },
+                "parent_entity": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OperatorModel"
+                        },
+                        {
+                            "$ref": "#/$defs/SiteModel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The parent entity of this entity, if applicable",
+                    "title": "Parent Entity"
                 },
                 "sites": {
                     "description": "The list of heritage sites associated with this operator",
@@ -927,22 +927,6 @@
                     "title": "Legal Form",
                     "type": "array"
                 },
-                "parent_entity": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/OperatorModel"
-                        },
-                        {
-                            "$ref": "#/$defs/SiteModel"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The parent entity of this entity, if applicable",
-                    "title": "Parent Entity"
-                },
                 "locations": {
                     "description": "List of locations associated with this entity",
                     "items": {
@@ -1102,6 +1086,53 @@
             ],
             "title": "VocabularyEntry",
             "type": "object"
+        },
+        "VocabularyModel": {
+            "description": "Represents a classification vocabulary",
+            "properties": {
+                "id": {
+                    "description": "The unique identifier for the vocabulary",
+                    "examples": [
+                        "ICNPTSO",
+                        "ICNPO",
+                        "UK-CAT",
+                        "SIC2007"
+                    ],
+                    "title": "ID",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title of the vocabulary",
+                    "examples": [
+                        "International Classification of Nonprofit and Third Sector Organisations",
+                        "International Classification of Nonprofit Organisations",
+                        "UK Charities Activity Taxonomy",
+                        "Standard Industrial Classification 2007"
+                    ],
+                    "title": "Title",
+                    "type": "string"
+                },
+                "entries": {
+                    "description": "The list of entries within this vocabulary",
+                    "items": {
+                        "$ref": "#/$defs/VocabularyEntry"
+                    },
+                    "title": "Entries",
+                    "type": "array"
+                },
+                "single": {
+                    "default": false,
+                    "description": "Indicates whether the vocabulary is intended to only have one entry per entity",
+                    "title": "Single",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "id",
+                "title"
+            ],
+            "title": "VocabularyModel",
+            "type": "object"
         }
     },
     "anyOf": [
@@ -1110,6 +1141,9 @@
         },
         {
             "$ref": "#/$defs/ClassificationEntry"
+        },
+        {
+            "$ref": "#/$defs/VocabularyModel"
         }
     ],
     "title": "KTHS Schema",

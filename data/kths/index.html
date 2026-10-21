@@ -200,17 +200,6 @@
     
     
     <tr>
-        <td>Parent Entity</td>
-        <td><code>parent_entity</code></td>
-        <td><p>One of <a href="#OperatorModel"><code>Operator</code></a>, <a href="#SiteModel"><code>Site</code></a></p></td>
-        <td>No</td>
-        <td><p>The parent entity of this entity, if applicable</p></td>
-        <td>
-        </td>
-    </tr>
-    
-    
-    <tr>
         <td>Locations</td>
         <td><code>locations</code></td>
         <td><p>List of One of <a href="#GeoAreaCodeModel"><code>Geo Area Code</code></a>, <a href="#GeoPointModel"><code>Geo Point</code></a>, <a href="#GeoPostcodeModel"><code>Geo Postcode</code></a></p></td>
@@ -272,6 +261,17 @@
         <td><p><a href="#ContactDetails"><code>Contact Details</code></a></p></td>
         <td>No</td>
         <td><p>The contact details of the entity</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Parent Entity</td>
+        <td><code>parent_entity</code></td>
+        <td><p>One of <a href="#OperatorModel"><code>Operator</code></a>, <a href="#SiteModel"><code>Site</code></a></p></td>
+        <td>No</td>
+        <td><p>The parent entity of this entity, if applicable</p></td>
         <td>
         </td>
     </tr>
@@ -413,6 +413,99 @@ should be disregarded when determining the final classification.</p></p>
         <td><p><code>string</code></p></td>
         <td>Yes</td>
         <td><p>The timestamp of the last update for this classification entry</p></td>
+        <td>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+        
+        
+
+<h2 id="VocabularyModel">VocabularyModel</h2>
+
+
+<p><p>Represents a classification vocabulary</p></p>
+
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    
+    
+    <tr>
+        <td>ID</td>
+        <td><code>id</code></td>
+        <td><p><code>string</code></p></td>
+        <td>Yes</td>
+        <td><p>The unique identifier for the vocabulary</p></td>
+        <td>
+            <ul>
+                
+                <li><code>ICNPTSO</code></li>
+                
+                <li><code>ICNPO</code></li>
+                
+                <li><code>UK-CAT</code></li>
+                
+                <li><code>SIC2007</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Title</td>
+        <td><code>title</code></td>
+        <td><p><code>string</code></p></td>
+        <td>Yes</td>
+        <td><p>The title of the vocabulary</p></td>
+        <td>
+            <ul>
+                
+                <li><code>International Classification of Nonprofit and Third Sector Organisations</code></li>
+                
+                <li><code>International Classification of Nonprofit Organisations</code></li>
+                
+                <li><code>UK Charities Activity Taxonomy</code></li>
+                
+                <li><code>Standard Industrial Classification 2007</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Entries</td>
+        <td><code>entries</code></td>
+        <td><p>List of <a href="#VocabularyEntry"><code>VocabularyEntry</code></a></p></td>
+        <td>Yes</td>
+        <td><p>The list of entries within this vocabulary</p></td>
+        <td>
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Single</td>
+        <td><code>single</code></td>
+        <td><p><code>boolean</code></p></td>
+        <td>No</td>
+        <td><p>Indicates whether the vocabulary is intended to only have one entry per entity</p></td>
         <td>
         </td>
     </tr>
@@ -1308,17 +1401,6 @@ should be disregarded when determining the final classification.</p></p>
                 
             </ul>
             
-        </td>
-    </tr>
-    
-    
-    <tr>
-        <td>Parent Entity</td>
-        <td><code>parent_entity</code></td>
-        <td><p>One of <a href="#OperatorModel"><code>Operator</code></a>, <a href="#SiteModel"><code>Site</code></a></p></td>
-        <td>No</td>
-        <td><p>The parent entity of this entity, if applicable</p></td>
-        <td>
         </td>
     </tr>
     
