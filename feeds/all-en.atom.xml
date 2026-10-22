@@ -597,7 +597,7 @@ a lot of detail.&lt;/p&gt;
 &lt;p&gt;Note that it doesn't include ONS-specific statistic geography like Lower Super Output Areas and Middle Super Output Areas. There's lots of other boundary types that aren't included either - like health geography.&lt;/p&gt;
 &lt;p&gt;A direct link to &lt;a href="https://osdatahub.os.uk/downloads/open/BoundaryLine"&gt;download Boundary-Line can be found on the OS Data Hub&lt;/a&gt;. You can get it in a few different formats - GeoPackage is probably the most versatile. It's quite a big file - over 600Mb - and you'll probably need some specialist GIS software (like &lt;a href="https://qgis.org/"&gt;QGIS&lt;/a&gt;) to use it.&lt;/p&gt;
 &lt;p&gt;The data is available under the Open Government Licence, so you can use it for any purpose.&lt;/p&gt;
-&lt;h2 id="geolookups-by-david-kane"&gt;&lt;a href="https://github.com/drkane/geo-lookups/tree/master/boundaries"&gt;Geolookups by David Kane&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="geolookups-by-david-kane"&gt;&lt;a href="https://github.com/drkane/geo-lookups/tree/main/boundaries"&gt;Geolookups by David Kane&lt;/a&gt;&lt;/h2&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img alt="A map of the Lower Super Output Areas in Cambridgeshire and Peterborough" src="/images/boundaries/geolookup.png"&gt;&lt;/p&gt;
 &lt;/figure&gt;
