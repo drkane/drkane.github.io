@@ -1223,11 +1223,15 @@
             "description": "Represents a heritage sole trader within the model",
             "properties": {
                 "name": {
+                    "default": null,
                     "examples": [
                         "Example Entity"
                     ],
                     "title": "Name",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "alternative_names": {
                     "examples": [
@@ -1431,9 +1435,6 @@
                     "title": "Contact Details"
                 }
             },
-            "required": [
-                "name"
-            ],
             "title": "Sole Trader",
             "type": "object"
         },
