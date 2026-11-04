@@ -258,7 +258,7 @@
                 "score",
                 "last_updated"
             ],
-            "title": "ClassificationEntry",
+            "title": "Classification Entry",
             "type": "object"
         },
         "ContactDetails": {
@@ -962,7 +962,7 @@
                 },
                 "is_heritage": {
                     "default": true,
-                    "description": "Indicates whether the entity is a heritage site",
+                    "description": "Indicates whether the entity is a heritage site. This field will be populated based on the process described in [Classification Entry](#ClassificationEntry)",
                     "title": "Is Heritage",
                     "type": "boolean"
                 },
@@ -976,7 +976,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "The primary domain of heritage activities for this operator",
+                    "description": "The primary domain of heritage activities for this operator.  This field will be populated based on the process described in [Classification Entry](#ClassificationEntry)",
                     "examples": [
                         "Educating",
                         "Advocating"
@@ -996,7 +996,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "The domain of heritage activities for this operator",
+                    "description": "The domain of heritage activities for this operator.  This field will be populated based on the process described in [Classification Entry](#ClassificationEntry)",
                     "examples": [
                         [
                             "Educating",
@@ -1624,7 +1624,7 @@
                 "id",
                 "title"
             ],
-            "title": "VocabularyEntry",
+            "title": "Vocabulary Entry",
             "type": "object"
         },
         "VocabularyModel": {
@@ -1671,7 +1671,7 @@
                 "id",
                 "title"
             ],
-            "title": "VocabularyModel",
+            "title": "Vocabulary",
             "type": "object"
         }
     },

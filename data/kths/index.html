@@ -346,7 +346,7 @@
         <td><code>is_heritage</code></td>
         <td><p><code>boolean</code></p></td>
         <td>No</td>
-        <td><p>Indicates whether the entity is a heritage site</p></td>
+        <td><p>Indicates whether the entity is a heritage site. This field will be populated based on the process described in <a href="#ClassificationEntry">Classification Entry</a></p></td>
         <td>
         </td>
     </tr>
@@ -357,7 +357,7 @@
         <td><code>heritage_domain_primary</code></td>
         <td><p><a href="#HeritageDomain"><code>HeritageDomain</code></a></p></td>
         <td>No</td>
-        <td><p>The primary domain of heritage activities for this operator</p></td>
+        <td><p>The primary domain of heritage activities for this operator.  This field will be populated based on the process described in <a href="#ClassificationEntry">Classification Entry</a></p></td>
         <td>
             <ul>
                 
@@ -376,7 +376,7 @@
         <td><code>heritage_domain</code></td>
         <td><p>List of <a href="#HeritageDomain"><code>HeritageDomain</code></a></p></td>
         <td>No</td>
-        <td><p>The domain of heritage activities for this operator</p></td>
+        <td><p>The domain of heritage activities for this operator.  This field will be populated based on the process described in <a href="#ClassificationEntry">Classification Entry</a></p></td>
         <td>
             <ul>
                 
@@ -904,7 +904,7 @@
         
         
 
-<h2 id="ClassificationEntry">ClassificationEntry</h2>
+<h2 id="ClassificationEntry">Classification Entry</h2>
 
 
 <p><p>Represents a single entry for classifying an entity to a vocabulary term</p>
@@ -946,7 +946,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Term</td>
         <td><code>term</code></td>
-        <td><p><a href="#VocabularyEntry"><code>VocabularyEntry</code></a></p></td>
+        <td><p><a href="#VocabularyEntry"><code>Vocabulary Entry</code></a></p></td>
         <td>Yes</td>
         <td><p>The vocabulary term for this classification entry</p></td>
         <td>
@@ -993,7 +993,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="VocabularyModel">VocabularyModel</h2>
+<h2 id="VocabularyModel">Vocabulary</h2>
 
 
 <p><p>Represents a classification vocabulary</p></p>
@@ -1061,7 +1061,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Entries</td>
         <td><code>entries</code></td>
-        <td><p>List of <a href="#VocabularyEntry"><code>VocabularyEntry</code></a></p></td>
+        <td><p>List of <a href="#VocabularyEntry"><code>Vocabulary Entry</code></a></p></td>
         <td>Yes</td>
         <td><p>The list of entries within this vocabulary</p></td>
         <td>
@@ -1982,7 +1982,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="VocabularyEntry">VocabularyEntry</h2>
+<h2 id="VocabularyEntry">Vocabulary Entry</h2>
 
 
 <p><p>Represents a single entry within a classification vocabulary</p></p>
@@ -2042,7 +2042,7 @@ should be disregarded when determining the final classification.</p></p>
     <tr>
         <td>Parent</td>
         <td><code>parent</code></td>
-        <td><p><a href="#VocabularyEntry"><code>VocabularyEntry</code></a></p></td>
+        <td><p><a href="#VocabularyEntry"><code>Vocabulary Entry</code></a></p></td>
         <td>No</td>
         <td><p>The parent entry within the vocabulary, if any</p></td>
         <td>
@@ -2056,7 +2056,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="AreaSource">AreaSource</h2>
+<h2 id="AreaSource">Area Source</h2>
 
 
 
@@ -2075,7 +2075,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="EntityStatus">EntityStatus</h2>
+<h2 id="EntityStatus">Entity Status</h2>
 
 
 
@@ -2094,7 +2094,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="FinancialBand">FinancialBand</h2>
+<h2 id="FinancialBand">Financial Band</h2>
 
 
 
@@ -2119,7 +2119,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="GeographicRange">GeographicRange</h2>
+<h2 id="GeographicRange">Geographic Range</h2>
 
 
 
@@ -2142,7 +2142,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="HeritageDomain">HeritageDomain</h2>
+<h2 id="HeritageDomain">Heritage Domain</h2>
 
 
 
@@ -2167,7 +2167,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="LegalForm">LegalForm</h2>
+<h2 id="LegalForm">Legal Form</h2>
 
 
 
@@ -2196,7 +2196,7 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
-<h2 id="LocationType">LocationType</h2>
+<h2 id="LocationType">Location Type</h2>
 
 
 
