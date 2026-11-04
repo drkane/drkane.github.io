@@ -1219,6 +1219,224 @@
             "title": "Social Media Handle",
             "type": "object"
         },
+        "SoleTraderModel": {
+            "description": "Represents a heritage sole trader within the model",
+            "properties": {
+                "name": {
+                    "examples": [
+                        "Example Entity"
+                    ],
+                    "title": "Name",
+                    "type": "string"
+                },
+                "alternative_names": {
+                    "examples": [
+                        [
+                            "Example Entity Ltd",
+                            "Example Entity Inc"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Alternative Names",
+                    "type": "array"
+                },
+                "org_ids": {
+                    "description": "List of organisation IDs associated with this entity. Uses the [Org ID](https://org-id.guide/about) format.",
+                    "examples": [
+                        [
+                            "GB-CHC-123456"
+                        ],
+                        [
+                            "GB-HESA-1234"
+                        ],
+                        [
+                            "GB-CHC-1234567",
+                            "GB-COH-12345678"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Organisation IDs",
+                    "type": "array"
+                },
+                "company_number": {
+                    "description": "Registered company number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-COH-` prefix.",
+                    "examples": [
+                        [
+                            "12345678"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Company Number",
+                    "type": "array"
+                },
+                "charity_number": {
+                    "description": "Registered charity number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-CHC-`, `GB-SC-` or `GB-NIC-` prefix.",
+                    "examples": [
+                        [
+                            "1234567"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Charity Number",
+                    "type": "array"
+                },
+                "status": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EntityStatus"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "Active",
+                    "description": "The status of the entity",
+                    "examples": [
+                        "Active",
+                        "Inactive",
+                        "Ceased"
+                    ],
+                    "title": "Status"
+                },
+                "date_registered": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The date when the entity was registered",
+                    "examples": [
+                        "2005-01-01"
+                    ],
+                    "title": "Date Registered"
+                },
+                "date_ceased": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The date when the entity ceased to exist, if applicable",
+                    "examples": [
+                        "2023-12-31"
+                    ],
+                    "title": "Date Ceased"
+                },
+                "legal_form": {
+                    "description": "The legal form of the entity",
+                    "examples": [
+                        [
+                            "Registered Company"
+                        ],
+                        [
+                            "Charity (England & Wales)",
+                            "Charity (Scotland)"
+                        ]
+                    ],
+                    "items": {
+                        "$ref": "#/$defs/LegalForm"
+                    },
+                    "title": "Legal Form",
+                    "type": "array"
+                },
+                "locations": {
+                    "description": "List of locations associated with this entity",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/GeoAreaCodeModel"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoPointModel"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoPostcodeModel"
+                            }
+                        ]
+                    },
+                    "title": "Locations",
+                    "type": "array"
+                },
+                "geographic_range": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/GeographicRange"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The geographic range of the entity",
+                    "examples": [
+                        "Local"
+                    ],
+                    "title": "Geographic Range"
+                },
+                "website_url": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The website URL of the entity",
+                    "examples": [
+                        "https://www.example.com"
+                    ],
+                    "title": "Website URL"
+                },
+                "social_media_handles": {
+                    "description": "List of social media handles associated with this entity",
+                    "items": {
+                        "$ref": "#/$defs/SocialMediaHandle"
+                    },
+                    "title": "Social Media Handles",
+                    "type": "array"
+                },
+                "contact_details": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ContactDetails"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The contact details of the entity",
+                    "title": "Contact Details"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Sole Trader",
+            "type": "object"
+        },
         "VocabularyEntry": {
             "description": "Represents a single entry within a classification vocabulary",
             "properties": {
@@ -1312,6 +1530,12 @@
     "anyOf": [
         {
             "$ref": "#/$defs/OperatorModel"
+        },
+        {
+            "$ref": "#/$defs/SiteModel"
+        },
+        {
+            "$ref": "#/$defs/SoleTraderModel"
         },
         {
             "$ref": "#/$defs/ClassificationEntry"
