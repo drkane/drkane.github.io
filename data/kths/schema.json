@@ -665,19 +665,37 @@
                     "type": "string"
                 },
                 "alternative_names": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "examples": [
                         [
                             "Example Entity Ltd",
                             "Example Entity Inc"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Alternative Names",
-                    "type": "array"
+                    "title": "Alternative Names"
                 },
                 "org_ids": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of organisation IDs associated with this entity. Uses the [Org ID](https://org-id.guide/about) format.",
                     "examples": [
                         [
@@ -691,37 +709,47 @@
                             "GB-COH-12345678"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Organisation IDs",
-                    "type": "array"
+                    "title": "Organisation IDs"
                 },
                 "company_number": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Registered company number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-COH-` prefix.",
                     "examples": [
                         [
                             "12345678"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Company Number",
-                    "type": "array"
+                    "title": "Company Number"
                 },
                 "charity_number": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Registered charity number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-CHC-`, `GB-SC-` or `GB-NIC-` prefix.",
                     "examples": [
                         [
                             "1234567"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Charity Number",
-                    "type": "array"
+                    "title": "Charity Number"
                 },
                 "status": {
                     "anyOf": [
@@ -776,6 +804,17 @@
                     "title": "Date Ceased"
                 },
                 "legal_form": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/LegalForm"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The legal form of the entity",
                     "examples": [
                         [
@@ -786,29 +825,32 @@
                             "Charity (Scotland)"
                         ]
                     ],
-                    "items": {
-                        "$ref": "#/$defs/LegalForm"
-                    },
-                    "title": "Legal Form",
-                    "type": "array"
+                    "title": "Legal Form"
                 },
                 "locations": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/$defs/GeoAreaCodeModel"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/GeoPointModel"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/GeoPostcodeModel"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of locations associated with this entity",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/GeoAreaCodeModel"
-                            },
-                            {
-                                "$ref": "#/$defs/GeoPointModel"
-                            },
-                            {
-                                "$ref": "#/$defs/GeoPostcodeModel"
-                            }
-                        ]
-                    },
-                    "title": "Locations",
-                    "type": "array"
+                    "title": "Locations"
                 },
                 "geographic_range": {
                     "anyOf": [
@@ -845,12 +887,19 @@
                     "title": "Website URL"
                 },
                 "social_media_handles": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/SocialMediaHandle"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of social media handles associated with this entity",
-                    "items": {
-                        "$ref": "#/$defs/SocialMediaHandle"
-                    },
-                    "title": "Social Media Handles",
-                    "type": "array"
+                    "title": "Social Media Handles"
                 },
                 "contact_details": {
                     "anyOf": [
@@ -974,19 +1023,37 @@
                     "type": "string"
                 },
                 "alternative_names": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "examples": [
                         [
                             "Example Entity Ltd",
                             "Example Entity Inc"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Alternative Names",
-                    "type": "array"
+                    "title": "Alternative Names"
                 },
                 "org_ids": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of organisation IDs associated with this entity. Uses the [Org ID](https://org-id.guide/about) format.",
                     "examples": [
                         [
@@ -1000,37 +1067,47 @@
                             "GB-COH-12345678"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Organisation IDs",
-                    "type": "array"
+                    "title": "Organisation IDs"
                 },
                 "company_number": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Registered company number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-COH-` prefix.",
                     "examples": [
                         [
                             "12345678"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Company Number",
-                    "type": "array"
+                    "title": "Company Number"
                 },
                 "charity_number": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Registered charity number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-CHC-`, `GB-SC-` or `GB-NIC-` prefix.",
                     "examples": [
                         [
                             "1234567"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Charity Number",
-                    "type": "array"
+                    "title": "Charity Number"
                 },
                 "status": {
                     "anyOf": [
@@ -1085,6 +1162,17 @@
                     "title": "Date Ceased"
                 },
                 "legal_form": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/LegalForm"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The legal form of the entity",
                     "examples": [
                         [
@@ -1095,29 +1183,32 @@
                             "Charity (Scotland)"
                         ]
                     ],
-                    "items": {
-                        "$ref": "#/$defs/LegalForm"
-                    },
-                    "title": "Legal Form",
-                    "type": "array"
+                    "title": "Legal Form"
                 },
                 "locations": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/$defs/GeoAreaCodeModel"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/GeoPointModel"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/GeoPostcodeModel"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of locations associated with this entity",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/GeoAreaCodeModel"
-                            },
-                            {
-                                "$ref": "#/$defs/GeoPointModel"
-                            },
-                            {
-                                "$ref": "#/$defs/GeoPostcodeModel"
-                            }
-                        ]
-                    },
-                    "title": "Locations",
-                    "type": "array"
+                    "title": "Locations"
                 },
                 "geographic_range": {
                     "anyOf": [
@@ -1154,12 +1245,19 @@
                     "title": "Website URL"
                 },
                 "social_media_handles": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/SocialMediaHandle"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of social media handles associated with this entity",
-                    "items": {
-                        "$ref": "#/$defs/SocialMediaHandle"
-                    },
-                    "title": "Social Media Handles",
-                    "type": "array"
+                    "title": "Social Media Handles"
                 },
                 "contact_details": {
                     "anyOf": [
@@ -1234,19 +1332,37 @@
                     ]
                 },
                 "alternative_names": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "examples": [
                         [
                             "Example Entity Ltd",
                             "Example Entity Inc"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Alternative Names",
-                    "type": "array"
+                    "title": "Alternative Names"
                 },
                 "org_ids": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of organisation IDs associated with this entity. Uses the [Org ID](https://org-id.guide/about) format.",
                     "examples": [
                         [
@@ -1260,37 +1376,47 @@
                             "GB-COH-12345678"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Organisation IDs",
-                    "type": "array"
+                    "title": "Organisation IDs"
                 },
                 "company_number": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Registered company number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-COH-` prefix.",
                     "examples": [
                         [
                             "12345678"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Company Number",
-                    "type": "array"
+                    "title": "Company Number"
                 },
                 "charity_number": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Registered charity number associated with this entity. Derived from the `org_ids` field, including an organisation with the `GB-CHC-`, `GB-SC-` or `GB-NIC-` prefix.",
                     "examples": [
                         [
                             "1234567"
                         ]
                     ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Charity Number",
-                    "type": "array"
+                    "title": "Charity Number"
                 },
                 "status": {
                     "anyOf": [
@@ -1345,6 +1471,17 @@
                     "title": "Date Ceased"
                 },
                 "legal_form": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/LegalForm"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The legal form of the entity",
                     "examples": [
                         [
@@ -1355,29 +1492,32 @@
                             "Charity (Scotland)"
                         ]
                     ],
-                    "items": {
-                        "$ref": "#/$defs/LegalForm"
-                    },
-                    "title": "Legal Form",
-                    "type": "array"
+                    "title": "Legal Form"
                 },
                 "locations": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/$defs/GeoAreaCodeModel"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/GeoPointModel"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/GeoPostcodeModel"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of locations associated with this entity",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/GeoAreaCodeModel"
-                            },
-                            {
-                                "$ref": "#/$defs/GeoPointModel"
-                            },
-                            {
-                                "$ref": "#/$defs/GeoPostcodeModel"
-                            }
-                        ]
-                    },
-                    "title": "Locations",
-                    "type": "array"
+                    "title": "Locations"
                 },
                 "geographic_range": {
                     "anyOf": [
@@ -1414,12 +1554,19 @@
                     "title": "Website URL"
                 },
                 "social_media_handles": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/SocialMediaHandle"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "List of social media handles associated with this entity",
-                    "items": {
-                        "$ref": "#/$defs/SocialMediaHandle"
-                    },
-                    "title": "Social Media Handles",
-                    "type": "array"
+                    "title": "Social Media Handles"
                 },
                 "contact_details": {
                     "anyOf": [
