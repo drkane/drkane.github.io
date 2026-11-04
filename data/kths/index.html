@@ -147,6 +147,27 @@
     
     
     <tr>
+        <td>Status</td>
+        <td><code>status</code></td>
+        <td><p><a href="#EntityStatus"><code>EntityStatus</code></a></p></td>
+        <td>No</td>
+        <td><p>The status of the entity</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Active</code></li>
+                
+                <li><code>Inactive</code></li>
+                
+                <li><code>Ceased</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
         <td>Date Registered</td>
         <td><code>date_registered</code></td>
         <td><p><code>Date</code></p></td>
@@ -278,6 +299,27 @@
     
     
     <tr>
+        <td>Parent Entity Relationship</td>
+        <td><code>parent_entity_relationship</code></td>
+        <td><p>string</p></td>
+        <td>No</td>
+        <td><p>The relationship of this entity to its parent entity, if applicable</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Museum at University</code></li>
+                
+                <li><code>Subsidiary</code></li>
+                
+                <li><code>Affiliate</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
         <td>Sites</td>
         <td><code>sites</code></td>
         <td><p>List of <a href="#SiteModel"><code>Site</code></a></p></td>
@@ -311,17 +353,34 @@
     
     
     <tr>
-        <td>Heritage Domain</td>
-        <td><code>heritage_domain</code></td>
+        <td>Heritage Domain (Primary)</td>
+        <td><code>heritage_domain_primary</code></td>
         <td><p><a href="#HeritageDomain"><code>HeritageDomain</code></a></p></td>
         <td>No</td>
-        <td><p>The domain of heritage activities for this operator</p></td>
+        <td><p>The primary domain of heritage activities for this operator</p></td>
         <td>
             <ul>
                 
                 <li><code>Educating</code></li>
                 
                 <li><code>Advocating</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Heritage Domain</td>
+        <td><code>heritage_domain</code></td>
+        <td><p>List of <a href="#HeritageDomain"><code>HeritageDomain</code></a></p></td>
+        <td>No</td>
+        <td><p>The domain of heritage activities for this operator</p></td>
+        <td>
+            <ul>
+                
+                <li><code>[&#39;Educating&#39;, &#39;Advocating&#39;]</code></li>
                 
             </ul>
             
@@ -588,15 +647,53 @@ should be disregarded when determining the final classification.</p></p>
     
     
     <tr>
+        <td>Turnover Band</td>
+        <td><code>turnover_band</code></td>
+        <td><p><a href="#FinancialBand"><code>FinancialBand</code></a></p></td>
+        <td>No</td>
+        <td><p>The turnover band for this annual record. Can be derived from the turnover value</p></td>
+        <td>
+            <ul>
+                
+                <li><code>£10k to £100k</code></li>
+                
+                <li><code>£100k to £1M</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
         <td>Expenditure</td>
         <td><code>expenditure</code></td>
         <td><p>number</p></td>
         <td>No</td>
-        <td><p>The expenditure for this annual record, in pounds</p></td>
+        <td><p>The expenditure for this annual record, in pounds. For a for-profit entity, this would include both cost of sales and any operating expenses.</p></td>
         <td>
             <ul>
                 
                 <li><code>80000.0</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Expenditure Band</td>
+        <td><code>expenditure_band</code></td>
+        <td><p><a href="#FinancialBand"><code>FinancialBand</code></a></p></td>
+        <td>No</td>
+        <td><p>The expenditure band for this annual record. Can be derived from the expenditure value</p></td>
+        <td>
+            <ul>
+                
+                <li><code>£10k to £100k</code></li>
+                
+                <li><code>£100k to £1M</code></li>
                 
             </ul>
             
@@ -626,11 +723,66 @@ should be disregarded when determining the final classification.</p></p>
         <td><code>assets</code></td>
         <td><p>number</p></td>
         <td>No</td>
-        <td><p>The assets or reserves at the end of the financial year for this annual record, in pounds</p></td>
+        <td><p>The assets at the end of the financial year for this annual record, in pounds</p></td>
         <td>
             <ul>
                 
                 <li><code>50000.0</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Assets Band</td>
+        <td><code>assets_band</code></td>
+        <td><p><a href="#FinancialBand"><code>FinancialBand</code></a></p></td>
+        <td>No</td>
+        <td><p>The assets band for this annual record. Can be derived from the assets value</p></td>
+        <td>
+            <ul>
+                
+                <li><code>£10k to £100k</code></li>
+                
+                <li><code>£100k to £1M</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Reserves</td>
+        <td><code>reserves</code></td>
+        <td><p>number</p></td>
+        <td>No</td>
+        <td><p>The reserves at the end of the financial year for this annual record, in pounds</p></td>
+        <td>
+            <ul>
+                
+                <li><code>50000.0</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td>Reserves Band</td>
+        <td><code>reserves_band</code></td>
+        <td><p><a href="#FinancialBand"><code>FinancialBand</code></a></p></td>
+        <td>No</td>
+        <td><p>The reserves band for this annual record. Can be derived from the reserves value</p></td>
+        <td>
+            <ul>
+                
+                <li><code>£10k to £100k</code></li>
+                
+                <li><code>£100k to £1M</code></li>
                 
             </ul>
             
@@ -673,7 +825,7 @@ should be disregarded when determining the final classification.</p></p>
     
     
     <tr>
-        <td>Number of Directors</td>
+        <td>Number of Directors or Trustees</td>
         <td><code>n_directors</code></td>
         <td><p>integer</p></td>
         <td>No</td>
@@ -1353,6 +1505,27 @@ should be disregarded when determining the final classification.</p></p>
     
     
     <tr>
+        <td>Status</td>
+        <td><code>status</code></td>
+        <td><p><a href="#EntityStatus"><code>EntityStatus</code></a></p></td>
+        <td>No</td>
+        <td><p>The status of the entity</p></td>
+        <td>
+            <ul>
+                
+                <li><code>Active</code></li>
+                
+                <li><code>Inactive</code></li>
+                
+                <li><code>Ceased</code></li>
+                
+            </ul>
+            
+        </td>
+    </tr>
+    
+    
+    <tr>
         <td>Date Registered</td>
         <td><code>date_registered</code></td>
         <td><p><code>Date</code></p></td>
@@ -1647,6 +1820,50 @@ should be disregarded when determining the final classification.</p></p>
         
         
 
+<h2 id="EntityStatus">EntityStatus</h2>
+
+
+
+
+<ul>
+    
+    <li>Active</li>
+    
+    <li>Inactive</li>
+    
+    <li>Ceased</li>
+    
+</ul>
+
+
+        
+        
+
+<h2 id="FinancialBand">FinancialBand</h2>
+
+
+
+
+<ul>
+    
+    <li>Zero</li>
+    
+    <li>Under £10k</li>
+    
+    <li>£10k to £100k</li>
+    
+    <li>£100k to £1M</li>
+    
+    <li>£1M to £10M</li>
+    
+    <li>Over £10M</li>
+    
+</ul>
+
+
+        
+        
+
 <h2 id="GeographicRange">GeographicRange</h2>
 
 
@@ -1661,6 +1878,8 @@ should be disregarded when determining the final classification.</p></p>
     <li>National</li>
     
     <li>International</li>
+    
+    <li>Digital / Online</li>
     
 </ul>
 

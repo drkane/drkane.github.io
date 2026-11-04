@@ -49,9 +49,26 @@
                         "null"
                     ]
                 },
+                "turnover_band": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FinancialBand"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The turnover band for this annual record. Can be derived from the turnover value",
+                    "examples": [
+                        "\u00a310k to \u00a3100k",
+                        "\u00a3100k to \u00a31M"
+                    ],
+                    "title": "Turnover Band"
+                },
                 "expenditure": {
                     "default": null,
-                    "description": "The expenditure for this annual record, in pounds",
+                    "description": "The expenditure for this annual record, in pounds. For a for-profit entity, this would include both cost of sales and any operating expenses.",
                     "examples": [
                         80000.0
                     ],
@@ -60,6 +77,23 @@
                         "number",
                         "null"
                     ]
+                },
+                "expenditure_band": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FinancialBand"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The expenditure band for this annual record. Can be derived from the expenditure value",
+                    "examples": [
+                        "\u00a310k to \u00a3100k",
+                        "\u00a3100k to \u00a31M"
+                    ],
+                    "title": "Expenditure Band"
                 },
                 "profit_surplus": {
                     "default": null,
@@ -75,7 +109,7 @@
                 },
                 "assets": {
                     "default": null,
-                    "description": "The assets or reserves at the end of the financial year for this annual record, in pounds",
+                    "description": "The assets at the end of the financial year for this annual record, in pounds",
                     "examples": [
                         50000.0
                     ],
@@ -84,6 +118,52 @@
                         "number",
                         "null"
                     ]
+                },
+                "assets_band": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FinancialBand"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The assets band for this annual record. Can be derived from the assets value",
+                    "examples": [
+                        "\u00a310k to \u00a3100k",
+                        "\u00a3100k to \u00a31M"
+                    ],
+                    "title": "Assets Band"
+                },
+                "reserves": {
+                    "default": null,
+                    "description": "The reserves at the end of the financial year for this annual record, in pounds",
+                    "examples": [
+                        50000.0
+                    ],
+                    "title": "Reserves",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "reserves_band": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FinancialBand"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The reserves band for this annual record. Can be derived from the reserves value",
+                    "examples": [
+                        "\u00a310k to \u00a3100k",
+                        "\u00a3100k to \u00a31M"
+                    ],
+                    "title": "Reserves Band"
                 },
                 "number_of_employees": {
                     "default": null,
@@ -115,7 +195,7 @@
                     "examples": [
                         5
                     ],
-                    "title": "Number of Directors",
+                    "title": "Number of Directors or Trustees",
                     "type": [
                         "integer",
                         "null"
@@ -226,6 +306,27 @@
             },
             "title": "Contact Details",
             "type": "object"
+        },
+        "EntityStatus": {
+            "enum": [
+                "Active",
+                "Inactive",
+                "Ceased"
+            ],
+            "title": "EntityStatus",
+            "type": "string"
+        },
+        "FinancialBand": {
+            "enum": [
+                "Zero",
+                "Under \u00a310k",
+                "\u00a310k to \u00a3100k",
+                "\u00a3100k to \u00a31M",
+                "\u00a31M to \u00a310M",
+                "Over \u00a310M"
+            ],
+            "title": "FinancialBand",
+            "type": "string"
         },
         "GeoAreaCodeModel": {
             "description": "Represents a geographic location identified by area code within the model",
@@ -511,7 +612,8 @@
                 "Local",
                 "Regional",
                 "National",
-                "International"
+                "International",
+                "Digital / Online"
             ],
             "title": "GeographicRange",
             "type": "string"
@@ -620,6 +722,24 @@
                     },
                     "title": "Charity Number",
                     "type": "array"
+                },
+                "status": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EntityStatus"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "Active",
+                    "description": "The status of the entity",
+                    "examples": [
+                        "Active",
+                        "Inactive",
+                        "Ceased"
+                    ],
+                    "title": "Status"
                 },
                 "date_registered": {
                     "anyOf": [
@@ -761,6 +881,20 @@
                     "description": "The parent entity of this entity, if applicable",
                     "title": "Parent Entity"
                 },
+                "parent_entity_relationship": {
+                    "default": null,
+                    "description": "The relationship of this entity to its parent entity, if applicable",
+                    "examples": [
+                        "Museum at University",
+                        "Subsidiary",
+                        "Affiliate"
+                    ],
+                    "title": "Parent Entity Relationship",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "sites": {
                     "description": "The list of heritage sites associated with this operator",
                     "items": {
@@ -783,7 +917,7 @@
                     "title": "Is Heritage",
                     "type": "boolean"
                 },
-                "heritage_domain": {
+                "heritage_domain_primary": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/HeritageDomain"
@@ -793,10 +927,32 @@
                         }
                     ],
                     "default": null,
-                    "description": "The domain of heritage activities for this operator",
+                    "description": "The primary domain of heritage activities for this operator",
                     "examples": [
                         "Educating",
                         "Advocating"
+                    ],
+                    "title": "Heritage Domain (Primary)"
+                },
+                "heritage_domain": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/HeritageDomain"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The domain of heritage activities for this operator",
+                    "examples": [
+                        [
+                            "Educating",
+                            "Advocating"
+                        ]
                     ],
                     "title": "Heritage Domain"
                 }
@@ -875,6 +1031,24 @@
                     },
                     "title": "Charity Number",
                     "type": "array"
+                },
+                "status": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EntityStatus"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "Active",
+                    "description": "The status of the entity",
+                    "examples": [
+                        "Active",
+                        "Inactive",
+                        "Ceased"
+                    ],
+                    "title": "Status"
                 },
                 "date_registered": {
                     "anyOf": [
