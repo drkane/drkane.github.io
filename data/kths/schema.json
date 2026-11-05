@@ -252,7 +252,7 @@
                     "type": "string"
                 },
                 "classification_method": {
-                    "description": "The method used to classify the entity to the vocabulary term",
+                    "description": "The method used to produce this classification entry",
                     "title": "Classification Method",
                     "type": "string"
                 },
