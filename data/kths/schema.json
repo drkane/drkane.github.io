@@ -250,13 +250,28 @@
                     "format": "date-time",
                     "title": "Last Updated",
                     "type": "string"
+                },
+                "classification_method": {
+                    "description": "The method used to classify the entity to the vocabulary term",
+                    "title": "Classification Method",
+                    "type": "string"
+                },
+                "notes": {
+                    "default": null,
+                    "description": "Additional notes or comments regarding this classification entry",
+                    "title": "Notes",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
             "required": [
                 "entity",
                 "term",
                 "score",
-                "last_updated"
+                "last_updated",
+                "classification_method"
             ],
             "title": "Classification Entry",
             "type": "object"
@@ -379,6 +394,42 @@
                         "null"
                     ]
                 },
+                "localplanningauthority_code": {
+                    "default": null,
+                    "description": "The local planning authority code of the location. Local planning authorities are often, but not always, coterminous with local authorities.",
+                    "examples": [
+                        "E60000002"
+                    ],
+                    "title": "Local Planning Authority Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parish_code": {
+                    "default": null,
+                    "description": "The parish code of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Parish Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "her_code": {
+                    "default": null,
+                    "description": "Code for Historic Environment Record (HER) area of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Historic Environment Record Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "location_type": {
                     "$ref": "#/$defs/LocationType",
                     "default": "Headquarters",
@@ -463,6 +514,42 @@
                         "E92000001"
                     ],
                     "title": "Country Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "localplanningauthority_code": {
+                    "default": null,
+                    "description": "The local planning authority code of the location. Local planning authorities are often, but not always, coterminous with local authorities.",
+                    "examples": [
+                        "E60000002"
+                    ],
+                    "title": "Local Planning Authority Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parish_code": {
+                    "default": null,
+                    "description": "The parish code of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Parish Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "her_code": {
+                    "default": null,
+                    "description": "Code for Historic Environment Record (HER) area of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Historic Environment Record Code",
                     "type": [
                         "string",
                         "null"
@@ -564,6 +651,42 @@
                         "E92000001"
                     ],
                     "title": "Country Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "localplanningauthority_code": {
+                    "default": null,
+                    "description": "The local planning authority code of the location. Local planning authorities are often, but not always, coterminous with local authorities.",
+                    "examples": [
+                        "E60000002"
+                    ],
+                    "title": "Local Planning Authority Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parish_code": {
+                    "default": null,
+                    "description": "The parish code of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Parish Code",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "her_code": {
+                    "default": null,
+                    "description": "Code for Historic Environment Record (HER) area of the location",
+                    "examples": [
+                        "E05013806"
+                    ],
+                    "title": "Historic Environment Record Code",
                     "type": [
                         "string",
                         "null"
