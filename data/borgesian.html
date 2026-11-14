@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>How much of Great Britain is covered by all the paper maps Ordnance Survey have produced?</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.4/dist/leaflet.css"
+	integrity="sha256-AWTc12F4bU4GqRtfkaV/Tgn6ZxlRNjBJnTsXVNtP4XM=" crossorigin="anonymous">
+<script type="importmap">
+{
+	"imports": {
+		"leaflet": "https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.4/dist/leaflet.js",
+		"alpinejs": "https://unpkg.com/alpinejs@3.17.5/dist/module.esm.js"
+	},
+	"integrity": {
+		"https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.4/dist/leaflet.js": "sha256-fRxwnl7F1oxlc3UchsWMQTaexLgt14hIMYKEjoeSdZ8="
+	}
+}
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/os-api-branding@latest/os-api-branding.css" />
+<style>
+	body {
+		margin:0;
+		padding:0;
+		font-family: sans-serif;
+		font-size: 13px;
+	}
+	#container {
+		width: 100%;
+		height: 100vh;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: min-content  1fr;
+		
+		#toolbar {
+			padding: 0.5em 1em;
+			display: flex;
+			align-items: center;
+			gap: 2em;
+			
+			h1 {
+				padding: 0;
+				margin: 0;
+				font-size: 135%;
+			}
+		}
+	}
+	input[type=number] {
+		text-align: right;
+	}
+</style>
+</head>
+<body>
+<div id="container" x-data="mapdata">
+	<div id="toolbar">
+		<h1>How much of Great Britain is covered by all the paper maps Ordnance Survey have produced?</h1>
+		<label>
+			Number of maps sold
+			<input type="number" x-model="numMapsSold" min="10000000"  step="10000000" style="width: 15ch;">
+		</label>
+		<label>
+			Average map size (m²)
+			<input type="number" x-model="mapSize" min="0"  step="0.01" style="width: 10ch;">
+		</label>
+		<span>
+			% of Great Britain:
+			<strong x-text="percentCalc"></strong>
+		</span>
+	</div>
+	<div id="map" x-ref="mapDiv"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/os-api-branding@latest/os-api-branding.js"></script>
+<script type="module">
+	import {LeafletMap, TileLayer, Rectangle, LatLng, Draggable, DomUtil, Point} from 'leaflet';
+	import Alpine from 'alpinejs'
+	const mapOptions = {
+		minZoom: 7,
+		maxZoom: 20,
+		center: [ 54.425, -2.968 ],
+		zoom: 7,
+		maxBounds: [
+			[ 49.528423, -10.76418 ],
+			[ 61.331151, 1.9134116 ]
+		],
+		attributionControl: false
+	};
+	
+	function createDraggable(el, map){
+		const ZERO = new Point(0, 0);
+		const path = el.getElement();
+		const draggable = new Draggable(path);
+		draggable.enable();
+		
+		draggable.on("dragend", e => {
+		  const offset = e.target._newPos;           // pixel offset since last frame
+		  if (!offset || offset.x === 0 && offset.y === 0) return;
+
+		  el.setLatLngs(
+			el.getLatLngs()[0].map(ll => {
+			  const p = map.latLngToLayerPoint(ll);
+			  return map.layerPointToLatLng(p.add(offset));
+			})
+		  );
+
+		  // wipe the visual transform and restart the drag origin,
+		  // so the next event's _newPos is relative to the new geometry
+		  DomUtil.setPosition(path, ZERO);
+		  e.target._newPos = ZERO;
+		});
+		return draggable
+	}
+	
+	Alpine.data('mapdata', () => ({
+		apiKey: 'hI1XRABP6fqRbxOchmGgO53TH33o5wvf',
+		numMapsSold: 342000000,  // Maps produced during World War 2 https://www.ordnancesurvey.co.uk/blog/the-beginning-of-our-paper-maps
+		mapSize: 0.89,  // m²
+		GBArea: 209331, // km²
+		map: null,
+		rect: null,
+		rectCenterLat: 54.425,
+		rectCenterLong: -2.968,
+		percentCalc: null,
+
+		calculatePercent() {
+			const mapSquare = this.numMapsSold * this.mapSize; // m²
+			this.percentCalc = (mapSquare / (this.GBArea * 1000000) * 100).toFixed(2) + '%';
+		},
+
+		recalulateRectangleSize() {
+			var rectCenter = this.rect.getCenter()
+			const mapSideLength = Math.sqrt(this.numMapsSold * this.mapSize);
+			const newBounds = new LatLng(rectCenter).toBounds(mapSideLength);
+			this.rect.setBounds(newBounds);
+			this.calculatePercent();
+		},
+		init() {
+			console.log("Initing");
+			const component = this;
+			this.map = new LeafletMap(this.$refs.mapDiv, mapOptions);
+			new TileLayer(`https://api.os.uk/maps/raster/v1/zxy/Light_3857/{z}/{x}/{y}.png?key=${this.apiKey}`, {
+				maxZoom: 20
+			}).addTo(this.map);
+			const mapSideLength = Math.sqrt(this.numMapsSold * this.mapSize);
+			const bounds = new LatLng([this.rectCenterLat, this.rectCenterLong]).toBounds(mapSideLength);
+			this.rect = new Rectangle(bounds, {color: "#ff7800", weight: 1}).addTo(this.map);
+			const draggable = createDraggable(this.rect, this.map);
+			this.calculatePercent();
+			
+			this.$watch('numMapsSold', (value, oldValue) => {
+				this.recalulateRectangleSize()
+			});
+			this.$watch('mapSize', (value, oldValue) => {
+				this.recalulateRectangleSize()
+			});
+		}
+	}));
+	Alpine.start();
+</script>
+</body>
