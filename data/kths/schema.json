@@ -741,6 +741,19 @@
             "title": "GeographicRange",
             "type": "string"
         },
+        "HeritageAssetDesignation": {
+            "enum": [
+                "Listed Building",
+                "Scheduled Monument",
+                "Registered Park or Garden",
+                "Registered Battlefield",
+                "Protected Wreck Site",
+                "Conservation Area",
+                "World Heritage Site"
+            ],
+            "title": "HeritageAssetDesignation",
+            "type": "string"
+        },
         "HeritageDomain": {
             "enum": [
                 "Educating",
@@ -751,6 +764,18 @@
                 "Engaging"
             ],
             "title": "HeritageDomain",
+            "type": "string"
+        },
+        "HeritageType": {
+            "enum": [
+                "Areas, buildings and monuments",
+                "Community heritage",
+                "Cultures and memories",
+                "Industrial, maritime and transport",
+                "Landscape, parks and nature",
+                "Museums, libraries and archives"
+            ],
+            "title": "HeritageType",
             "type": "string"
         },
         "LegalForm": {
@@ -1394,6 +1419,50 @@
                     "default": null,
                     "description": "The contact details of the entity",
                     "title": "Contact Details"
+                },
+                "designation": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/HeritageAssetDesignation"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The type of heritage asset for this site, if applicable",
+                    "examples": [
+                        [
+                            "Listed Building"
+                        ],
+                        [
+                            "Scheduled Monument"
+                        ]
+                    ],
+                    "title": "Heritage Asset Type"
+                },
+                "heritage_type": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/HeritageType"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The type of heritage for this site, if applicable",
+                    "examples": [
+                        "Areas, buildings and monuments",
+                        "Community heritage"
+                    ],
+                    "title": "Heritage Type"
                 }
             },
             "required": [
